@@ -103,6 +103,6 @@ p.dollar {
   background-color: darkgray;
 }
 
-label input[type="radio"]:checked + p { 
+input[type="radio"]:checked p { 
   background-color: rgb(18, 160, 77);
 }
