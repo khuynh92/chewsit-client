@@ -7,7 +7,7 @@ ENV.productionApiUrl = 'chewsit';
 ENV.developmentApiUrl = 'http://localhost:3000';
 ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
 
-(function(module) {
+(function (module) {
   const restaurant = {};
 
 
@@ -17,38 +17,50 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
       .then(callback);
   };
 
-  restaurant.results = (zip, food, price, range) => {
-    $.get(`${ENV.apiUrl}/api/yelp/v3/${food}/${zip}/${price}/${range}`)
-    .then(result => {
-      $('#test').empty();
-      restaurant.array = result.businesses;
-      restaurant.array.forEach(restaurant => ($('#test').append(`<li>${restaurant.name} ${restaurant.rating}</li>`)));
-      console.log(restaurant.array);
-  
+  restaurant.randomOffset = (zip, food, price, range) => {
+    $.get(`${ENV.apiUrl}/total/api/yelp/v3/${food}/${zip}/${price}/${range}`)
+      .then(result => {
+        app.restaurant.offset = result;
+        console.log(result);
+      });
+  };
 
-      $('#test').show();
-    })
+  restaurant.results = (zip, food, price, range) => {
+    var offset = restaurant.randomOffset(zip, food, price, range);
+    // console.log(offset);
+    $.get(`${ENV.apiUrl}/api/yelp/v3/${food}/${zip}/${price}/${range}/0`)
+      .then(result => {
+        $('#test').empty();
+        restaurant.array = result.businesses;
+        restaurant.array.forEach(restaurant => ($('#test').append(`<li>${restaurant.name} ${restaurant.rating} ${restaurant.is_closed}</li>`)));
+        console.log(restaurant.array);
+
+
+        $('#test').show();
+      })
 
   };
 
   $('#test-form').on('submit', (e) => {
     e.preventDefault();
-    console.log('hello!');
+    console.log('submitted!');
     // restaurant.formArray = [$('#zip').val(),$('#food').val(), ];
     restaurant.zip = $('#zip').val();
     restaurant.food = $('#food').val();
-    restaurant.price = $('#price').val();
+    restaurant.price = $('input[name=dolla]:checked').val();
     restaurant.range = $('#range').val();
+    console.log()
 
- restaurant.results(restaurant.zip, restaurant.food, restaurant.price, restaurant.range);
+    // restaurant.randomOffset(restaurant.zip, restaurant.food, restaurant.price, restaurant.range);
+    restaurant.results(restaurant.zip, restaurant.food, restaurant.price, restaurant.range);
 
-  //  callback => $.get(`${ENV.apiUrl}/api/yelp/v3/${$('#food').val()}/${$('#zip').val()}/${$('#price').val()}/${$('#range')}`)
-  //   .then(result => restaurant.array = result.businesses)
-  //   .then(callback);
+    //  callback => $.get(`${ENV.apiUrl}/api/yelp/v3/${$('#food').val()}/${$('#zip').val()}/${$('#price').val()}/${$('#range')}`)
+    //   .then(result => restaurant.array = result.businesses)
+    //   .then(callback);
   });
 
 
-module.restaurant = restaurant;
+  module.restaurant = restaurant;
 
 })(app);
 

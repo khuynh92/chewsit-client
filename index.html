@@ -20,22 +20,44 @@
   </div>
   <ul id="test" class="container">
   </ul>
+  <button id="current-location">Current location</button>
+
   <form id="test-form" class="container">
     <label>
-      <p>Enter your Zip Code</p>
+      <p>Enter your Zip Code OR user current location</p>
       <input id="zip"type="text">
     </label>
     <label>
         <p>What do you want to eat</p>
         <input id="food"type="text">
       </label>
-      <label>
-          <p>price between 1-4</p>
-          <input id="price"type="text">
-        </label>
+      <div id="price">
+          <label>
+            <input type="radio" name="dolla" value=1 />
+            <p class="dollar">$</p>
+          </label>
+  
+          <label>
+            <input type="radio" name="dolla" value=2 />
+            <p class="dollar">$$</p>
+          </label>
+  
+          <label>
+            <input type="radio" name="dolla" value=3 />
+            <p class="dollar">$$$</p>
+          </label>
+          <label>
+            <input type="radio" name="dolla" value=4 />
+            <p class="dollar" id="lastdollar">$$$$</p>
+          </label>
         <label>
-            <p>Range in Meters</p>
-            <input id="range"type="text">
+            Range
+            <select id="range">
+              <option value="1610">1 mile</option>
+              <option value="8045">5 miles</option>
+              <option value="16094">10 miles</option>
+              <option value="32186.9">20 miles</option>
+            </select>
           </label>
       <input type="submit">
     <a href="/display"><p>display</p></a>
@@ -44,6 +66,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
 <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
+<script src="./scripts/models/location.js"></script>
 <script src="./scripts/models/restaurants.js"></script>
 <script src ="./scripts/views/test-view.js"></script>
 <script src ="./scripts/views/form-view.js"></script>
