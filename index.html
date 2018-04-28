@@ -12,25 +12,97 @@
   <link rel="stylesheet" href="./styles/modules.css">
 </head>
 <body>
-  
+    <form id="test-form-two" class="middle-container">
 <div id="outer-container">
   <div id="home-view" class="container">
     <h1 id="logo">chewsit</h1>
     <a href="/test"><button class="btn">Chews it for me</button></a>
   </div>
-  <ul id="test" class="container">
-  </ul>
-  <button id="current-location">Current location</button>
-
+  <div>
+      <h1 id="abouthead">
+        <a href=index.html>CHEWS IT</a>
+      </h1>
+      <p id="abouthead2">Our Story ~ How It All Began!</p>
+      <br>
+      <div id="abouthead3"> One of my greatest weaknesses is being indecisive. With the vast amounts of great restaraunts around the Seattle area, how can you possibly choose one? With the creation of Chews It, I don't have to worry about spending hours on end trying to chews a restaurant to eat at! But what will I wear to the restaurant...?
+        <br>
+        <br>
+      </div>
+    </div>
+    <section id="members">
+      <br>
+      <p class="founder"><a href="https://github.com/khuynh92">Khoa Huynh</a></p>
+      <br>
+      <a href="https://www.linkedin.com/in/khoa-huynh92/"><img id="khoa" src="images\Khoa.jpg" alt="Khoa Huynh"></a>
+      <br>
+      <br>
+      <br>
+      <h2 id="tagline">"Let us choose it for you" -Khoa</h2>
+      <br>
+      <br>
+  
+      <hr>
+      <h2 id="members1">Our Team</p>
+        <br>
+  
+        <ul>
+              <li class="teamcl">
+                  <a href="JESSE LINKEDIN"><img class="team" id="jesse" src="images\Brittany.png" alt="Jesse Atay"></a>
+                  <p class="found">Board Member: <a href="JESSE GITHUB">JESSE ATAY</a></p>
+                  <br>
+                  <p class="us">NOTES ABOUT Jesse </p>
+                </li>
+          <li class="teamcl">
+            <a href="https://www.linkedin.com/in/brittanybolstad/"><img class="team" id="brittany" src="images\Brittany.png" alt="Brittany Bolstad"></a>
+            <p class="found">Board Member: <a href="https://github.com/Bolstad09">Brittany Bolstad</a></p>
+            <br>
+            <p class="us">NOTES ABOUT BRITTANY</p>
+          </li>
+          <li class="teamcl">
+            <a href="JUDAH's LINKEDIN"><img class="team" id="judah" src="images\Judah.png" alt="Judah Hunger"></a>
+            <p class="found">Board Member: <a href="GIT HUB JUDAH">Judah Hunger</a></p>
+            
+            <br>
+            <p class="us">NOTES ABOUT JUDAH</p>
+          </li>
+          <li class="teamcl">
+            <a href="https://www.linkedin.com/in/aaron-meade-21862b120/"></a><img class="team" id="aaron" src="images/aaron" alt="Aaron Meade"></a>
+            <p class="found">Board Member: <a href="GIT HUB LINK">Aaron Meade</a></p>
+            <a href="GIT HUB LINK"></a>
+            <br>
+            <p class="us">NOTES ABOUT AARON</p>
+          </li>
+        </ul>
+        <br>
+        <br>
+      </form>
+    </section>
+  <!-- ----------------------------------------------------------------------------------------- -->
+<!-- </form> -->
   <form id="test-form" class="container">
     <label>
-      <p>Enter your Zip Code OR user current location</p>
-      <input id="zip"type="text">
+        <div class="options row">
+            <div class="option1 col-md-5">
+              <button class="current-location" id="geo">Your Current Location</button>
+            </div>
+            <div class="col-md-2">
+                <h4 class="text-center">OR</h4>
+            </div>
+            <div class="option1 col-md-5">
+              <div class="form-group">
+                <input id="zip" type="text" class="form-control textbox" maxlength="5" placeholder="Enter A Zip Code">
+              </div>
+            </div>
+          </div>
+          <label>
+              <select id="range">
+                <option value="1610">1 mile</option>
+                <option value="8045">5 miles</option>
+                <option value="16094">10 miles</option>
+                <option value="32186.9">20 miles</option>
+              </select>
+            </label>
     </label>
-    <label>
-        <p>What do you want to eat</p>
-        <input id="food"type="text">
-      </label>
       <div id="price">
           <label>
             <input type="radio" name="dolla" value=1 />
@@ -50,19 +122,56 @@
             <input type="radio" name="dolla" value=4 />
             <p class="dollar" id="lastdollar">$$$$</p>
           </label>
-        <label>
-            Range
-            <select id="range">
-              <option value="1610">1 mile</option>
-              <option value="8045">5 miles</option>
-              <option value="16094">10 miles</option>
-              <option value="32186.9">20 miles</option>
-            </select>
-          </label>
-      <input type="submit">
-    <a href="/display"><p>display</p></a>
+          <label>
+              <!-- <input id="food"type="text"> -->
+              <div id="meal">
+                  <label>
+                    <input type="radio" name="mealtype" value="breakfast" />
+                    <p class="mealtype">Breakfast</p>
+                  </label>
+          
+                  <label>
+                    <input type="radio" name="mealtype" value="lunch" />
+                    <p class="mealtype">Lunch</p>
+                  </label>
+          
+                  <label>
+                    <input type="radio" name="mealtype" value="dinner" />
+                    <p class="mealtype">Dinner</p>
+                  </label>
+          
+                  <label>
+                    <input type="radio" name="mealtype" value="dessert" />
+                    <p class="mealtype">Dessert</p>
+                  </label>
+                </div>
+            </label>
+      <!-- <input type="submit"> -->
+    <a href="/display" input type="submit"><p>Choose it!</p></a>
   </form>
 </div>
+<!-- ----------------------------------------------------------------------------------------------------- -->
+<!-- <div class="overLay"></div>
+<video id="bgVideo" autoplay poster="" preload="true" class="video-parallax" loop muted></video>
+<div class="fullScreenPhoto2"></div> -->
+<!-- <video id="bgVideo" preload="true" autoplay loop muted>  -->
+  <!--video background from stack overflow -->
+  <!-- <source src="images/lunch.mp4" type="video/mp4" >
+</video> -->
+<div class="fullScreenPhoto"></div>
+<div class="video-container">
+  <video autoplay poster="" class="video-parallax" loop muted>
+    <source src="images/lunch.mp4" type="video/webm">
+    <source src="https://showbox-tr.dropbox.com/transcode_video/t/1qz2fy47wt9ay7i/header_background.mp4" type="video/mp4">
+  </video>
+</div>
+
+<div class="fullScreenPhoto2"></div>
+
+<div class="fullScreenPhoto3"></div>
+
+
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
 <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
