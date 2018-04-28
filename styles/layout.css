@@ -1,3 +1,25 @@
 .container {
   display: none;  
 }
+.navHeader {
+  display:inline;
+}
+.navHeader a{
+  font-family: 'Titan One', cursive;
+  font-size:40px;
+  color:white;
+  margin-left:20px;
+  text-decoration: none;
+  transition: 230ms;
+}
+header {
+  font-family: 'Quicksand', sans-serif;
+  background-color:rgba(37, 41, 49, .96);
+  height:50px;
+}
+#price {
+  display: block;
+  width: 200px;
+  padding-top: 20px;
+  margin: auto;
+}
