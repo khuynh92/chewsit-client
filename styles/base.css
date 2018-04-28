@@ -4,6 +4,9 @@ font-family: 'Poppins', sans-serif;
 
 body {
   width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 #bgVideo {
@@ -18,8 +21,79 @@ body {
 
 div.overLay {
   background-color:rgba(37, 41, 49, 0.7);
-  position:absolute;
+  position: fixed;
   height: 100%;
   width:100%;
   z-index:-1;
+}
+
+
+/* @keyframes animatetop { 
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+} */
+
+/* body, html {
+  height: 100%;
+} */
+
+/* .parallax {  */
+  /* The image used */
+  /* background-image: url("images/lunch.mp4"); */
+
+  /* Full height */
+  /* height: 100%;  */
+
+  /* Create the parallax scrolling effect */
+  /* background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+} */
+
+/* body{
+  margin: 0;
+  padding:0
+} */
+
+.fullScreenPhoto{
+  width: 100%;
+  margin:0;
+  height:300px;
+  background-color: red;
+}
+
+.fullScreenPhoto2{
+  width: 100%;
+  height:300px;
+    margin:0;
+  background-color: green;
+}
+.fullScreenPhoto3{
+  width: 100%;
+    margin:0;
+  height:300px;
+  background-color: yellow;
+}
+
+video {
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    transform: translateX(-50%) translateY(-50%);
+    background-size: cover;
+    transition: 1s opacity;
+}
+
+.video-container {
+    height: 100%;
+}
+
+.video-parallax {
+    -webkit-transition-position: fixed;
+    position: fixed;
 }
