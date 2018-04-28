@@ -9,57 +9,92 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
 
 (function (module) {
   const restaurant = {};
+  const location = {};
 
-
-  restaurant.fetch = callback => {
-    $.get(`${ENV.apiUrl}/api/yelp/v3/sushi/98121`)
-      .then(result => restaurant.array = result.businesses)
-      .then(callback);
-  };
-
-  restaurant.randomOffset = (zip, food, price, range) => {
-    $.get(`${ENV.apiUrl}/total/api/yelp/v3/${food}/${zip}/${price}/${range}`)
+  restaurant.randomOffset = (location, food, price, range) => {
+    $.get(`${ENV.apiUrl}/api/yelp/v3/${food}/${location}/${price}/${range}/0`)
       .then(result => {
-        app.restaurant.offset = result;
-        console.log(result);
+        console.log('original total', result.total);
+        restaurant.offset = result.total < 51 ? 0 : Math.floor(Math.random() * result.total - 4);
+        console.log('offset, if number is greater than 50. If not this number will be 0:', restaurant.offset);
+        restaurant.results(location, food, price, range, restaurant.offset);
       });
   };
 
-  restaurant.results = (zip, food, price, range) => {
-    var offset = restaurant.randomOffset(zip, food, price, range);
-    // console.log(offset);
-    $.get(`${ENV.apiUrl}/api/yelp/v3/${food}/${zip}/${price}/${range}/0`)
+  restaurant.results = (location, food, price, range, offset) => {
+    $.get(`${ENV.apiUrl}/api/yelp/v3/${food}/${location}/${price}/${range}/${offset}`)
       .then(result => {
+        const endResults = [];
+        const endResultsIndex = [];
         $('#test').empty();
         restaurant.array = result.businesses;
-        restaurant.array.forEach(restaurant => ($('#test').append(`<li>${restaurant.name} ${restaurant.rating} ${restaurant.is_closed}</li>`)));
-        console.log(restaurant.array);
-
-
-        $('#test').show();
-      })
-
+        if (restaurant.array.length === 0) {
+          $('#test').append('<p> No results found </p>').show();
+        } else if (restaurant.array.length > 3) {
+          for (let i = 0; i < 3; i++) {
+            endResultsIndex[i] = Math.floor(Math.random()*restaurant.array.length);
+          }
+          console.log(endResultsIndex);
+          while (endResultsIndex[0] === endResultsIndex[1]) {
+            endResultsIndex[1] = Math.floor(Math.random()*restaurant.array.length);
+          }
+          while (endResultsIndex[1] === endResultsIndex[2] || endResultsIndex[2] === endResultsIndex[0]) {
+            endResultsIndex[2] = Math.floor(Math.random()*restaurant.array.length);
+          }
+          endResultsIndex.forEach(number => endResults.push(restaurant.array[number]));
+          endResults.forEach(restaurant => ($('#test').append(`<li>${restaurant.name} ${restaurant.rating} <img src='${restaurant.image_url}' /></li>`)));
+          $('#test').show();
+        } else if (restaurant.array.length <= 3) {
+          restaurant.array.forEach(restaurant => ($('#test').append(`<li>${restaurant.name} ${restaurant.rating} <img src='${restaurant.image_url}' /></li>`)));
+          $('#test').show();
+        }
+      });
   };
 
   $('#test-form').on('submit', (e) => {
     e.preventDefault();
-    console.log('submitted!');
-    // restaurant.formArray = [$('#zip').val(),$('#food').val(), ];
-    restaurant.zip = $('#zip').val();
-    restaurant.food = $('#food').val();
-    restaurant.price = $('input[name=dolla]:checked').val();
-    restaurant.range = $('#range').val();
-    console.log()
+    if (!app.location.pos && !$('#zip').val()) $('#location-notice').text('Please Use your Location').css({ 'color': 'red' });
+    else {
+      console.log('submitted!');
+      restaurant.location = app.location.pos ? `latitude=${app.location.pos.lat}&longitude=${app.location.pos.lng}` : `location=${$('#zip').val()}`;
+      restaurant.food = $('#food').val();
+      restaurant.range = $('#range').val();
+      restaurant.price = $('input[name=dolla]:checked').val();
+      restaurant.randomOffset(restaurant.location, restaurant.food, restaurant.price, restaurant.range);
+      app.location.pos = null;
+      $('#location-notice').text('');
+      $('#enter-location').show();
+      $('#or').show();
+      $('#current-location').show();
 
-    // restaurant.randomOffset(restaurant.zip, restaurant.food, restaurant.price, restaurant.range);
-    restaurant.results(restaurant.zip, restaurant.food, restaurant.price, restaurant.range);
-
-    //  callback => $.get(`${ENV.apiUrl}/api/yelp/v3/${$('#food').val()}/${$('#zip').val()}/${$('#price').val()}/${$('#range')}`)
-    //   .then(result => restaurant.array = result.businesses)
-    //   .then(callback);
+    }
   });
 
+  $('#current-location').on('click touchstart', e => {
+    e.preventDefault();
+    $('#enter-location').hide();
+    $('#or').hide();
+    $('#location-notice').text('Current Location Saved!').css({ 'color': 'green' });
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function (position) {
+        location.pos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+        console.log(location.pos);
+      });
+    }
+  });
 
+  $('#enter-location').on('click touchstart', e => {
+    e.preventDefault();
+    $('#enter-location').hide();
+    $('#current-location').hide();
+    $('#or').hide();
+    $('#location-input').show();
+  });
+
+  module.location = location;
   module.restaurant = restaurant;
 
 })(app);

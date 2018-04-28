@@ -20,11 +20,13 @@
   </div>
   <ul id="test" class="container">
   </ul>
-  <button id="current-location">Current location</button>
 
   <form id="test-form" class="container">
-    <label>
-      <p>Enter your Zip Code OR user current location</p>
+      <button id="current-location">Use Current location</button> <span id="or">OR</span>
+      <button id="enter-location">Enter location</button>
+      <p id="location-notice"></p>
+    <label id="location-input" class="hide">
+      <p>Enter your address, zip, or city</p>
       <input id="zip"type="text">
     </label>
     <label>
@@ -53,10 +55,11 @@
         <label>
             Range
             <select id="range">
+              <option value="805">&frac12; mile</option>
               <option value="1610">1 mile</option>
               <option value="8045">5 miles</option>
               <option value="16094">10 miles</option>
-              <option value="32186.9">20 miles</option>
+              <option value="32186">20 miles</option>
             </select>
           </label>
       <input type="submit">
