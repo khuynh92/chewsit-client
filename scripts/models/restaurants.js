@@ -24,7 +24,7 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
   restaurant.results = (location, food, price, range, offset) => {
     $.get(`${ENV.apiUrl}/api/yelp/v3/${food}/${location}/${price}/${range}/${offset}`)
       .then(result => {
-        const endResults = [];
+        restaurant.endResults = [];
         const endResultsIndex = [];
         $('#test').empty();
         restaurant.array = result.businesses;
@@ -41,17 +41,17 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
           while (endResultsIndex[1] === endResultsIndex[2] || endResultsIndex[2] === endResultsIndex[0]) {
             endResultsIndex[2] = Math.floor(Math.random()*restaurant.array.length);
           }
-          endResultsIndex.forEach(number => endResults.push(restaurant.array[number]));
-          endResults.forEach(restaurant => ($('#test').append(`<li>${restaurant.name} ${restaurant.rating} <img src='${restaurant.image_url}' /></li>`)));
-          $('#test').show();
-        } else if (restaurant.array.length <= 3) {
-          restaurant.array.forEach(restaurant => ($('#test').append(`<li>${restaurant.name} ${restaurant.rating} <img src='${restaurant.image_url}' /></li>`)));
-          $('#test').show();
+        //   endResultsIndex.forEach(number => restaurant.endResults.push(restaurant.array[number]));
+        //   restaurant.endResults.forEach(restaurant => ($('#test').append(`<li>${restaurant.name} ${restaurant.rating} <img src='${restaurant.image_url}' /></li>`)));
+        //   $('#test').show();
+        // } else if (restaurant.array.length <= 3) {
+        //   restaurant.array.forEach(restaurant => ($('#test').append(`<li>${restaurant.name} ${restaurant.rating} <img src='${restaurant.image_url}' /></li>`)));
+        //   $('#test').show();
         }
       });
   };
 
-  $('#test-form').on('submit', (e) => {
+  $('#app-form').on('click touchstart', (e) => {
     e.preventDefault();
     if (!app.location.pos && !$('#zip').val()) $('#location-notice').text('Please Use your Location').css({ 'color': 'red' });
     else {
@@ -65,13 +65,13 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
       $('#location-notice').text('');
       $('#enter-location').show();
       $('#or').show();
-      $('#current-location').show();
+      $('#geo').show();
 
     }
   });
 
 
-  $('#current-location').on('click touchstart', e => {
+  $('#geo').on('click touchstart', e => {
     e.preventDefault();
     $('#enter-location').hide();
     $('#or').hide();
@@ -95,7 +95,7 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
   $('#enter-location').on('click touchstart', e => {
     e.preventDefault();
     $('#enter-location').hide();
-    $('#current-location').hide();
+    $('#geo').hide();
     $('#or').hide();
     $('#location-input').show();
   });

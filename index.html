@@ -13,28 +13,19 @@
 
   <!-- HANDLEBARS TEMPLATES BEGIN HERE -->
 
-
-
-
 </head>
 <body>
 
-  <div id="favorites">
-    <button id="preferences-button">
-      preferences
-    </button>
-  </div>
+<!-- Landing page begins -->
 
 <div id="outer-container">
   <div id="home-view" class="home-view container">
     <h1 id="logo">chewsit</h1>
     <a href="/form"><button class="btn">Chews it for me</button></a>
   </div>
-  <ul id="test" class="container">
-  </ul>
 
-
-  
+<!-- ABOUT PAGE BEGINS -->
+<div class="container">
   <div style="color: #777;background-color:white;text-align:center;padding:50px 80px;text-align: justify;">
     <h3 style="text-align:center;">CHEWS IT</h3>
     <p id="abouthead2">Our Story ~ How It All Began!</p>
@@ -46,10 +37,9 @@
       <span class="border" style="background-color:transparent;font-size:25px;color: #f7f7f7;"></span>
     </div>
   </div>
-
- 
-    </div>
-    <section id="members">
+</div>
+    
+    <section id="members" class="container">
       <br>
       <p class="founder"><a href="https://github.com/khuynh92">Khoa Huynh</a></p>
       <br>
@@ -95,11 +85,11 @@
         </ul>
         <br>
         <br>
-      </form>
     </section>
+  </div>
   <!-- ----------------------------------------------------------------------------------------- -->
-<!-- </form> -->
-  <form id="test-form" class="container">
+<!-- APP FORM STARTS HERE -->
+  <form id="app-form" class="container">
       <div class="option row">
       <button id="geo" class="current-location">Use Current location</button> <span id="or">OR</span>
       <button id="enter-location">Enter location</button>
@@ -164,29 +154,30 @@
                 </div>
             </label>
       <!-- <input type="submit"> -->
-    <a href="/display" input type="submit"><p>Choose it!</p></a>
+    <a id="app-form" href="/display"><p>chewsit</p></a>
   </form>
 </div>
 <!-- ----------------------------------------------------------------------------------------------------- -->
 <!-- <div class="overLay"></div>
 <video id="bgVideo" autoplay poster="" preload="true" class="video-parallax" loop muted></video>
-<div class="fullScreenPhoto2"></div> -->
-<!-- <video id="bgVideo" preload="true" autoplay loop muted>  -->
+<div class="fullScreenPhoto2"></div>
+<video id="bgVideo" preload="true" autoplay loop muted> 
+
   <!--video background from stack overflow -->
   <!-- <source src="images/lunch.mp4" type="video/mp4" >
-</video> -->
+</video>
 
 
-<!-- <div class="fullScreenPhoto"></div>
+<div class="fullScreenPhoto"></div>
 <div class="video-container">
   <video autoplay poster="" class="video-parallax" loop muted>
     <source src="images/lunch.mp4" type="video/webm">
 
   </video>
-</div> -->
+</div>
 
 
-<!-- <div class="fullScreenPhoto2">
+<div class="fullScreenPhoto2">
   <video autoplay poster="" class="video-parallax" loop muted>
     <source src="images/resturant.mp4" type="video/webm">
 
@@ -198,23 +189,26 @@
     <source src="images/wine_glass.mp4" type="video/webm">
   </video>
 </div> -->
-      <input type="submit">
-      <div class="adventure">
+      <div class="adventure container">
         <button id="adventure-button">
           I'm ready for adventure!
         </button>
       </div>
-    <a href="/display"><p>display</p></a>
-
+    
   </form>
   
 <!-- RESULTS/DISPLAY VIEW PAGE START -->
 <ul id="display-results" class="container">
   </ul>
 
-<!-- CDN -->
+<!-- PREFERENCES VIEW STARTS HERE -->
+<div id="favorites" class="container">
+  <button id="preferences-button">
+    preferences
+  </button>
 </div>
-<div class="preferences-page">
+
+<div class="preferences-page" class="container">
   <button>Vietnamese</button>
   <button>Barfood</button>
   <button>Fast Food</button>
@@ -229,18 +223,24 @@
   <button>Pizza</button>
 
 </div>
+<!-- ------------------------------------------------ -->
+<!-- FAVORITES STARTS HERE -->
 
 
+
+
+<!-- CDN -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
 <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
+
 <script src="./scripts/models/location.js"></script>
 <script src="./scripts/models/restaurants.js"></script>
 <script src ="./scripts/views/restaurant-view.js"></script>
-<script src ="./scripts/views/error-view.js"></script>
-<script src ="./scripts/views/test-view.js"></script>
+<script src ="./scripts/views/results-view.js"></script>
+
 <script src ="./scripts/views/form-view.js"></script>
-<script src ="./scripts/views/preferences.js"></script>
+<!-- <script src ="./scripts/views/preferences.js"></script> -->
 <script src="./scripts/controllers/routes.js"></script>
 </body>
 </html>

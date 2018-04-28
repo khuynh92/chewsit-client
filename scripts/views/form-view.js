@@ -7,7 +7,8 @@ var app = app || {};
   const form = {};
 
   form.init = () => {
-    $('#test-form').show();
+    $('#app-form').show();
+    console.log('form is showing')
   };
 
 

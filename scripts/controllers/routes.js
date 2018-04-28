@@ -9,8 +9,8 @@ next();
 
 
 page('/', app.restaurantView.initIndexView);
-page('/form', () => app.restaurantView.initFormView());
-page('/display', () => app.restaurant.fetch(app.restaurantView.initDisplayView));
+page('/form', app.form.init);
+page('/display', app.resultsView.initDisplayResults);
 page('/preferences', () => app.preferences.initView());
 
 page.start();
