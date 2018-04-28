@@ -117,7 +117,7 @@ p.dollar {
   cursor: pointer;
 }
 
-label input[type="radio"]:checked + p { 
+input[type="radio"]:checked p { 
   background-color: rgb(18, 160, 77);
 }
 

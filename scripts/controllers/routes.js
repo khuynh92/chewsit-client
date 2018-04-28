@@ -7,8 +7,10 @@ page('/*', (ctx, next) => {
 next();
 });
 
-page('/', () => $('#home-view').fadeToggle(1500));
-page('/display', () => app.restaurant.fetch(app.test.initView));
-page('/test', () => app.form.init());
+
+page('/', app.restaurantView.initIndexView);
+page('/form', () => app.restaurantView.initFormView());
+page('/display', () => app.restaurant.fetch(app.restaurantView.initDisplayView));
 page('/preferences', () => app.preferences.initView());
+
 page.start();
