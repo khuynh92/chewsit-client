@@ -2,9 +2,10 @@
 //
 // var app = app || {};
 //
-// // take user input (click.val()** INSERT INTO db)
-// $('#preferences-button').on('submit', (e) => {
-//   e.preventDefault();
-//   console.log('werk');
-//   $('.preferences-page').show();
-// })
+  //get the values of the buttons and tore into an array and insert into DB. if the value of the array exists highlight the corresponding button.
+  var preferenceArray = [];
+  $('.choice').on('click', (e) => {
+    if(!preferenceArray.includes(e.target.value)){
+      preferenceArray.push(e.target.value);
+    }
+  });
