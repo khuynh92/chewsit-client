@@ -70,6 +70,7 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
     }
   });
 
+
   $('#current-location').on('click touchstart', e => {
     e.preventDefault();
     $('#enter-location').hide();
@@ -85,6 +86,11 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
       });
     }
   });
+  $('#adventure').on('click', (e) => {
+    e.preventDefault();
+    console.log('adventure');
+    $.get(`${ENV.apiUrl}/api/yelp/v3/${food}/${zip}/${price}/${range}/0`)
+  });
 
   $('#enter-location').on('click touchstart', e => {
     e.preventDefault();
@@ -94,8 +100,15 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
     $('#location-input').show();
   });
 
+  // take user input (click.val()** INSERT INTO db)
+  $('#preferences-button').on('click', (e) => {
+    e.preventDefault();
+    console.log('werk');
+    $('form').hide();
+    $('.preferences-page').show();
+  })
+
   module.location = location;
   module.restaurant = restaurant;
 
 })(app);
-
