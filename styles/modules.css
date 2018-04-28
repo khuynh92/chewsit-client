@@ -120,6 +120,11 @@ p.dollar {
 label input[type="radio"]:checked + p { 
   background-color: rgb(18, 160, 77);
 }
+
+
+.hide {
+  display: none;
+}
 .meal-type:first-child {
   margin-top: 15px;
 }
