@@ -49,7 +49,6 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
     restaurant.food = $('#food').val();
     restaurant.price = $('input[name=dolla]:checked').val();
     restaurant.range = $('#range').val();
-    console.log()
 
     // restaurant.randomOffset(restaurant.zip, restaurant.food, restaurant.price, restaurant.range);
     restaurant.results(restaurant.zip, restaurant.food, restaurant.price, restaurant.range);
@@ -58,9 +57,20 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
     //   .then(result => restaurant.array = result.businesses)
     //   .then(callback);
   });
+  $('#adventure').on('click', (e) => {
+    e.preventDefault();
+    console.log('adventure');
+    $.get(`${ENV.apiUrl}/api/yelp/v3/${food}/${zip}/${price}/${range}/0`)
+  });
 
+  // take user input (click.val()** INSERT INTO db)
+  $('#preferences-button').on('click', (e) => {
+    e.preventDefault();
+    console.log('werk');
+    $('form').hide();
+    $('.preferences-page').show();
+  })
 
   module.restaurant = restaurant;
 
 })(app);
-

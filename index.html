@@ -12,7 +12,11 @@
   <link rel="stylesheet" href="./styles/modules.css">
 </head>
 <body>
-  
+  <div id="favorites">
+    <button id="preferences-button">
+      preferences
+    </button>
+  </div>
 <div id="outer-container">
   <div id="home-view" class="container">
     <h1 id="logo">chewsit</h1>
@@ -36,12 +40,12 @@
             <input type="radio" name="dolla" value=1 />
             <p class="dollar">$</p>
           </label>
-  
+
           <label>
             <input type="radio" name="dolla" value=2 />
             <p class="dollar">$$</p>
           </label>
-  
+
           <label>
             <input type="radio" name="dolla" value=3 />
             <p class="dollar">$$$</p>
@@ -59,10 +63,29 @@
               <option value="32186.9">20 miles</option>
             </select>
           </label>
+
       <input type="submit">
+      <div class="adventure">
+        <button id="adventure-button">
+          I'm ready for adventure!
+        </button>
+      </div>
     <a href="/display"><p>display</p></a>
+
   </form>
 </div>
+<div class="preferences-page">
+  <button>Vietnamese</button>
+  <button>Barfood</button>
+  <button>Fast Food</button>
+  <button>Sushi</button>
+  <button>Mexican</button>
+  <button>Vietnamese</button>
+  <button>Vietnamese</button>
+  <button>Vietnamese</button>
+
+</div>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
 <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
@@ -70,6 +93,7 @@
 <script src="./scripts/models/restaurants.js"></script>
 <script src ="./scripts/views/test-view.js"></script>
 <script src ="./scripts/views/form-view.js"></script>
+<script src ="./scripts/views/preferences.js"></script>
 <script src="./scripts/controllers/routes.js"></script>
 </body>
-</html> 
+</html>
