@@ -5,6 +5,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: -1;
 }
 
 #logo {
@@ -40,6 +41,7 @@
   color: rgba(0, 0, 0, 0.329);
   box-shadow: none;
   outline: none;
+  z-index: 1;
 }
 .btn:active { 
   background-color:rgba(70, 226, 104, 0.767);
