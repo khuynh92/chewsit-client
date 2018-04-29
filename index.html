@@ -90,16 +90,14 @@
   <!-- ----------------------------------------------------------------------------------------- -->
 <!-- APP FORM STARTS HERE -->
   <form id="app-form" class="container">
-      <div class="option row">
       <button id="geo" class="current-location">Use Current location</button> <span id="or">OR</span>
       <button id="enter-location">Enter location</button>
       <p id="location-notice"></p>
 
-    <label id="location-input" class="hide">
+    <div id="location-input" class="hide">
       <input id="zip"type="text" class="form-control textbox"  placeholder="Enter your address, zip, or city">
-    </label>
-      </div>
-        <label>
+        </div>
+          <label>
             <select id="range">
               <option value="805">&frac12; mile</option>
               <option value="1610">1 mile</option>
@@ -108,8 +106,6 @@
               <option value="32186">20 miles</option>
             </select>
           </label>
-
-    </label>
       <div id="price">
           <label>
             <input type="radio" name="dolla" value=1 />
@@ -129,6 +125,7 @@
             <input type="radio" name="dolla" value=4 />
             <p class="dollar" id="lastdollar">$$$$</p>
           </label>
+        </div>
           <label>
               <!-- <input id="food"type="text"> -->
               <div id="meal">
@@ -154,9 +151,10 @@
                 </div>
             </label>
       <!-- <input type="submit"> -->
-    <a id="app-form" href="/display"><p>chewsit</p></a>
+    <input type="submit" value="chews it!">
+    <a href="/display">Show Results!</a>
   </form>
-</div>
+
 <!-- ----------------------------------------------------------------------------------------------------- -->
 <!-- <div class="overLay"></div>
 <video id="bgVideo" autoplay poster="" preload="true" class="video-parallax" loop muted></video>
@@ -198,8 +196,10 @@
   </form>
   
 <!-- RESULTS/DISPLAY VIEW PAGE START -->
-<ul id="display-results" class="container">
+<div id="display-results" class="container">
+<ul id="results-list">
   </ul>
+</div>
 
 <!-- PREFERENCES VIEW STARTS HERE -->
 <div id="favorites" class="container">

@@ -2,24 +2,19 @@
 
 var app = app || {};
 
-(function(module) {
+(function (module) {
 
   const resultsView = {};
 
   resultsView.initDisplayResults = () => {
-    console.log(`you
-    re at the results`)
-  //   endResultsIndex.forEach(number => restaurant.endResults.push(restaurant.array[number]));
-  //   restaurant.endResults.forEach(restaurant => ($('#display-view').append(`<li>${restaurant.name} ${restaurant.rating} <img src='${restaurant.image_url}' /></li>`)));
-  //   $('#display-view').show();
-  // } else if (restaurant.array.length <= 3) {
-  //   restaurant.array.forEach(restaurant => ($('#display-view').append(`<li>${restaurant.name} ${restaurant.rating} <img src='${restaurant.image_url}' /></li>`)));
-  //   $('#display-view').show();
-  // }
-    // $('#display-view').empty();
-    // $('#display-view').fadeIn(750);
-    // app.restaurant.array.forEach(restaurant => $('#display-view').append(`<li>${restaurant.name} ${restaurant.rating}</li>`));
-  }
-module.resultsView = resultsView;
+    $('#display-results').show();
+    if (app.endResultsIndex === 0) {
+      $('#display-results').append('<p> No results found </p>');
+    } else {
+      app.restaurant.endResults.forEach(element => ($('#display-results').append(`<li>${element.name} ${element.rating} <img src='${element.image_url}' /></li>`)));
+    }
+  };
+
+  module.resultsView = resultsView;
 
 })(app);
