@@ -12,6 +12,7 @@ page('/', app.restaurantView.initIndexView);
 page('/form', app.form.init);
 page('/display', app.resultsView.initDisplayResults);
 page('/preferences', () => app.preferences.initView());
-page('/users/new', () => app.dbUserForm.createnewUser());
+// page('/users/new', () => app.dbUserForm.createNewUser());
+// page('/favorites/new', () => app.dbFavoriteForm.createNewFavorite());
 
 page.start();

@@ -15,7 +15,7 @@ var app = app || {};
           pin: newUserPin,
       })
       .then(response => {
-          console.log('it worked');
+          console.log('added new user');
       });
   }
 

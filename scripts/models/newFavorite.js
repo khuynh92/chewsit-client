@@ -6,26 +6,27 @@ var app = app || {};
 
   const dbFavoriteForm = {};
 
-  dbFavoriteForm.createNewFavorite = (newUserName, newUserPin) => {
-      console.log(newUserName, newUserPin);
+  dbFavoriteForm.createNewFavorite = (newFavoriteID, userID) => {
+     console.log(newFavoriteID, userID)
       let formData = {}
-      $.post(`${ENV.apiUrl}/users/new`, {
-          name: newUserName,
-          pin: newUserPin,
+      $.post(`${ENV.apiUrl}/favorites/new`, {
+          yelp_id: newFavoriteID,
+          favorites_id: userID,
       })
       .then(response => {
-          console.log('it worked');
-      });
+          console.log('added new favorite');
+      })
+      .catch(err => console.log(err));
   }
 
-  $('#create-user').on('submit', (e) => {
+  $('#create-favorite').on('submit', (e) => {
     e.preventDefault();
-      let newUserName = $('#create-name').val();
-      let newUserPin = $('#create-pin').val();
-   console.log(newUserName, newUserPin);
-      $('#newUser p').html(newUserName, newUserPin);
+      let newFavoriteID = $('#business-id').val();
+      let userID = $('#user-id').val();
+   console.log(newFavoriteID, userID);
+      $('#newFavorite p').html(newFavoriteID, userID);
     
-      dbUserForm.createNewUser(newUserName, newUserPin);
+      dbFavoriteForm.createNewFavorite(newFavoriteID, userID);
   });
 
 module.dbFavoriteForm = dbFavoriteForm;
