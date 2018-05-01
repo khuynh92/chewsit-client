@@ -1,9 +1,9 @@
-// 'use strict'
-//
-// var app = app || {};
-//
-  //get the values of the buttons and tore into an array and insert into DB. if the value of the array exists highlight the corresponding button.
-  var preferenceArray = [];
+'use strict'
+
+var app = app || {};
+
+ (function(module) {
+  const preferenceArray = [];
   $('.save-preferences').on('click', (e) => {
     $('.choice:checked').each(function(){ console.log($(this).val())
       if(!preferenceArray.includes($(this).val())){
@@ -15,5 +15,18 @@
       preferenceArray.splice(preferenceArray.indexOf($(this).val(), 1))
         }
       }) 
+      
+      let arrayToSend = JSON.stringify(preferenceArray);
+      $.ajax({
+        url: `${ENV.apiUrl}/preferences/update`,
+        method: 'PUT',
+        data:{preferences: arrayToSend, id: 1},
+        success: function(data) {
+          alert('Preferences Updated');
+        }
+      });
     })
-   
+
+    module.preferenceArray = preferenceArray;
+
+ })(app)
