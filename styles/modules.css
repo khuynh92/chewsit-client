@@ -258,9 +258,8 @@ h4 {
 /* ----------------ABOUT PAGE W/PARALLEX------------- */
 /* Video Overlay */
 
-  #overlay2 {
+  /* #overlay2 {
     background-color:rgba(0,0,0,.65);
-    /* height:60%; */
     left:0;
     position:fixed;
     top:0;
@@ -270,18 +269,18 @@ h4 {
     width: 100%;
     display: fixed;
     z-index: -1;
-    }
+    } */
     
-    .fade { background-color:rgba(0,0,0,.85) !important; }
+    /* .fade { background-color:rgba(0,0,0,.85) !important; } */
   /* Hero Video */
 
   #hero-vid2 {
     background-size:cover;
     bottom:0;
     height:auto;
-    min-height:62%;
+    /* min-height:62%;
     min-width:100%;
-    perspective:1000;
+    perspective:1000; */
     position:fixed;
     right:0;
     width:auto;
@@ -436,7 +435,7 @@ h4 {
       position: relative;
       top: 0;
       transition: background-color 300ms ease;
-      width: 100%;
+      /* width: 100%; */
   }
   
   .video {    
