@@ -38,7 +38,7 @@
     </div>
   </div>
 </div>
-    
+
     <section id="members" class="container">
       <br>
       <p class="founder"><a href="https://github.com/khuynh92">Khoa Huynh</a></p>
@@ -50,11 +50,11 @@
       <h2 id="tagline">"Let us choose it for you" -Khoa</h2>
       <br>
       <br>
-  
+
       <hr>
       <h2 id="members1">Our Team</p>
         <br>
-  
+
         <ul>
               <li class="teamcl">
                   <a href="JESSE LINKEDIN"><img class="team" id="jesse" src="images\Brittany.png" alt="Jesse Atay"></a>
@@ -71,7 +71,7 @@
           <li class="teamcl">
             <a href="JUDAH's LINKEDIN"><img class="team" id="judah" src="images\Judah.png" alt="Judah Hunger"></a>
             <p class="found">Board Member: <a href="GIT HUB JUDAH">Judah Hunger</a></p>
-            
+
             <br>
             <p class="us">NOTES ABOUT JUDAH</p>
           </li>
@@ -89,7 +89,7 @@
   </div>
   <!-- ----------------------------------------------------------------------------------------- -->
 <!-- APP FORM STARTS HERE -->
-  <form id="app-form" class="container">
+  <form id="app-form" class="form-app container">
       <div class="option row">
       <button id="geo" class="current-location">Use Current location</button> <span id="or">OR</span>
       <button id="enter-location">Enter location</button>
@@ -136,17 +136,17 @@
                     <input type="radio" name="mealtype" value="breakfast" />
                     <p class="mealtype">Breakfast</p>
                   </label>
-          
+
                   <label>
                     <input type="radio" name="mealtype" value="lunch" />
                     <p class="mealtype">Lunch</p>
                   </label>
-          
+
                   <label>
                     <input type="radio" name="mealtype" value="dinner" />
                     <p class="mealtype">Dinner</p>
                   </label>
-          
+
                   <label>
                     <input type="radio" name="mealtype" value="dessert" />
                     <p class="mealtype">Dessert</p>
@@ -161,7 +161,7 @@
 <!-- <div class="overLay"></div>
 <video id="bgVideo" autoplay poster="" preload="true" class="video-parallax" loop muted></video>
 <div class="fullScreenPhoto2"></div>
-<video id="bgVideo" preload="true" autoplay loop muted> 
+<video id="bgVideo" preload="true" autoplay loop muted>
 
   <!--video background from stack overflow -->
   <!-- <source src="images/lunch.mp4" type="video/mp4" >
@@ -189,38 +189,41 @@
     <source src="images/wine_glass.mp4" type="video/webm">
   </video>
 </div> -->
-      <div class="adventure container">
+      <div class="adventure">
         <button id="adventure-button">
           I'm ready for adventure!
         </button>
       </div>
-    
+
   </form>
-  
+
 <!-- RESULTS/DISPLAY VIEW PAGE START -->
 <ul id="display-results" class="container">
   </ul>
 
 <!-- PREFERENCES VIEW STARTS HERE -->
-<div id="favorites" class="container">
-  <button id="preferences-button">
+
+<div id="app-form" class="form-app container">
+  <a href="/preferences"><button id="preferences-button">
     preferences
-  </button>
+  </button></a>
 </div>
 
-<div class="preferences-page" class="container">
-  <button>Vietnamese</button>
-  <button>Barfood</button>
-  <button>Fast Food</button>
-  <button>Sushi</button>
-  <button>Mexican</button>
-  <button>Japenese</button>
-  <button>Chinese</button>
-  <button>German</button>
-  <button>Greek</button>
-  <button>Indian</button>
-  <button>Italian</button>
-  <button>Pizza</button>
+<div class="preferences-page">
+  <label><input class="choice" value="vietnamese" type="checkbox">Vietnamese</input></label>
+  <label><input class="choice" value="barfood" type="checkbox">Barfood</input></label>
+  <label><input class="choice" value="fast food" type="checkbox">Fast Food</input></label>
+  <button class="save-preferences">SAVE</button>
+
+  <!-- <button="choice">Sushi</button>
+  <button="choice">Mexican</button>
+  <button="choice">Japenese</button>
+  <button="choice">Chinese</button>
+  <button="choice">German</button>
+  <button="choice">Greek</button>
+  <button="choice">Indian</button>
+  <button="choice">Italian</button>
+  <button="choice">Pizza</button> -->
 
 </div>
 <!-- ------------------------------------------------ -->
@@ -234,13 +237,16 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
 <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
 
+<!-- MODELS -->
 <script src="./scripts/models/location.js"></script>
 <script src="./scripts/models/restaurants.js"></script>
+<script src ="./scripts/models/preferences.js"></script>
+<!-- VIEWS -->
 <script src ="./scripts/views/restaurant-view.js"></script>
 <script src ="./scripts/views/results-view.js"></script>
-
+<script src ="./scripts/views/preferences-view.js"></script>
 <script src ="./scripts/views/form-view.js"></script>
-<!-- <script src ="./scripts/views/preferences.js"></script> -->
+<!-- CONTROLLERS -->
 <script src="./scripts/controllers/routes.js"></script>
 </body>
 </html>

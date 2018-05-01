@@ -86,11 +86,6 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
       });
     }
   });
-  $('#adventure').on('click', (e) => {
-    e.preventDefault();
-    console.log('adventure');
-    $.get(`${ENV.apiUrl}/api/yelp/v3/${food}/${zip}/${price}/${range}/0`)
-  });
 
   $('#enter-location').on('click touchstart', e => {
     e.preventDefault();
@@ -102,12 +97,20 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
 
   // take user input (click.val()** INSERT INTO db)
   $('#preferences-button').on('click', (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     console.log('werk');
     $('form').hide();
     $('.preferences-page').show();
-  })
+  });
 
+  // $('#adventure-button').on('click', (e) => {
+  //     e.preventDefault();
+  //    $.get(`${ENV.apiUrl}/api/yelp/v3/${food}/${location}/${price}/${range}/`)
+  //     .then(result => {
+  //       results.businesses[0]
+  //       console.log(results.businesses[0])
+  //   });
+  // }
   module.location = location;
   module.restaurant = restaurant;
 
