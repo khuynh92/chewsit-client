@@ -57,7 +57,7 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
       restaurant.range = $('#range').val();
       restaurant.price = $('input[name=dolla]:checked').val();
 
-      if ($('input[name=mealtype]:checked').val() === 'desserts' || $('input[name=mealtype]:checked').val() === 'breakfast_brunch') {
+      if ($('input[name=mealtype]:checked').val() === 'desserts' || $('input[name=mealtype]:checked').val() === 'breakfast') {
         restaurant.food = $('input[name=mealtype]:checked').val();
       } else {
         // first if conditional (the one with the reduce) can be removed.
@@ -75,11 +75,13 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
       app.location.pos = null;
       $('#location-notice').text('');
       $('#enter-location').show();
+      $('#location-input').hide();
       $('#or').show();
       $('#geo').show();
 
     }
   });
+
 
   $('#adventure').on('click', (e) => {
     e.preventDefault();
