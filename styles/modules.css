@@ -278,6 +278,8 @@ h4 {
     top:0;
     transition:background-color 300ms ease;
     width:100%;
+    display: fixed;
+    z-index: -1;
     }
     
     .fade { background-color:rgba(0,0,0,.85) !important; }
@@ -293,7 +295,7 @@ h4 {
   position:fixed;
   right:0;
   width:auto;
-  z-index:-1;
+  z-index: -1;
   }
   
   #hero-vid2 {
@@ -306,7 +308,7 @@ h4 {
     position:fixed;
     right:0;
     width:auto;
-    z-index:-1;
+    z-index: -1;
     }
   
   /* Content Styles */
@@ -460,7 +462,8 @@ h4 {
       width: 100%;
   }
   
-  .video {    background-color: rgba(0,0,0,.65);
+  .video {    
+    background-color: rgba(0,0,0,.65);
     height: 100%;
     left: 0;
     position: relative;
