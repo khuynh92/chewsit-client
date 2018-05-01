@@ -1,0 +1,493 @@
+#outer-container {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: -1;
+}
+
+#logo {
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+  text-shadow: 0.5px 0.4px rgba(70, 226, 104, 0.767);
+  font-size: 677%;
+  margin: 0 auto;
+  text-align: center;  
+}
+
+#sign-in {
+  width: 50%;
+  height: 30%;
+  background-color: rgba(54, 58, 59, 0.89);
+  border-radius: 10px;
+  display: flex;
+}
+
+
+.btn {
+  margin-left:auto;
+  margin-right:auto;
+  margin-top: -18%;
+  display:block;
+  align-self: center;
+  width: 40%;
+  height: 75px;
+  border: 2px solid rgba(255, 255, 255, 0.329);
+  border-radius:80px; 
+  transition: 200ms;
+  background-color: rgba(0, 0, 0, 0);
+  font-size: 1.5em;
+  color: rgba(241, 238, 238, 0.767);
+  box-shadow: none;
+  outline: none;
+  z-index: 1;
+}
+.btn:active { 
+  background-color:rgba(70, 226, 104, 0.767);
+  color: white;
+  border-color: rgba(70, 226, 104, 0.767);
+  cursor: pointer;
+}
+#sign-in button {
+  /* border-color: white; */
+  color: rgb(255, 255, 255);
+  width: 40%;
+  margin: 0 auto;
+}
+
+.btn:hover {
+  background-color:  rgba(70, 226, 104, 0.767);
+  color: white;
+  border-color: rgba(70, 226, 104, 0.767);
+  cursor: pointer;
+}
+
+.btn:active {
+  background-color: rgb(70, 226, 104);
+  border-color: rgb(70, 226, 104);
+
+}
+
+/* DOLLAR TEST */
+label input[type="radio"]{
+  visibility: hidden; 
+  position: absolute; 
+}
+
+#price {
+  display: block;
+  width: 100%;
+  height: 35px;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  margin: auto;
+}
+p.dollar {
+  width: 7%;
+    margin-right: -35%;
+    margin-left: 35%;
+}
+#lastdollar {
+  margin-right: 0%;
+}
+.dollar {
+  font-weight: bold;
+  color: white;
+  background-color: rgb(87, 83, 83);
+  text-align: center;
+  height: 30px;
+  display: inline-block;
+  margin: 0 auto;
+  width: 10%;
+  font-weight: 100;
+  border-radius: 5px;
+  transition: 300ms;
+  padding-top: 10px;
+}
+
+.dollar:hover {
+  cursor: pointer;
+  background-color: darkgray;
+  color: white;
+  border-color: rgba(70, 226, 104, 0.767);
+  cursor: pointer;
+}
+
+input[type="radio"]:checked + p { 
+  background-color: rgb(18, 160, 77);
+}
+
+
+.hide {
+  display: none;
+}
+.meal-type:first-child {
+  margin-top: 15px;
+}
+
+.meal-type {
+  display: block;
+  width: 200px;
+  height: 50px;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.mealtype {
+  font-family: 'Quicksand', sans-serif;
+  cursor: pointer;
+  vertical-align: middle;
+  text-align: center;
+  width: 200px;
+  height: 45px;
+  text-decoration: none;
+  padding-top: 25px;
+  background-color: rgb(87, 83, 83);
+  font-size: 20px;
+  font-weight: 100;
+  border-radius: 5px;
+  color: white;
+  transition: 300ms;
+  margin: 10px auto;
+}
+
+.mealtype:hover {
+background-color: darkgray;
+}
+
+.options {
+  width: 500px;
+  margin: 50px auto 0;
+}
+.current-location{
+  font-family: 'Quicksand', sans-serif;
+    cursor: pointer;
+    vertical-align: middle;
+    text-align: center;
+    width: 250px;
+    height: 45px;
+    text-decoration: none;
+    background-color: rgb(87, 83, 83);
+    font-size: 20px;
+    font-weight: 100;
+    border-radius: 5px;
+    color: white;
+    transition: 300ms;
+    /* margin: 10px auto; */
+    margin-left: 28%;
+}
+#or{
+  /* background-color: darkgray; */
+  color:white;
+  font-size: 25px;
+}
+.current-location:hover {
+  background-color: darkgray;
+  }
+  #enter-location{
+    font-family: 'Quicksand', sans-serif;
+      cursor: pointer;
+      vertical-align: middle;
+      text-align: center;
+      width: 250px;
+      height: 45px;
+      text-decoration: none;
+      background-color: rgb(87, 83, 83);
+      font-size: 20px;
+      font-weight: 100;
+      border-radius: 5px;
+      color: white;
+      transition: 300ms;
+      margin: 10px auto;
+  }
+  #enter-location:hover {
+    background-color: darkgray;
+    }
+h4 {
+  font-size: 30px;
+  color: white;
+  font-weight: bold;
+  line-height: 5;
+}
+.textbox {
+  width: 162px;
+  
+}
+
+.hidden {
+  display: none;
+}
+.text-center{
+  margin-left: 50% !important;
+/* width: 200%; */
+}
+
+.form-control{
+  font-family: 'Quicksand', sans-serif;
+  cursor: pointer;
+  vertical-align: middle;
+  text-align: center;
+  width: 250px;
+  height: 40px;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 100;
+  border-radius: 5px;
+  color: black;
+  transition: 300ms;
+  /* margin: 10px auto; */
+  margin-left: 27.5%;
+}
+#range{
+  font-family: 'Quicksand', sans-serif;
+  cursor: pointer;
+  vertical-align: middle;
+  text-align: center;
+  width: 100px;
+  height: 45px;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 100;
+  border-radius: 5px;
+  transition: 300ms;
+  margin-left: 45%;
+}
+
+/* ----------------ABOUT PAGE W/PARALLEX------------- */
+/* Video Overlay */
+
+#overlay {
+  background-color:rgba(0,0,0,.65);
+  height:100%;
+  left:0;
+  position:relative;
+  top:0;
+  transition:background-color 300ms ease;
+  width:100%;
+  }
+  
+  .fade { background-color:rgba(0,0,0,.85) !important; }
+  
+  #overlay2 {
+    background-color:rgba(0,0,0,.65);
+    height:60%;
+    left:0;
+    position:relative;
+    top:0;
+    transition:background-color 300ms ease;
+    width:100%;
+    }
+    
+    .fade { background-color:rgba(0,0,0,.85) !important; }
+  /* Hero Video */
+  
+  #hero-vid {
+  background-size:cover;
+  bottom:0;
+  height:auto;
+  min-height:100%;
+  min-width:100%;
+  perspective:1000;
+  position:fixed;
+  right:0;
+  width:auto;
+  z-index:-1;
+  }
+  
+  #hero-vid2 {
+    background-size:cover;
+    bottom:0;
+    height:auto;
+    min-height:62%;
+    min-width:100%;
+    perspective:1000;
+    position:fixed;
+    right:0;
+    width:auto;
+    z-index:-1;
+    }
+  
+  /* Content Styles */
+  /* ABOUT US */
+  #content {
+  background-color:rgba(104, 99, 99, 0.877);
+  color: black;
+  padding:2.5rem;
+  position:relative;
+  z-index:1;
+  text-align: center;
+  }
+  
+  #content p {
+  font-size:1.25rem;
+  letter-spacing:.02rem;
+  margin-bottom:1.3rem;
+  }
+  
+  #content2 {
+    background-color:rgba(104, 99, 99, 0.877);
+    color: black;
+    padding:2.5rem;
+    position:relative;
+    z-index:1;
+    }
+    
+    #content2 p {
+    font-size:1.25rem;
+    letter-spacing:.02rem;
+    margin-bottom:1.3rem;
+    }
+    a:link {
+      text-decoration: none;
+      color:black;
+  }
+  .teamcl {
+    vertical-align: top;
+    display: inline-block;
+    width:45%;
+    text-align: center;
+  }
+  .founder {
+    font-family: helvetica;
+    color: black;
+    text-align: center;
+    font-size: 24px;
+    margin-top: 20px;
+  }
+  .found a{
+    font-family: helvetica;
+    font-size: 20px;
+    color: rgba(70, 226, 104, 0.767);
+    margin-top: 10px;
+  }
+  .us {
+    margin-left: 25px;
+    font-family: helvetica;
+    font-size: 18px;
+    text-align: justify;
+    color: black;
+    width: 85%;
+  }
+  #tagline {
+    font-family: helvetica;
+    font-size: 24px;
+    text-align: center;
+  }
+  #members1 {
+    font-family:helvetica;
+    font-size: 28px;
+    color: black;
+    text-align: center;
+    margin-top: 50px;
+  } 
+  #khoa {
+    height: 50%;
+    width:30%;
+    display: block;
+    margin: auto;   
+    border-radius: 100%;
+  }
+  #jesse{
+    height: 50%;
+    width:30%;
+    display: block;
+    margin: auto;   
+    border-radius: 100%;
+  }
+  #aaron{
+    height: 50%;
+    width:37%;
+    display: block;
+    margin: auto;   
+    border-radius: 100%;
+  }
+  #brittany{
+    height: 50%;
+    width:30%;
+    display: block;
+    margin: auto;   
+    border-radius: 100%;
+  }
+  #judah{
+    height: 50%;
+    width:30%;
+    display: block;
+    margin: auto;   
+    border-radius: 100%;
+  }
+  
+  a:visited {
+      text-decoration: none;
+      color: black;
+  }
+  
+  a:hover {
+      text-decoration: none;
+      color:black;
+  }
+  
+  a:active {
+      text-decoration: none;
+      color:black;
+  }
+  
+  /* Media Queries */
+  
+  @media only screen and (max-width:768px) {
+      #overlay { height:auto; }
+  }
+  
+  
+  /* Visibility Helpers */
+  
+  @media only screen and (min-width:480px) and (max-width:768px) {
+      .visible-mobile,.hidden-tablet,.visible-desktop { display:none !important; }
+  }
+  
+  @media only screen and (max-width:479px) {
+      .hidden-mobile,.visible-tablet,.visible-desktop { display:none !important; }
+  }
+  
+  .home-view {
+      background-color: rgba(0,0,0,.65);
+      height: 100%;
+      left: 0;
+      position: relative;
+      top: 0;
+      transition: background-color 300ms ease;
+      width: 100%;
+  }
+  
+  .video {    background-color: rgba(0,0,0,.65);
+    height: 100%;
+    left: 0;
+    position: relative;
+    top: 0;
+    transition: background-color 300ms ease;
+    width: 100%;}
+/* --------END OF ABOUT US /PARRALEX------------   */
+#option{
+  margin:50%;
+  }
+  
+  /* #app-form{ 
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: -18%;
+      display: block;
+      align-self: center;
+      width: 40%;
+      height: 75px;
+      border: 2px solid rgba(255, 255, 255, 0.329);
+      border-radius: 80px;
+      transition: 200ms;
+      background-color: rgba(0, 0, 0, 0);
+      font-size: 1.5em;
+      color: rgba(241, 238, 238, 0.767);
+      box-shadow: none;
+      outline: none;
+      z-index: 1;
+  } 
+  
