@@ -11,7 +11,7 @@ var app = app || {};
       let formData = {}
       $.post(`${ENV.apiUrl}/favorites/new`, {
           yelp_id: newFavoriteID,
-          favorites_id: userID,
+          users_id: userID,
       })
       .then(response => {
           console.log('added new favorite');
