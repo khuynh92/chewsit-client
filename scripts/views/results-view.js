@@ -7,6 +7,7 @@ var app = app || {};
   const resultsView = {};
 
   resultsView.initDisplayResults = () => {
+    $('#display-results').empty();
     $('#display-results').show();
     if (app.endResultsIndex === 0) {
       $('#display-results').append('<p> No results found </p>');
