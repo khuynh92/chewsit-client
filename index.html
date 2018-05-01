@@ -29,6 +29,7 @@
      <br>
     <p>One of my greatest weaknesses is being indecisive. With the vast amounts of great restaraunts around the Seattle area, how can you possibly choose one? With the creation of Chews It, I don't have to worry about spending hours on end trying to chews a restaurant to eat at! But what will I wear to the restaurant...?</p>
 </div>
+
 <div class="overlay2" id="overlay2">
     <video class="visible-desktop" id="hero-vid2" autoplay poster="" preload="true" autoplay loop muted>
         <source id="video" type="video/mp4" src="/images/Lunch.mp4"></source>
@@ -70,22 +71,21 @@
               </section>
 </div>
 
+   
   <!-- ----------------------------------------------------------------------------------------- -->
 <!-- APP FORM STARTS HERE -->
+
   <form id="app-form" class="container">
-      <div class="option row">
+
       <button id="geo" class="current-location">Use Current location</button> <span id="or">OR</span>
       <button id="enter-location">Enter location</button>
       <p id="location-notice"></p>
 
-    <label id="location-input" class="hide">
+    <div id="location-input" class="hide">
       <input id="zip"type="text" class="form-control textbox"  placeholder="Enter your address, zip, or city">
-    </label>
-    <br>
-    <br>
+        </div>
     
-      </div>
-        <label>
+          <label>
             <select id="range">
               <option value="805">&frac12; mile</option>
               <option value="1610">1 mile</option>
@@ -94,8 +94,6 @@
               <option value="32186">20 miles</option>
             </select>
           </label>
-
-    </label>
       <div id="price">
           <label>
             <input type="radio" name="dolla" value=1 />
@@ -115,6 +113,7 @@
             <input type="radio" name="dolla" value=4 />
             <p class="dollar" id="lastdollar">$$$$</p>
           </label>
+        </div>
           <label>
               <!-- <input id="food"type="text"> -->
               <div id="meal">
@@ -122,17 +121,17 @@
                     <input type="radio" name="mealtype" value="breakfast" />
                     <p class="mealtype">Breakfast</p>
                   </label>
-          
+
                   <label>
                     <input type="radio" name="mealtype" value="lunch" />
                     <p class="mealtype">Lunch</p>
                   </label>
-          
+
                   <label>
                     <input type="radio" name="mealtype" value="dinner" />
                     <p class="mealtype">Dinner</p>
                   </label>
-          
+
                   <label>
                     <input type="radio" name="mealtype" value="dessert" />
                     <p class="mealtype">Dessert</p>
@@ -140,49 +139,77 @@
                 </div>
             </label>
       <!-- <input type="submit"> -->
-    <a id="app-form" href="/display"><p>chewsit</p></a>
+    <input type="submit" value="chews it!">
+    <a href="/display">Show Results!</a>
   </form>
-</div>
+
 <!-- ----------------------------------------------------------------------------------------------------- -->
 
       <div class="adventure container">
+
         <button id="adventure-button">
           I'm ready for adventure!
         </button>
       </div>
-    
-  </form>
-  
-<!-- RESULTS/DISPLAY VIEW PAGE START -->
-<ul id="display-results" class="container">
-  </ul>
 
-<!-- PREFERENCES VIEW STARTS HERE -->
-<div id="favorites" class="container">
-  <button id="preferences-button">
-    preferences
-  </button>
+  </form>
+
+<!-- RESULTS/DISPLAY VIEW PAGE START -->
+<div id="display-results" class="container">
+<ul id="results-list">
+  </ul>
 </div>
 
-<div class="preferences-page" class="container">
-  <button>Vietnamese</button>
-  <button>Barfood</button>
-  <button>Fast Food</button>
-  <button>Sushi</button>
-  <button>Mexican</button>
-  <button>Japenese</button>
-  <button>Chinese</button>
-  <button>German</button>
-  <button>Greek</button>
-  <button>Indian</button>
-  <button>Italian</button>
-  <button>Pizza</button>
+<!-- PREFERENCES VIEW STARTS HERE -->
+
+<div id="app-form" class="form-app container">
+  <a href="/preferences"><button id="preferences-button">
+    preferences
+  </button></a>
+</div>
+
+<div class="preferences-page">
+  <label><input class="choice" value="vietnamese" type="checkbox">Vietnamese</input></label>
+  <label><input class="choice" value="barfood" type="checkbox">Barfood</input></label>
+  <label><input class="choice" value="fast food" type="checkbox">Fast Food</input></label>
+  <button class="save-preferences">SAVE</button>
+
+  <!-- <button="choice">Sushi</button>
+  <button="choice">Mexican</button>
+  <button="choice">Japenese</button>
+  <button="choice">Chinese</button>
+  <button="choice">German</button>
+  <button="choice">Greek</button>
+  <button="choice">Indian</button>
+  <button="choice">Italian</button>
+  <button="choice">Pizza</button> -->
 
 </div>
 <!-- ------------------------------------------------ -->
 <!-- FAVORITES STARTS HERE -->
+<!-- database create new user -->
+<form id="create-user">
+  <input id="create-name"type="text" placeholder="Name"></input>
+  <input id ="create-pin"type="text" placeholder="Pin"></input>
+ <button type="submit">create</button>
+</form>
 
+<section id="newUser">
+  <p></p>
+</section>
+<!-- /database new user-->
 
+<!--database create new favorite-->
+<form id="create-favorite">
+  <input id="business-id"type="text" placeholder="Yelp-ID"></input>
+  <input id ="user-id"type="text" placeholder="User-ID"></input>
+ <button type="submit">create</button>
+</form>
+
+<section id="newFavorite">
+  <p></p>
+</section>
+<!--/database create new favorite-->
 
 
 <!-- CDN -->
@@ -190,13 +217,21 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
 <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
 
+<!-- MODELS -->
 <script src="./scripts/models/location.js"></script>
 <script src="./scripts/models/restaurants.js"></script>
+<script src ="./scripts/models/preferences.js"></script>
+<!-- VIEWS -->
 <script src ="./scripts/views/restaurant-view.js"></script>
 <script src ="./scripts/views/results-view.js"></script>
 
+<script src="./scripts/models/newUser.js"></script>
+<script src="./scripts/models/newFavorite.js"></script>
+
+<script src ="./scripts/views/preferences-view.js"></script>
+
 <script src ="./scripts/views/form-view.js"></script>
-<!-- <script src ="./scripts/views/preferences.js"></script> -->
+<!-- CONTROLLERS -->
 <script src="./scripts/controllers/routes.js"></script>
 </body>
 </html>

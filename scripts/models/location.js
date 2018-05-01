@@ -6,19 +6,24 @@ var app = app || {};
 
   const location = {};
 
-
-  $('#current-location').on('click touchstart', e => {
+  $('#geo').on('click touchstart', e => {
     e.preventDefault();
+    $('#enter-location').hide();
+    $('#or').hide();
+    $('#location-notice').text('Current Location Saved!').css({ 'color': 'green' });
+    
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function (position) {
-         location.pos = {
+        location.pos = {
           lat: position.coords.latitude,
           lng: position.coords.longitude
         };
-        console.log(location.pos);
+        console.log(location.pos.lat + ', ' + location.pos.lng);
+        app.location.pos = location.pos;
       });
     }
-    module.location = location;
   });
+
+  module.location = location;
 
 })(app);
