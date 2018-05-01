@@ -2,16 +2,16 @@
   display: none;  
 }
 .navHeader {
-  display:inline;
+  /* display:inline; */
 }
-.navHeader a{
+/* .navHeader a{
   font-family: 'Titan One', cursive;
   font-size:40px;
   color:white;
   margin-left:20px;
   text-decoration: none;
   transition: 230ms;
-}
+} */
 header {
   font-family: 'Quicksand', sans-serif;
   background-color:rgba(37, 41, 49, .96);

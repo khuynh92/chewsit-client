@@ -258,65 +258,27 @@ h4 {
 /* ----------------ABOUT PAGE W/PARALLEX------------- */
 /* Video Overlay */
 
-#overlay {
-  background-color:rgba(0,0,0,.65);
-  height:100%;
-  left:0;
-  position:relative;
-  top:0;
-  transition:background-color 300ms ease;
-  width:100%;
-  }
-  
-  .fade { background-color:rgba(0,0,0,.85) !important; }
-  
-  #overlay2 {
-    background-color:rgba(0,0,0,.65);
-    height:60%;
-    left:0;
-    position:relative;
-    top:0;
-    transition:background-color 300ms ease;
-    width:100%;
-    }
-    
-    .fade { background-color:rgba(0,0,0,.85) !important; }
-  /* Hero Video */
-  
-  #hero-vid {
-  background-size:cover;
-  bottom:0;
-  height:auto;
-  min-height:100%;
-  min-width:100%;
-  perspective:1000;
-  position:fixed;
-  right:0;
-  width:auto;
-  z-index:-1;
-  }
-  
   #hero-vid2 {
     background-size:cover;
     bottom:0;
     height:auto;
-    min-height:62%;
+    /* min-height:62%;
     min-width:100%;
-    perspective:1000;
+    perspective:1000; */
     position:fixed;
     right:0;
     width:auto;
-    z-index:-1;
+    z-index: -1;
     }
   
   /* Content Styles */
   /* ABOUT US */
-  #content {
+  /* #content {
   background-color:rgba(104, 99, 99, 0.877);
   color: black;
   padding:2.5rem;
   position:relative;
-  z-index:1;
+  z-index: 1;
   text-align: center;
   }
   
@@ -324,7 +286,7 @@ h4 {
   font-size:1.25rem;
   letter-spacing:.02rem;
   margin-bottom:1.3rem;
-  }
+  } */
   
   #content2 {
     background-color:rgba(104, 99, 99, 0.877);
@@ -332,6 +294,7 @@ h4 {
     padding:2.5rem;
     position:relative;
     z-index:1;
+    height: 122%;
     }
     
     #content2 p {
@@ -457,16 +420,43 @@ h4 {
       position: relative;
       top: 0;
       transition: background-color 300ms ease;
-      width: 100%;
+      /* width: 100%; */
   }
+  .home-view2 {
+    background-color: rgba(0,0,0,.65);
+    height: 40%;
+    left: 0;
+    position: relative;
+    top: 0;
+    transition: background-color 300ms ease;
+    /* width: 100%; */
+}
+
   
-  .video {    background-color: rgba(0,0,0,.65);
+  .video {    
+    background-color: rgba(0,0,0,.65);
     height: 100%;
     left: 0;
     position: relative;
     top: 0;
     transition: background-color 300ms ease;
     width: 100%;}
+
+    #content {
+      background-color:rgba(104, 99, 99, 0.877);
+      color: black;
+      padding:2.5rem;
+      position:relative;
+      z-index: 1;
+      text-align: center;
+      height: 24%;
+      }
+      
+      #content p {
+      font-size:1.25rem;
+      letter-spacing:.02rem;
+      margin-bottom:1.3rem;
+      }
 /* --------END OF ABOUT US /PARRALEX------------   */
 #option{
   margin:50%;
