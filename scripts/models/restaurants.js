@@ -24,40 +24,36 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
   restaurant.results = (location, food, price, range, offset) => {
     $.get(`${ENV.apiUrl}/api/yelp/v3/${food}/${location}/${price}/${range}/${offset}`)
       .then(result => {
+
         restaurant.endResults = [];
-        const endResultsIndex = [];
-        $('#test').empty();
+        restaurant.endResultsIndex = [];
+
         restaurant.array = result.businesses;
-        if (restaurant.array.length === 0) {
-          $('#test').append('<p> No results found </p>').show();
-        } else if (restaurant.array.length > 3) {
+        if (restaurant.array.length > 3) {
           for (let i = 0; i < 3; i++) {
-            endResultsIndex[i] = Math.floor(Math.random()*restaurant.array.length);
+            restaurant.endResultsIndex[i] = Math.floor(Math.random()*restaurant.array.length);
           }
-          console.log(endResultsIndex);
-          while (endResultsIndex[0] === endResultsIndex[1]) {
-            endResultsIndex[1] = Math.floor(Math.random()*restaurant.array.length);
+          console.log(restaurant.endResultsIndex);
+          while (restaurant.endResultsIndex[0] === restaurant.endResultsIndex[1]) {
+            restaurant.endResultsIndex[1] = Math.floor(Math.random()*restaurant.array.length);
           }
-          while (endResultsIndex[1] === endResultsIndex[2] || endResultsIndex[2] === endResultsIndex[0]) {
-            endResultsIndex[2] = Math.floor(Math.random()*restaurant.array.length);
+          while (restaurant.endResultsIndex[1] === restaurant.endResultsIndex[2] || restaurant.endResultsIndex[2] === restaurant.endResultsIndex[0]) {
+            restaurant.endResultsIndex[2] = Math.floor(Math.random()*restaurant.array.length);
           }
-        //   endResultsIndex.forEach(number => restaurant.endResults.push(restaurant.array[number]));
-        //   restaurant.endResults.forEach(restaurant => ($('#test').append(`<li>${restaurant.name} ${restaurant.rating} <img src='${restaurant.image_url}' /></li>`)));
-        //   $('#test').show();
-        // } else if (restaurant.array.length <= 3) {
-        //   restaurant.array.forEach(restaurant => ($('#test').append(`<li>${restaurant.name} ${restaurant.rating} <img src='${restaurant.image_url}' /></li>`)));
-        //   $('#test').show();
+          restaurant.endResultsIndex.forEach(number => restaurant.endResults.push(restaurant.array[number]));
+        } else if (restaurant.array.length <= 3) {
+          restaurant.array.forEach(element => restaurant.endResults.push(element));
         }
       });
   };
 
-  $('#app-form').on('click touchstart', (e) => {
+  $('#app-form').on('submit', (e) => {
     e.preventDefault();
     if (!app.location.pos && !$('#zip').val()) $('#location-notice').text('Please Use your Location').css({ 'color': 'red' });
     else {
       console.log('submitted!');
       restaurant.location = app.location.pos ? `latitude=${app.location.pos.lat}&longitude=${app.location.pos.lng}` : `location=${$('#zip').val()}`;
-      restaurant.food = $('#food').val();
+      restaurant.food = $('input[name=mealtype]:checked').val();
       restaurant.range = $('#range').val();
       restaurant.price = $('input[name=dolla]:checked').val();
       restaurant.randomOffset(restaurant.location, restaurant.food, restaurant.price, restaurant.range);
@@ -70,21 +66,11 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
     }
   });
 
-
-  $('#geo').on('click touchstart', e => {
+  $('#adventure').on('click', (e) => {
     e.preventDefault();
-    $('#enter-location').hide();
-    $('#or').hide();
-    $('#location-notice').text('Current Location Saved!').css({ 'color': 'green' });
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function (position) {
-        location.pos = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        };
-        console.log(location.pos);
-      });
-    }
+    console.log('adventure');
+    $.get(`${ENV.apiUrl}/api/yelp/v3/${food}/${zip}/${price}/${range}/0`)
+
   });
 
   $('#enter-location').on('click touchstart', e => {
