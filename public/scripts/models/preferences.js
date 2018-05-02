@@ -4,6 +4,7 @@ var app = app || {};
 
 (function (module) {
   var preferenceArray = [];
+
   $('.save-preferences').on('click', (e) => {
     e.preventDefault();
     $('.choice:checked').each(function () {
@@ -33,7 +34,4 @@ var app = app || {};
 
     module.preferenceArray = preferenceArray;
   
-
-
-
 })(app);
