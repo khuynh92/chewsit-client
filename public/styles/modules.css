@@ -7,6 +7,10 @@
   justify-content: center;
   z-index: -1;
 }
+#location-notice {
+  margin-left: 30%;
+  margin-top: auto;
+}
 #logo {
   font-family: Arial, Helvetica, sans-serif;
   color: white;
@@ -24,13 +28,11 @@
   display: flex;
 }
 .btn {
-  margin-left:auto;
-  margin-right:auto;
-  margin-top: -31%;
-  display:block;
+  display: inline;
   align-self: center;
-  width: 27%;
+  width: 20%;
   height: 75px;
+  margin-right: 58px;
   border: 2px solid rgba(255, 255, 255, 0.329);
   border-radius:80px; 
   transition: 200ms;
@@ -47,11 +49,46 @@
   border-color: rgba(70, 226, 104, 0.767);
   cursor: pointer;
 }
-#sign-in button {
+.btn2 {
+  display: block;
+  align-self: center;
+  width: 15%;
+  height: 4%;
+  border: none;
+  transition: 200ms;
+  background-color: rgba(0, 0, 0, 0);
+  font-size: 1em;
+  color: rgba(241, 238, 238, 0.767);
+  z-index: 1;
+}
+
+signInButton {
   /* border-color: white; */
   color: rgb(255, 255, 255);
-  width: 40%;
-  margin: 0 auto;
+  /* width: 40%; */
+  /* margin: 0 auto; */
+  width: 7%;
+  margin-right: -35%;
+  margin-left: 35%;
+
+}
+#signInButton:hover, #signInButtonPopup:hover {
+    border:solid rgb(25, 255, 121) 2px;
+    background-color: rgb(25, 255, 121);
+    cursor:pointer;
+}
+.guest:hover {
+    border:solid rgb(160, 78, 255) 2px;
+    background-color:rgb(160, 78, 255);
+}
+#signInButton:active, #signInButtonPopup:active {
+    border:solid rgb(18, 160, 77) 2px;
+    background-color: rgb(18, 160, 77);
+    cursor:pointer;
+}
+.guest:active {
+    border:solid rgb(107, 52, 170) 2px;
+    background-color:rgb(107, 52, 170);
 }
 .btn:hover {
   background-color:  rgba(70, 226, 104, 0.767);
@@ -89,7 +126,7 @@ p.dollar {
   color: white;
   background-color: rgb(87, 83, 83);
   text-align: center;
-  height: 30px;
+  height:  74%;
   display: inline-block;
   margin: 0 auto;
   width: 10%;
@@ -130,14 +167,14 @@ input[type="radio"]:checked + p {
   width: 200px;
   height: 45px;
   text-decoration: none;
-  padding-top: 25px;
+  padding-top: 3%;
   background-color: rgb(87, 83, 83);
   font-size: 20px;
   font-weight: 100;
   border-radius: 5px;
   color: white;
   transition: 300ms;
-  margin: 10px auto;
+  margin: 1% auto;
 }
 .mealtype:hover {
 background-color: darkgray;
@@ -151,7 +188,7 @@ background-color: darkgray;
     cursor: pointer;
     vertical-align: middle;
     text-align: center;
-    width: 250px;
+    width: 25%;
     height: 45px;
     text-decoration: none;
     background-color: rgb(87, 83, 83);
@@ -195,6 +232,7 @@ h4 {
   color: white;
   font-weight: bold;
   line-height: 5;
+  max-height: 55%;
 }
 .textbox {
   width: 162px;
