@@ -11,6 +11,36 @@
   <link rel="stylesheet" href="./styles/layout.css">
   <link rel="stylesheet" href="./styles/modules.css">
   <!-- <link rel="stylesheet" href="./styles/selections.css"> -->
+  
+  <script type="text/javascript">
+    // Single Page Apps for GitHub Pages
+    // https://github.com/rafrex/spa-github-pages
+    // Copyright (c) 2016 Rafael Pedicini, licensed under the MIT License
+    // ----------------------------------------------------------------------
+    // This script checks to see if a redirect is present in the query string
+    // and converts it back into the correct url and adds it to the
+    // browser's history using window.history.replaceState(...),
+    // which won't cause the browser to attempt to load the new url.
+    // When the single page app is loaded further down in this file,
+    // the correct url will be waiting in the browser's history for
+    // the single page app to route accordingly.
+    (function (l) {
+      if (l.search) {
+        var q = {};
+        l.search.slice(1).split('&').forEach(function (v) {
+          var a = v.split('=');
+          q[a[0]] = a.slice(1).join('=').replace(/~and~/g, '&');
+        });
+        if (q.p !== undefined) {
+          window.history.replaceState(null, null,
+            l.pathname.slice(0, -1) + (q.p || '') +
+            (q.q ? ('?' + q.q) : '') +
+            l.hash
+          );
+        }
+      }
+    }(window.location))
+  </script>
 
 
   <!-- HANDLEBARS TEMPLATES BEGIN HERE -->
@@ -133,14 +163,14 @@
                   </label>
 
                   <label>
-                    <input type="radio" name="mealtype" value="dessert" />
+                    <input type="radio" name="mealtype" value="desserts" />
                     <p class="mealtype">Dessert</p>
                   </label>
                 </div>
             </label>
       <!-- <input type="submit"> -->
     <input type="submit" value="chews it!">
-    <a href="/display">Show Results!</a>
+    <a href="/display" id="show-results">Chews it!</a>
   </form>
 
 <!-- ----------------------------------------------------------------------------------------------------- -->
@@ -170,17 +200,17 @@
 
 <div class="preferences-page">
   <label><input class="choice" value="vietnamese" type="checkbox">Vietnamese</input></label>
-  <label><input class="choice" value="barfood" type="checkbox">Barfood</input></label>
-  <label><input class="choice" value="fast food" type="checkbox">Fast Food</input></label>
-  <label><input class="choice" value="Sushi" type="checkbox">Sushi</input></label>
-  <label><input class="choice" value="Mexican" type="checkbox">Mexican</input></label>
-  <label><input class="choice" value="Japenese" type="checkbox">Japenese</input></label>
-  <label><input class="choice" value="Chinese" type="checkbox">Chinese</input></label>
-  <label><input class="choice" value="German" type="checkbox">German</input></label>
-  <label><input class="choice" value="Greek" type="checkbox">Greek</input></label>
-  <label><input class="choice" value="Indian" type="checkbox">Indian</input></label>
-  <label><input class="choice" value="Italian" type="checkbox">Italian</input></label>
-  <label><input class="choice" value="fPizza" type="checkbox">Pizza</input></label>
+  <label><input class="choice" value="bars" type="checkbox">Barfood</input></label>
+  <label><input class="choice" value="hotdogs" type="checkbox">Fast Food</input></label>
+  <label><input class="choice" value="sushi" type="checkbox">Sushi</input></label>
+  <label><input class="choice" value="mexican" type="checkbox">Mexican</input></label>
+  <label><input class="choice" value="japanese" type="checkbox">Japenese</input></label>
+  <label><input class="choice" value="chinese" type="checkbox">Chinese</input></label>
+  <label><input class="choice" value="german" type="checkbox">German</input></label>
+  <label><input class="choice" value="greek" type="checkbox">Greek</input></label>
+  <label><input class="choice" value="indian" type="checkbox">Indian</input></label>
+  <label><input class="choice" value="italian" type="checkbox">Italian</input></label>
+  <label><input class="choice" value="pizza" type="checkbox">Pizza</input></label>
   
   <button class="save-preferences">SAVE</button>
 

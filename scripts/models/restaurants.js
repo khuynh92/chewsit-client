@@ -31,14 +31,14 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
         restaurant.array = result.businesses;
         if (restaurant.array.length > 3) {
           for (let i = 0; i < 3; i++) {
-            restaurant.endResultsIndex[i] = Math.floor(Math.random()*restaurant.array.length);
+            restaurant.endResultsIndex[i] = Math.floor(Math.random() * restaurant.array.length);
           }
           console.log(restaurant.endResultsIndex);
           while (restaurant.endResultsIndex[0] === restaurant.endResultsIndex[1]) {
-            restaurant.endResultsIndex[1] = Math.floor(Math.random()*restaurant.array.length);
+            restaurant.endResultsIndex[1] = Math.floor(Math.random() * restaurant.array.length);
           }
           while (restaurant.endResultsIndex[1] === restaurant.endResultsIndex[2] || restaurant.endResultsIndex[2] === restaurant.endResultsIndex[0]) {
-            restaurant.endResultsIndex[2] = Math.floor(Math.random()*restaurant.array.length);
+            restaurant.endResultsIndex[2] = Math.floor(Math.random() * restaurant.array.length);
           }
           restaurant.endResultsIndex.forEach(number => restaurant.endResults.push(restaurant.array[number]));
         } else if (restaurant.array.length <= 3) {
@@ -53,18 +53,35 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
     else {
       console.log('submitted!');
       restaurant.location = app.location.pos ? `latitude=${app.location.pos.lat}&longitude=${app.location.pos.lng}` : `location=${$('#zip').val()}`;
-      restaurant.food = $('input[name=mealtype]:checked').val();
+      // restaurant.food = $('input[name=mealtype]:checked').val();
       restaurant.range = $('#range').val();
       restaurant.price = $('input[name=dolla]:checked').val();
+
+      if ($('input[name=mealtype]:checked').val() === 'desserts' || $('input[name=mealtype]:checked').val() === 'breakfast') {
+        restaurant.food = $('input[name=mealtype]:checked').val();
+      } else {
+        // first if conditional (the one with the reduce) can be removed.
+        if (app.preferenceArray.length < 4 && app.preferenceArray.length !== 0) {
+          restaurant.food = app.preferenceArray.reduce((string, word) => string + `,${word}`);
+        } else if (app.preferenceArray.length > 3) {
+          restaurant.food = `${app.preferenceArray[Math.floor(Math.random()*app.preferenceArray.length)]},${app.preferenceArray[Math.floor(Math.random()*app.preferenceArray.length)]},${app.preferenceArray[Math.floor(Math.random()*app.preferenceArray.length)]}`;
+        } else {
+          restaurant.food = 'restaurant';
+        }
+      }
+      console.log('food choice is', restaurant.food);
       restaurant.randomOffset(restaurant.location, restaurant.food, restaurant.price, restaurant.range);
+
       app.location.pos = null;
       $('#location-notice').text('');
       $('#enter-location').show();
+      $('#location-input').hide();
       $('#or').show();
       $('#geo').show();
 
     }
   });
+
 
   $('#adventure').on('click', (e) => {
     e.preventDefault();
