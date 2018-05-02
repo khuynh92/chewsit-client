@@ -23,11 +23,10 @@ var app = app || {};
     $.get(`${ENV.apiUrl}/users/login/${nameFromDB}/${pinFromDB}`)
     .then(response => {
         checkIfValid(response);
-        console.log('logged in');
-        console.log(response);
-        userInfo = response;
-        console.log(userInfo);
-        })
+        userInfo.id = response[0].id;
+        userInfo.name = response[0].name;
+        userInfo.preferences = response[0].preferences;
+        });
     }
 
 function checkIfValid (returnFromDB) {
