@@ -20,7 +20,7 @@ var app = app || {};
       $.ajax({
         url: `${ENV.apiUrl}/preferences/update`,
         method: 'PUT',
-        data:{preferences: arrayToSend, id: 1},
+        data:{preferences: arrayToSend, id: 8},
         success: function(data) {
           alert('Preferences Updated');
         }
