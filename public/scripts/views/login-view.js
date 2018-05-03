@@ -11,7 +11,6 @@ var app = app || {};
     $('#newUserDiv').hide();
     $('#loginDiv').show();
     console.log('login is showing');
-
   };
 
 module.loginView = loginView;
