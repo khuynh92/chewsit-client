@@ -25,7 +25,7 @@
       let newUserPin = $('#create-pin').val();
    console.log(newUserName, newUserPin);
       $('#newUser p').html(newUserName, newUserPin);
-    
+
       dbUserForm.createNewUser(newUserName, newUserPin);
   });
 
