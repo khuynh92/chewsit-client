@@ -44,8 +44,8 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
         } else if (restaurant.array.length <= 3) {
           restaurant.array.forEach(element => restaurant.endResults.push(element));
           //Try to create handlebars compile Here pls
-          
         }
+        module.restaurant.endResults = restaurant.endResults;
       });
   };
 

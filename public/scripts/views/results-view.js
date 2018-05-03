@@ -12,7 +12,8 @@ var app = app || {};
     if (app.endResultsIndex === 0) {
       $('#display-results').append('<p> No results found </p>');
     } else {
-      app.restaurant.endResults.forEach(element => ($('#display-results').append(`<li>${element.name} ${element.rating} <img src='${element.image_url}' /></li>`)));
+     console.log(app.restaurant.endResults[0].name)
+     let template = Handlebars
     }
   };
 
