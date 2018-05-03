@@ -2,17 +2,33 @@
 
 var app = app || {};
 
-(function(module) {
+(function (module) {
 
   const preferences = {};
 
   preferences.init = () => {
+    console.log('preferences is showing');
+    var preferencesArray = [];
+
+    if(localStorage.ID) {
+    $.get(`${ENV.apiUrl}/users/favorites/${localStorage.ID}`)
+      .then(response => {
+        preferencesArray = JSON.parse(response[0].preferences);
+        checkThem(preferencesArray);
+      });
+    }
+
     $('.preferences-page').show();
-    console.log('preferences is showing')
+
+    let checkThem = function (array) {
+      array.forEach(food => $('.preferences-page').find($(`[value=${food}]`).prop('checked', true)));
+    };
 
   };
 
 
-module.preferences = preferences;
+  module.preferences = preferences;
 
 })(app);
+
+

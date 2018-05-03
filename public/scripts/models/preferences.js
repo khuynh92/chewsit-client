@@ -24,7 +24,7 @@ var app = app || {};
       $.ajax({
         url: `${ENV.apiUrl}/preferences/update`,
         method: 'PUT',
-        data:{preferences: arrayToSend, id: 8},
+        data:{preferences: arrayToSend, id: localStorage.ID},
         success: function(data) {
           alert('Preferences Updated');
         }
