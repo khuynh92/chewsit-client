@@ -15,6 +15,7 @@ var app = app || {};
     console.log(typeof(checkUserName), typeof(checkUserPin));
      
     dbLogin.validateUser(checkUserName, checkUserPin);
+    goToFormPage();
 
     });
 
@@ -37,9 +38,13 @@ function checkIfValid(returnFromDB) {
     }   
 
 function checkLocalStorage() {
-    if (!localStorage) {
-        localStorage.setItem('id', JSON.stringify(userInfo.id));
+    if (!localStorage.ID) {
+        localStorage.ID = JSON.stringify((userInfo.id));
+        }
     }
+
+function goToFormPage(){
+    page('/form');
 }
 
 module.dbLogin = dbLogin;

@@ -3,16 +3,18 @@ var app = app || {};
 
 (function(module) {
 
-  const newUser = {};
+  const loginView = {};
 
-  newUser.init = () => {
+  loginView.init = () => {
     $('.container').hide();
-    $('#user-login').show();
+    $('#home-view').hide();
+    $('#newFavoriteDiv').hide();
+    $('#newUserDiv').hide();
+    $('#loginDiv').show();
     console.log('login is showing')
 
   };
 
-
-module.preferences = preferences;
+module.loginView = loginView;
 
 })(app);
