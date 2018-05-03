@@ -12,6 +12,5 @@ page('/', app.restaurantView.initIndexView);
 page('/form', app.form.init);
 page('/display', app.resultsView.initDisplayResults);
 page('/preferences', app.preferences.init);
-
-
+page('/newUser', app.newUser.initView)
 page.start();
