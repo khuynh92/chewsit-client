@@ -37,8 +37,8 @@ function checkIfValid(returnFromDB) {
     }   
 
 function checkLocalStorage() {
-    if (!localStorage) {
-        localStorage.setItem('id', JSON.stringify(userInfo.id));
+    if (!localStorage.ID) {
+        localStorage.ID = JSON.stringify((userInfo.id));
     }
 }
 

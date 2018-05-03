@@ -8,6 +8,7 @@ var app = app || {};
 
 // LANDING PAGE VIEW
 restaurantView.initIndexView = function() {
+  
   $('.container').hide();
   $('.home-view').show();
 }
