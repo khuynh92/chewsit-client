@@ -11,6 +11,9 @@ restaurantView.initIndexView = function() {
   
   $('.container').hide();
   $('.home-view').show();
+  if(localStorage.ID) {
+    page('/form');
+  }
 }
 
 module.restaurantView = restaurantView;

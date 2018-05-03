@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Chews it</title>
   <link rel="stylesheet" href="./styles/reset.css">
-  <!-- <link href="https://fonts.googleapis.com/css?family=Pacifico|Poppins:400,700,800" rel="stylesheet"> -->
+  <link href="https://fonts.googleapis.com/css?family=Oleo+Script+Swash+Caps:400,700" rel="stylesheet">
   <link rel="stylesheet" href="./styles/base.css">
   <link rel="stylesheet" href="./styles/layout.css">
   <link rel="stylesheet" href="./styles/modules.css">
@@ -61,14 +61,23 @@
   </nav>
 </header>
 
-
 <!-- Landing page begins -->
 <div id="home-view" class="home-view container">
     <h4 id="logo">chewsit</h4>
+<!--     <div id="outterFakeButton">
+      <div id="innerFakeButton">  -->
+    <!-- <a href="/form"> <button class="btn signInButton"type="submit">Sign In</button></a> -->
+<!--     <a href="#" id="signIn" class="fakeButton">Sign in</a>
+    <a href="/form" id="guest" class="fakeButton">Guest</a>
+    <a href="/form"> <button id="guestButton"class="btn">Guest</button></a>
+  </div> -->
+  <!-- <a href="">Create Account</a> -->
+
     <div class="buttons">
-    <button class ="btn signInButton" type="submit">Sign In</button>
+    <a href="/users/login"><button class ="btn signInButton" type="submit">Sign In</button></a>
     <a href="/form"> <button class="btn">Guest</button></a>
-    <a href="/newUser"><button class="btn2" type="submit">Create Account</button></a>
+    <a href="/users/new"><button class="btn2" type="submit">Create Account</button></a>
+
   </div>
 </div>       
     <!-- FAVORITES STARTS HERE -->
@@ -266,10 +275,10 @@
 
 <!-- PREFERENCES VIEW STARTS HERE -->
 
-<div id="app-form" class="form-app container">
+<!-- <div id="app-form" class="form-app container">
       <video class="visible-desktop" id="hero-vid2" autoplay loop muted preload="true">
           <source id="video" type="video/mp4" src="/images/resturant.mp4">
-      </video>
+      </video> -->
   <a href="/preferences"><button id="preferences-button">
     preferences
   </button></a>
@@ -339,6 +348,7 @@
 <script src ="./scripts/views/restaurant-view.js"></script>
 <script src ="./scripts/views/results-view.js"></script>
 <script src="./scripts/views/newUser-view.js"></script>
+<script src="./scripts/views/login-view.js"></script>
 
 
 <script src="./scripts/models/newUser.js"></script>
