@@ -3,7 +3,7 @@
 var app = app || {};
 const ENV = {};
 ENV.isProduction = window.location.protocol === 'https:';
-ENV.productionApiUrl = 'chewsit';
+ENV.productionApiUrl = 'https://chewsit-server.herokuapp.com';
 ENV.developmentApiUrl = 'http://localhost:3000';
 ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
 
@@ -43,6 +43,8 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
           restaurant.endResultsIndex.forEach(number => restaurant.endResults.push(restaurant.array[number]));
         } else if (restaurant.array.length <= 3) {
           restaurant.array.forEach(element => restaurant.endResults.push(element));
+          //Try to create handlebars compile Here pls
+          
         }
       });
   };
@@ -82,6 +84,10 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
     }
   });
 
+  $('#app-form').on('change', (e) => {
+    e.preventDefault();
+    if((app.location.pos || $('#zip').val() !== '') &&  $('#range').val() !== '' && $('input[name=dolla]:checked').val() !== undefined) console.log('complete');
+  })
 
   $('#adventure').on('click', (e) => {
     e.preventDefault();
