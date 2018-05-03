@@ -12,23 +12,17 @@
   margin-top: auto;
 }
 #logo {
-  font-family: Arial, Helvetica, sans-serif;
+font-family: 'Oleo Script Swash Caps', cursive;
   color: white;
   text-shadow: 0.5px 0.4px rgba(70, 226, 104, 0.767);
-  font-size: 677%;
+  font-size: 700%;
   margin: 0 auto;
   text-align: center;  
-  height: 100%;
+  height: 70%;
 }
-#sign-in {
-  width: 50%;
-  height: 30%;
-  background-color: rgba(54, 58, 59, 0.89);
-  border-radius: 10px;
-  display: flex;
-}
+
 .btn {
-  display: inline;
+  /* display: inline;
   align-self: center;
   width: 20%;
   height: 75px;
@@ -42,6 +36,7 @@
   box-shadow: none;
   outline: none;
   z-index: 1;
+  min-width: 125px; */
 }
 .btn:active { 
   background-color:rgba(70, 226, 104, 0.767);
@@ -50,7 +45,7 @@
   cursor: pointer;
 }
 .btn2 {
-  display: block;
+  display: inline;
   align-self: center;
   width: 15%;
   height: 4%;
@@ -60,41 +55,48 @@
   font-size: 1em;
   color: rgba(241, 238, 238, 0.767);
   z-index: 1;
-  margin-left: 66%;
+  margin-left: 42.5%;
+  margin-top: 2%;
 }
 
-signInButton {
-  /* border-color: white; */
-  color: rgb(255, 255, 255);
-  /* width: 40%; */
-  /* margin: 0 auto; */
-  width: 7%;
-  margin-right: -35%;
-  margin-left: 35%;
+#outterFakeButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#innerFakeButton {
+  width: 50%;
+}
+.fakeButton {
+  display: inline;
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgba(241, 238, 238, 0.6);
+  padding: 2% 5%;
+  font-size: 1.5em;
+  text-decoration: none;
+  border: 2px solid rgba(241, 238, 238, 0.5);
+  border-radius: 80px;
+  transition: 250ms;
+}
 
+#signIn {
+margin: auto;
 }
-#signInButton:hover, #signInButtonPopup:hover {
-    border:solid rgb(25, 255, 121) 2px;
-    background-color: rgb(25, 255, 121);
-    cursor:pointer;
-}
-.guest:hover {
-    border:solid rgb(160, 78, 255) 2px;
-    background-color:rgb(160, 78, 255);
-}
+/* #guest {
+  padding: 2% 8%;
+  margin-right: 0;
+} */
+
 #signInButton:active, #signInButtonPopup:active {
     border:solid rgb(18, 160, 77) 2px;
     background-color: rgb(18, 160, 77);
     cursor:pointer;
 }
-.guest:active {
-    border:solid rgb(107, 52, 170) 2px;
-    background-color:rgb(107, 52, 170);
-}
-.btn:hover {
-  background-color:  rgba(70, 226, 104, 0.767);
+
+.fakeButton:hover {
+  background-color:  rgba(53, 165, 77, 0.9);
   color: white;
-  border-color: rgba(70, 226, 104, 0.767);
+  border-color: rgba(53, 165, 77, 0.9);
   cursor: pointer;
 }
 .btn:active {
@@ -232,8 +234,8 @@ h4 {
   font-size: 30px;
   color: white;
   font-weight: bold;
-  line-height: 5;
-  max-height: 55%;
+  line-height: 3.5;
+  max-height: 40%;
 }
 .textbox {
   width: 162px;
@@ -322,10 +324,10 @@ h4 {
     letter-spacing:.02rem;
     margin-bottom:1.3rem;
     }
-    a:link {
+    /* a:link {
       text-decoration: none;
       color:black;
-  }
+  } */
   .teamcl {
     vertical-align: top;
     display: inline-block;
@@ -401,7 +403,7 @@ h4 {
     border-radius: 100%;
   }
   
-  a:visited {
+  /* a:visited {
       text-decoration: none;
       color: black;
   }
@@ -413,13 +415,12 @@ h4 {
   
   a:active {
       text-decoration: none;
-      color:black;
+      color:black; */
   }
   
   /* Media Queries */
   
   @media only screen and (max-width:768px) {
-      #overlay { height:auto; }
   }
   
   
@@ -433,8 +434,7 @@ h4 {
       .hidden-mobile,.visible-tablet,.visible-desktop { display:none !important; }
   }
   .buttons{
-    display:inline;
-    margin-left: 50%;
+    margin: 0 27.5%;
   }
   .buttons2{
     display:inline;
@@ -465,39 +465,10 @@ h4 {
       transition: background-color 300ms ease;
       /* width: 100%; */
   }
-  .home-view2 {
+  .form-app{
     background-color: rgba(0,0,0,.65);
-    height: 40%;
-    left: 0;
-    position: relative;
-    top: 0;
-    transition: background-color 300ms ease;
-    /* width: 100%; */
-}
-  
-  .video {    
-    background-color: rgba(0,0,0,.65);
-    height: 100%;
-    left: 0;
-    position: relative;
-    top: 0;
-    transition: background-color 300ms ease;
-    width: 100%;}
-    #content {
-      background-color:rgba(104, 99, 99, 0.877);
-      color: black;
-      padding:2.5rem;
-      position:relative;
-      z-index: 1;
-      text-align: center;
-      height: 24%;
-      }
-      
-      #content p {
-      font-size:1.25rem;
-      letter-spacing:.02rem;
-      margin-bottom:1.3rem;
-      }
+  }
+
 /* --------END OF ABOUT US /PARRALEX------------   */
 #option{
   margin:50%;
