@@ -281,13 +281,13 @@ h4 {
   #hero-vid2 {
     background-size:cover;
     bottom:0;
-    height:auto;
+    height:100vh;
     /* min-height:62%;
     min-width:100%;
     perspective:1000; */
     position:fixed;
     right:0;
-    width:auto;
+    width:100vw;
     z-index: -1;
     }
   
@@ -504,7 +504,7 @@ h4 {
   }
   
 /* --------------check box ----------------------- */
-@import "bourbon";
+/* @import "bourbon";
 @keyframes pull{
   0% { height: 0; }
   100% { height: 1.2rem;  }
@@ -526,23 +526,23 @@ ul {
 }
 .choice {
   display:none;
-}
+} */
 
-.choice + label span {
+/* .choice + label span {
     display:inline-block;
     width:25px;
     height:19px;
     margin: 0 5px -4px 0; /*layout relationship between check and label*/
-    &:before,
+    /* &:before,
     &:after {
 		  @include transition(all .3s ease-in-out);
 		  content: "";
 		  position: absolute;
 		  z-index: 1;
 		  width: 15px;
-		  height: 15px;
+		  height: 15px; */ */
       /* background: transparent; */
-      background: black;
+      /* background: black;
 		  border: 2px solid black; 
     }
      &:after {
@@ -556,4 +556,4 @@ ul {
       @include transform(rotateY(180deg));
       background: black;
     }
-}
+} */
