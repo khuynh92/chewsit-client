@@ -10,8 +10,7 @@ var app = app || {};
     e.preventDefault();
     $('#enter-location').hide();
     $('#or').hide();
-    $('#location-notice').text('Current Location Saved!').css({ 'color': 'green' });
-    
+
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function (position) {
         location.pos = {
@@ -19,6 +18,7 @@ var app = app || {};
           lng: position.coords.longitude
         };
         console.log(location.pos.lat + ', ' + location.pos.lng);
+        $('#location-notice').text('Current Location Saved!').css({ 'color': 'green' });
         app.location.pos = location.pos;
       });
     }
