@@ -14,7 +14,8 @@
     
       dbUserForm.createNewUser(newUserName, newUserPin);
       dbUserForm.validateNewUser(newUserName, newUserPin)
-
+      dbUserForm.goToFormPage();
+    
   });
 
   dbUserForm.createNewUser = (newUserName, newUserPin) => {
@@ -25,7 +26,7 @@
           pin: newUserPin,
       })
       .then(response => {
-          console.log('added new user');
+          console.log(`Added new user: ${newUserName}`);
       });
   }
 
@@ -33,12 +34,17 @@
     console.log(nameFromDB);
     $.get(`${ENV.apiUrl}/users/login/${nameFromDB}/${pinFromDB}`)
     .then(response => {
+        console.log(response);
         let newID = response[0].id;
-        console.log(newID);
+        let newUserName = response[0].name;
         localStorage.setItem('ID', JSON.stringify(newID));
+        alert(`Welcome, ${newUserName}!`);
     });
 }
 
+    dbUserForm.goToFormPage = () => {
+        page('/form');
+    }
 
 module.dbUserForm = dbUserForm;
 
