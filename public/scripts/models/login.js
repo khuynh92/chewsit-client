@@ -15,7 +15,6 @@ var app = app || {};
     console.log(typeof(checkUserName), typeof(checkUserPin));
      
     dbLogin.validateUser(checkUserName, checkUserPin);
-    goToFormPage();
 
     });
 
@@ -28,6 +27,7 @@ var app = app || {};
         userInfo.name = response[0].name;
         userInfo.preferences = response[0].preferences;
         checkLocalStorage();
+        goToFormPage();
         });
     }
 
