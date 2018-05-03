@@ -26,14 +26,21 @@ var app = app || {};
         userInfo.id = response[0].id;
         userInfo.name = response[0].name;
         userInfo.preferences = response[0].preferences;
+        checkLocalStorage();
         });
     }
 
-function checkIfValid (returnFromDB) {
+function checkIfValid(returnFromDB) {
     if (!returnFromDB.length) {
         alert('Invalid username/password');
         }
     }   
+
+function checkLocalStorage() {
+    if (!localStorage) {
+        localStorage.setItem('id', JSON.stringify(userInfo.id));
+    }
+}
 
 module.dbLogin = dbLogin;
 module.userInfo = userInfo;
