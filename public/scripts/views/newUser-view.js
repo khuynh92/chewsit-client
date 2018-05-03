@@ -6,14 +6,15 @@ var app = app || {};
 
   const newUser = {};
 
-  newUser.init = () => {
-    $('.container').hide();
-    $('#create-user').show();
+  newUser.initView = () => {
+    $('#home-view').hide();
+    $('#newFavoriteDiv').hide();
+    $('#loginDiv').hide();
+    $('#newUserDiv').show();
+    $('#newUser p').text('I am here')
     console.log('create-user is showing')
-
   };
 
-
-module.preferences = preferences;
+module.newUser = newUser;
 
 })(app);
