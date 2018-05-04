@@ -283,13 +283,13 @@ h4 {
 /* Video Overlay */
   #hero-vid2 {
     background-size:cover;
-    bottom:0;
+    top:0;
     height:100vh;
     /* min-height:62%;
     min-width:100%;
     perspective:1000; */
     position:fixed;
-    right:0;
+    left:0;
     /* width:100vw; */
     z-index: -1;
     }

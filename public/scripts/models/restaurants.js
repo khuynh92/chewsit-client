@@ -46,18 +46,31 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
         } else if (restaurant.array.length <= 3) {
           restaurant.array.forEach(element => restaurant.endResults.push(element));
           //Try to create handlebars compile Here pls
-          
         }
       });
   };
 
   $('#app-form').on('submit', (e) => {
     e.preventDefault();
-    if (!app.location.pos && !$('#zip').val()) $('#location-notice').text('Please Use your Location').css({ 'color': 'red' });
+    $('#location-notice').text('');
+    $('#range-notice').text('');
+    $('#price-notice').text('');
+    $('#meal-notice').text('');
+
+    if (!app.location.pos && !$('#zip').val()) $('#location-notice').append('Please Use your Location').css({ 'color': 'red' });
+    if(!$('#range').val()) {
+      $('#range-notice').append('Please select your distance').css({ 'color': 'red' });
+    }
+    if(!$('input[name=dolla]:checked').val()) {
+      $('#price-notice').append('Please select your price').css({ 'color': 'red' });
+    }
+    if(!$('input[name=mealtype]:checked').val()) {
+      $('#meal-notice').append('Please select your Meal Type').css({ 'color': 'red' });
+    }
     else {
       console.log('submitted!');
       restaurant.location = app.location.pos ? `latitude=${app.location.pos.lat}&longitude=${app.location.pos.lng}` : `location=${$('#zip').val()}`;
-      // restaurant.food = $('input[name=mealtype]:checked').val();
+      restaurant.food = $('input[name=mealtype]:checked').val();
       restaurant.range = $('#range').val();
       restaurant.price = $('input[name=dolla]:checked').val();
 
@@ -77,7 +90,6 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
       restaurant.randomOffset(restaurant.location, restaurant.food, restaurant.price, restaurant.range);
 
       app.location.pos = null;
-      $('#location-notice').text('');
       $('#enter-location').show();
       $('#location-input').hide();
       $('#or').show();

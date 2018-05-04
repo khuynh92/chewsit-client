@@ -45,6 +45,10 @@
 
 
   <!-- HANDLEBARS TEMPLATES BEGIN HERE -->
+<script id="-template" type="text/x-handlebars-template"></script>
+  <li>
+    <p>{{name}}</p>
+  </li>
 
 </head>
 <body>
@@ -217,6 +221,7 @@
               <option value="16094">10 miles</option>
               <option value="32186">20 miles</option>
             </select>
+            <p id="range-notice"></p>
           </label>
       <div id="price">
           <label>
@@ -237,6 +242,7 @@
             <input type="radio" name="dolla" value=4 />
             <p class="dollar" id="lastdollar">$$$$</p>
           </label>
+          <p id="price-notice"></p>
         </div>
           <label>
               <!-- <input id="food"type="text"> -->
@@ -260,6 +266,7 @@
                     <input type="radio" name="mealtype" value="desserts" />
                     <p class="mealtype">Dessert</p>
                   </label>
+                  <p id="meal-notice"></p>
                 </div>
             </label>
       <!-- <input type="submit"> -->

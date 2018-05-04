@@ -9,8 +9,8 @@ var app = app || {};
   resultsView.initDisplayResults = () => {
     $('#display-results').empty();
     $('#display-results').show();
-    if (app.endResultsIndex === 0) {
-      $('#display-results').append('<p> No results found </p>');
+    if (app.restaurant.endResults.length === 0) {
+      $('#display-results').append('<li>No results found</li>');
     } else {
       app.restaurant.endResults.forEach(element => ($('#display-results').append(`<li>${element.name} ${element.rating} <img src='${element.image_url}' /></li>`)));
     }

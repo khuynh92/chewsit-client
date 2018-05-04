@@ -11,7 +11,7 @@ var app = app || {};
     var preferencesArray = [];
 
     if(localStorage.ID) {
-    $.get(`${ENV.apiUrl}/users/favorites/${localStorage.ID}`)
+    $.get(`${ENV.apiUrl}/users/preferences/${localStorage.ID}`)
       .then(response => {
         preferencesArray = JSON.parse(response[0].preferences);
         checkThem(preferencesArray);
