@@ -45,7 +45,7 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
           restaurant.array.forEach(element => restaurant.endResults.push(element));
           //Try to create handlebars compile Here pls
         }
-        module.restaurant.endResults = restaurant.endResults;
+        Object.keys(restaurant.endResults).forEach(key => this[key] = [key]);
       });
   };
 
@@ -112,14 +112,23 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
     $('.preferences-page').show();
   });
 
-  // $('#adventure-button').on('click', (e) => {
-  //     e.preventDefault();
-  //    $.get(`${ENV.apiUrl}/api/yelp/v3/${food}/${location}/${price}/${range}/`)
-  //     .then(result => {
-  //       results.businesses[0]
-  //       console.log(results.businesses[0])
-  //   });
-  // }
+  function show() {
+    // Grab the template script
+    var theTemplateScript = $("#display-results-template").html();
+  
+    // Compile the template
+    var theTemplate = Handlebars.compile(theTemplateScript);
+  
+    // Define our data object
+    var context = app.restaurant.endResults[0];
+  
+    // Pass our data to the template
+    var theCompiledHtml = theTemplate(context);
+  
+    // Add the compiled html to the page
+    $('#results-list').append(theCompiledHtml);
+  }
+
   module.location = location;
   module.restaurant = restaurant;
 
