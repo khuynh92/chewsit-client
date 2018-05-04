@@ -7,6 +7,7 @@
   <title>Chews it</title>
   <link rel="stylesheet" href="./styles/reset.css">
   <link href="https://fonts.googleapis.com/css?family=Oleo+Script+Swash+Caps:400,700" rel="stylesheet">
+  <link rel="stylesheet" href="./styles/icons.css"> 
   <link rel="stylesheet" href="./styles/base.css">
   <link rel="stylesheet" href="./styles/layout.css">
   <link rel="stylesheet" href="./styles/modules.css">
@@ -59,16 +60,22 @@
 <body>
 
 <header class="site-header clearfix">
-  <nav class="main-nav">
-    <div id="ham-menu" class="icon-menu hamburger">
-      <ul id="nav-menu" class="nav-ul">
-        <li class="tab" data-content="home"><a href="/" > Home</a></li>
-        <li class="tab" data-content="about"><a href="ourTeam" > About</a></li>
-        <li class="tab" data-content="preferences"><a href="/preferences" id="preferences-button" > Preferences</a></li>
-        <li class="tab" data-content="main"><a href="/form" > Main</a></li>
-      </ul>
-    </div>
-  </nav>
+  
+    <div class="icon-menu"></div>
+    <ul id="nav-menu" class="nav-ul">
+      <li class="tab" data-content="home">
+        <a href="/"> Home</a>
+      </li>
+      <li class="tab" data-content="about">
+        <a href="#members"> About</a>
+      </li>
+      <li class="tab" data-content="preferences">
+        <a href="/preferences" id="preferences-button"> Preferences</a>
+      </li>
+      <li class="tab" data-content="main">
+        <a href="/form"> Main</a>
+      </li>
+    </ul>
 </header>
 
 <!-- Landing page begins -->
@@ -84,9 +91,9 @@
   <!-- <a href="">Create Account</a> -->
 
     <div class="buttons">
-    <a href="/users/login"><button class ="btn signInButton" type="submit">Sign In</button></a>
-    <a href="/form"> <button class="btn">Guest</button></a>
-    <a href="/users/new"><button class="btn2" type="submit">Create Account</button></a>
+    <a href="/login" class="fakeButton" id="signIn">Sign In</a>
+    <a href="/form" class="fakeButton">Guest</a>
+    <a href="/new">Create Account</a>
 
   </div>
 </div>       
@@ -99,10 +106,10 @@
 <div class="database">
 
 <!-- database create new user -->
-  <div id="newUserDiv">
+  <div id="newUserDiv" class="container">
     <form id="create-user">
       <input id="create-name"type="text" placeholder="Name"></input>
-      <input id ="create-pin"type="text" placeholder="Pin"></input>
+      <input id ="create-pin" type="password" placeholder="Pin" ></input>
       <button type="submit">New User</button>
     </form>
     <section id="newUser">
@@ -112,7 +119,7 @@
 <!-- /database new user-->
 
 <!--database create new favorite-->
-<div id="newFavoriteDiv">
+<!-- <div id="newFavoriteDiv">
   <form id="create-favorite">
     <input id="business-id"type="text" type="radio"placeholder="Yelp-ID"></input>
     <input id ="user-id"type="text" type="radio" placeholder="User-ID"></input>
@@ -122,15 +129,16 @@
   <section id="newFavorite">
     <p></p>
   </section>
-</div>
+</div> -->
 <!--/database create new favorite-->
 
 <!--database login check-->
-<div id="loginDiv">
+<div id="loginDiv"  class="container">
   <form id="user-login">
     <input id="user-name"type="text" placeholder="Enter Username"></input>
-    <input id ="user-pin"type="text" placeholder="Enter Pin"></input>
+    <input id ="user-pin"type="password" placeholder="Enter Pin"></input>
   <button type="submit">Returning user</button>
+  <p id="login-text"></p>
   </form>
 
   <section id="loginSection">
@@ -263,7 +271,6 @@
             </label>
       <!-- <input type="submit"> -->
     <input type="submit" value="chews it!">
-    <a href="/display" id="show-results">Chews it!</a>
   </form>
 
 <!-- ----------------------------------------------------------------------------------------------------- -->
@@ -289,10 +296,7 @@
       <video class="visible-desktop" id="hero-vid2" autoplay loop muted preload="true">
           <source id="video" type="video/mp4" src="/images/resturant.mp4">
       </video> -->
-  <a href="/preferences"><button id="preferences-button">
-    preferences
-  </button></a>
-</div>
+<!-- </div> -->
 
 <div class="preferences-page">
   

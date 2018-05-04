@@ -6,13 +6,11 @@ var app = app || {};
   const loginView = {};
 
   loginView.init = () => {
-    $('.container').hide();
-    $('#home-view').hide();
+    // $('.container').hide();
     $('#newFavoriteDiv').hide();
     $('#newUserDiv').hide();
     $('#loginDiv').show();
-    console.log('login is showing')
-
+    console.log('login is showing');
   };
 
 module.loginView = loginView;

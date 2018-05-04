@@ -18,6 +18,8 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
         restaurant.offset = result.total < 51 ? 0 : Math.floor(Math.random() * result.total - 4);
         console.log('offset, if number is greater than 50. If not this number will be 0:', restaurant.offset);
         restaurant.results(location, food, price, range, restaurant.offset);
+        setTimeout(() => page('/display'), 1500);
+
       });
   };
 
