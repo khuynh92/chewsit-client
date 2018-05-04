@@ -7,27 +7,17 @@ var app = app || {};
   const resultsView = {};
 
   resultsView.initDisplayResults = () => {
-    // $('#display-results').empty();
+    $('#display-results').empty();
     $('.display-results').show();
     if (app.endResultsIndex === 0) {
       $('#display-results').append('<p> No results found </p>');
     } else {
-     console.log(app.restaurant.endResults[0])
-      // Grab the template script
-      let theTemplateScript = $("#display-results-template").html();
-    
-      // Compile the template
-      let theTemplate = Handlebars.compile(theTemplateScript);
-    
-      // Define our data object
-      let context = app.restaurant.endResults[0];
-    
-      // Pass our data to the template
-      let theCompiledHtml = theTemplate(context);
-    
-      // Add the compiled html to the page
-      $('#results-list').append(theCompiledHtml);
-   
+      console.log('display something with', app.restaurant.endResults)
+      let template = $('#display-results-template').text()
+      let theTemplate = Handlebars.compile(template)
+      let context = theTemplate(JSON.stringify(app.restaurant.endResults[0]))
+
+      $('#results-list').append(context)
     }
   };
 
