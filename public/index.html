@@ -43,12 +43,25 @@
     }(window.location))
   </script>
 
-
   <!-- HANDLEBARS TEMPLATES BEGIN HERE -->
+
+  <script type="text/x-handlebars-template" id="#display-results-template">
+    <!-- {{#each app.restaurant.endResults}} -->
+      <li class="" >
+        <img src={{image_url}}>
+          <h3>name:{{name}}</h3>
+          <p>rating:{{rating}}</p>
+          <p>display_phone:{{display_phone}}</p>
+          <p>location:{{location}}</p>
+    </li>
+    <!-- {{/#each}} -->
+</script>
+
 <script id="-template" type="text/x-handlebars-template"></script>
   <li>
     <p>{{name}}</p>
   </li>
+
 
 </head>
 <body>
@@ -285,8 +298,8 @@
   </form>
 
 <!-- RESULTS/DISPLAY VIEW PAGE START -->
-<div id="display-results" class="container">
-<ul id="results-list">
+<div id="display-results" class="display-results container">
+  <ul id="results-list">
   </ul>
 </div>
 

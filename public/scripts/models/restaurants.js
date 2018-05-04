@@ -18,7 +18,7 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
         restaurant.offset = result.total < 51 ? 0 : Math.floor(Math.random() * result.total - 4);
         console.log('offset, if number is greater than 50. If not this number will be 0:', restaurant.offset);
         restaurant.results(location, food, price, range, restaurant.offset);
-        setTimeout(() => page('/display'), 1500);
+        // setTimeout(() => page('/display'), 1500);
 
       });
   };
@@ -47,8 +47,18 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
           restaurant.array.forEach(element => restaurant.endResults.push(element));
           //Try to create handlebars compile Here pls
         }
-      });
+        // restaurant.endResults.forEach(element => {
+        //   this.image_url = element.image_url,
+        //   this.name = element.name,
+        //   this.rating = element.rating,
+        //   this.display_phone = element.display_phone,
+        //   this.location = element.location
+        // })
+        console.log('array was populated')
+        // return restaurant.endResults;
+      }).then(setTimeout(() => page('/display'), 1500));;
   };
+  
 
   $('#app-form').on('submit', (e) => {
     e.preventDefault();
@@ -88,6 +98,7 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
       }
       console.log('food choice is', restaurant.food);
       restaurant.randomOffset(restaurant.location, restaurant.food, restaurant.price, restaurant.range);
+      
 
       app.location.pos = null;
       $('#enter-location').show();
@@ -126,14 +137,23 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
     $('.preferences-page').show();
   });
 
-  // $('#adventure-button').on('click', (e) => {
-  //     e.preventDefault();
-  //    $.get(`${ENV.apiUrl}/api/yelp/v3/${food}/${location}/${price}/${range}/`)
-  //     .then(result => {
-  //       results.businesses[0]
-  //       console.log(results.businesses[0])
-  //   });
-  // }
+  restaurant.showResultsHtml = (data) => {
+    // Grab the template script
+    var theTemplateScript = $("#display-results-template").html();
+  
+    // Compile the template
+    var theTemplate = Handlebars.compile(theTemplateScript);
+  
+    // Define our data object
+    var context = data;
+  
+    // Pass our data to the template
+    var theCompiledHtml = theTemplate(context);
+  
+    // Add the compiled html to the page
+    $('#results-list').append(theCompiledHtml);
+  }
+
   module.location = location;
   module.restaurant = restaurant;
 

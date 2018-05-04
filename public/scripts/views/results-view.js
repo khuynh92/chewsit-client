@@ -8,11 +8,21 @@ var app = app || {};
 
   resultsView.initDisplayResults = () => {
     $('#display-results').empty();
+
+    $('.display-results').show();
+    if (app.endResultsIndex === 0) {
+
     $('#display-results').show();
     if (app.restaurant.endResults.length === 0) {
       $('#display-results').append('<li>No results found</li>');
+
     } else {
-      app.restaurant.endResults.forEach(element => ($('#display-results').append(`<li>${element.name} ${element.rating} <img src='${element.image_url}' /></li>`)));
+      console.log('display something with', app.restaurant.endResults)
+      let template = $('#display-results-template').text()
+      let theTemplate = Handlebars.compile(template)
+      let context = theTemplate(JSON.stringify(app.restaurant.endResults[0]))
+
+      $('#results-list').append(context)
     }
   };
 
