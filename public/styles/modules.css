@@ -38,6 +38,7 @@ font-family: 'Oleo Script Swash Caps', cursive;
   z-index: 1;
   min-width: 125px; */
 }
+
 .btn:active { 
   background-color:rgba(70, 226, 104, 0.767);
   color: white;
@@ -231,6 +232,7 @@ background-color: darkgray;
   #enter-location:hover {
     background-color: darkgray;
     }
+
 h4 {
   font-size: 30px;
   color: white;
@@ -522,6 +524,111 @@ img:hover {
   transform: scale(1.1);
 }
 .foods {
-  
-  
 }
+
+/*--------BEGIN NEW USER/LOGIN DIV--------*/
+/*----BEGIN NEW USER----*/
+#newUserDiv {
+  text-align: center;
+}
+
+#newUserSection {
+  color: white;
+  font-weight: bold;
+}
+.userValidationPage {
+  background-color: rgba(0,0,0,.65);
+  height: 100vh;
+  transition: background-color 300ms ease;
+}
+
+.formInput{
+  display: block;
+  text-align: center;
+  padding-bottom: 2%;
+  font-family: 'Quicksand', sans-serif;
+    cursor: pointer;
+    width: 50%;
+    height: 45px;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 100;
+    border-radius: 5px;
+    transition: 300ms;
+    margin: auto;
+  }
+
+  .userValidationButton {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color:rgba(104, 99, 99, 0.877);
+    color: black;
+    padding: 2% 5%;
+    font-size: 1.5em;
+    text-decoration: none;
+    border: 2px solid rgba(241, 238, 238, 0.5);
+    border-radius: 80px;
+    transition: 250ms;
+    z-index: 5;
+    margin-top: 2%;
+    margin-bottom: 2%;
+  }
+
+  .userValidationButton:hover {
+    background-color: green;
+    color: white;
+  }
+/*----END NEW USER----*/
+
+/*----BEGIN LOGIN----*/
+#newUserDiv {
+  text-align: center;
+}
+
+#newUserSection {
+  color: white;
+  font-weight: bold;
+}
+.userValidationPage {
+  background-color: rgba(0,0,0,.65);
+  height: 100vh;
+  transition: background-color 300ms ease;
+}
+
+.formInput{
+  display: block;
+  text-align: center;
+  padding-bottom: 2%;
+  font-family: 'Quicksand', sans-serif;
+    cursor: pointer;
+    width: 50%;
+    height: 45px;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 100;
+    border-radius: 5px;
+    transition: 300ms;
+    margin: auto;
+  }
+
+  .userValidationButton {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color:rgba(104, 99, 99, 0.877);
+    color: black;
+    padding: 2% 5%;
+    font-size: 1.5em;
+    text-decoration: none;
+    border: 2px solid rgba(241, 238, 238, 0.5);
+    border-radius: 80px;
+    transition: 250ms;
+    z-index: 5;
+    margin-top: 2%;
+    margin-bottom: 2%;
+  }
+
+  .userValidationButton:hover {
+    background-color: green;
+    color: white;
+  }
+/*----END LOGIN----*/
+
+/*--------END NEW USER/LOGIN----------*/
