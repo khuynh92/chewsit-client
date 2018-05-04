@@ -45,16 +45,14 @@
 
   <!-- HANDLEBARS TEMPLATES BEGIN HERE -->
 
-  <script type="text/x-handlebars-template" id="#display-results-template">
-    <!-- {{#each app.restaurant.endResults}} -->
-      <li class="" >
-        <img src={{image_url}}>
+  <script type="text/x-handlebars-template" id="display-results-template">
+      <li data-id="{{id}}" >
+        <img class="results-img"src={{image_url}}>
           <h3>name:{{name}}</h3>
           <p>rating:{{rating}}</p>
           <p>display_phone:{{display_phone}}</p>
-          <p>location:{{location}}</p>
+          <p>location:{{location.display_address}}</p>
     </li>
-    <!-- {{/#each}} -->
 </script>
 </head>
 <body>
