@@ -43,8 +43,25 @@
     }(window.location))
   </script>
 
-
   <!-- HANDLEBARS TEMPLATES BEGIN HERE -->
+
+  <script type="text/x-handlebars-template" id="#display-results-template">
+    <!-- {{#each app.restaurant.endResults}} -->
+      <li class="" >
+        <img src={{image_url}}>
+          <h3>name:{{name}}</h3>
+          <p>rating:{{rating}}</p>
+          <p>display_phone:{{display_phone}}</p>
+          <p>location:{{location}}</p>
+    </li>
+    <!-- {{/#each}} -->
+</script>
+
+<script id="-template" type="text/x-handlebars-template"></script>
+  <li>
+    <p>{{name}}</p>
+  </li>
+
 
 </head>
 <body>
@@ -64,6 +81,9 @@
       </li>
       <li class="tab" data-content="main">
         <a href="/form"> Main</a>
+      </li>
+      <li class="Logout" data-content="logout" id="logoutButton">
+        <a href="/">Logout</a>
       </li>
     </ul>
 </header>
@@ -214,6 +234,7 @@
               <option value="16094">10 miles</option>
               <option value="32186">20 miles</option>
             </select>
+            <p id="range-notice"></p>
           </label>
       <div id="price">
           <label>
@@ -234,6 +255,7 @@
             <input type="radio" name="dolla" value=4 />
             <p class="dollar" id="lastdollar">$$$$</p>
           </label>
+          <p id="price-notice"></p>
         </div>
           <label>
               <!-- <input id="food"type="text"> -->
@@ -257,6 +279,7 @@
                     <input type="radio" name="mealtype" value="desserts" />
                     <p class="mealtype">Dessert</p>
                   </label>
+                  <p id="meal-notice"></p>
                 </div>
             </label>
       <!-- <input type="submit"> -->
@@ -275,8 +298,8 @@
   </form>
 
 <!-- RESULTS/DISPLAY VIEW PAGE START -->
-<div id="display-results" class="container">
-<ul id="results-list">
+<div id="display-results" class="display-results container">
+  <ul id="results-list">
   </ul>
 </div>
 
@@ -377,6 +400,7 @@
 <script src="./scripts/models/location.js"></script>
 <script src ="./scripts/models/preferences.js"></script>
 <script src="./scripts/models/login.js"></script>
+<script src="./scripts/models/logout.js"></script>
 <!-- VIEWS -->
 <script src ="./scripts/views/restaurant-view.js"></script>
 <script src ="./scripts/views/results-view.js"></script>
