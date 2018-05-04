@@ -11,7 +11,6 @@ var app = app || {};
     $('#newFavoriteDiv').hide();
     $('#loginDiv').hide();
     $('#newUserDiv').show();
-    $('#newUser p').text('I am here')
     console.log('create-user is showing')
   };
 
