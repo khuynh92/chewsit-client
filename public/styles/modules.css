@@ -524,6 +524,7 @@ img:hover {
   transform: scale(1.1);
 }
 .foods {
+
 }
 
 /*--------BEGIN NEW USER/LOGIN DIV--------*/
@@ -632,3 +633,12 @@ img:hover {
 /*----END LOGIN----*/
 
 /*--------END NEW USER/LOGIN----------*/
+
+  
+  
+}
+
+.results-img {
+  width: 25%;
+}
+
