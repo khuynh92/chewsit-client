@@ -45,22 +45,17 @@
 
   <!-- HANDLEBARS TEMPLATES BEGIN HERE -->
 
-  <script type="text/x-handlebars-template" id="#display-results-template">
-    <!-- {{#each app.restaurant.endResults}} -->
-      <li class="" >
-        <img src={{image_url}}>
-          <h3>name:{{name}}</h3>
-          <p>rating:{{rating}}</p>
-          <p>display_phone:{{display_phone}}</p>
-          <p>location:{{location}}</p>
-    </li>
-    <!-- {{/#each}} -->
+  <script type="text/x-handlebars-template" id="display-results-template">
+<div class="handle-results">
+    <ul>
+      <li><img src={{image_url}}></li>
+         <li> <h3>name:{{name}}</h3></li>
+         <li><p>rating:{{rating}}</p></li>
+        <li><p>display_phone:{{display_phone}}</p></li>
+          <!-- <p>location:{{location}}</p> -->
+    </ul>
+</div>
 </script>
-
-<script id="-template" type="text/x-handlebars-template"></script>
-  <li>
-    <p>{{name}}</p>
-  </li>
 
 
 </head>
@@ -298,10 +293,9 @@
   </form>
 
 <!-- RESULTS/DISPLAY VIEW PAGE START -->
-<div id="display-results" class="display-results container">
-  <ul id="results-list">
-  </ul>
-</div>
+
+<section id="display-results" class="display-results"></section>
+
 
 <!-- PREFERENCES VIEW STARTS HERE -->
 

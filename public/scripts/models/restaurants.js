@@ -47,13 +47,12 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
           restaurant.array.forEach(element => restaurant.endResults.push(element));
           //Try to create handlebars compile Here pls
         }
-        // restaurant.endResults.forEach(element => {
-        //   this.image_url = element.image_url,
-        //   this.name = element.name,
-        //   this.rating = element.rating,
-        //   this.display_phone = element.display_phone,
-        //   this.location = element.location
-        // })
+        restaurant.endResults.forEach(element => { 
+          $('.display-results').append(restaurant.showResultsHtml(element))
+          console.log('element:',element)
+          // $('.display-results').show();
+        });
+
         console.log('array was populated')
         // return restaurant.endResults;
       }).then(setTimeout(() => page('/display'), 1500));;
@@ -137,21 +136,14 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
     $('.preferences-page').show();
   });
 
-  restaurant.showResultsHtml = (data) => {
-    // Grab the template script
-    var theTemplateScript = $("#display-results-template").html();
-  
-    // Compile the template
-    var theTemplate = Handlebars.compile(theTemplateScript);
-  
-    // Define our data object
-    var context = data;
-  
-    // Pass our data to the template
-    var theCompiledHtml = theTemplate(context);
-  
-    // Add the compiled html to the page
-    $('#results-list').append(theCompiledHtml);
+  restaurant.showResultsHtml = function (data) {
+    
+    var template = Handlebars.compile($("#display-results-template").text());
+    console.log('template:', $("#display-results-template").text())
+    let templateData = template(data)
+    console.log('This is templateData:', templateData)
+    return templateData
+    
   }
 
   module.location = location;
