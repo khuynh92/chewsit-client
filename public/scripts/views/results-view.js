@@ -24,6 +24,7 @@ var app = app || {};
 
       $('#results-list').append(context)
     }
+  }
   };
 
   module.resultsView = resultsView;
