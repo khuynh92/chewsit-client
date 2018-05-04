@@ -1,51 +1,59 @@
 
 'use strict';
 
-(function(module) {
+(function (module) {
 
-  const dbUserForm = {};
+    const dbUserForm = {};
 
-  $('#create-user').on('submit', (e) => {
-    e.preventDefault();
-      let newUserName = $('#create-name').val();
-      let newUserPin = $('#create-pin').val();
-   console.log(newUserName, newUserPin);
-      $('#newUser p').html(newUserName, newUserPin);
-    
-      dbUserForm.createNewUser(newUserName, newUserPin);
-      dbUserForm.validateNewUser(newUserName, newUserPin)
-      dbUserForm.goToFormPage();
-    
-  });
+    $('#create-user').on('submit', (e) => {
+        e.preventDefault();
+        let newUserName = $('#create-name').val();
+        let newUserPin = $('#create-pin').val();
+        if (!newUserName || !newUserPin ) {
+            $('#newUser p').html('Invalid entry, please complete both fields.');
+        } else {
+        console.log(newUserName, newUserPin);
+       
+        dbUserForm.createNewUser(newUserName, newUserPin);
+        }
 
-  dbUserForm.createNewUser = (newUserName, newUserPin) => {
-      console.log(newUserName, newUserPin);
-      let formData = {}
-      $.post(`${ENV.apiUrl}/users/new`, {
-          name: newUserName,
-          pin: newUserPin,
-      })
-      .then(response => {
-          console.log(`Added new user: ${newUserName}`);
-      });
-  }
+    });
+
+    dbUserForm.createNewUser = (newUserName, newUserPin) => {
+        console.log(newUserName, newUserPin);
+
+        $.post(`${ENV.apiUrl}/users/new`, {
+            name: newUserName,
+            pin: newUserPin
+        })
+            .then(results => dbUserForm.validateNewUser(newUserName, newUserPin))
+            .catch(err => {
+                console.error(err);
+                $('#newUser p').html('Username already taken! Please try another.');
+            });
+    }
 
     dbUserForm.validateNewUser = (nameFromDB, pinFromDB) => {
-    console.log(nameFromDB);
-    $.get(`${ENV.apiUrl}/users/login/${nameFromDB}/${pinFromDB}`)
-    .then(response => {
-        console.log(response);
-        let newID = response[0].id;
-        let newUserName = response[0].name;
-        localStorage.setItem('ID', JSON.stringify(newID));
-        alert(`Welcome, ${newUserName}!`);
-    });
-}
-
+        console.log(nameFromDB);
+       
+            $.get(`${ENV.apiUrl}/users/login/${nameFromDB}/${pinFromDB}`)
+                .then(response => {
+                    console.log(response);
+                    let newID = response[0].id;
+                    let newUserName = response[0].name;
+                    localStorage.setItem('ID', JSON.stringify(newID));
+                    alert(`Welcome, ${newUserName}!`);
+                    dbUserForm.goToFormPage();
+                })
+                .catch(err => {
+                    console.error(err);
+                });
+    }
+    
     dbUserForm.goToFormPage = () => {
         page('/form');
     }
 
-module.dbUserForm = dbUserForm;
+    module.dbUserForm = dbUserForm;
 
 })(app);

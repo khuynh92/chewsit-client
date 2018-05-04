@@ -8,9 +8,14 @@ var app = app || {};
 
   resultsView.initDisplayResults = () => {
     $('#display-results').empty();
+
     $('.display-results').show();
     if (app.endResultsIndex === 0) {
-      $('#display-results').append('<p> No results found </p>');
+
+    $('#display-results').show();
+    if (app.restaurant.endResults.length === 0) {
+      $('#display-results').append('<li>No results found</li>');
+
     } else {
       console.log('display something with', app.restaurant.endResults)
       let template = $('#display-results-template').text()
