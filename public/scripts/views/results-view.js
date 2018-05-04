@@ -7,26 +7,23 @@ var app = app || {};
   const resultsView = {};
 
   resultsView.initDisplayResults = () => {
-    $('#display-results').empty();
-
-    $('.display-results').show();
-    if (app.endResultsIndex === 0) {
-
+    $('#results-list').empty();
     $('#display-results').show();
+
     if (app.restaurant.endResults.length === 0) {
       $('#display-results').append('<li>No results found</li>');
 
     } else {
-      console.log('display something with', app.restaurant.endResults)
-      let template = $('#display-results-template').text()
-      let theTemplate = Handlebars.compile(template)
-      let context = theTemplate(JSON.stringify(app.restaurant.endResults[0]))
-
-      $('#results-list').append(context)
+      resultsView.showResultsHtml(app.restaurant.endResults);
     }
-  }
   };
 
+
+  resultsView.showResultsHtml = (data) => {
+    let template = Handlebars.compile($('#display-results-template').text());
+    data.forEach(object =>  $('#results-list').append(template(object)));
+   
+  }
   module.resultsView = resultsView;
 
 })(app);
