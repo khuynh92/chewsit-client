@@ -712,9 +712,17 @@ justify-content: center;
 }
 
 #chewsit {
+  margin-top: 1%;
+  border: 2px solid rgba(241, 238, 238, 0.6);
+  outline: none;
+  box-shadow: none;
+  color: rgba(241, 238, 238, 0.6);
+  width: 140px;
+  height: 60px;
+  border-radius: 80px;
   background-color: rgba(0, 0, 0, 0);
   box-shadow: none;
-
+  transition: 250ms;
 }
 
 #chewsit:hover {
