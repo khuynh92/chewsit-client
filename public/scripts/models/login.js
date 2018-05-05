@@ -52,6 +52,7 @@ var app = app || {};
     }
   }
 
+
   function goToFormPage() {
     page('./form');
   }

@@ -282,7 +282,7 @@ margin-bottom: 2%;
   cursor: pointer;
   vertical-align: middle;
   text-align: center;
-  width: 100px;
+  width: 110px;
   height: 45px;
   text-decoration: none;
   font-size: 20px;
@@ -310,6 +310,7 @@ margin-bottom: 2%;
     #members{
       max-width: 1000px;
       margin: auto;
+      padding-left:150px;
     }
 
   /* Content Styles */
@@ -325,6 +326,7 @@ margin-bottom: 2%;
   }
   
   #content p {
+    color: white;
   font-size:1.25rem;
   letter-spacing:.02rem;
   margin-bottom:1.3rem;
@@ -334,7 +336,7 @@ margin-bottom: 2%;
 
   #content2 {
     background-color:rgba(104, 99, 99, 0.877);
-    color: black;
+    color: white;
     padding-top:2%;
     padding:2.5rem;
     position:relative;
@@ -359,7 +361,7 @@ margin-bottom: 2%;
   }
   .founder {
     font-family: helvetica;
-    color: black;
+    color: white;
     text-align: center;
     font-size: 24px;
     margin-top: 20px;
@@ -375,7 +377,7 @@ margin-bottom: 2%;
     font-family: helvetica;
     font-size: 18px;
     text-align: justify;
-    color: black;
+    color: white;
     width: 85%;
   }
   #tagline {
@@ -386,7 +388,7 @@ margin-bottom: 2%;
   #members1 {
     font-family:helvetica;
     font-size: 28px;
-    color: black;
+    color: white;
     text-align: center;
     margin-top: 50px;
   } 
@@ -430,8 +432,6 @@ margin-bottom: 2%;
   
   /* Media Queries */
   
-  @media only screen and (max-width:768px) {
-  }
   
   
   /* Visibility Helpers */
@@ -439,9 +439,11 @@ margin-bottom: 2%;
   @media only screen and (min-width:480px) and (max-width:768px) {
       .visible-mobile,.hidden-tablet,.visible-desktop { display:none !important; }
      
-      .visible-desktop{
-        background-image: url("http://www.markhillard.com/sandbox/media/polina.jpg");
-     }
+      html {
+        background: linear-gradient( rgba(0, 0, 0, 0.315), rgba(0, 0, 0, 0.315) ), url('../images/bamboo.jpg');
+        background-repeat: no-repeat;
+      background-size:cover;
+  }
   }
   
   @media only screen and (max-width:479px) {
@@ -455,13 +457,15 @@ margin-bottom: 2%;
         margin: 0 auto;
         text-align: center;
       }
-      .visible-desktop{
-        background-image: url("http://www.markhillard.com/sandbox/media/polina.jpg");
-     }
+      html {
+        background: linear-gradient( rgba(0, 0, 0, 0.315), rgba(0, 0, 0, 0.315) ), url('../images/bamboo.jpg');
+        background-repeat: no-repeat;
+      background-size:cover;
+  }
   }
   @media only screen and (max-width:768px) {
     #overlay { height:auto; }
-    .hidden-mobile,.visible-tablet,.visible-desktop { display:none !important; }
+    /* .hidden-mobile,.visible-tablet,.visible-desktop { display:none !important; } */
 }
 
   #show-results{
@@ -482,7 +486,7 @@ margin-bottom: 2%;
   }
 
   .home-view {
-      background-color: rgba(0,0,0,.65);
+      background-color: rgba(0,0,0,.45);
       height: 100%;
       /* left: 0; */
       position: relative;
@@ -514,7 +518,7 @@ margin-bottom: 2%;
 }
 
 .foodDiv img {
-  opacity: .7;
+  opacity: .3;
 }
 .preferences-page h1{
   padding-top: 20px;
@@ -554,7 +558,7 @@ div input.choice:checked + img {
   opacity: 1;
 }
 
-img:hover {
+.img-hover:hover {
   cursor: pointer;
   transform: scale(1.1);
   /* border:solid white 1px;  */
@@ -607,6 +611,9 @@ div:checked + img {
     transition: 300ms;
     margin: auto;
   }
+  .formInput:first-child {
+    margin-bottom: 2%;
+  }
 
   .userValidationButton {
     font-family: Arial, Helvetica, sans-serif;
@@ -626,6 +633,7 @@ div:checked + img {
   .userValidationButton:hover {
     background-color: green;
     color: white;
+    cursor: pointer;
   }
 
   #save-preferences-text{
@@ -680,7 +688,9 @@ div:checked + img {
 
 .results-img {
   width: 25%;
+  margin-top: 4%;
 }
+
 
 label input[type="radio"]{
   visibility: hidden; 
@@ -804,8 +814,15 @@ justify-content: center;
   font-weight: bold;
   background: gray;
   opacity: .9;
-  z-index: -1
+  z-index: -1;
+  border-radius: 5px;
 }
 
+#resultsDiv button {
+  height: 40px;
+  width: 100px;
+  font-size: 1.4em;
+  padding: 0;
+}
 
 /*-----END RESULTS SECTION---*/
