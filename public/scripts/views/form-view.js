@@ -10,6 +10,8 @@ var app = app || {};
   form.init = () => {
     if(localStorage.ID) {
       $('#logoutButton').show();
+      $('#preferences-button').show();
+      $('#home-button').hide();
     }
     $('.form-app').show();
     console.log('form is showing')

@@ -49,10 +49,10 @@
   <script type="text/x-handlebars-template" id="display-results-template">
       <li data-id="{{id}}">
         <img class="results-img"src={{image_url}}>
-          <h3>name:{{name}}</h3>
-          <p>rating:{{rating}}</p>
-          <p>display_phone:{{display_phone}}</p>
-          <p>location:{{location.display_address}}</p>
+          <h3>Name:{{name}}</h3>
+          <p>Rating:{{rating}}</p>
+          <p>Phone:{{display_phone}}</p>
+          <p>Location:{{location.display_address}}</p>
           <button class="next">Next</button>
     </li>
 </script>
@@ -60,23 +60,36 @@
 <body>
 
 <header class="site-header clearfix">
-  
-    <div class="icon-menu"></div>
-    <ul id="nav-menu" class="nav-ul">
-      <li class="tab" data-content="home">
-        <a href="/"> Home</a>
+
+  <div class="nav-container" onclick="myFunction(this)">
+    <div class="bar1"></div>
+    <div class="bar2"></div>
+    <div class="bar3"></div>
+  </div>
+
+    <ul id="nav-menu" class="nav-ul hide-nav">
+
+      <li class="tab container" data-content="home" id="home-button">
+        <a href="./"> Home</a>
+
       </li>
       <li class="tab" data-content="about">
         <a href="./#members"> About</a>
       </li>
-      <li class="tab" data-content="preferences">
-        <a href="/preferences" id="preferences-button"> Preferences</a>
+      <li class="tab container" data-content="preferences" id="preferences-button">
+
+        <a href="./preferences" > Preferences</a>
+
       </li>
       <li class="tab" data-content="main">
-        <a href="/form"> Main</a>
+        <a href="./form"> Main</a>
       </li>
       <li class="Logout container" data-content="logout" id="logoutButton">
+<<<<<<< HEAD
         <a href=".">Logout</a>
+=======
+        <a href="./">Logout</a>
+>>>>>>> master
       </li>
     </ul>
 </header>
@@ -94,11 +107,11 @@
   <!-- <a href="">Create Account</a> -->
 
     <div class="buttonss">
-    <div><a href="/login" class="fakeButton" >SignIn</a></div>
-    <div><a href="/form" class="fakeButton">Guest</a></div>
+    <div><a href="./login" class="fakeButton" >SignIn</a></div>
+    <div><a href="./form" class="fakeButton">Guest</a></div>
   </div>
   <div class="buttonss2">
-    <div><a href="/new">Create Account</a></div>  
+    <div><a href="./new" class="fakeButton2">Create Account</a></div>  
   </div>
 
 </div>       
@@ -142,10 +155,12 @@
 </div> -->
 <!--/database create new favorite-->
 
+
 <!--database login check-->
 <div id="loginDiv"  class="container userValidationPage">
-    <video class="visible-desktop" id="hero-vid2" autoplay loop muted preload="true">
+    <video class="visible-desktop" id="hero-vid2" loop poster="lunch-pic.png" preload="true">
         <source id="video" type="video/mp4" src="/images/Lunch.mp4">
+          
     </video>
     <div class="centerForm">
   <form id="user-login">
@@ -172,7 +187,7 @@
 </div>
 
 <div class="home-view container">
-    <video class="visible-desktop" id="hero-vid2" autoplay loop muted preload="true">
+    <video class="visible-desktop" id="hero-vid2" loop poster="lunch-pic.png" preload="true">
         <source id="video" type="video/mp4" src="/images/Lunch.mp4">
     </video>
 </div>
@@ -297,7 +312,7 @@
     <input type="submit" value="chews it!" id="chewsit">
     </div>
   </form>
-
+<div class="icon-spinner"></div>
 <!-- ----------------------------------------------------------------------------------------------------- -->
 
       <div class="adventure container">
@@ -316,14 +331,12 @@
 </div>
 
 <!-- PREFERENCES VIEW STARTS HERE -->
-
-
 <!-- </div> -->
 
 <div class="preferences-page container">
     <h1>Select your favorite types of food to save them to your preferences</h1>
 
-    <div class="foodDiv">
+<div class="foodDiv">
 
   <div class="foods">
     <label>
@@ -397,8 +410,11 @@
   </label>
   <p>Pizza</p>
 </div>
-<button type="submit" class="save-preferences">Update Preferences</button>
 </div>
+<button type="submit" class="save-preferences userValidationButton">Save</button>
+<section id="save-preferences-text">
+    <p></p>
+</section>
 
 </div>
 <!-- ------------------------------------------------ -->
@@ -420,7 +436,8 @@
 <script src ="./scripts/views/results-view.js"></script>
 <script src="./scripts/views/newUser-view.js"></script>
 <script src="./scripts/views/login-view.js"></script>
-
+<!-- STYLE SCRIPT TO HANDLE JS STYLING -->
+<script src="./scripts/views/style.js"></script>
 
 <script src="./scripts/models/newUser.js"></script>
 <script src="./scripts/models/newFavorite.js"></script>
