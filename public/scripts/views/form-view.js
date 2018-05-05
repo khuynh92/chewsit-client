@@ -7,6 +7,7 @@ var app = app || {};
   const form = {};
 
   form.init = () => {
+    $('header').show();
     $('#home-button').show();
     $('#about-button').show();
     if(localStorage.ID) {

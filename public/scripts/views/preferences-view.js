@@ -7,6 +7,8 @@ var app = app || {};
   const preferences = {};
 
   preferences.init = () => {
+    $('header').show();
+
     console.log('preferences is showing');
     var preferencesArray = [];
 

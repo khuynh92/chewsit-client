@@ -118,7 +118,6 @@ label input[type="radio"]{
   visibility: hidden; 
   position: absolute; 
 }
-
 #price {
   display: block;
   width: 213px;
@@ -438,10 +437,11 @@ margin-bottom: 2%;
   
   @media only screen and (min-width:480px) and (max-width:768px) {
       .visible-mobile,.hidden-tablet,.visible-desktop { display:none !important; }
-     
-      .visible-desktop{
-        background-image: url("http://www.markhillard.com/sandbox/media/polina.jpg");
-     }
+      body {
+        background: linear-gradient( rgba(0, 0, 0, 0.315), rgba(0, 0, 0, 0.315) ), url('../images/bamboo.jpg');
+        background-repeat: no-repeat;
+      background-size:cover;
+  }
   }
   
   @media only screen and (max-width:479px) {
@@ -455,9 +455,11 @@ margin-bottom: 2%;
         margin: 0 auto;
         text-align: center;
       }
-      .visible-desktop{
-        background-image: url("http://www.markhillard.com/sandbox/media/polina.jpg");
-     }
+      body {
+        background: linear-gradient( rgba(0, 0, 0, 0.315), rgba(0, 0, 0, 0.315) ), url('../images/bamboo.jpg');
+        background-repeat: no-repeat;
+      background-size:cover;
+  }
   }
   @media only screen and (max-width:768px) {
     #overlay { height:auto; }
@@ -476,13 +478,13 @@ margin-bottom: 2%;
     transition: 200ms;
     background-color: rgba(0, 0, 0, 0);
     font-size: 1.5em;
-    color: rgba(241, 238, 238, 0.767);
+    color: rgb(241, 238, 238);
     box-shadow: none;
     outline: none;
     z-index: 1;
   }
   .home-view {
-      background-color: rgba(0,0,0,.65);
+      background-color: rgba(0, 0, 0, 0.65);
       height: 100%;
       /* left: 0; */
       position: relative;
@@ -491,7 +493,7 @@ margin-bottom: 2%;
       /* width: 100%; */
   }
   .form-app{
-    background-color: rgba(0,0,0,.65);
+    background-color: rgba(0, 0, 0, 0.65);
     height: 100%;
   }
 
