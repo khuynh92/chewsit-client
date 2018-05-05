@@ -8,6 +8,8 @@ var app = app || {};
   
   if(localStorage.ID) {
     $('#logoutButton').show();
+    $('#preferences-button').show();
+    $('#home-button').hide();
   }
   resultsView.initDisplayResults = () => {
     $('#results-list').empty();
