@@ -13,6 +13,7 @@ var app = app || {};
    
   }
   resultsView.initDisplayResults = () => {
+    $('header').show();
     $('#results-list').empty();
     $('#display-results').show();
     if (JSON.parse(localStorage.results).length === 0) {

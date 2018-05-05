@@ -82,8 +82,8 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
         restaurant.food = $('input[name=mealtype]:checked').val();
       } else {
        
-         if (app.preferenceArray.length > 3) {
-          restaurant.food = `${app.preferenceArray[Math.floor(Math.random() * app.preferenceArray.length)]},${app.preferenceArray[Math.floor(Math.random() * app.preferenceArray.length)]},${app.preferenceArray[Math.floor(Math.random() * app.preferenceArray.length)]}`;
+         if (localStorage.preferences && JSON.parse(localStorage.preferences).length > 0) {
+          restaurant.food = `${JSON.parse(localStorage.preferences)[Math.floor(Math.random() * JSON.parse(localStorage.preferences).length)]},${JSON.parse(localStorage.preferences)[Math.floor(Math.random() * JSON.parse(localStorage.preferences).length)]},${JSON.parse(localStorage.preferences)[Math.floor(Math.random() * JSON.parse(localStorage.preferences).length)]}`;
         } else {
           restaurant.food = 'restaurant';
         }

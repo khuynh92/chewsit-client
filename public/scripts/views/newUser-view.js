@@ -7,6 +7,7 @@ var app = app || {};
   const newUser = {};
 
   newUser.initView = () => {
+    $('header').show();
     $('#home-view').hide();
     $('#newUserDiv').show();
     $('#home-button').show();
