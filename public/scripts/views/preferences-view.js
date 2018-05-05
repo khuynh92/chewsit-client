@@ -16,6 +16,7 @@ var app = app || {};
       $('#logoutButton').show();
       $('#preferences-button').show();
       $('#home-button').hide();
+      $('#about-button').hide();
     $.get(`${ENV.apiUrl}/users/preferences/${localStorage.ID}`)
       .then(response => {
         preferencesArray = JSON.parse(response[0].preferences);
