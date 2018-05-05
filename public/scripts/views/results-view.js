@@ -5,7 +5,10 @@ var app = app || {};
 (function (module) {
 
   const resultsView = {};
-
+  
+  if(localStorage.ID) {
+    $('#logoutButton').show();
+  }
   resultsView.initDisplayResults = () => {
     $('#results-list').empty();
     $('#display-results').show();

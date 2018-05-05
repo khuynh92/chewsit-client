@@ -13,6 +13,7 @@ restaurantView.initIndexView = function() {
   $('.home-view').show();
   if(localStorage.ID) {
     page('/form');
+    $('#logoutButton').show();
   }
 }
 
