@@ -5,8 +5,16 @@
   width: 100vw;
 }
   
+#price {
+  display: block;
+  width: 200px;
+  padding-top: 0px;
+  margin: auto;
+}
+/* -----------------VIDEO/IMG------------------- */
 
 
+  
 /* FOR HEADER MOBILE*/
 /* HAMBURGER ICON */
 @media(max-width: 766px){

@@ -49,10 +49,10 @@
   <script type="text/x-handlebars-template" id="display-results-template">
       <li data-id="{{id}}">
         <img class="results-img"src={{image_url}}>
-          <h3>name:{{name}}</h3>
-          <p>rating:{{rating}}</p>
-          <p>display_phone:{{display_phone}}</p>
-          <p>location:{{location.display_address}}</p>
+          <h3>Name:{{name}}</h3>
+          <p>Rating:{{rating}}</p>
+          <p>Phone:{{display_phone}}</p>
+          <p>Location:{{location.display_address}}</p>
           <button class="next">Next</button>
     </li>
 </script>
@@ -125,11 +125,11 @@
       <div class="centerForm">
     <form id="create-user">
       <input id="create-name" type="text" class="formInput" placeholder="Name"></input>
-      <input id ="create-pin" type="password" class="formInput"placeholder="Password" ></input>
+      <input id ="create-pin" type="password" class="formInput"placeholder="Pin" ></input>
       <button class="userValidationButton"type="submit">Create</button>
     </form>
     <section id="newUserSection">
-      <p>Welcome to Chews It! To create a new account, choose your name and password.</p>
+      <p>Welcome to Chews It! To create a new account, choose your name and up to 10 digit pin. Please DO NOT include any sensitive information in your pin, this site does not use secure storage.</p>
     </section>
   </div>
   </div>
@@ -149,18 +149,20 @@
 </div> -->
 <!--/database create new favorite-->
 
+
 <!--database login check-->
 <div id="loginDiv"  class="container userValidationPage">
-    <video class="visible-desktop" id="hero-vid2" autoplay loop muted preload="true">
+    <video class="visible-desktop" id="hero-vid2" loop poster="lunch-pic.png" preload="true">
         <source id="video" type="video/mp4" src="/images/Lunch.mp4">
+          
     </video>
     <div class="centerForm">
   <form id="user-login">
     <input id="user-name" class="formInput" type="text" placeholder="Username"></input>
-    <input id ="user-pin" class="formInput" type="password" placeholder="Password"></input>
+    <input id ="user-pin" class="formInput" type="password" placeholder="Pin"></input>
   <button class="userValidationButton" type="submit">Welcome Back</button>
   <section id="loginSection">
-      <p>Welcome back to Chews It! Please enter your username and password.</p>
+      <p>Welcome back to Chews It! Please enter your username and pin.</p>
     </section>
   </div>
   </form>
@@ -179,7 +181,7 @@
 </div>
 
 <div class="home-view container">
-    <video class="visible-desktop" id="hero-vid2" autoplay loop muted preload="true">
+    <video class="visible-desktop" id="hero-vid2" loop poster="lunch-pic.png" preload="true">
         <source id="video" type="video/mp4" src="/images/Lunch.mp4">
     </video>
 </div>
@@ -364,7 +366,7 @@
   <label>
       <input class="choice" type="checkbox" name="cuisine" value="japanese" for="check1"  width="200" height="200"/><img src="images/food/Japenese2.jpeg" alt="pho">
   </label>
-  <p>Japenese</p>
+  <p>Japanese</p>
 </div>
 <div class="foods">
   <label>
