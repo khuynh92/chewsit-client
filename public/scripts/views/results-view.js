@@ -7,6 +7,7 @@ var app = app || {};
   const resultsView = {};
 
   resultsView.initDisplayResults = () => {
+
     $('#display-results').empty();
 
     $('.display-results').show();
@@ -24,9 +25,15 @@ var app = app || {};
 
         $('#results-list').append(context)
       }
-    }
+
   };
 
+
+  resultsView.showResultsHtml = (data) => {
+    let template = Handlebars.compile($('#display-results-template').text());
+    data.forEach(object =>  $('#results-list').append(template(object)));
+   
+  }
   module.resultsView = resultsView;
 
 })(app);

@@ -8,6 +8,10 @@ header {
   background-color:rgba(37, 41, 49, .96);
   height:50px;
 }
+
+.site-header{
+  width: 100vw;
+}
   
 #price {
   display: block;
