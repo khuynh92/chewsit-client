@@ -14,7 +14,7 @@ var app = app || {};
   resultsView.initDisplayResults = () => {
     $('#results-list').empty();
     $('#display-results').show();
-    if (localStorage.results.length === 0) {
+    if (JSON.parse(localStorage.results).length === 0) {
       $('#results-list').append('<li>No results found</li>');
 
     } else if(localStorage.results.length >= 1) {

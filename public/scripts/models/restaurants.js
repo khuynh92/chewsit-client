@@ -91,6 +91,8 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
       console.log('food choice is', restaurant.food);
       restaurant.randomOffset(restaurant.location, restaurant.food, restaurant.price, restaurant.range);
       app.location.pos = null;
+      $('#chewsit').hide();
+      $('.icon-spinner').show();
       $('#enter-location').show();
       $('#location-input').hide();
       $('#or').show();
@@ -112,19 +114,6 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
       }
 
     }
-  });
-
-  // $('#app-form').on('change', (e) => {
-  //   e.preventDefault();
-  //   if((app.location.pos || $('#zip').val() !== '') &&  $('#range').val() !== '' && $('input[name=dolla]:checked').val() !== undefined) console.log('complete');
-  // })
-
-
-  $('#adventure').on('click', (e) => {
-    e.preventDefault();
-    console.log('adventure');
-    $.get(`${ENV.apiUrl}/api/yelp/v3/${food}/${zip}/${price}/${range}/0`)
-
   });
 
   $('#enter-location').on('click touchstart', e => {
