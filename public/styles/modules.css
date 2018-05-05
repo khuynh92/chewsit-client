@@ -24,7 +24,10 @@ font-family: 'Oleo Script Swash Caps', cursive;
   display: inline;
   font-family: Arial, Helvetica, sans-serif;
   color: rgba(241, 238, 238, 0.6);
-  padding: 2% 5%;
+  padding: 4% 13%;
+  margin-top: 2%;
+  margin-right: 31%;
+  margin-left: 5%;
   font-size: 1.5em;
   text-decoration: none;
   border: 2px solid rgba(241, 238, 238, 0.5);
@@ -42,13 +45,12 @@ font-family: 'Oleo Script Swash Caps', cursive;
   background-color: rgb(70, 226, 104);
   border-color: rgb(70, 226, 104);
 }
-#signIn {
-/* margin: auto; */
+/* #signIn {
 margin-right: 34%;
 margin-top: 10%;
 padding: 0%;
-}
 
+}   */
 /* .btn {
   display: inline;
   align-self: center;
@@ -473,7 +475,6 @@ h4 {
     padding-right: 5px;
     font-size: 20px;
   }
-
   #show-results{
     display: inline;
     align-self: center;
