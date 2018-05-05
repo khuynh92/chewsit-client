@@ -64,9 +64,15 @@ padding: 0%;
   box-shadow: none;
   outline: none;
   z-index: 1;
+
   min-width: 125px;
 } */
 /* .btn:active { 
+  min-width: 125px; */
+}
+
+.btn:active { 
+
   background-color:rgba(70, 226, 104, 0.767);
   color: white;
   border-color: rgba(70, 226, 104, 0.767);
@@ -235,6 +241,7 @@ background-color: darkgray;
   #enter-location:hover {
     background-color: darkgray;
     }
+
 h4 {
   font-size: 30px;
   color: white;
@@ -290,6 +297,16 @@ h4 {
     /* bottom:0; */
     top: 0;
     height:100vh;
+/*     background-size:100%;
+ */
+    /* bottom:0; */
+/*     top: 0;
+ */
+    /* height:100vh; */
+    width: 100% !important;
+/*     border: 0;
+    margin: 0;
+    padding: 0; */
     /* min-height:62%;
     min-width:100%;
     perspective:1000; */
@@ -550,4 +567,117 @@ div:checked + img {
   text-align: center; 
   padding-top: 8px;
 }
+
 /* ------------------------------------------ */
+
+
+.foods {
+
+}
+
+/*--------BEGIN NEW USER/LOGIN DIV--------*/
+/*----BEGIN NEW USER----*/
+#newUserDiv {
+  text-align: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+#newUserSection {
+  color: white;
+  font-weight: bold;
+}
+.userValidationPage {
+  background-color: rgba(0,0,0,.65);
+  height: 100vh;
+  width: 100vw;
+  transition: background-color 300ms ease;
+}
+
+.formInput{
+  display: block;
+  text-align: center;
+  padding-bottom: 2%;
+  font-family: 'Quicksand', sans-serif;
+    cursor: pointer;
+    width: 50%;
+    height: 45px;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 100;
+    border-radius: 5px;
+    transition: 300ms;
+    margin: auto;
+  }
+
+  .userValidationButton {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color:rgba(104, 99, 99, 0.877);
+    color: black;
+    padding: 2% 5%;
+    font-size: 1.5em;
+    text-decoration: none;
+    border: 2px solid rgba(241, 238, 238, 0.5);
+    border-radius: 80px;
+    transition: 250ms;
+    z-index: 5;
+    margin-top: 2%;
+    margin-bottom: 2%;
+  }
+
+  .userValidationButton:hover {
+    background-color: green;
+    color: white;
+  }
+
+/*----END NEW USER----*/
+
+/*----BEGIN LOGIN----*/
+#loginDiv {
+  text-align: center;
+  position: relative;
+}
+
+.centerForm{
+  position: absolute;
+  top: 50%;
+  left:50%;
+  transform: translate(-50%, -50%);
+}
+
+#loginSection {
+  color: white;
+  font-weight: bold;
+}
+.userValidationPage {
+  background-color: rgba(0,0,0,.65);
+  height: 100vh;
+  transition: background-color 300ms ease;
+}
+
+.formInput{
+  display: block;
+  text-align: center;
+  padding-bottom: 2%;
+  font-family: 'Quicksand', sans-serif;
+    cursor: pointer;
+    width: 50%;
+    height: 45px;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 100;
+    border-radius: 5px;
+    transition: 300ms;
+    margin: auto;
+  }
+
+/*----END LOGIN----*/
+
+/*--------END NEW USER/LOGIN----------*/
+
+  
+
+.results-img {
+  width: 25%;
+}
+

@@ -46,16 +46,15 @@
 
   <!-- HANDLEBARS TEMPLATES BEGIN HERE -->
 
-  <script type="text/x-handlebars-template" id="#display-results-template">
-    <!-- {{#each app.restaurant.endResults}} -->
-      <li class="" >
-        <img src={{image_url}}>
+  <script type="text/x-handlebars-template" id="display-results-template">
+      <li data-id="{{id}}">
+        <img class="results-img"src={{image_url}}>
           <h3>name:{{name}}</h3>
           <p>rating:{{rating}}</p>
           <p>display_phone:{{display_phone}}</p>
-          <p>location:{{location}}</p>
+          <p>location:{{location.display_address}}</p>
+          <button class="next">Next</button>
     </li>
-    <!-- {{/#each}} -->
 </script>
 </head>
 <body>
@@ -112,15 +111,20 @@
 <div class="database">
 
 <!-- database create new user -->
-  <div id="newUserDiv" class="container">
+  <div id="newUserDiv" class="container userValidationPage">
+      <video class="visible-desktop" id="hero-vid2" autoplay loop muted preload="true">
+          <source id="video" type="video/mp4" src="/images/Lunch.mp4">
+      </video>
+      <div class="centerForm">
     <form id="create-user">
-      <input id="create-name"type="text" placeholder="Name"></input>
-      <input id ="create-pin" type="password" placeholder="Pin" ></input>
-      <button type="submit">New User</button>
+      <input id="create-name" type="text" class="formInput" placeholder="Name"></input>
+      <input id ="create-pin" type="password" class="formInput"placeholder="Password" ></input>
+      <button class="userValidationButton"type="submit">Create</button>
     </form>
-    <section id="newUser">
-      <p></p>
+    <section id="newUserSection">
+      <p>Welcome to Chews It! To create a new account, choose your name and password.</p>
     </section>
+  </div>
   </div>
 <!-- /database new user-->
 
@@ -139,17 +143,21 @@
 <!--/database create new favorite-->
 
 <!--database login check-->
-<div id="loginDiv"  class="container">
+<div id="loginDiv"  class="container userValidationPage">
+    <video class="visible-desktop" id="hero-vid2" autoplay loop muted preload="true">
+        <source id="video" type="video/mp4" src="/images/Lunch.mp4">
+    </video>
+    <div class="centerForm">
   <form id="user-login">
-    <input id="user-name"type="text" placeholder="Enter Username"></input>
-    <input id ="user-pin"type="password" placeholder="Enter Pin"></input>
-  <button type="submit">Returning user</button>
-  <p id="login-text"></p>
+    <input id="user-name" class="formInput" type="text" placeholder="Username"></input>
+    <input id ="user-pin" class="formInput" type="password" placeholder="Password"></input>
+  <button class="userValidationButton" type="submit">Welcome Back</button>
+  <section id="loginSection">
+      <p>Welcome back to Chews It! Please enter your username and password.</p>
+    </section>
+  </div>
   </form>
 
-  <section id="loginSection">
-    <p></p>
-  </section>
 </div>
 <!--/database login check-->
 </div>

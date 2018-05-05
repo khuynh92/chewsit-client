@@ -44,9 +44,12 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
           }
           restaurant.endResultsIndex.forEach(number => restaurant.endResults.push(restaurant.array[number]));
         } else if (restaurant.array.length <= 3) {
-          restaurant.array.forEach(element => restaurant.endResults.push(element));
-          //Try to create handlebars compile Here pls
+          restaurant.array.forEach(element => {
+            restaurant.endResults.push(element);
+      
+          });
         }
+        localStorage.results = JSON.stringify(restaurant.endResults);
         // restaurant.endResults.forEach(element => {
         //   this.image_url = element.image_url,
         //   this.name = element.name,
@@ -67,17 +70,8 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
     $('#price-notice').text('');
     $('#meal-notice').text('');
 
-    if (!app.location.pos && !$('#zip').val()) $('#location-notice').append('Please Use your Location').css({ 'color': 'red' });
-    if(!$('#range').val()) {
-      $('#range-notice').append('Please select your distance').css({ 'color': 'red' });
-    }
-    if(!$('input[name=dolla]:checked').val()) {
-      $('#price-notice').append('Please select your price').css({ 'color': 'red' });
-    }
-    if(!$('input[name=mealtype]:checked').val()) {
-      $('#meal-notice').append('Please select your Meal Type').css({ 'color': 'red' });
-    }
-    else {
+
+    if ((app.location.pos || $('#zip').val()) && $('#range').val() && $('input[name=dolla]:checked').val() && $('input[name=mealtype]:checked').val()) {
       console.log('submitted!');
       restaurant.location = app.location.pos ? `latitude=${app.location.pos.lat}&longitude=${app.location.pos.lng}` : `location=${$('#zip').val()}`;
       restaurant.food = $('input[name=mealtype]:checked').val();
@@ -91,28 +85,43 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
         if (app.preferenceArray.length < 4 && app.preferenceArray.length !== 0) {
           restaurant.food = app.preferenceArray.reduce((string, word) => string + `,${word}`);
         } else if (app.preferenceArray.length > 3) {
-          restaurant.food = `${app.preferenceArray[Math.floor(Math.random()*app.preferenceArray.length)]},${app.preferenceArray[Math.floor(Math.random()*app.preferenceArray.length)]},${app.preferenceArray[Math.floor(Math.random()*app.preferenceArray.length)]}`;
+          restaurant.food = `${app.preferenceArray[Math.floor(Math.random() * app.preferenceArray.length)]},${app.preferenceArray[Math.floor(Math.random() * app.preferenceArray.length)]},${app.preferenceArray[Math.floor(Math.random() * app.preferenceArray.length)]}`;
         } else {
           restaurant.food = 'restaurant';
         }
       }
       console.log('food choice is', restaurant.food);
       restaurant.randomOffset(restaurant.location, restaurant.food, restaurant.price, restaurant.range);
-      
+
 
       app.location.pos = null;
       $('#enter-location').show();
       $('#location-input').hide();
       $('#or').show();
       $('#geo').show();
+    } else {
+      if (!app.location.pos && !$('#zip').val()) $('#location-notice').append('Please Use your Location').css({ 'color': 'red' });
+
+      if (!$('#range').val()) {
+        $('#range-notice').append('Please select your distance').css({ 'color': 'red' });
+      }
+
+      if (!$('input[name=dolla]:checked').val()) {
+        $('#price-notice').append('Please select your price').css({ 'color': 'red' });
+      }
+
+      if (!$('input[name=mealtype]:checked').val()) {
+        $('#meal-notice').append('Please select your Meal Type').css({ 'color': 'red' });
+      }
 
     }
   });
 
-  $('#app-form').on('change', (e) => {
-    e.preventDefault();
-    if((app.location.pos || $('#zip').val() !== '') &&  $('#range').val() !== '' && $('input[name=dolla]:checked').val() !== undefined) console.log('complete');
-  })
+  // $('#app-form').on('change', (e) => {
+  //   e.preventDefault();
+  //   if((app.location.pos || $('#zip').val() !== '') &&  $('#range').val() !== '' && $('input[name=dolla]:checked').val() !== undefined) console.log('complete');
+  // })
+
 
   $('#adventure').on('click', (e) => {
     e.preventDefault();
@@ -137,22 +146,30 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
     $('.preferences-page').show();
   });
 
-  restaurant.showResultsHtml = (data) => {
-    // Grab the template script
-    var theTemplateScript = $("#display-results-template").html();
+
+  // restaurant.showResultsHtml = (data) => {
+  //   // Grab the template script
+  //   var theTemplateScript = $("#display-results-template").html();
   
-    // Compile the template
-    var theTemplate = Handlebars.compile(theTemplateScript);
+  //   // Compile the template
+  //   var theTemplate = Handlebars.compile(theTemplateScript);
   
-    // Define our data object
-    var context = data;
+  //   // Define our data object
+  //   var context = data;
   
-    // Pass our data to the template
-    var theCompiledHtml = theTemplate(context);
+  //   // Pass our data to the template
+  //   var theCompiledHtml = theTemplate(context);
   
-    // Add the compiled html to the page
-    $('#results-list').append(theCompiledHtml);
-  }
+  //   // Add the compiled html to the page
+  //   $('#results-list').append(theCompiledHtml);
+  // }
+
+
+
+  // restaurant.showResultsHtml = (data) => {
+  //   let template = Handlebars.compile($('#display-results-template').text());
+  //   $('#results-list').append(template(data));
+  // }
 
   module.location = location;
   module.restaurant = restaurant;

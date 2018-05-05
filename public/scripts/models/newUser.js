@@ -10,7 +10,7 @@
         let newUserName = $('#create-name').val();
         let newUserPin = $('#create-pin').val();
         if (!newUserName || !newUserPin ) {
-            $('#newUser p').html('Invalid entry, please complete both fields.');
+            $('#newUserSection p').html('Invalid entry, please complete both fields.');
         } else {
         console.log(newUserName, newUserPin);
        
@@ -29,7 +29,7 @@
             .then(results => dbUserForm.validateNewUser(newUserName, newUserPin))
             .catch(err => {
                 console.error(err);
-                $('#newUser p').html('Username already taken! Please try another.');
+                $('#newUserSection p').html('Username already taken! Please try another.');
             });
     }
 
