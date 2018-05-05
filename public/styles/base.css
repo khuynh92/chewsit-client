@@ -4,6 +4,7 @@
   html{
     background-color: darkgrey;
     background-size: cover;
+    max-height: 100%;
   }
   /* html,body {
     height:100%;
