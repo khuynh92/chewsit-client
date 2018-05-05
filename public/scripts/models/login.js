@@ -15,11 +15,11 @@ var app = app || {};
     console.log(typeof (checkUserName), typeof (checkUserPin));
 
     if (!checkUserName && !checkUserPin) {
-      $('#login-text').text('Please Fill in your Username and Pin!').css({ 'color': 'red' });
+      $('#loginSection p').text('Please Fill in your Username and Password!').css({ 'color': 'red' });
     } else if (!checkUserPin) {
-      $('#login-text').text('Please Fill in your and Pin!').css({ 'color': 'red' });
+      $('#loginSection p').text('Please Fill in your Password!').css({ 'color': 'red' });
     } else if (!checkUserName) {
-      $('#login-text').text('Please Fill in your Username!').css({ 'color': 'red' });
+      $('#loginSection p').text('Please Fill in your Username!').css({ 'color': 'red' });
     }
 
     dbLogin.validateUser(checkUserName, checkUserPin);
@@ -41,7 +41,7 @@ var app = app || {};
 
   function checkIfValid(returnFromDB) {
     if (!returnFromDB.length) {
-      $('#login-text').text('Invalid username/password').css({ 'color': 'red' });
+      $('#loginSection p').text('Invalid username/password').css({ 'color': 'red' });
     }
   }
 
