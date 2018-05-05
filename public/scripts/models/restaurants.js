@@ -93,7 +93,6 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
       app.location.pos = null;
       $('#chewsit').hide();
       $('.icon-spinner').show();
-      $('#enter-location').show();
       $('#location-input').hide();
       $('.buttons2 div').css({'width': '396px'});
     } else {
