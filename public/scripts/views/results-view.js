@@ -12,6 +12,7 @@ var app = app || {};
     $('#home-button').hide();
   }
   resultsView.initDisplayResults = () => {
+    $('header').show();
     $('#results-list').empty();
     $('#display-results').show();
     if (JSON.parse(localStorage.results).length === 0) {

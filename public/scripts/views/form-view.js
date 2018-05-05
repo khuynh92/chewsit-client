@@ -7,6 +7,7 @@ var app = app || {};
   const form = {};
 
   form.init = () => {
+    $('header').show();
     if(localStorage.ID) {
       $('#logoutButton').show();
       $('#preferences-button').show();
