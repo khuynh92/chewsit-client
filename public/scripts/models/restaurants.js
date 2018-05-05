@@ -44,9 +44,12 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
           }
           restaurant.endResultsIndex.forEach(number => restaurant.endResults.push(restaurant.array[number]));
         } else if (restaurant.array.length <= 3) {
-          restaurant.array.forEach(element => restaurant.endResults.push(element));
-          //Try to create handlebars compile Here pls
+          restaurant.array.forEach(element => {
+            restaurant.endResults.push(element);
+      
+          });
         }
+        localStorage.results = JSON.stringify(restaurant.endResults);
         // restaurant.endResults.forEach(element => {
         //   this.image_url = element.image_url,
         //   this.name = element.name,
@@ -106,7 +109,7 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
       if (!$('input[name=dolla]:checked').val()) {
         $('#price-notice').append('Please select your price').css({ 'color': 'red' });
       }
-      
+
       if (!$('input[name=mealtype]:checked').val()) {
         $('#meal-notice').append('Please select your Meal Type').css({ 'color': 'red' });
       }
@@ -114,10 +117,11 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
     }
   });
 
-  $('#app-form').on('change', (e) => {
-    e.preventDefault();
-    if((app.location.pos || $('#zip').val() !== '') &&  $('#range').val() !== '' && $('input[name=dolla]:checked').val() !== undefined) console.log('complete');
-  })
+  // $('#app-form').on('change', (e) => {
+  //   e.preventDefault();
+  //   if((app.location.pos || $('#zip').val() !== '') &&  $('#range').val() !== '' && $('input[name=dolla]:checked').val() !== undefined) console.log('complete');
+  // })
+
 
   $('#adventure').on('click', (e) => {
     e.preventDefault();
@@ -142,6 +146,7 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
     $('.preferences-page').show();
   });
 
+
   // restaurant.showResultsHtml = (data) => {
   //   // Grab the template script
   //   var theTemplateScript = $("#display-results-template").html();
@@ -161,10 +166,10 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
 
 
 
-  restaurant.showResultsHtml = (data) => {
-    let template = Handlebars.compile($('#display-results-template').text());
-    $('#results-list').append(template(data));
-  }
+  // restaurant.showResultsHtml = (data) => {
+  //   let template = Handlebars.compile($('#display-results-template').text());
+  //   $('#results-list').append(template(data));
+  // }
 
   module.location = location;
   module.restaurant = restaurant;
