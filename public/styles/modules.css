@@ -61,6 +61,35 @@ font-family: 'Oleo Script Swash Caps', cursive;
   background-color: rgb(70, 226, 104);
   border-color: rgb(70, 226, 104);
 }
+
+#signIn {
+/* margin: auto; */
+margin-right: 34%;
+margin-top: 10%;
+padding: 0%;
+}
+
+/* .btn {
+  display: inline;
+  align-self: center;
+  width: 20%;
+  height: 75px;
+  margin-right: 58px;
+  border: 2px solid rgba(255, 255, 255, 0.329);
+  border-radius:80px; 
+  transition: 200ms;
+  background-color: rgba(0, 0, 0, 0);
+  font-size: 1.5em;
+  color: rgba(241, 238, 238, 0.767);
+  box-shadow: none;
+  outline: none;
+  z-index: 1;
+
+  min-width: 125px;
+} */
+/* .btn:active { 
+  min-width: 125px; */
+/* } */
 .buttonss2{
   display: flex;
   align-items: center;

@@ -17,3 +17,5 @@ page('/preferences', app.preferences.init);
 page('/new', app.newUser.initView)
 page('/login', app.loginView.init)
 page.start();
+
+
