@@ -6,12 +6,17 @@ var app = app || {};
 
   const form = {};
 // changed id=app-form to class=form-app
+
   form.init = () => {
+    if(localStorage.ID) {
+      $('#logoutButton').show();
+      $('#preferences-button').show();
+      $('#home-button').hide();
+    }
     $('.form-app').show();
     console.log('form is showing')
     // $('#adventure-button').show();
   };
-
 
 module.form = form;
 

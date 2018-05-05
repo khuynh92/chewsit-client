@@ -8,9 +8,11 @@
   z-index: -1;
 }
 #location-notice {
-  margin-left: 30%;
-  margin-top: auto;
+margin: 2% auto;
+text-align: center;
 }
+
+/* --------------------MAIN PAGE-------------------------- */
 #logo {
 font-family: 'Oleo Script Swash Caps', cursive;
   color: white;
@@ -20,11 +22,28 @@ font-family: 'Oleo Script Swash Caps', cursive;
   text-align: center;  
   height: 70%;
 }
+.buttonss{
+  margin-top: -13%;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 1%;
+  
+}
 .fakeButton {
-  display: inline;
+  display: flex;
   font-family: Arial, Helvetica, sans-serif;
   color: rgba(241, 238, 238, 0.6);
-  padding: 2% 5%;
+  /* padding: 4% 13%; */
+  margin-top: 2%;
+  margin-right: 20px;
+  margin-left: 20px;
+  padding-top: 13px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 13px;
   font-size: 1.5em;
   text-decoration: none;
   border: 2px solid rgba(241, 238, 238, 0.5);
@@ -42,6 +61,7 @@ font-family: 'Oleo Script Swash Caps', cursive;
   background-color: rgb(70, 226, 104);
   border-color: rgb(70, 226, 104);
 }
+
 #signIn {
 /* margin: auto; */
 margin-right: 34%;
@@ -70,7 +90,43 @@ padding: 0%;
 /* .btn:active { 
   min-width: 125px; */
 /* } */
+.buttonss2{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 1%;
+  padding-bottom: 22%;
+} 
+.fakeButton2 {
+  display: flex;
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgba(241, 238, 238, 0.6);
+  margin-top: 2%;
+  margin-right: 20px;
+  margin-left: 20px;
+  padding: 5px;
+  font-size: 1.2em;
+  text-decoration: none;
+  border: 2px solid rgba(241, 238, 238, 0.5);
+  border-radius: 80px;
+  transition: 250ms;
+  z-index: 5;
+}
+.fakeButton2:hover {
+  background-color: purple;
+  color: white;
+  border-color: purple;
+  cursor: pointer;
+}
+.fakeButton2:active {
+  background-color: purple;
+  border-color: purple;
+}
 
+
+
+/* --------------------END MAIN PAGE-------------------------- */
 .btn:active { 
 
   background-color:rgba(70, 226, 104, 0.767);
@@ -78,59 +134,22 @@ padding: 0%;
   border-color: rgba(70, 226, 104, 0.767);
   cursor: pointer;
 } */
-/* .btn2 {
-  display: inline;
-  align-self: center;
-  width: 15%;
-  height: 4%;
-  border: none;
-  transition: 200ms;
-  background-color: rgba(0, 0, 0, 0);
-  font-size: 1em;
-  color: rgba(241, 238, 238, 0.767);
-  z-index: 1;
-  margin-left: 42.5%;
-  margin-top: 2%;
-} */
-
-/* #outterFakeButton {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-#innerFakeButton {
-  width: 50%;
-} */
-/* #guest {
-  padding: 2% 8%;
-  margin-right: 0;
-} */
-
-/* #signInButton:active, #signInButtonPopup:active {
-    border:solid rgb(18, 160, 77) 2px;
-    background-color: rgb(18, 160, 77);
-    cursor:pointer;
-} */
 
 
-
-/* DOLLAR TEST */
 label input[type="radio"]{
   visibility: hidden; 
   position: absolute; 
 }
 #price {
   display: block;
-  width: 100%;
+  width: 213px;
   height: 35px;
   padding-top: 20px;
   padding-bottom: 10px;
   margin: auto;
 }
 p.dollar {
-  width: 7%;
-    margin-right: -35%;
-    margin-left: 35%;
+  width: 50px;
 }
 #lastdollar {
   margin-right: 0%;
@@ -181,7 +200,7 @@ input[type="radio"]:checked + p {
   width: 200px;
   height: 45px;
   text-decoration: none;
-  padding-top: 3%;
+  padding-top: 20px;
   background-color: rgb(87, 83, 83);
   font-size: 20px;
   font-weight: 100;
@@ -202,7 +221,7 @@ background-color: darkgray;
     cursor: pointer;
     vertical-align: middle;
     text-align: center;
-    width: 25%;
+    width: 175px;
     height: 45px;
     text-decoration: none;
     background-color: rgb(87, 83, 83);
@@ -211,13 +230,14 @@ background-color: darkgray;
     border-radius: 5px;
     color: white;
     transition: 300ms;
-    /* margin: 10px auto; */
-    margin-left: 28%;
+    border: none;
 }
 #or{
   /* background-color: darkgray; */
+  font-family: Arial, Helvetica, sans-serif;
   color:white;
   font-size: 25px;
+  padding-top: 5px;
 }
 .current-location:hover {
   background-color: darkgray;
@@ -227,7 +247,7 @@ background-color: darkgray;
       cursor: pointer;
       vertical-align: middle;
       text-align: center;
-      width: 250px;
+      width: 175px;
       height: 45px;
       text-decoration: none;
       background-color: rgb(87, 83, 83);
@@ -237,6 +257,7 @@ background-color: darkgray;
       color: white;
       transition: 300ms;
       margin: 10px auto;
+      border: none;
   }
   #enter-location:hover {
     background-color: darkgray;
@@ -273,10 +294,11 @@ h4 {
   border-radius: 5px;
   color: black;
   transition: 300ms;
-  /* margin: 10px auto; */
-  margin-left: 27.5%;
+margin-bottom: 2%;  
 }
 #range{
+  background-color:rgba(104, 99, 99, 0.877);
+  color: white;
   font-family: 'Quicksand', sans-serif;
   cursor: pointer;
   vertical-align: middle;
@@ -288,7 +310,8 @@ h4 {
   font-weight: 100;
   border-radius: 5px;
   transition: 300ms;
-  margin-left: 45%;
+  border: none;
+  /* margin-left: 45%; */
 }
 /* ----------------ABOUT PAGE W/PARALLEX------------- */
 /* Video Overlay */
@@ -334,6 +357,8 @@ h4 {
   font-size:1.25rem;
   letter-spacing:.02rem;
   margin-bottom:1.3rem;
+  margin-right: 15%;
+  margin-left: 15%;
   }
 
   #content2 {
@@ -445,33 +470,15 @@ h4 {
   
   @media only screen and (max-width:479px) {
       .hidden-mobile,.visible-tablet,.visible-desktop { display:none !important; }
-  }
-  .buttonss{
-    margin: 0 34.5%;
-    display: flex;
-    margin-top: -13%;
-    margin-bottom: 5%;
-  }
-  .buttonss > div {
-    margin-left: 0%;
-    margin-top: 5%;
-    /* padding-left: 2%; */
-    padding-right: 5px;
-    font-size: 20px;
-  }
 
-  .buttonss2{
-    margin: 0 43.5%;
-    display: flex;
-    margin-top: -4%;
-    margin-bottom: 24%;
-  }
-  .buttonss2 > div {
-    margin-left: 0%;
-    margin-top: 5%;
-    /* padding-left: 2%; */
-    padding-right: 5px;
-    font-size: 20px;
+      #geo {
+        margin-top: 2%;
+      }
+      .buttons2 div button, #or {
+        display: block;
+        margin: 0 auto;
+        text-align: center;
+      }
   }
 
   #show-results{
@@ -501,6 +508,7 @@ h4 {
   }
   .form-app{
     background-color: rgba(0,0,0,.65);
+    height: 100%;
   }
 
 /* --------END OF ABOUT US /PARRALEX---------------   */
@@ -508,10 +516,22 @@ h4 {
   margin:50%;
   }
   
-/* --------------preference check box ----------------------- */
+/* --------------PREFERENCE PAGE ----------------------- */
 .preferences-page{
-  width: 80%;
-  margin: auto;  
+  width: 100vw;
+ position: relative;
+  text-align: center;
+}
+
+.foodDiv {
+  justify-content: center;
+  flex-wrap: wrap;
+  display: flex;
+
+}
+
+.foodDiv img {
+  opacity: .7;
 }
 .preferences-page h1{
   padding-top: 20px;
@@ -525,32 +545,30 @@ div .foods {
   float: left;
   flex-wrap: wrap;
   display: flex;
-  margin: 50px;
+  margin: 20px 20px 0 20px;
   border-radius: 10px;
   color: white;
   text-align:center;
   display:block;
-  margin-right: 10px;
-  margin-bottom: 5px;
   float:left;
-  padding-top: 1px;9
+  padding-top: 1px;
   
-}
-
-div input.choice {
-  visibility: hidden;
-  position: absolute;
-}
-div input.choice:checked + img {
-  border-color: white;
-  border-width: 1px;
-  opacity: .6;
 }
 
 img {
   border-radius: 10px;
   width: 100%;
 
+}
+
+div input.choice {
+  visibility: hidden;
+  position: absolute;
+}
+
+div input.choice:checked + img {
+  border: 2px solid green;
+  opacity: 1;
 }
 
 img:hover {
@@ -571,11 +589,6 @@ div:checked + img {
 }
 
 /* ------------------------------------------ */
-
-
-.foods {
-
-}
 
 /*--------BEGIN NEW USER/LOGIN DIV--------*/
 /*----BEGIN NEW USER----*/
@@ -632,6 +645,11 @@ div:checked + img {
     color: white;
   }
 
+  #save-preferences-text{
+    color: white;
+    font-weight: bold;
+  }
+
 /*----END NEW USER----*/
 
 /*----BEGIN LOGIN----*/
@@ -681,5 +699,61 @@ div:checked + img {
 
 .results-img {
   width: 25%;
+}
+
+label input[type="radio"]{
+  visibility: hidden; 
+  position: absolute; 
+}
+
+#rangeBox {
+width: 100%;
+display: flex;
+justify-content: center;
+}
+
+.buttons2 {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.buttons2 div {
+  width: 396px;
+}
+
+#chewsit {
+  margin-top: 1%;
+  border: 2px solid rgba(241, 238, 238, 0.6);
+  outline: none;
+  box-shadow: none;
+  color: rgba(241, 238, 238, 0.6);
+  width: 140px;
+  height: 60px;
+  border-radius: 80px;
+  background-color: rgba(0, 0, 0, 0);
+  box-shadow: none;
+  transition: 250ms;
+}
+
+#chewsit:hover {
+  background-color: rgba(53, 165, 77, 0.9);
+  color: white;
+  border-color: rgba(53, 165, 77, 0.9);
+  cursor: pointer;
+}
+
+#chewsit-box {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10%;
+}
+
+#range-notice, #meal-notice, #price-notice {
+  width: 100%;
+  display: block;
+  text-align: center;
+  margin: 1% auto;
 }
 

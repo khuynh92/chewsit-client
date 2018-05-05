@@ -52,7 +52,7 @@ var app = app || {};
   }
 
   function goToFormPage() {
-    page('/form');
+    page('./form');
   }
 
   module.dbLogin = dbLogin;
