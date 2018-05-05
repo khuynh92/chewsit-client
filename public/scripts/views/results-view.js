@@ -7,9 +7,10 @@ var app = app || {};
   const resultsView = {};
   
   if(localStorage.ID) {
+    $('.container').hide();
     $('#logoutButton').show();
     $('#preferences-button').show();
-    $('#home-button').hide();
+   
   }
   resultsView.initDisplayResults = () => {
     $('#results-list').empty();

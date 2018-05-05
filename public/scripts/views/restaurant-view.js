@@ -11,11 +11,14 @@ restaurantView.initIndexView = function() {
   
   $('.container').hide();
   $('.home-view').show();
+  $('#about-button').show();
+  $('#home-button').show();
   if(localStorage.ID) {
     page('/form');
     $('#logoutButton').show();
     $('#preferences-button').show();
     $('#home-button').hide();
+    $('#about-button').hide();
   }
 }
 
