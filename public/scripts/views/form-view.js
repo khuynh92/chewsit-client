@@ -7,10 +7,13 @@ var app = app || {};
   const form = {};
 
   form.init = () => {
+    $('#home-button').show();
+    $('#about-button').show();
     if(localStorage.ID) {
       $('#logoutButton').show();
       $('#preferences-button').show();
       $('#home-button').hide();
+      $('#about-button').hide();
     }
     $('#or').show();
     $('#geo').show();
