@@ -20,3 +20,10 @@
   img {
     width: 10%;
   }
+
+  header {
+    font-family: 'Quicksand', sans-serif;
+    background-color:rgba(37, 41, 49, .96);
+    height:50px;
+    padding-bottom: 1rem;
+  }

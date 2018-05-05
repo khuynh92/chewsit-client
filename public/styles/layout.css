@@ -1,24 +1,11 @@
 .container {
   display: none;  
 }
-/* HEADER AND NAV BEGIN */
-
-header {
-  font-family: 'Quicksand', sans-serif;
-  background-color:rgba(37, 41, 49, .96);
-  height:50px;
-}
-
 .site-header{
   width: 100vw;
 }
   
-#price {
-  display: block;
-  width: 200px;
-  padding-top: 0px;
-  margin: auto;
-}
+
 
 /* FOR HEADER MOBILE*/
 /* HAMBURGER ICON */
@@ -87,3 +74,30 @@ header {
 }
 
 /* FOR HEADER */
+@media (min-width: 767px){
+.nav-ul {
+  text-align: center;
+  background-color: black;
+  color: beige;
+}
+.nav-ul a:visited{
+  color: rgb(243, 247, 247);
+}
+.nav-ul a:hover{
+  color: blueviolet;
+}
+.tab{
+  font-size: 1.5rem;
+  padding-top: 2rem;
+  margin-bottom: 1rem;
+  display: inline-block;
+  padding-left: 3rem;
+}
+}
+
+#price {
+  display: block;
+  width: 200px;
+  padding-top: 0px;
+  margin: auto;
+}
