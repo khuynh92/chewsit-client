@@ -118,6 +118,7 @@ label input[type="radio"]{
   visibility: hidden; 
   position: absolute; 
 }
+
 #price {
   display: block;
   width: 213px;
@@ -437,11 +438,10 @@ margin-bottom: 2%;
   
   @media only screen and (min-width:480px) and (max-width:768px) {
       .visible-mobile,.hidden-tablet,.visible-desktop { display:none !important; }
-      body {
-        background: linear-gradient( rgba(0, 0, 0, 0.315), rgba(0, 0, 0, 0.315) ), url('../images/bamboo.jpg');
-        background-repeat: no-repeat;
-      background-size:cover;
-  }
+     
+      .visible-desktop{
+        background-image: url("http://www.markhillard.com/sandbox/media/polina.jpg");
+     }
   }
   
   @media only screen and (max-width:479px) {
@@ -455,11 +455,9 @@ margin-bottom: 2%;
         margin: 0 auto;
         text-align: center;
       }
-      body {
-        background: linear-gradient( rgba(0, 0, 0, 0.315), rgba(0, 0, 0, 0.315) ), url('../images/bamboo.jpg');
-        background-repeat: no-repeat;
-      background-size:cover;
-  }
+      .visible-desktop{
+        background-image: url("http://www.markhillard.com/sandbox/media/polina.jpg");
+     }
   }
   @media only screen and (max-width:768px) {
     #overlay { height:auto; }
@@ -477,14 +475,14 @@ margin-bottom: 2%;
     transition: 200ms;
     background-color: rgba(0, 0, 0, 0);
     font-size: 1.5em;
-    color: rgb(241, 238, 238);
+    color: rgba(241, 238, 238, 0.767);
     box-shadow: none;
     outline: none;
     z-index: 1;
   }
 
   .home-view {
-      background-color: rgba(0, 0, 0, 0.65);
+      background-color: rgba(0,0,0,.65);
       height: 100%;
       /* left: 0; */
       position: relative;
@@ -493,7 +491,7 @@ margin-bottom: 2%;
       /* width: 100%; */
   }
   .form-app{
-    background-color: rgba(0, 0, 0, 0.65);
+    background-color: rgba(0,0,0,.65);
     height: 100%;
   }
 
@@ -513,7 +511,6 @@ margin-bottom: 2%;
   justify-content: center;
   flex-wrap: wrap;
   display: flex;
-
 }
 
 .foodDiv img {
@@ -681,8 +678,6 @@ div:checked + img {
 
 /*--------END NEW USER/LOGIN----------*/
 
-  
-
 .results-img {
   width: 25%;
 }
@@ -772,3 +767,45 @@ justify-content: center;
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+/*-----BEGIN RESULTS SECTION---*/
+#display-results {
+    width: 100vw;
+    height: 100vh;
+   position: relative;
+    text-align: center;
+}
+
+#resultsDiv {
+  justify-content: center;
+  flex-wrap: wrap;
+  display: flex;
+  position: absolute;
+  top: 50%;
+  left:50%;
+  transform: translate(-50%, -50%);
+}
+
+#results-list{
+  max-height: 80%;
+  max-width: 80%;
+}
+
+#res-img{
+  width: 50%;
+  max-height: 80%;
+  margin-bottom: 2%;
+  opacity: 1;
+  z-index: 2;
+}
+
+#resultsDiv li {
+  color: white;
+  font-weight: bold;
+  background: gray;
+  opacity: .9;
+  z-index: -1
+}
+
+
+/*-----END RESULTS SECTION---*/

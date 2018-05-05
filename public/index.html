@@ -48,12 +48,12 @@
 
   <script type="text/x-handlebars-template" id="display-results-template">
       <li data-id="{{id}}">
-        <img class="results-img"src={{image_url}}>
+        <img class="results-img" id ="res-img" src={{image_url}}>
           <h3>Name:{{name}}</h3>
           <p>Rating:{{rating}}</p>
           <p>Phone:{{display_phone}}</p>
           <p>Location:{{location.display_address}}</p>
-          <button class="next">Next</button>
+          <button class="next userValidationButton">Next</button>
     </li>
 </script>
 </head>
@@ -314,9 +314,8 @@
 
 <!-- RESULTS/DISPLAY VIEW START -->
 <div id="display-results" class="display-results container">
-    <video class="visible-desktop" id="hero-vid2" loop poster="lunch-pic.png" preload="true">
+    <video class="visible-desktop" id="hero-vid2" autoplay loop muted preload="true">
         <source id="video" type="video/mp4" src="/images/Lunch.mp4">
-          
     </video>
   <div id="resultsDiv">
       
