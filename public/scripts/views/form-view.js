@@ -14,6 +14,7 @@ var app = app || {};
     }
     $('#or').show();
     $('#geo').show();
+    $('#enter-location').show();
     $('.form-app').show();
     $('#chewsit').show();
     $('.icon-spinner').hide();
