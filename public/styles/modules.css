@@ -24,7 +24,10 @@ font-family: 'Oleo Script Swash Caps', cursive;
   display: inline;
   font-family: Arial, Helvetica, sans-serif;
   color: rgba(241, 238, 238, 0.6);
-  padding: 2% 5%;
+  padding: 4% 13%;
+  margin-top: 2%;
+  margin-right: 31%;
+  margin-left: 5%;
   font-size: 1.5em;
   text-decoration: none;
   border: 2px solid rgba(241, 238, 238, 0.5);
@@ -42,13 +45,12 @@ font-family: 'Oleo Script Swash Caps', cursive;
   background-color: rgb(70, 226, 104);
   border-color: rgb(70, 226, 104);
 }
-#signIn {
-/* margin: auto; */
+/* #signIn {
 margin-right: 34%;
 margin-top: 10%;
 padding: 0%;
-}
 
+}   */
 /* .btn {
   display: inline;
   align-self: center;
@@ -484,7 +486,6 @@ margin-bottom: 2%;
     padding-right: 5px;
     font-size: 20px;
   }
-
   #show-results{
     display: inline;
     align-self: center;
@@ -520,10 +521,22 @@ margin-bottom: 2%;
   margin:50%;
   }
   
-/* --------------preference check box ----------------------- */
+/* --------------PREFERENCE PAGE ----------------------- */
 .preferences-page{
-  width: 80%;
-  margin: auto;  
+  width: 100vw;
+ position: relative;
+  text-align: center;
+}
+
+.foodDiv {
+  justify-content: center;
+  flex-wrap: wrap;
+  display: flex;
+
+}
+
+.foodDiv img {
+  opacity: .7;
 }
 .preferences-page h1{
   padding-top: 20px;
@@ -537,32 +550,30 @@ div .foods {
   float: left;
   flex-wrap: wrap;
   display: flex;
-  margin: 50px;
+  margin: 20px 20px 0 20px;
   border-radius: 10px;
   color: white;
   text-align:center;
   display:block;
-  margin-right: 10px;
-  margin-bottom: 5px;
   float:left;
   padding-top: 1px;
   
-}
-
-div input.choice {
-  visibility: hidden;
-  position: absolute;
-}
-div input.choice:checked + img {
-  border-color: white;
-  border-width: 1px;
-  opacity: .6;
 }
 
 img {
   border-radius: 10px;
   width: 100%;
 
+}
+
+div input.choice {
+  visibility: hidden;
+  position: absolute;
+}
+
+div input.choice:checked + img {
+  border: 2px solid green;
+  opacity: 1;
 }
 
 img:hover {
