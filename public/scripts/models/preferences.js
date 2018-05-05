@@ -21,7 +21,7 @@ var app = app || {};
       }) 
       
       let arrayToSend = JSON.stringify(preferenceArray);
-      localStorage.Restaurant = JSON.stringify(preferenceArray);
+      localStorage.preferences = JSON.stringify(preferenceArray);
       $.ajax({
         url: `${ENV.apiUrl}/preferences/update`,
         method: 'PUT',
