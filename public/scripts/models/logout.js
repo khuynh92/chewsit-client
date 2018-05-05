@@ -9,7 +9,7 @@ var app = app || {};
   $('#logoutButton').on('click', e => {
     e.preventDefault();
     localStorage.clear();
-    page('/');
+    page('./');
   });
 
   module.logoutButton = logoutButton;

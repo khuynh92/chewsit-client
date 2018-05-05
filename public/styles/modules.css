@@ -508,10 +508,22 @@ h4 {
   margin:50%;
   }
   
-/* --------------preference check box ----------------------- */
+/* --------------PREFERENCE PAGE ----------------------- */
 .preferences-page{
-  width: 80%;
-  margin: auto;  
+  width: 100vw;
+ position: relative;
+  text-align: center;
+}
+
+.foodDiv {
+  justify-content: center;
+  flex-wrap: wrap;
+  display: flex;
+
+}
+
+.foodDiv img {
+  opacity: .7;
 }
 .preferences-page h1{
   padding-top: 20px;
@@ -525,32 +537,30 @@ div .foods {
   float: left;
   flex-wrap: wrap;
   display: flex;
-  margin: 50px;
+  margin: 20px 20px 0 20px;
   border-radius: 10px;
   color: white;
   text-align:center;
   display:block;
-  margin-right: 10px;
-  margin-bottom: 5px;
   float:left;
-  padding-top: 1px;9
+  padding-top: 1px;
   
-}
-
-div input.choice {
-  visibility: hidden;
-  position: absolute;
-}
-div input.choice:checked + img {
-  border-color: white;
-  border-width: 1px;
-  opacity: .6;
 }
 
 img {
   border-radius: 10px;
   width: 100%;
 
+}
+
+div input.choice {
+  visibility: hidden;
+  position: absolute;
+}
+
+div input.choice:checked + img {
+  border: 2px solid green;
+  opacity: 1;
 }
 
 img:hover {
