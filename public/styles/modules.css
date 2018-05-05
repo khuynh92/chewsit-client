@@ -118,6 +118,7 @@ label input[type="radio"]{
   visibility: hidden; 
   position: absolute; 
 }
+
 #price {
   display: block;
   width: 213px;
