@@ -48,6 +48,7 @@ var app = app || {};
   function checkLocalStorage() {
     if (!localStorage.ID) {
       localStorage.ID = JSON.stringify((userInfo.id));
+      localStorage.preferences = userInfo.preferences;
     }
   }
 
