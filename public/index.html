@@ -49,10 +49,10 @@
   <script type="text/x-handlebars-template" id="display-results-template">
       <li data-id="{{id}}">
         <img class="results-img"src={{image_url}}>
-          <h3>name:{{name}}</h3>
-          <p>rating:{{rating}}</p>
-          <p>display_phone:{{display_phone}}</p>
-          <p>location:{{location.display_address}}</p>
+          <h3>Name:{{name}}</h3>
+          <p>Rating:{{rating}}</p>
+          <p>Phone:{{display_phone}}</p>
+          <p>Location:{{location.display_address}}</p>
           <button class="next">Next</button>
     </li>
 </script>
@@ -151,10 +151,12 @@
 </div> -->
 <!--/database create new favorite-->
 
+
 <!--database login check-->
 <div id="loginDiv"  class="container userValidationPage">
-    <video class="visible-desktop" id="hero-vid2" autoplay loop muted preload="true">
+    <video class="visible-desktop" id="hero-vid2" loop poster="lunch-pic.png" preload="true">
         <source id="video" type="video/mp4" src="/images/Lunch.mp4">
+          
     </video>
     <div class="centerForm">
   <form id="user-login">
@@ -181,7 +183,7 @@
 </div>
 
 <div class="home-view container">
-    <video class="visible-desktop" id="hero-vid2" autoplay loop muted preload="true">
+    <video class="visible-desktop" id="hero-vid2" loop poster="lunch-pic.png" preload="true">
         <source id="video" type="video/mp4" src="/images/Lunch.mp4">
     </video>
 </div>
