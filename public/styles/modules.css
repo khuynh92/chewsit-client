@@ -426,7 +426,7 @@ margin-bottom: 2%;
   a:active {
       text-decoration: none;
       color:black; */
-  }
+  /* } */
   
   /* Media Queries */
   
@@ -464,7 +464,6 @@ margin-bottom: 2%;
     .hidden-mobile,.visible-tablet,.visible-desktop { display:none !important; }
 }
 
-
   #show-results{
     display: inline;
     align-self: center;
@@ -481,6 +480,7 @@ margin-bottom: 2%;
     outline: none;
     z-index: 1;
   }
+
   .home-view {
       background-color: rgba(0,0,0,.65);
       height: 100%;
@@ -524,6 +524,7 @@ margin-bottom: 2%;
   color: white;
   font-size: 20px;
 }
+
 div .foods {
   font-family: 'Roboto', sans-serif;
   float: left;
@@ -536,7 +537,6 @@ div .foods {
   display:block;
   float:left;
   padding-top: 1px;
-  
 }
 
 img {
@@ -572,7 +572,7 @@ div:checked + img {
   padding-top: 8px;
 }
 
-/* ------------------------------------------ */
+/* -----------END PREFERENCE PAGE----------- */
 
 /*--------BEGIN NEW USER/LOGIN DIV--------*/
 /*----BEGIN NEW USER----*/
