@@ -5,6 +5,8 @@
     background-color: darkgrey;
     background-size: cover;
     max-height: 100%;
+    /* overflow-y: hidden;
+    height: 100%; */
   }
   body {
     min-width: 100%;

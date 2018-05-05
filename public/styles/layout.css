@@ -2,7 +2,7 @@
   display: none;  
 }
 .site-header{
-  width: 100vw;
+  width: 100%;
 }
   
 #price {
@@ -93,7 +93,7 @@
 .nav-ul a:visited{
   color: rgb(243, 247, 247);
 }
-.nav-ul a:hover{
+.nav-ul a:hover, #nav-logo:hover{
   color: blueviolet;
 }
 .tab{
@@ -113,11 +113,12 @@
 }
 
   #nav-logo {
-    position: fixed;
+    position: absolute;
     z-index: 1;
     color: white;
     font-family: 'Oleo Script Swash Caps', cursive;
   font-size: 40px;
   padding-top: 15px;
   padding-left: 10px;
+  transition: 300ms;
   }
