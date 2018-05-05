@@ -444,9 +444,18 @@ margin-bottom: 2%;
         background-repeat: no-repeat;
       background-size:cover;
   }
+  .teamc1 {
+    width: 100%
+  }
+  #members {
+    padding-left: 0;
+  }
+  .preferences-page{
+    background-color:rgba(104, 99, 99, 0.952);
+  }
   }
   
-  @media only screen and (max-width:479px) {
+  @media only screen and (max-width:479px)  {
       .hidden-mobile,.visible-tablet,.visible-desktop { display:none !important; }
 
       #geo {
@@ -459,8 +468,17 @@ margin-bottom: 2%;
       }
       html {
         background: linear-gradient( rgba(0, 0, 0, 0.315), rgba(0, 0, 0, 0.315) ), url('../images/bamboo.jpg');
-        background-repeat: no-repeat;
+        background-repeat: repeat-y;
       background-size:cover;
+  }
+  .teamc1 {
+    width: 100%
+  }
+  #members {
+    padding-left: 0;
+  } 
+  .preferences-page{
+    background-color:rgba(104, 99, 99, 0.952);
   }
   }
   @media only screen and (max-width:768px) {
@@ -826,3 +844,4 @@ justify-content: center;
 }
 
 /*-----END RESULTS SECTION---*/
+

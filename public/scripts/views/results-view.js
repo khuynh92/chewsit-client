@@ -16,6 +16,7 @@ var app = app || {};
     $('header').show();
     $('#results-list').empty();
     $('#display-results').show();
+    $('.buttons2 div').css({'width': '396px'});
     if (JSON.parse(localStorage.results).length === 0) {
       $('#results-list').append('<li>No results found</li>');
 

@@ -51,7 +51,7 @@
     }
     
     dbUserForm.goToFormPage = () => {
-        page('/form');
+        page('/preferences');
     }
 
     module.dbUserForm = dbUserForm;
