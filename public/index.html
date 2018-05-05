@@ -67,7 +67,7 @@
         <a href="/"> Home</a>
       </li>
       <li class="tab" data-content="about">
-        <a href="#members"> About</a>
+        <a href="./#members"> About</a>
       </li>
       <li class="tab" data-content="preferences">
         <a href="/preferences" id="preferences-button"> Preferences</a>
@@ -221,6 +221,7 @@
           <source id="video" type="video/mp4" src="/images/Lunch.mp4">
       </video>
 <div class="buttons2">
+  <div>
       <button id="geo" class="current-location">Use Current location</button> <span id="or">OR</span>
       <button id="enter-location">Enter location</button>
       <p id="location-notice"></p>
@@ -229,7 +230,8 @@
       <input id="zip"type="text" class="form-control textbox"  placeholder="Enter your address, zip, or city">
         </div>
       </div>
-          <label>
+      </div>
+          <label id="rangeBox">
             <select id="range">
               <option value="">Distance</option>
               <option value="805">&frac12; mile</option>
@@ -238,8 +240,8 @@
               <option value="16094">10 miles</option>
               <option value="32186">20 miles</option>
             </select>
-            <p id="range-notice"></p>
           </label>
+          <p id="range-notice"></p>
       <div id="price">
           <label>
             <input type="radio" name="dolla" value=1 />
@@ -259,8 +261,8 @@
             <input type="radio" name="dolla" value=4 />
             <p class="dollar" id="lastdollar">$$$$</p>
           </label>
-          <p id="price-notice"></p>
         </div>
+        <p id="price-notice"></p>
           <label>
               <!-- <input id="food"type="text"> -->
               <div id="meal">
@@ -287,7 +289,9 @@
                 </div>
             </label>
       <!-- <input type="submit"> -->
-    <input type="submit" value="chews it!">
+      <div id=chewsit-box>
+    <input type="submit" value="chews it!" id="chewsit" class="fakeButton">
+    </div>
   </form>
 
 <!-- ----------------------------------------------------------------------------------------------------- -->

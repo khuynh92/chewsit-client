@@ -10,6 +10,7 @@ var app = app || {};
     e.preventDefault();
     $('#enter-location').hide();
     $('#or').hide();
+    $('.buttons2 div').css({'width': '175px'});
 
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function (position) {
