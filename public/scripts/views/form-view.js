@@ -14,6 +14,8 @@ var app = app || {};
       $('#home-button').hide();
     }
     $('.form-app').show();
+    $('#chewsit').show();
+    $('.icon-spinner').hide();
     console.log('form is showing')
     // $('#adventure-button').show();
   };
