@@ -8,10 +8,13 @@ var app = app || {};
 
   form.init = () => {
     $('header').show();
+    $('#home-button').show();
+    $('#about-button').show();
     if(localStorage.ID) {
       $('#logoutButton').show();
       $('#preferences-button').show();
       $('#home-button').hide();
+      $('#about-button').hide();
     }
     $('#or').show();
     $('#geo').show();
