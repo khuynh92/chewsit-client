@@ -95,8 +95,6 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
       $('.icon-spinner').show();
       $('#enter-location').show();
       $('#location-input').hide();
-      $('#or').show();
-      $('#geo').show();
       $('.buttons2 div').css({'width': '396px'});
     } else {
       if (!app.location.pos && !$('#zip').val()) $('#location-notice').append('Please Use your Location').css({ 'color': 'red' });

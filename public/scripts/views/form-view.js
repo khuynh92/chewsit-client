@@ -5,7 +5,6 @@ var app = app || {};
 (function(module) {
 
   const form = {};
-// changed id=app-form to class=form-app
 
   form.init = () => {
     if(localStorage.ID) {
@@ -13,11 +12,12 @@ var app = app || {};
       $('#preferences-button').show();
       $('#home-button').hide();
     }
+    $('#or').show();
+    $('#geo').show();
     $('.form-app').show();
     $('#chewsit').show();
     $('.icon-spinner').hide();
-    console.log('form is showing')
-    // $('#adventure-button').show();
+    console.log('form is showing');
   };
 
 module.form = form;
