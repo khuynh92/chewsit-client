@@ -8,8 +8,8 @@
   z-index: -1;
 }
 #location-notice {
-  margin-left: 30%;
-  margin-top: auto;
+margin: 2% auto;
+text-align: center;
 }
 #logo {
 font-family: 'Oleo Script Swash Caps', cursive;
@@ -114,23 +114,21 @@ padding: 0%;
 
 
 
-/* DOLLAR TEST */
 label input[type="radio"]{
   visibility: hidden; 
   position: absolute; 
 }
 #price {
   display: block;
-  width: 100%;
+  width: 213px;
   height: 35px;
   padding-top: 20px;
   padding-bottom: 10px;
   margin: auto;
 }
 p.dollar {
-  width: 7%;
-    margin-right: -35%;
-    margin-left: 35%;
+  width: 50px;
+    /* margin-left: 35%; */
 }
 #lastdollar {
   margin-right: 0%;
@@ -181,7 +179,7 @@ input[type="radio"]:checked + p {
   width: 200px;
   height: 45px;
   text-decoration: none;
-  padding-top: 3%;
+  padding-top: 20px;
   background-color: rgb(87, 83, 83);
   font-size: 20px;
   font-weight: 100;
@@ -202,7 +200,7 @@ background-color: darkgray;
     cursor: pointer;
     vertical-align: middle;
     text-align: center;
-    width: 25%;
+    width: 175px;
     height: 45px;
     text-decoration: none;
     background-color: rgb(87, 83, 83);
@@ -211,13 +209,14 @@ background-color: darkgray;
     border-radius: 5px;
     color: white;
     transition: 300ms;
-    /* margin: 10px auto; */
-    margin-left: 28%;
+    border: none;
 }
 #or{
   /* background-color: darkgray; */
+  font-family: Arial, Helvetica, sans-serif;
   color:white;
   font-size: 25px;
+  padding-top: 5px;
 }
 .current-location:hover {
   background-color: darkgray;
@@ -227,7 +226,7 @@ background-color: darkgray;
       cursor: pointer;
       vertical-align: middle;
       text-align: center;
-      width: 250px;
+      width: 175px;
       height: 45px;
       text-decoration: none;
       background-color: rgb(87, 83, 83);
@@ -237,6 +236,7 @@ background-color: darkgray;
       color: white;
       transition: 300ms;
       margin: 10px auto;
+      border: none;
   }
   #enter-location:hover {
     background-color: darkgray;
@@ -273,10 +273,11 @@ h4 {
   border-radius: 5px;
   color: black;
   transition: 300ms;
-  /* margin: 10px auto; */
-  margin-left: 27.5%;
+margin-bottom: 2%;  
 }
 #range{
+  background-color:rgba(104, 99, 99, 0.877);
+  color: white;
   font-family: 'Quicksand', sans-serif;
   cursor: pointer;
   vertical-align: middle;
@@ -288,7 +289,8 @@ h4 {
   font-weight: 100;
   border-radius: 5px;
   transition: 300ms;
-  margin-left: 45%;
+  border: none;
+  /* margin-left: 45%; */
 }
 /* ----------------ABOUT PAGE W/PARALLEX------------- */
 /* Video Overlay */
@@ -445,6 +447,15 @@ h4 {
   
   @media only screen and (max-width:479px) {
       .hidden-mobile,.visible-tablet,.visible-desktop { display:none !important; }
+
+      #geo {
+        margin-top: 2%;
+      }
+      .buttons2 div button, #or {
+        display: block;
+        margin: 0 auto;
+        text-align: center;
+      }
   }
   .buttonss{
     margin: 0 34.5%;
@@ -501,6 +512,7 @@ h4 {
   }
   .form-app{
     background-color: rgba(0,0,0,.65);
+    height: 100%;
   }
 
 /* --------END OF ABOUT US /PARRALEX---------------   */
@@ -581,11 +593,6 @@ div:checked + img {
 }
 
 /* ------------------------------------------ */
-
-
-.foods {
-
-}
 
 /*--------BEGIN NEW USER/LOGIN DIV--------*/
 /*----BEGIN NEW USER----*/
@@ -691,5 +698,53 @@ div:checked + img {
 
 .results-img {
   width: 25%;
+}
+
+label input[type="radio"]{
+  visibility: hidden; 
+  position: absolute; 
+}
+
+#rangeBox {
+width: 100%;
+display: flex;
+justify-content: center;
+}
+
+.buttons2 {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.buttons2 div {
+  width: 396px;
+}
+
+#chewsit {
+  background-color: rgba(0, 0, 0, 0);
+  box-shadow: none;
+
+}
+
+#chewsit:hover {
+  background-color: rgba(53, 165, 77, 0.9);
+  color: white;
+  border-color: rgba(53, 165, 77, 0.9);
+  cursor: pointer;
+}
+
+#chewsit-box {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10%;
+}
+
+#range-notice, #meal-notice, #price-notice {
+  width: 100%;
+  display: block;
+  text-align: center;
+  margin: 1% auto;
 }
 

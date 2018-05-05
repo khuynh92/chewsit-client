@@ -81,10 +81,8 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
       if ($('input[name=mealtype]:checked').val() === 'desserts' || $('input[name=mealtype]:checked').val() === 'breakfast') {
         restaurant.food = $('input[name=mealtype]:checked').val();
       } else {
-        // first if conditional (the one with the reduce) can be removed.
-        if (app.preferenceArray.length < 4 && app.preferenceArray.length !== 0) {
-          restaurant.food = app.preferenceArray.reduce((string, word) => string + `,${word}`);
-        } else if (app.preferenceArray.length > 3) {
+       
+         if (app.preferenceArray.length > 3) {
           restaurant.food = `${app.preferenceArray[Math.floor(Math.random() * app.preferenceArray.length)]},${app.preferenceArray[Math.floor(Math.random() * app.preferenceArray.length)]},${app.preferenceArray[Math.floor(Math.random() * app.preferenceArray.length)]}`;
         } else {
           restaurant.food = 'restaurant';
@@ -92,13 +90,12 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
       }
       console.log('food choice is', restaurant.food);
       restaurant.randomOffset(restaurant.location, restaurant.food, restaurant.price, restaurant.range);
-
-
       app.location.pos = null;
       $('#enter-location').show();
       $('#location-input').hide();
       $('#or').show();
       $('#geo').show();
+      $('.buttons2 div').css({'width': '396px'});
     } else {
       if (!app.location.pos && !$('#zip').val()) $('#location-notice').append('Please Use your Location').css({ 'color': 'red' });
 
@@ -136,6 +133,7 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
     $('#geo').hide();
     $('#or').hide();
     $('#location-input').show();
+    $('.buttons2 div').css({'width': '254px'});
   });
 
   // take user input (click.val()** INSERT INTO db)
