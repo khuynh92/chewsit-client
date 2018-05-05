@@ -616,6 +616,11 @@ div:checked + img {
     color: white;
   }
 
+  #save-preferences-text{
+    color: white;
+    font-weight: bold;
+  }
+
 /*----END NEW USER----*/
 
 /*----BEGIN LOGIN----*/

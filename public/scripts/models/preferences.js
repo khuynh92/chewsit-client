@@ -26,7 +26,10 @@ var app = app || {};
         method: 'PUT',
         data:{preferences: arrayToSend, id: localStorage.ID},
         success: function(data) {
-          alert('Preferences Updated');
+          $('#save-preferences-text').text('Preferences Updated!');
+          setTimeout(function () {
+            page('./form');
+          }, 2000);
         }
       });
 

@@ -14,6 +14,8 @@ restaurantView.initIndexView = function() {
   if(localStorage.ID) {
     page('/form');
     $('#logoutButton').show();
+    $('#preferences-button').show();
+    $('#home-button').hide();
   }
 }
 
