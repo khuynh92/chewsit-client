@@ -20,9 +20,37 @@ font-family: 'Oleo Script Swash Caps', cursive;
   text-align: center;  
   height: 70%;
 }
+.fakeButton {
+  display: inline;
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgba(241, 238, 238, 0.6);
+  padding: 2% 5%;
+  font-size: 1.5em;
+  text-decoration: none;
+  border: 2px solid rgba(241, 238, 238, 0.5);
+  border-radius: 80px;
+  transition: 250ms;
+  z-index: 5;
+}
+.fakeButton:hover {
+  background-color:  rgba(53, 165, 77, 0.9);
+  color: white;
+  border-color: rgba(53, 165, 77, 0.9);
+  cursor: pointer;
+}
+.fakeButton:active {
+  background-color: rgb(70, 226, 104);
+  border-color: rgb(70, 226, 104);
+}
+#signIn {
+/* margin: auto; */
+margin-right: 34%;
+margin-top: 10%;
+padding: 0%;
+}
 
-.btn {
-  /* display: inline;
+/* .btn {
+  display: inline;
   align-self: center;
   width: 20%;
   height: 75px;
@@ -36,16 +64,21 @@ font-family: 'Oleo Script Swash Caps', cursive;
   box-shadow: none;
   outline: none;
   z-index: 1;
+
+  min-width: 125px;
+} */
+/* .btn:active { 
   min-width: 125px; */
 }
 
 .btn:active { 
+
   background-color:rgba(70, 226, 104, 0.767);
   color: white;
   border-color: rgba(70, 226, 104, 0.767);
   cursor: pointer;
-}
-.btn2 {
+} */
+/* .btn2 {
   display: inline;
   align-self: center;
   width: 15%;
@@ -58,53 +91,29 @@ font-family: 'Oleo Script Swash Caps', cursive;
   z-index: 1;
   margin-left: 42.5%;
   margin-top: 2%;
-}
+} */
 
-#outterFakeButton {
+/* #outterFakeButton {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 #innerFakeButton {
   width: 50%;
-}
-.fakeButton {
-  display: inline;
-  font-family: Arial, Helvetica, sans-serif;
-  color: rgba(241, 238, 238, 0.6);
-  padding: 2% 5%;
-  font-size: 1.5em;
-  text-decoration: none;
-  border: 2px solid rgba(241, 238, 238, 0.5);
-  border-radius: 80px;
-  transition: 250ms;
-  z-index: 5;
-}
-
-#signIn {
-margin: auto;
-}
+} */
 /* #guest {
   padding: 2% 8%;
   margin-right: 0;
 } */
 
-#signInButton:active, #signInButtonPopup:active {
+/* #signInButton:active, #signInButtonPopup:active {
     border:solid rgb(18, 160, 77) 2px;
     background-color: rgb(18, 160, 77);
     cursor:pointer;
-}
+} */
 
-.fakeButton:hover {
-  background-color:  rgba(53, 165, 77, 0.9);
-  color: white;
-  border-color: rgba(53, 165, 77, 0.9);
-  cursor: pointer;
-}
-.btn:active {
-  background-color: rgb(70, 226, 104);
-  border-color: rgb(70, 226, 104);
-}
+
+
 /* DOLLAR TEST */
 label input[type="radio"]{
   visibility: hidden; 
@@ -284,16 +293,20 @@ h4 {
 /* ----------------ABOUT PAGE W/PARALLEX------------- */
 /* Video Overlay */
   #hero-vid2 {
-    background-size:100%;
-
+    background-size:cover;
     /* bottom:0; */
     top: 0;
-
+    height:100vh;
+/*     background-size:100%;
+ */
+    /* bottom:0; */
+/*     top: 0;
+ */
     /* height:100vh; */
     width: 100% !important;
-    border: 0;
+/*     border: 0;
     margin: 0;
-    padding: 0;
+    padding: 0; */
     /* min-height:62%;
     min-width:100%;
     perspective:1000; */
@@ -305,21 +318,22 @@ h4 {
   
   /* Content Styles */
   /* ABOUT US */
-  /* #content {
+  #content {
   background-color:rgba(104, 99, 99, 0.877);
   color: black;
   padding:2.5rem;
   position:relative;
   z-index: 1;
   text-align: center;
+  height: 21%;
   }
   
   #content p {
   font-size:1.25rem;
   letter-spacing:.02rem;
   margin-bottom:1.3rem;
-  } */
-  
+  }
+
   #content2 {
     background-color:rgba(104, 99, 99, 0.877);
     color: black;
@@ -384,7 +398,7 @@ h4 {
     margin: auto;   
     border-radius: 100%;
   }
-  #jesse{
+  #jesse, #brittany, #judah{
     height: 50%;
     width:30%;
     display: block;
@@ -398,20 +412,7 @@ h4 {
     margin: auto;   
     border-radius: 100%;
   }
-  #brittany{
-    height: 50%;
-    width:30%;
-    display: block;
-    margin: auto;   
-    border-radius: 100%;
-  }
-  #judah{
-    height: 50%;
-    width:30%;
-    display: block;
-    margin: auto;   
-    border-radius: 100%;
-  }
+
   
   /* a:visited {
       text-decoration: none;
@@ -443,13 +444,34 @@ h4 {
   @media only screen and (max-width:479px) {
       .hidden-mobile,.visible-tablet,.visible-desktop { display:none !important; }
   }
-  .buttons{
-    margin: 0 27.5%;
+  .buttonss{
+    margin: 0 34.5%;
+    display: flex;
+    margin-top: -13%;
+    margin-bottom: 5%;
   }
-  .buttons2{
-    display:inline;
-    margin-left: auto;
+  .buttonss > div {
+    margin-left: 0%;
+    margin-top: 5%;
+    /* padding-left: 2%; */
+    padding-right: 5px;
+    font-size: 20px;
   }
+
+  .buttonss2{
+    margin: 0 43.5%;
+    display: flex;
+    margin-top: -4%;
+    margin-bottom: 24%;
+  }
+  .buttonss2 > div {
+    margin-left: 0%;
+    margin-top: 5%;
+    /* padding-left: 2%; */
+    padding-right: 5px;
+    font-size: 20px;
+  }
+
   #show-results{
     display: inline;
     align-self: center;
@@ -479,12 +501,12 @@ h4 {
     background-color: rgba(0,0,0,.65);
   }
 
-/* --------END OF ABOUT US /PARRALEX------------   */
+/* --------END OF ABOUT US /PARRALEX---------------   */
 #option{
   margin:50%;
   }
   
-/* --------------check box ----------------------- */
+/* --------------preference check box ----------------------- */
 .preferences-page{
   width: 80%;
   margin: auto;  
@@ -545,6 +567,9 @@ div:checked + img {
   text-align: center; 
   padding-top: 8px;
 }
+
+/* ------------------------------------------ */
+
 
 .foods {
 
