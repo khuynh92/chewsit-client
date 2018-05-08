@@ -3,7 +3,6 @@ var app = app || {};
 
 page('/*', (ctx, next) => {
  $('.container').hide();
- $('.preferences-page').hide();
 next();
 });
 

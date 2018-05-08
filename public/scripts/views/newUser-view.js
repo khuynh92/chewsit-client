@@ -7,8 +7,8 @@ var app = app || {};
   const newUser = {};
 
   newUser.initView = () => {
+    $('#home-video').show();
     $('header').show();
-    $('#home-view').hide();
     $('#newUserDiv').show();
     $('#home-button').show();
     $('#about-button').show();

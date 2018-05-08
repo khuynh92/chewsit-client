@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,12 +9,12 @@
   <link rel="stylesheet" href="./styles/reset.css">
   <link href="https://fonts.googleapis.com/css?family=Oleo+Script+Swash+Caps:400,700" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-  <link rel="stylesheet" href="./styles/icons.css"> 
+  <link rel="stylesheet" href="./styles/icons.css">
   <link rel="stylesheet" href="./styles/base.css">
   <link rel="stylesheet" href="./styles/layout.css">
   <link rel="stylesheet" href="./styles/modules.css">
   <!-- <link rel="stylesheet" href="./styles/selections.css"> -->
-  
+
   <script type="text/javascript">
     // Single Page Apps for GitHub Pages
     // https://github.com/rafrex/spa-github-pages
@@ -48,36 +49,38 @@
 
   <script type="text/x-handlebars-template" id="display-results-template">
       <li data-id="{{id}}">
-        <img class="results-img" id ="res-img" src={{image_url}}>
-          <h3>Name:{{name}}</h3>
-          <p>Rating:{{rating}}</p>
-          <p>Phone:{{display_phone}}</p>
-          <p>Location:{{location.display_address}}</p>
-          <button class="next userValidationButton">Next</button>
-    </li>
-</script>
+        <img class="results-img" id="res-img" src={{image_url}}>
+        <h3>Name:{{name}}</h3>
+        <p>Rating:{{rating}}</p>
+        <p>Phone:{{display_phone}}</p>
+        <p>Location:{{location.display_address}}</p>
+        <p>Distance: {{distance}}</p>
+        <button class="next userValidationButton">Next</button>
+      </li>
+  </script>
+
 </head>
+
 <body>
 
-<header class="site-header clearfix container">
-
-  <div class="nav-container">
-    <div class="bar1"></div>
-    <div class="bar2"></div>
-    <div class="bar3"></div>
-  </div>
-    <a href="./" id="nav-a"><h5 id="nav-logo">chewsit</h5></a>
+  <header class="site-header clearfix container">
+    <div class="nav-container">
+      <div class="bar1"></div>
+      <div class="bar2"></div>
+      <div class="bar3"></div>
+    </div>
+    <a href="./" id="nav-a">
+      <h5 id="nav-logo">chewsit</h5>
+    </a>
     <ul id="nav-menu" class="nav-ul hide-nav">
-
       <li class="tab container" data-content="home" id="home-button">
         <a href="./"> Home</a>
-
       </li>
       <li class="tab container" data-content="about" id="about-button">
         <a href="./#members"> About</a>
       </li>
       <li class="tab container" data-content="preferences" id="preferences-button">
-        <a href="./preferences" > Preferences</a>
+        <a href="./preferences"> Preferences</a>
       </li>
       <li class="tab" data-content="main">
         <a href="./form"> Main</a>
@@ -86,164 +89,190 @@
         <a href="./">Logout</a>
       </li>
     </ul>
-</header>
+  </header>
 
-<!-- Landing page begins -->
-<div id="home-view" class="home-view container">
-    <h4 id="logo">chewsit</h4>
+  <!-- VIDEO BACKGROUNDS -->
+  <video id="home-video" class="visible-desktop videoBg container" autoplay loop muted preload="true">
+    <source id="video" type="video/mp4" src="/images/Lunch.mp4">
+  </video>
+  <video id="results-video" class="visible-desktop videoBg container" autoplay loop muted preload="true">
+    <source type="video/mp4" src="/images/resturant.mp4">
+  </video>
+  <video id="form-video" class="visible-desktop videoBg container" autoplay loop muted preload="true">
+      <source  type="video/mp4" src="/images/wine-glass.mp4">
+    </video>
+  <!-- END VIDEO BACKGROUNDS -->
 
+  <!-- OUTER CONTAINER CONTAINS ALL VIEW SECTIONS! -->
+  <div class="outer-container">
+    <!-- Landing page begins -->
+    <div class="home-about-container container">
+      <div id="home-view">
+        <h4 id="logo">chewsit</h4>
+        <div class="home-button-container">
+          <div>
+            <a href="./login" class="fakeButton">SignIn</a>
+          </div>
+          <div>
+            <a href="./form" class="fakeButton">Guest</a>
+          </div>
+        </div>
+        <a href="./new" class="fakeButton2">Create Account</a>
+      </div>
+  
+      <!-- ABOUT US STARTS HERE -->
+      <div id="content">
+        <p id="abouthead2"><span class="scroll-up">^^^</span> About Us <span class="scroll-up left"> ^^^</span></p>
+        <br>
+        <p>One of my greatest weaknesses is being indecisive. With the vast amounts of great restaraunts around the Seattle area,
+          how can you possibly choose one? With the creation of Chews It, I don't have to worry about spending hours on end
+          trying to chews a restaurant to eat at! But what will I wear to the restaurant...?</p>
+      </div>
+      <!-- ABOUT PAGE BEGINS -->
+      <div id="content2">
+        <section id="members" name="ourTeam">
+          <p class="founder">
+            <a href="https://github.com/khuynh92">Khoa Huynh</a>
+          </p>
+          <br>
+          <a href="https://www.linkedin.com/in/khoa-huynh92/">
+            <img class="about-pic" src="images\khoa.png" alt="Khoa Huynh">
+          </a>
+  
+          <h2>Our Team</h2>
+          <br>
+  
+          <ul>
+            <li class="teamcl">
+              <a href="https://www.linkedin.com/in/jesse-atay/">
+                <img class="about-pic" src="images\jesse.png" alt="Jesse Atay">
+              </a>
+              <p class="found">
+                <a href="https://github.com/jaatay">JESSE ATAY</a>
+              </p>
+              <p class="us">Marine combat veteran. Emergency Medical Technician. Software developer. Writer. Dreamer. All your base are belong
+                to us.
+              </p>
+            </li>
+            <li class="teamcl">
+              <a href="https://www.linkedin.com/in/brittanybolstad/">
+                <img class="about-pic"  src="images\brittany.jpg" alt="Brittany Bolstad">
+              </a>
+              <p class="found">
+                <a href="https://github.com/Bolstad09">Brittany Bolstad</a>
+              </p>
+              <p class="us">I am a Seattle native and dog enthusiast. I am currently working as an office manager at a dental office in Downtown
+                Seattle and have been in the Dental field for about 9+ years. I’ve been looking for a new challenge in life
+                and have decided to change career paths. In doing so I have followed my passion of computers and was referred
+                to CodeFellows to study software development. I am always looking to learn something new and my main goal here
+                in this program is to learn computer programing, to be comfortable enough to switch careers and apply my new
+                skills as an everyday tool.
+              </p>
+            </li>
+            <li class="teamcl">
+              <a href="https://www.linkedin.com/in/judah-hunger-9a97a1157/">
+                <img class="about-pic"  src="images\judah.png" alt="Judah Hunger">
+              </a>
+              <p class="found">
+                <a href="https://github.com/Judahhunger">Judah Hunger</a>
+              </p>
+              <p class="us">High School, joined the Marines 2/1 Fox company. For the last 8 years I was a club manager. I oversaw club operations,
+                trained staff, and resolved any issues with customers. I enjoy discovery and understanding how things work.
+                Also gaming.
+              </p>
+            </li>
+            <li class="teamcl">
+              <a href="https://www.linkedin.com/in/aaron-meade-21862b120/">
+                <img class="about-pic" src="images/aaron.png" alt="Aaron Meade">
+              </a>
+              <p class="found">
+                <a href="https://github.com/Aaronmeade92">Aaron Meade</a>
+              </p>
+              <p class="us">I was born in Washington state and have lived the majority of my life in Olympia. Love the PNW and hope to live
+                in Seattle soon. I've mostly worked in kitchens and production plants in my professional life and I hope to
+                get a more stable and higher paying job in the world of software development. I will be taking the 401 JS night
+                course.
+  
+              </p>
+            </li>
+          </ul>
+        </section>
+      </div>
+  
+      <!-- ABOUT US ENDS-->
+    </div>
+    <!-- Landing page Ends -->
 
-    <div class="buttonss">
-    <div><a href="./login" class="fakeButton" >SignIn</a></div>
-    <div><a href="./form" class="fakeButton">Guest</a></div>
-  </div>
-  <div class="buttonss2">
-    <div><a href="./new" class="fakeButton2">Create Account</a></div>  
-  </div>
+    <!--NEW USER VIEW STARTS-->
 
-</div>       
-    <!-- FAVORITES STARTS HERE -->
-    <div id="favorites">
-
+    <div id="newUserDiv" class="container userValidationPage">
+      <div class="centerForm">
+        <form id="create-user">
+          <input id="create-name" type="text" class="formInput" placeholder="Name">
+          <input id="create-pin" type="password" class="formInput" placeholder="Pin">
+          <button class="userValidationButton" type="submit">Create</button>
+        </form>
+        <section id="newUserSection">
+          <p>Welcome to Chews It! To create a new account, choose your name and up to a 10 digit pin. <br /> <br /> <span>**DO NOT include any
+            sensitive information in your pin, this site does not use secure storage.**</span></p>
+        </section>
+      </div>
     </div>
 
-<!--BEGIN LOGIN AND CREATE NEW USER SECTION-->
-<div class="database">
+   <!--NEW USER VIEW ENDS-->
 
-<!-- database create new user -->
-  <div id="newUserDiv" class="container userValidationPage">
-      <video class="visible-desktop" id="hero-vid2" autoplay loop muted preload="true">
-          <source id="video" type="video/mp4" src="/images/Lunch.mp4">
-      </video>
+    <!--database login check-->
+    <div id="loginDiv" class="container userValidationPage">
       <div class="centerForm">
-    <form id="create-user">
-      <input id="create-name" type="text" class="formInput" placeholder="Name"></input>
-      <input id ="create-pin" type="password" class="formInput"placeholder="Pin" ></input>
-      <button class="userValidationButton"type="submit">Create</button>
-    </form>
-    <section id="newUserSection">
-      <p>Welcome to Chews It! To create a new account, choose your name and up to 10 digit pin. Please DO NOT include any sensitive information in your pin, this site does not use secure storage.</p>
-    </section>
-  </div>
-  </div>
+        <form id="user-login">
+          <input id="user-name" class="formInput" type="text" placeholder="Username">
+          <input id="user-pin" class="formInput" type="password" placeholder="Pin">
+          <button class="userValidationButton" type="submit">Welcome Back</button>
+        </form>
+        <section id="loginSection">
+          <p>Welcome back to Chews It! Please enter your username and pin.</p>
+        </section>
+      </div>
+    </div>
+    <!--END LOGIN AND CREATE USER SECTION-->
 
-
-<!--database login check-->
-<div id="loginDiv"  class="container userValidationPage">
-    <video class="visible-desktop" id="hero-vid2" loop poster="lunch-pic.png" preload="true">
-        <source id="video" type="video/mp4" src="/images/Lunch.mp4">
-          
-    </video>
-    <div class="centerForm">
-  <form id="user-login">
-    <input id="user-name" class="formInput" type="text" placeholder="Username"></input>
-    <input id ="user-pin" class="formInput" type="password" placeholder="Pin"></input>
-  <button class="userValidationButton" type="submit">Welcome Back</button>
-  <section id="loginSection">
-      <p>Welcome back to Chews It! Please enter your username and pin.</p>
-    </section>
-  </div>
-  </form>
-
-</div>
-<!--/database login check-->
-</div>
-<!--END LOGIN AND CREATE USER SECTION-->
-<!-- ------------------------------------------------ -->
-  
-  <!-- <div class="container"> -->
-<div id="content" class="home-view container">
-    <p id="abouthead2">Our Story ~ How It All Began!</p>
-     <br>
-    <p>One of my greatest weaknesses is being indecisive. With the vast amounts of great restaraunts around the Seattle area, how can you possibly choose one? With the creation of Chews It, I don't have to worry about spending hours on end trying to chews a restaurant to eat at! But what will I wear to the restaurant...?</p>
-</div>
-
-<div class="home-view container">
-  <video class="visible-desktop" id="hero-vid2" autoplay loop muted preload="true">
-    <source id="video" type="video/mp4" src="/images/Lunch.mp4">
-</video>
-</div>
-<!-- ABOUT PAGE BEGINS -->
-<div id="content2" class="home-view container">
-    <section id="members" name="#ourTeam">
-        <p class="founder"><a href="https://github.com/khuynh92">Khoa Huynh</a></p>
-        <br>
-        <a href="https://www.linkedin.com/in/khoa-huynh92/"><img id="khoa" src="images\khoa.png" alt="Khoa Huynh"></a>
-        <h2 id="tagline">"Let us choose it for you" -Khoa</h2>
-
-        <h2 id="members1">Our Team</h2>
-          <br>
+    <!-- APP FORM STARTS HERE -->
+    <div id="app-form-container" class="container">
+      <form id="app-form">
+        <div class="buttons2">
+          <div>
+            <button id="geo" class="current-location">Use Current Location</button>
+            <span id="or">OR</span>
+            <button id="enter-location">Enter Location</button>
+            <p id="location-notice"></p>
     
-          <ul>
-                <li class="teamcl">
-                    <a href="https://www.linkedin.com/in/jesse-atay/"><img class="team" id="jesse" src="images\jesse.png" alt="Jesse Atay"></a>
-                    <p class="found">Board Member: <a href="https://github.com/jaatay">JESSE ATAY</a></p>
-                    <p class="us">Marine combat veteran. Emergency Medical Technician. Software developer. Writer. Dreamer. All your base are belong to us.
-                      </p>
-                  </li>
-                  <li class="teamcl">
-                      <a href="https://www.linkedin.com/in/brittanybolstad/"><img class="team" id="brittany" src="images\brittany.jpg" alt="Brittany Bolstad"></a>
-                      <p class="found">Board Member: <a href="https://github.com/Bolstad09">Brittany Bolstad</a></p>
-                      <p class="us">I am a Seattle native and dog enthusiast. I am currently working as an office manager at a dental office in Downtown Seattle and have been in the Dental field for about 9+ years. I’ve been looking for a new challenge in life and have decided to change career paths. In doing so I have followed my passion of computers and was referred to CodeFellows to study software development. I am always looking to learn something new and my main goal here in this program is to learn computer programing, to be comfortable enough to switch careers and apply my new skills as an everyday tool.</p>
-                    </li>
-                    <li class="teamcl">
-                      <a href="https://www.linkedin.com/in/judah-hunger-9a97a1157/"><img class="team" id="judah" src="images\judah.png" alt="Judah Hunger"></a>
-                      <p class="found">Board Member: <a href="https://github.com/Judahhunger">Judah Hunger</a></p>
-                      <p class="us">High School, joined the Marines 2/1 Fox company. For the last 8 years I was a club manager. I oversaw club operations, trained staff, and resolved any issues with customers. I enjoy discovery and understanding how things work. Also gaming.
-                        </p>
-                    </li>
-                    <li class="teamcl">
-                      <a href="https://www.linkedin.com/in/aaron-meade-21862b120/"><img class="team" id="aaron" src="images/aaron.png" alt="Aaron Meade"></a>
-                      <p class="found">Board Member: <a href="https://github.com/Aaronmeade92">Aaron Meade</a></p>
-                      <p class="us">I was born in Washington state and have lived the majority of my life in Olympia. Love the PNW and hope to live in Seattle soon. I've mostly worked in kitchens and production plants in my professional life and I hope to get a more stable and higher paying job in the world of software development. I will be taking the 401 JS night course.
-
-                        </p>
-                    </li>
-                  </ul>
-              </section>
-</div>
-
-   
-  <!-- ----------------------------------------------------------------------------------------- -->
-<!-- APP FORM STARTS HERE -->
-
-  <form id="app-form" class="form-app container">
-      <video class="visible-desktop" id="hero-vid2" autoplay loop muted preload="true">
-          <source id="video" type="video/mp4" src="/images/wine-glass.mp4">
-      </video>
-<div class="buttons2">
-  <div>
-      <button id="geo" class="current-location">Use Current Location</button> <span id="or">OR</span>
-      <button id="enter-location">Enter Location</button>
-      <p id="location-notice"></p>
-      
-    <div id="location-input" class="hide">
-      <input id="zip"type="text" class="form-control textbox"  placeholder="Enter your address, zip, or city">
+            <div id="location-input" class="hide">
+              <input id="zip" type="text" class="form-control textbox" placeholder="Enter your address, zip, or city">
+            </div>
+          </div>
         </div>
-      </div>
-      </div>
-          <label id="rangeBox">
-            <select id="range">
-              <option value="">Distance</option>
-              <option value="805">&frac12; mile</option>
-              <option value="1610">1 mile</option>
-              <option value="8045">5 miles</option>
-              <option value="16094">10 miles</option>
-              <option value="32186">20 miles</option>
-            </select>
-          </label>
-          <p id="range-notice"></p>
-      <div id="price">
+        <label id="rangeBox">
+          <select id="range">
+            <option value="">Distance</option>
+            <option value="805">&frac12; mile</option>
+            <option value="1610">1 mile</option>
+            <option value="8045">5 miles</option>
+            <option value="16094">10 miles</option>
+            <option value="32186">20 miles</option>
+          </select>
+        </label>
+        <p id="range-notice"></p>
+        <div id="price">
           <label>
             <input type="radio" name="dolla" value=1 />
             <p class="dollar">$</p>
           </label>
-
+    
           <label>
             <input type="radio" name="dolla" value=2 />
             <p class="dollar">$$</p>
           </label>
-
+    
           <label>
             <input type="radio" name="dolla" value=3 />
             <p class="dollar">$$$</p>
@@ -254,172 +283,189 @@
           </label>
         </div>
         <p id="price-notice"></p>
-          <label>
-              <!-- <input id="food"type="text"> -->
-              <div id="meal">
-                  <label>
-                    <input type="radio" name="mealtype" value="breakfast" />
-                    <p class="mealtype">Breakfast</p>
-                  </label>
-
-                  <label>
-                    <input type="radio" name="mealtype" value="lunch" />
-                    <p class="mealtype">Lunch</p>
-                  </label>
-
-                  <label>
-                    <input type="radio" name="mealtype" value="dinner" />
-                    <p class="mealtype">Dinner</p>
-                  </label>
-
-                  <label>
-                    <input type="radio" name="mealtype" value="desserts" />
-                    <p class="mealtype">Dessert</p>
-                  </label>
-                  <p id="meal-notice"></p>
-                </div>
+        <label>
+          <!-- <input id="food"type="text"> -->
+          <div id="meal">
+            <label>
+              <input type="radio" name="mealtype" value="breakfast" />
+              <p class="mealtype">Breakfast</p>
             </label>
-      <!-- <input type="submit"> -->
-      <div id=chewsit-box>
-    <input type="submit" value="chews it!" id="chewsit">
-    <div class="icon-spinner container"></div>
+    
+            <label>
+              <input type="radio" name="mealtype" value="lunch" />
+              <p class="mealtype">Lunch</p>
+            </label>
+    
+            <label>
+              <input type="radio" name="mealtype" value="dinner" />
+              <p class="mealtype">Dinner</p>
+            </label>
+    
+            <label>
+              <input type="radio" name="mealtype" value="desserts" />
+              <p class="mealtype">Dessert</p>
+            </label>
+            <p id="meal-notice"></p>
+          </div>
+        </label>
+        <!-- <input type="submit"> -->
+        <div id=chewsit-box>
+          <input type="submit" value="chews it!" id="chewsit">
+          <div class="icon-spinner container"></div>
+        </div>
+      </form>
     </div>
-  </form>
+    <!-- ----------------------------------------------------------------------------------------------------- -->
 
-<!-- ----------------------------------------------------------------------------------------------------- -->
 
-  
 
-<!-- RESULTS/DISPLAY VIEW START -->
-<div id="display-results" class="display-results container">
-    <video class="visible-desktop" id="hero-vid2" autoplay loop muted preload="true">
-        <source id="video" type="video/mp4" src="/images/resturant.mp4">
-    </video>
-  <div id="resultsDiv">
-      
-      <ul id="results-list">
+    <!-- RESULTS/DISPLAY VIEW START -->
+    <div id="display-results" class="display-results container">
+      <div id="resultsDiv">
+
+        <ul id="results-list">
+      </div>
+      </ul>
+    </div>
+
+    <!-- RESULTS/DISPLAY VIEW END -->
+
+
+    <!-- PREFERENCES VIEW STARTS HERE -->
+    <!-- </div> -->
+
+    <div class="preferences-page container">
+      <h1>Select your favorite types of food to save them to your preferences</h1>
+
+      <div class="foodDiv">
+
+        <div class="foods">
+          <label>
+            <input class="choice" type="checkbox" name="cuisine" value="vietnamese" for="check1" />
+            <img src="images/food/Vietnamese2.jpeg" alt="pho" class="img-hover">
+          </label>
+          <p>Vietnamese</p>
+        </div>
+        <div class="foods">
+          <label>
+            <input class="choice" type="checkbox" name="cuisine" value="bars" for="check1" width="200" height="200" />
+            <img src="images/food/bar-food2.jpeg" alt="bar" class="img-hover">
+          </label>
+          <p>Barfood</p>
+        </div>
+        <div class="foods">
+          <label>
+            <input class="choice" type="checkbox" name="cuisine" value="hotdogs" for="check1" width="200" height="200" />
+            <img src="images/food/fast-food2.jpg" alt="fast-food" class="img-hover">
+          </label>
+          <p>Fast Food</p>
+        </div>
+        <div class="foods">
+          <label>
+            <input class="choice" type="checkbox" name="cuisine" value="sushi" for="check1" width="200" height="200" />
+            <img src="images/food/sushi2.jpeg" alt="sushi" class="img-hover">
+          </label>
+          <p>Sushi</p>
+        </div>
+        <div class="foods">
+          <label>
+            <input class="choice" type="checkbox" name="cuisine" value="mexican" for="check1" width="200" height="200" />
+            <img src="images/food/mexican2.jpeg" alt="mexican" class="img-hover">
+          </label>
+          <p>Mexican</p>
+        </div>
+        <div class="foods">
+          <label>
+            <input class="choice" type="checkbox" name="cuisine" value="japanese" for="check1" width="200" height="200" />
+            <img src="images/food/Japenese2.jpeg" alt="japanese" class="img-hover">
+          </label>
+          <p>Japanese</p>
+        </div>
+        <div class="foods">
+          <label>
+            <input class="choice" type="checkbox" name="cuisine" value="chinese" for="check1" width="200" height="200" />
+            <img src="images/food/Chinese2.jpeg" alt="chinese" class="img-hover">
+          </label>
+          <p>Chinese</p>
+        </div>
+        <div class="foods">
+          <label>
+            <input class="choice" type="checkbox" name="cuisine" value="gluten_free" for="check1" width="200" height="200" />
+            <img src="images/food/gluten-free2.png" alt="gluten-free" class="img-hover">
+          </label>
+          <p>Gluten Free</p>
+        </div>
+        <div class="foods">
+          <label>
+            <input class="choice" type="checkbox" name="cuisine" value="greek" for="check1" width="200" height="200" />
+            <img class="img-hover" src="images/food/greek.jpg" alt="greek" class="img-hover">
+          </label>
+          <p>Greek</p>
+        </div>
+        <div class="foods">
+          <label>
+            <input class="choice" type="checkbox" name="cuisine" value="indian" for="check1" width="200" height="200" />
+            <img src="images/food/indian.jpg" alt="indian" class="img-hover">
+          </label>
+          <p>Indian</p>
+        </div>
+        <div class="foods">
+          <label>
+            <input class="choice" type="checkbox" name="cuisine" value="italian" for="check1" width="200" height="200" />
+            <img src="images/food/italian2.jpeg" alt="italian" class="img-hover">
+          </label>
+          <p>Italian</p>
+        </div>
+        <div class="foods">
+          <label>
+            <input class="choice" type="checkbox" name="cuisine" value="pizza" for="check1" width="200" height="200" />
+            <img src="images/food/pizza2.jpeg" alt="pizza" class="img-hover">
+          </label>
+          <p>Pizza</p>
+        </div>
+      </div>
+      <button type="submit" class="save-preferences userValidationButton">Save</button>
+      <section id="save-preferences-text">
+        <p></p>
+      </section>
+
+    </div>
+
+
+
+
+
   </div>
-  </ul>
-</div>
 
-<!-- RESULTS/DISPLAY VIEW END -->
+  <!-- ------------------------------------------------ -->
 
 
-<!-- PREFERENCES VIEW STARTS HERE -->
-<!-- </div> -->
+  <!-- CDN -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+  <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
 
-<div class="preferences-page container">
-    <h1>Select your favorite types of food to save them to your preferences</h1>
+  <!-- MODELS -->
+  <script src="./scripts/models/restaurants.js"></script>
+  <script src="./scripts/models/location.js"></script>
+  <script src="./scripts/models/preferences.js"></script>
+  <script src="./scripts/models/login.js"></script>
+  <script src="./scripts/models/logout.js"></script>
+  <!-- VIEWS -->
+  <script src="./scripts/views/restaurant-view.js"></script>
+  <script src="./scripts/views/results-view.js"></script>
+  <script src="./scripts/views/newUser-view.js"></script>
+  <script src="./scripts/views/login-view.js"></script>
+  <!-- STYLE SCRIPT TO HANDLE JS STYLING -->
+  <script src="./scripts/views/style.js"></script>
 
-<div class="foodDiv">
-
-  <div class="foods">
-    <label>
-        <input class="choice" type="checkbox" name="cuisine" value="vietnamese" for="check1" /><img src="images/food/Vietnamese2.jpeg" alt="pho" class="img-hover">
-    </label>
-    <p>Vietnamese</p>
-</div>
-<div class="foods">
-  <label>
-      <input class="choice" type="checkbox" name="cuisine" value="bars" for="check1"  width="200" height="200"/><img src="images/food/bar-food2.jpeg" alt="bar" class="img-hover">
-  </label>
-  <p>Barfood</p>
-</div>
-<div class="foods">
-  <label>
-      <input class="choice" type="checkbox" name="cuisine" value="hotdogs" for="check1"  width="200" height="200"/><img src="images/food/fast-food2.jpg" alt="fast-food" class="img-hover">
-  </label>
-  <p>Fast Food</p>
-</div>
-<div class="foods">
-  <label>
-      <input class="choice" type="checkbox" name="cuisine" value="sushi" for="check1"  width="200" height="200"/><img src="images/food/sushi2.jpeg" alt="sushi" class="img-hover">
-  </label>
-  <p>Sushi</p>
-</div>
-<div class="foods">
-  <label>
-      <input class="choice" type="checkbox" name="cuisine" value="mexican" for="check1"  width="200" height="200"/><img src="images/food/mexican2.jpeg" alt="mexican" class="img-hover">
-  </label>
-  <p>Mexican</p>
-</div>
-<div class="foods">
-  <label>
-      <input class="choice" type="checkbox" name="cuisine" value="japanese" for="check1"  width="200" height="200"/><img src="images/food/Japenese2.jpeg" alt="japanese" class="img-hover">
-  </label>
-  <p>Japanese</p>
-</div>
-<div class="foods">
-  <label>
-      <input class="choice" type="checkbox" name="cuisine" value="chinese" for="check1"  width="200" height="200"/><img src="images/food/Chinese2.jpeg" alt="chinese" class="img-hover">
-  </label>
-  <p>Chinese</p>
-</div>
-<div class="foods">
-  <label>
-      <input class="choice" type="checkbox" name="cuisine" value="gluten_free" for="check1"  width="200" height="200"/><img src="images/food/gluten-free2.png" alt="gluten-free" class="img-hover">
-  </label>
-  <p>Gluten Free</p>
-</div>
-<div class="foods">
-  <label>
-      <input class="choice" type="checkbox" name="cuisine" value="greek" for="check1"  width="200" height="200"/><img class="img-hover" src="images/food/greek.jpg" alt="greek" class="img-hover">
-  </label>
-  <p>Greek</p>
-</div>
-<div class="foods">
-  <label>
-      <input class="choice" type="checkbox" name="cuisine" value="indian" for="check1"  width="200" height="200"/><img src="images/food/indian.jpg" alt="indian" class="img-hover">
-  </label>
-  <p>Indian</p>
-</div>
-<div class="foods">
-  <label>
-      <input class="choice" type="checkbox" name="cuisine" value="italian" for="check1"  width="200" height="200"/><img src="images/food/italian2.jpeg" alt="italian" class="img-hover">
-  </label>
-  <p>Italian</p>
-</div>
-<div class="foods">
-  <label>
-      <input class="choice" type="checkbox" name="cuisine" value="pizza" for="check1"  width="200" height="200"/><img src="images/food/pizza2.jpeg" alt="pizza" class="img-hover">
-  </label>
-  <p>Pizza</p>
-</div>
-</div>
-<button type="submit" class="save-preferences userValidationButton">Save</button>
-<section id="save-preferences-text">
-    <p></p>
-</section>
-
-</div>
-<!-- ------------------------------------------------ -->
-
-
-<!-- CDN -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
-<script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
-
-<!-- MODELS -->
-<script src="./scripts/models/restaurants.js"></script>
-<script src="./scripts/models/location.js"></script>
-<script src ="./scripts/models/preferences.js"></script>
-<script src="./scripts/models/login.js"></script>
-<script src="./scripts/models/logout.js"></script>
-<!-- VIEWS -->
-<script src ="./scripts/views/restaurant-view.js"></script>
-<script src ="./scripts/views/results-view.js"></script>
-<script src="./scripts/views/newUser-view.js"></script>
-<script src="./scripts/views/login-view.js"></script>
-<!-- STYLE SCRIPT TO HANDLE JS STYLING -->
-<script src="./scripts/views/style.js"></script>
-
-<script src="./scripts/models/newUser.js"></script>
-<script src="./scripts/models/newFavorite.js"></script>
-<script src ="./scripts/views/preferences-view.js"></script>
-<script src ="./scripts/views/form-view.js"></script>
-<script src ="./scripts/views/favorite-view.js"></script>
-<!-- CONTROLLERS -->
-<script src="./scripts/controllers/routes.js"></script>
+  <script src="./scripts/models/newUser.js"></script>
+  <script src="./scripts/models/newFavorite.js"></script>
+  <script src="./scripts/views/preferences-view.js"></script>
+  <script src="./scripts/views/form-view.js"></script>
+  <script src="./scripts/views/favorite-view.js"></script>
+  <!-- CONTROLLERS -->
+  <script src="./scripts/controllers/routes.js"></script>
 </body>
+
 </html>

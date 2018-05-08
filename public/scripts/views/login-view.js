@@ -6,6 +6,7 @@ var app = app || {};
   const loginView = {};
 
   loginView.init = () => {
+    $('#home-video').show();
     $('header').show();
     $('#newFavoriteDiv').hide();
     $('#newUserDiv').hide();

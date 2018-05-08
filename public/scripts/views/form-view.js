@@ -7,6 +7,7 @@ var app = app || {};
   const form = {};
 
   form.init = () => {
+    $('#form-video').show();
     $('header').show();
     $('#home-button').show();
     $('#about-button').show();
@@ -19,7 +20,7 @@ var app = app || {};
     $('#or').show();
     $('#geo').show();
     $('#enter-location').show();
-    $('.form-app').show();
+    $('#app-form-container').show();
     $('#chewsit').show();
     $('.icon-spinner').hide();
     console.log('form is showing');

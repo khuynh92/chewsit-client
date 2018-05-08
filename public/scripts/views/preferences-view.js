@@ -13,6 +13,7 @@ var app = app || {};
     var preferencesArray = [];
 
     if(localStorage.ID) {
+      $('#form-video').show();
       $('#logoutButton').show();
       $('#preferences-button').show();
       $('#home-button').hide();
