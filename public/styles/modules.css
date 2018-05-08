@@ -751,6 +751,8 @@ justify-content: center;
 }
 .preferences-page{
   background-color:rgba(104, 99, 99, 0.952);
+  height: 100%;
+
 }
 
 .home-button-container {
@@ -802,6 +804,7 @@ html {
   background: linear-gradient( rgba(0, 0, 0, 0.315), rgba(0, 0, 0, 0.315) ), url('../images/bamboo.jpg');
   background-repeat: repeat-y;
   background-size:cover;
+
 }
 
 .teamc1 {
@@ -814,6 +817,8 @@ html {
 
 .preferences-page{
   background-color:rgba(104, 99, 99, 0.952);
+  height: 100%;
+
 }
 
 #home-view {
