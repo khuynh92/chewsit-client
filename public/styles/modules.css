@@ -15,11 +15,10 @@ text-align: center;
 
 /* --------------------HOME PAGE-------------------------- */
 #home-view {
-  height: 80vh;
+  height: 77vh;
   margin: 0 auto;
   width: 100%;
   margin-top: 10%;
-  /* height: 60%; */
 }
 
 #logo {
@@ -29,6 +28,7 @@ text-align: center;
   color: white;
   font-size: 700%;
   text-align: center; 
+  margin-bottom: -150px;
 }
 
 .home-button-container{
@@ -310,7 +310,7 @@ margin-top: 10px;
 }
 
 #app-form {
-  margin-top: 15vh;
+  margin-top: 5vh;
 }
 
 label input[type="radio"]{
@@ -441,11 +441,10 @@ background-color: darkgray;
     }
 
 h4 {
-  font-size: 30px;
   color: white;
   font-weight: bold;
   line-height: 3.5;
-  max-height: 40%;
+
 }
 .textbox {
   width: 162px;
@@ -737,6 +736,7 @@ justify-content: center;
 
 #home-view {
   width: 100%;
+  margin-top: 10%;
 }
 
 #logo {
@@ -839,7 +839,7 @@ html {
 }
 
 .home-button-container {
-  margin-top: -4%;
+  margin-top: 50px;
 }
 #content2 {
   padding: 4%;
