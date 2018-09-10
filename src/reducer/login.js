@@ -2,7 +2,7 @@ let initialState = {isLoggedIn: false, logInError: false, signUpError: false};
 
 import { LOG_IN, LOG_OUT, LOG_IN_ERROR } from '../action/login-action.js';
 
-import { SIGN_UP_ERROR} from '../action/signup-action.js';
+import { SIGN_UP_ERROR, NEW_USER_LOGIN} from '../action/signup-action.js';
 
 
 export default (state = initialState, action) => {
@@ -14,6 +14,8 @@ export default (state = initialState, action) => {
     case LOG_IN: return {...state, ...payload};
 
     case LOG_OUT: return {...state, ...payload};
+
+    case NEW_USER_LOGIN: return {...state, ...payload};
 
     case LOG_IN_ERROR: return {...state, ...payload};
 

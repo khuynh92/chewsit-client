@@ -2,15 +2,18 @@
 import superagent from 'superagent';
 import cookie from 'react-cookies';
 
-import {logIn} from './login-action.js';
-
 export const SIGN_UP_ERROR = 'SIGN_IN_ERROR';
  
+export const NEW_USER_LOGIN = 'NEW_USER_LOGIN';
 export const userExists = () => ({
   type: SIGN_UP_ERROR,
   payload: {signUpError: true},
 });
 
+export const newUserLogin = () => ({
+  type: NEW_USER_LOGIN,
+  payload: {isLoggedIn: 'new user'},
+});
 
 export const signUpThunk = (newUser) => {
   return dispatch => {
@@ -18,7 +21,7 @@ export const signUpThunk = (newUser) => {
       .send({username: newUser.username, password: newUser.password, email: newUser.email})
       .then(response => {
         cookie.save('token', response.text);
-        dispatch(logIn(true));
+        dispatch(newUserLogin());
       })
       .catch(err => {
         if(err.status === 409) {

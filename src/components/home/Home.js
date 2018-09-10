@@ -60,8 +60,8 @@ class Home extends Component {
     let linkedInURL = 'https://www.linkedin.com/oauth/v2/authorization';
     let options = {
       client_id: '86v36mks0tlhmk',
-      redirect_uri: 'http://localhost:3000/oauth',
-      // redirect_uri: 'https://khoa-18-oauth.herokuapp.com/oauth',
+      redirect_uri: 'http://localhost:3000/oauth/linkedIn/code',
+      // redirect_uri: 'https://khoa-18-oauth.herokuapp.com/oauth/linkedIn/code',
       scope: 'r_basicprofile r_emailaddress',
       response_type: 'code',
       state: 'LKKdlahjk123jhka23hk1dh12',
@@ -82,10 +82,9 @@ class Home extends Component {
       return (
         <Fragment>
           <Typography variant="display1" className={this.props.classes.home}>Home</Typography>
+          <p>Sign in with: <Button variant="fab" mini color="secondary" className={this.props.classes.oAuth} onClick={this.googleOAuth}> <GooglePlus /> </Button>     <Button variant="fab" mini color="secondary" className={this.props.classes.linkedIn} onClick={this.linkedInOAuth}> <Linkedin /> </Button></p>
           <LogInForm />
           <p>Don't have an account? <Link to='/signup'>Create Account</Link></p>
-          <p>Or sign in with: <Button variant="fab" mini color="secondary" className={this.props.classes.oAuth} onClick={this.googleOAuth}> <GooglePlus /> </Button>     <Button variant="fab" mini color="secondary" className={this.props.classes.linkedIn} onClick={this.linkedInOAuth}> <Linkedin /> </Button></p>
-         
         </Fragment>
       );
     }

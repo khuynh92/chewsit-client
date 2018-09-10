@@ -32,23 +32,23 @@ class SignUpForm extends Component {
 
   handleSubmit = async (e) => {
     e.preventDefault();
-    if(!this.state.username) {
-      await this.setState({noUsername: true});
+    if (!this.state.username) {
+      await this.setState({ noUsername: true });
     }
-    if(!this.state.email) {
-      await this.setState({noEmail: true});
+    if (!this.state.email) {
+      await this.setState({ noEmail: true });
     }
-    if(!this.state.password) {
-      await this.setState({noPassword: true});
+    if (!this.state.password) {
+      await this.setState({ noPassword: true });
     }
     if (this.state.password !== this.state.passwordConfirm) {
       this.setState({ passwordError: true });
-    } 
+    }
 
-    if(this.state.password === this.state.passwordConfirm && this.state.username && this.state.password && this.state.email) {
+    if (this.state.password === this.state.passwordConfirm && this.state.username && this.state.password && this.state.email) {
       this.props.signUpThunk(this.state);
     }
-    
+
   }
 
   componentDidMount() {
@@ -65,7 +65,9 @@ class SignUpForm extends Component {
   }
 
   render() {
-    if (this.props.loggedIn.isLoggedIn) {
+    if(this.props.loggedIn.isLoggedIn === 'new user') {
+      return <Redirect to='/preferences' />;
+    } else if (this.props.loggedIn.isLoggedIn) {
       return <Redirect to='/dashboard' />;
     } else {
       return (
