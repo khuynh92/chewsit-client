@@ -7,6 +7,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import GooglePlus from 'mdi-material-ui/GooglePlus';
+import Linkedin from 'mdi-material-ui/linkedin';
 
 import LogInForm from '../login/LogInForm';
 
@@ -20,6 +21,12 @@ const styles = {
   oAuth: {
     marginLeft: 10,
   },
+  linkedIn: {
+    backgroundColor: 'rgb(33, 138, 218)',
+    '&:hover': {
+      backgroundColor: 'rgb(30, 120, 189)',
+    },
+  },
 };
 
 class Home extends Component {
@@ -31,8 +38,41 @@ class Home extends Component {
     }
   }
 
-  oAuth = () => {
-    window.location = 'https://accounts.google.com/o/oauth2/v2/auth?client_id=123538572340-or8e9drlqqnlmkfupkcfh519d889dqo6.apps.googleusercontent.com&redirect_uri=http://localhost:3000/oauth/google/code&scope=email openid profile&prompt=consent&response_type=code';
+  googleOAuth = () => {
+    let googleURL = 'https://accounts.google.com/o/oauth2/v2/auth';
+    let options = {
+      client_id: '123538572340-or8e9drlqqnlmkfupkcfh519d889dqo6.apps.googleusercontent.com',
+      redirect_uri: 'http://localhost:3000/oauth/google/code',
+      scope: 'email openid profile',
+      prompt: 'consent',
+      response_type: 'code',
+    }
+    let queryString = Object.keys(options).map(key => {
+      return `${key}=` + encodeURIComponent(options[key]);
+    }).join('&');
+    let authURL = `${googleURL}?${queryString}`;
+
+    window.location = authURL;
+
+  }
+
+  linkedInOAuth = () => {
+    let linkedInURL = 'https://www.linkedin.com/oauth/v2/authorization';
+    let options = {
+      client_id: '86v36mks0tlhmk',
+      redirect_uri: 'http://localhost:3000/oauth',
+      // redirect_uri: 'https://khoa-18-oauth.herokuapp.com/oauth',
+      scope: 'r_basicprofile r_emailaddress',
+      response_type: 'code',
+      state: 'LKKdlahjk123jhka23hk1dh12',
+    };
+    let queryString = Object.keys(options).map(key => {
+      return `${key}=` + encodeURIComponent(options[key]);
+    }).join('&');
+    let authURL = `${linkedInURL}?${queryString}`;
+
+    window.location = authURL;
+
   }
 
   render() {
@@ -44,7 +84,8 @@ class Home extends Component {
           <Typography variant="display1" className={this.props.classes.home}>Home</Typography>
           <LogInForm />
           <p>Don't have an account? <Link to='/signup'>Create Account</Link></p>
-          <p>Or sign in using Google<Button variant="fab" mini color="secondary" className={this.props.classes.oAuth} onClick={this.oAuth}> <GooglePlus /> </Button> </p>
+          <p>Or sign in with: <Button variant="fab" mini color="secondary" className={this.props.classes.oAuth} onClick={this.googleOAuth}> <GooglePlus /> </Button>     <Button variant="fab" mini color="secondary" className={this.props.classes.linkedIn} onClick={this.linkedInOAuth}> <Linkedin /> </Button></p>
+         
         </Fragment>
       );
     }

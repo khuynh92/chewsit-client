@@ -3,10 +3,16 @@ import cookie from 'react-cookies';
 
 export const LOG_IN = 'LOG_IN';
 export const LOG_IN_ERROR = 'LOG_IN_ERROR';
+export const LOG_OUT = 'LOG_OUT';
 
 export const logIn = ()  => ({
   type: LOG_IN,
   payload: {isLoggedIn: true, logInError: false, signInError: false},
+});
+
+export const logOut = () => ({
+  type: LOG_OUT,
+  payload: {isLoggedIn: false},
 });
 
 export const handleError = (err) => ({
@@ -33,5 +39,12 @@ export const logInThunk = (user) => {
           dispatch(logInError());
         }
       });
+  };
+};
+
+export const logOutThunk = () => {
+  return dispatch => {
+    cookie.remove('token');
+    dispatch(logOut());
   };
 };

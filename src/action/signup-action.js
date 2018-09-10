@@ -4,12 +4,13 @@ import cookie from 'react-cookies';
 
 import {logIn} from './login-action.js';
 
-export const SIGN_IN_ERROR = 'SIGN_IN_ERROR';
+export const SIGN_UP_ERROR = 'SIGN_IN_ERROR';
  
 export const userExists = () => ({
-  type: SIGN_IN_ERROR,
-  payload: {signInError: true},
-})
+  type: SIGN_UP_ERROR,
+  payload: {signUpError: true},
+});
+
 
 export const signUpThunk = (newUser) => {
   return dispatch => {
@@ -23,7 +24,7 @@ export const signUpThunk = (newUser) => {
         if(err.status === 409) {
           dispatch(userExists());
         }
-      })
+      });
 
   };
-}
+};

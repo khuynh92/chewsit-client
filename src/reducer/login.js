@@ -1,8 +1,8 @@
-let initialState = {isLoggedIn: false, logInError: false, signInError: false};
+let initialState = {isLoggedIn: false, logInError: false, signUpError: false};
 
-import { LOG_IN, LOG_IN_ERROR } from '../action/login-action.js';
+import { LOG_IN, LOG_OUT, LOG_IN_ERROR } from '../action/login-action.js';
 
-import { SIGN_IN_ERROR} from '../action/signup-action.js';
+import { SIGN_UP_ERROR} from '../action/signup-action.js';
 
 
 export default (state = initialState, action) => {
@@ -13,9 +13,11 @@ export default (state = initialState, action) => {
 
     case LOG_IN: return {...state, ...payload};
 
+    case LOG_OUT: return {...state, ...payload};
+
     case LOG_IN_ERROR: return {...state, ...payload};
 
-    case SIGN_IN_ERROR: return {...state, ...payload};
+    case SIGN_UP_ERROR: return {...state, ...payload};
 
     default: return state;
   }
