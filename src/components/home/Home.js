@@ -17,6 +17,7 @@ import { logIn } from '../../action/login-action.js';
 const styles = {
   home: {
     'color': 'black',
+    
   },
   oAuth: {
     marginLeft: 10,

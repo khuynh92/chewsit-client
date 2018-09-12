@@ -7,7 +7,7 @@ export const LOG_OUT = 'LOG_OUT';
 
 export const logIn = ()  => ({
   type: LOG_IN,
-  payload: {isLoggedIn: true, logInError: false, signInError: false},
+  payload: {isLoggedIn: true, logInError: false, signUpError: false},
 });
 
 export const logOut = () => ({
