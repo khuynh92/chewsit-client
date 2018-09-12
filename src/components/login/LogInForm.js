@@ -43,7 +43,7 @@ class LogInForm extends Component {
           <TextField
             id="username"
             label="username"
-            error={this.props.loggedIn.logInError ? true : false}
+            error={this.props.user.logInError ? true : false}
             value={this.state.username}
             onChange={this.handleChange('username')}
             margin="normal"
@@ -54,14 +54,14 @@ class LogInForm extends Component {
             id="password"
             label="password"
             type="password"
-            error={this.props.loggedIn.logInError ? true : false}
+            error={this.props.user.logInError ? true : false}
             value={this.state.password}
             onChange={this.handleChange('password')}
             margin="normal"
             placeholder="password"
           />
           <br />
-          {this.props.loggedIn.logInError ? <Typography variant='body2' color='error'>Invalid Username/Password</Typography> : null}
+          {this.props.user.logInError ? <Typography variant='body2' color='error'>Invalid Username/Password</Typography> : null}
           <Button size="small" variant="contained" color="primary" onClick={this.handleSubmit}>Log In</Button>
         </form>
       </Fragment>
@@ -71,6 +71,6 @@ class LogInForm extends Component {
 
 const mapDispatchToProps = { logInThunk };
 
-const mapStateToProps = state => ({ loggedIn: state.loggedIn })
+const mapStateToProps = state => ({ user: state.user })
 
 export default connect(mapStateToProps, mapDispatchToProps)(LogInForm);

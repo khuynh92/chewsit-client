@@ -1,13 +1,14 @@
 import superagent from 'superagent';
 import cookie from 'react-cookies';
+import {getPrefThunk} from './preferences-action.js';
 
 export const LOG_IN = 'LOG_IN';
 export const LOG_IN_ERROR = 'LOG_IN_ERROR';
 export const LOG_OUT = 'LOG_OUT';
 
-export const logIn = ()  => ({
+export const logIn = (id)  => ({
   type: LOG_IN,
-  payload: {isLoggedIn: true, logInError: false, signUpError: false},
+  payload: {id, isLoggedIn: true, logInError: false, signUpError: false},
 });
 
 export const logOut = () => ({
@@ -26,13 +27,14 @@ export const logInError = () => ({
 });
 
 export const logInThunk = (user) => {
-  console.log(process.env.API_URL);
   return dispatch => {
-    superagent.get(`${process.env.API_URL}/signin`)
+    return superagent.get(`${process.env.API_URL}/signin`)
       .auth(user.username, user.password)
       .then(response => {
         cookie.save('token', response.text);
-        dispatch(logIn(true));
+        let user = JSON.parse(atob(response.text.split('.')[1]));
+        dispatch(logIn(user.id));
+        dispatch(getPrefThunk(user.id));
       })
       .catch(err => {
         if(err.status === 401) {

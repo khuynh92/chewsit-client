@@ -65,9 +65,9 @@ class SignUpForm extends Component {
   }
 
   render() {
-    if(this.props.loggedIn.isLoggedIn === 'new user') {
+    if(this.props.user.isLoggedIn === 'new user') {
       return <Redirect to='/preferences' />;
-    } else if (this.props.loggedIn.isLoggedIn) {
+    } else if (this.props.user.isLoggedIn) {
       return <Redirect to='/dashboard' />;
     } else {
       return (
@@ -80,7 +80,7 @@ class SignUpForm extends Component {
               required
               id="username"
               label="username"
-              error={this.props.loggedIn.signUpError || this.state.noUsername ? true : false}
+              error={this.props.user.signUpError || this.state.noUsername ? true : false}
               value={this.state.username}
               onChange={this.handleChange('username')}
               margin="normal"
@@ -91,7 +91,7 @@ class SignUpForm extends Component {
               required
               id="email"
               label="email"
-              error={this.props.loggedIn.signUpError || this.state.noEmail ? true : false}
+              error={this.props.user.signUpError || this.state.noEmail ? true : false}
               value={this.state.email}
               onChange={this.handleChange('email')}
               margin="normal"
@@ -122,7 +122,7 @@ class SignUpForm extends Component {
               placeholder="confirm password"
             />
             <br />
-            <Typography variant="body2" color="error">{this.props.loggedIn.signUpError ? 'Username/Email already taken' : ''}</Typography>
+            <Typography variant="body2" color="error">{this.props.user.signUpError ? 'Username/Email already taken' : ''}</Typography>
             <Typography variant="body2" color="error">{this.state.noUsername || this.state.noEmail || this.state.noPassword ? 'Please complete the form' : ''}</Typography>
             <br />
             <Button size="small" variant="contained" color="primary" onClick={this.handleSubmit}>Sign Up</Button>
@@ -135,7 +135,7 @@ class SignUpForm extends Component {
   }
 }
 
-const mapStateToProps = ({ loggedIn }) => ({ loggedIn });
+const mapStateToProps = ({ user }) => ({ user });
 const mapDispatchToProps = { signUpThunk };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignUpForm);

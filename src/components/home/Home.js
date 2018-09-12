@@ -12,12 +12,13 @@ import Linkedin from 'mdi-material-ui/linkedin';
 import LogInForm from '../login/LogInForm';
 
 import { logIn } from '../../action/login-action.js';
+import { getPrefThunk } from '../../action/preferences-action.js';
 
 
 const styles = {
   home: {
     'color': 'black',
-    
+
   },
   oAuth: {
     marginLeft: 10,
@@ -32,10 +33,12 @@ const styles = {
 
 class Home extends Component {
 
-  componentDidMount() {
+  async componentDidMount() {
     document.title = 'Home';
     if (cookie.load('token')) {
-      this.props.logIn();
+      let user = JSON.parse(atob(cookie.load('token').split('.')[1]));
+      await this.props.logIn(user.id);
+      await this.props.getPrefThunk(user.id);
     }
   }
 
@@ -77,7 +80,7 @@ class Home extends Component {
   }
 
   render() {
-    if (this.props.loggedIn.isLoggedIn) {
+    if (this.props.user.isLoggedIn) {
       return <Redirect push to='/dashboard' />;
     } else {
       return (
@@ -92,8 +95,8 @@ class Home extends Component {
   }
 }
 
-const mapStateToProps = state => ({ loggedIn: state.loggedIn });
+const mapStateToProps = state => ({ user: state.user });
 
-const mapDispatchToProps = { logIn };
+const mapDispatchToProps = { logIn, getPrefThunk };
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Home));
