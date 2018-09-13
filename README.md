@@ -1,11 +1,5 @@
-# react-seed
+# chewsit
 
-This is a basic react seed that includes redux.
+This is front end repository for the third iteration of chewsit. Currently being built using React, Redux and Material UI.
 
-## To install
-
-type in `npm i` in the CLI in the root directory
-
-## To run
-
-type in `npm run watch` in the CLI in the root directory 
+visit the server side repo at: https://github.com/khuynh92/chewsit-server
