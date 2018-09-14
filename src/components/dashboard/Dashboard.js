@@ -24,6 +24,11 @@ const styles = {
     marginTop: 5,
     marginLeft: -100,
   },
+  submitLoading: {
+    position: 'absolute',
+    marginTop: 5,
+    marginLeft: -50,
+  },
 };
 
 class Dashboard extends Component {
@@ -35,52 +40,75 @@ class Dashboard extends Component {
     location: '',
     locationFetchText: '',
     locationFetch: false,
+    submitLoading: false,
+    priceError: false,
+    mealTypeError: false,
+    distanceError: false,
+    locationError: false,
   }
 
   changePrice = (e) => {
-    this.setState({ price: e.target.textContent });
+    this.setState({ price: e.target.textContent, priceError: false });
   }
 
   changeMealType = (e) => {
-    this.setState({ mealType: e.target.textContent.toLowerCase() });
+    this.setState({ mealType: e.target.textContent.toLowerCase(), mealTypeError: false });
 
   }
 
   changeDistance = (e) => {
-    this.setState({ distance: e.target.value });
+    this.setState({ distance: e.target.value, distanceError: false });
 
   }
 
   getLocation = async () => {
-    await this.setState({locationFetchText: 'Getting location...', locationFetch: true});
+    await this.setState({ locationFetchText: 'Getting location...', locationFetch: true });
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) =>   {
+      navigator.geolocation.getCurrentPosition((position) => {
         location.pos = {
           lat: position.coords.latitude,
           lng: position.coords.longitude,
         };
-        this.setState({ location: location.pos, locationFetchText: 'Location received!', locationFetch: false});
+        this.setState({ location: location.pos, locationFetchText: 'Location received!', locationFetch: false, locationError: false });
       });
     }
   };
 
   submit = async () => {
-    let location = this.state.location.lat ? `latitude=${this.state.location.lat}&&longitude=${this.state.location.lng}` : location;
-    let randomIndex = Math.floor(Math.random()*this.props.user.preferences.length);
-    let randomPref = this.props.user.preferences.length ? this.props.user.preferences[randomIndex] : 'restaurant';
-    let food = this.state.mealType === 'dessert' || this.state.mealType === 'breakfast' ? this.state.mealType : randomPref;
+    if (this.state.location && this.state.distance && this.state.mealType && this.state.price) {
+      await this.setState({ submitLoading: true });
+      let location = this.state.location.lat ? `latitude=${this.state.location.lat}&&longitude=${this.state.location.lng}` : location;
+      let randomIndex = Math.floor(Math.random() * this.props.user.preferences.length);
+      let randomPref = this.props.user.preferences.length ? this.props.user.preferences[randomIndex] : 'restaurant';
+      let food = this.state.mealType === 'dessert' || this.state.mealType === 'breakfast' ? this.state.mealType : randomPref;
 
-    let offsetTotal = await superagent.get(`${process.env.API_URL}/api/v3/yelp/${food}/${location}/${this.state.price.length}/${this.state.distance}/0`)
-      .then(response => {
-        return response.body.total;
-      });
+      let offsetTotal = await superagent.get(`${process.env.API_URL}/api/v3/yelp/${food}/${location}/${this.state.price.length}/${this.state.distance}/0`)
+        .then(response => {
+          return response.body.total;
+        });
 
-    let offset =  offsetTotal < 51 ? 0 : Math.floor(Math.random() * offsetTotal - 4);
+      let offset = offsetTotal < 51 ? 0 : Math.floor(Math.random() * offsetTotal - 4);
 
-    superagent.get(`${process.env.API_URL}/api/v3/yelp/${food}/${location}/${this.state.price.length}/${this.state.distance}/${offset}`)
-      .then(response => {
-        console.log(response.body);
-      });
+      superagent.get(`${process.env.API_URL}/api/v3/yelp/${food}/${location}/${this.state.price.length}/${this.state.distance}/${offset}`)
+        .then(response => {
+          console.log(response.body);
+          this.setState({ submitLoading: false });
+        });
+    } else {
+      if(!this.state.location) {
+        this.setState({locationError: 'secondary'});
+      }
+      if(!this.state.mealType) {
+        this.setState({mealTypeError: 'secondary'});
+      }
+      if(!this.state.distance) {
+        this.setState({distanceError: true});
+      }
+      if(!this.state.price) {
+        this.setState({priceError: 'secondary'});
+      }
+    }
+
   }
 
   render() {
@@ -88,15 +116,15 @@ class Dashboard extends Component {
       return (
         <Fragment>
           <h1>Dashboard</h1>
-          <Button disabled={this.state.locationFetch} onClick={this.getLocation} id='location' className={this.props.classes.button} variant='contained' color='primary'>use location</Button>
-          {this.state.locationFetch && <CircularProgress size={24} thickness={5} className={this.props.classes.locationFetch}/>}
+          <Button disabled={this.state.locationFetch}  onClick={this.getLocation} id='location' className={this.props.classes.button} variant='contained' color={this.state.locationError ? this.state.locationError : 'primary'}>use location</Button>
+          {this.state.locationFetch && <CircularProgress size={24} thickness={5} className={this.props.classes.locationFetch} />}
           <Typography variant='body1'>{this.state.locationFetchText}</Typography>
-          
+
           <br />
           <br />
           <FormControl>
-            <InputLabel htmlFor="distance-native-helper">Distance</InputLabel>
-            <NativeSelect onChange={this.changeDistance} value={this.state.distance} input={<Input name="distance" id="distance-native-helper" />}>
+            <InputLabel error={this.state.distanceError} htmlFor="distance-native-helper">Distance</InputLabel>
+            <NativeSelect error={this.state.distanceError} onChange={this.changeDistance} value={this.state.distance} input={<Input name="distance" id="distance-native-helper" />}>
               <option value="" />
               <option value={805}>½ mile</option>
               <option value={1610}>1 mile</option>
@@ -109,20 +137,29 @@ class Dashboard extends Component {
           <br />
           <br />
 
-          <Button onClick={this.changePrice} id='$' className={this.props.classes.button} variant={this.state.price === '$' ? 'contained' : 'outlined'} color='primary'>$</Button>
-          <Button onClick={this.changePrice} id='$$' className={this.props.classes.button} variant={this.state.price === '$$' ? 'contained' : 'outlined'} color='primary'>$$</Button>
-          <Button onClick={this.changePrice} id='$$$' className={this.props.classes.button} variant={this.state.price === '$$$' ? 'contained' : 'outlined'} color='primary'>$$$</Button>
-          <Button onClick={this.changePrice} id='$$$$' className={this.props.classes.button} variant={this.state.price === '$$$$' ? 'contained' : 'outlined'} color='primary'>$$$$</Button>
+          <Button onClick={this.changePrice} id='$' className={this.props.classes.button} variant={this.state.price === '$' ? 'contained' : 'outlined'} color={this.state.priceError ? this.state.priceError : 'primary'}>$</Button>
+
+          <Button onClick={this.changePrice} id='$$' className={this.props.classes.button} variant={this.state.price === '$$' ? 'contained' : 'outlined'} color={this.state.priceError ? this.state.priceError : 'primary'}>$$</Button>
+
+          <Button onClick={this.changePrice} id='$$$' className={this.props.classes.button} variant={this.state.price === '$$$' ? 'contained' : 'outlined'} color={this.state.priceError ? this.state.priceError : 'primary'}>$$$</Button>
+
+          <Button onClick={this.changePrice} id='$$$$' className={this.props.classes.button} variant={this.state.price === '$$$$' ? 'contained' : 'outlined'} color={this.state.priceError ? this.state.priceError : 'primary'}>$$$$</Button>
 
           <br />
           <br />
-          <Button onClick={this.changeMealType} id='breakfast' className={this.props.classes.button} variant={this.state.mealType === 'breakfast' ? 'contained' : 'outlined'} color='primary'>Breakfast</Button>
-          <Button onClick={this.changeMealType} id='lunch' className={this.props.classes.button} variant={this.state.mealType === 'lunch' ? 'contained' : 'outlined'} color='primary'>Lunch</Button>
-          <Button onClick={this.changeMealType} id='dinner' className={this.props.classes.button} variant={this.state.mealType === 'dinner' ? 'contained' : 'outlined'} color='primary'>Dinner</Button>
-          <Button onClick={this.changeMealType} id='dessert' className={this.props.classes.button} variant={this.state.mealType === 'dessert' ? 'contained' : 'outlined'} color='primary'>Dessert</Button>
+          <Button onClick={this.changeMealType} id='breakfast' className={this.props.classes.button} variant={this.state.mealType === 'breakfast' ? 'contained' : 'outlined'} color={this.state.mealTypeError ? this.state.mealTypeError : 'primary'}>Breakfast</Button>
+
+          <Button onClick={this.changeMealType} id='lunch' className={this.props.classes.button} variant={this.state.mealType === 'lunch' ? 'contained' : 'outlined'} color={this.state.mealTypeError ? this.state.mealTypeError : 'primary'}>Lunch</Button>
+
+          <Button onClick={this.changeMealType} id='dinner' className={this.props.classes.button} variant={this.state.mealType === 'dinner' ? 'contained' : 'outlined'} color={this.state.mealTypeError ? this.state.mealTypeError : 'primary'}>Dinner</Button>
+
+          <Button onClick={this.changeMealType} id='dessert' className={this.props.classes.button} variant={this.state.mealType === 'dessert' ? 'contained' : 'outlined'} color={this.state.mealTypeError ? this.state.mealTypeError : 'primary'}>Dessert</Button>
           <br />
           <br />
-          <Button onClick={this.submit} size="small" variant="contained" color="primary">chewsit</Button>
+
+          <Button onClick={this.submit} size="small" variant="contained" color="primary" disabled={this.state.submitLoading}>chewsit</Button>
+          {this.state.submitLoading && <CircularProgress size={24} thickness={5} className={this.props.classes.submitLoading} />}
+
           <br />
           <br />
           <Button onClick={this.props.logOutThunk} size="small" variant="contained" color="secondary">Log Out</Button>
