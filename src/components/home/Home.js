@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import GooglePlus from 'mdi-material-ui/GooglePlus';
 import Linkedin from 'mdi-material-ui/linkedin';
-
+import Facebook from 'mdi-material-ui/facebook';
 import LogInForm from '../login/LogInForm';
 
 import { logIn } from '../../action/login-action.js';
@@ -22,8 +22,19 @@ const styles = {
   },
   oAuth: {
     marginLeft: 10,
+    marginRight: 10,
+  },
+  facebook: {
+    marginLeft: 10,
+    marginRight: 10,
+    backgroundColor: 'rgb(20, 100, 255)',
+    '&:hover': {
+      backgroundColor: 'rgb(30, 120, 189)',
+    },
   },
   linkedIn: {
+    marginLeft: 10,
+    marginRight: 10,
     backgroundColor: 'rgb(33, 138, 218)',
     '&:hover': {
       backgroundColor: 'rgb(30, 120, 189)',
@@ -40,6 +51,10 @@ class Home extends Component {
       await this.props.logIn(user.id);
       await this.props.getPrefThunk(user.id);
     }
+  }
+
+  facebookOAuth = () => {
+    window.location = 'https://www.facebook.com/v3.1/dialog/oauth?client_id=510060352775198&scope=email&redirect_uri=http://localhost:3000/oauth/facebook/code&state=123kl21jdo9u01je2l1ij2dlkaj0112';
   }
 
   googleOAuth = () => {
@@ -86,7 +101,17 @@ class Home extends Component {
       return (
         <Fragment>
           <Typography variant="display1" className={this.props.classes.home}>Home</Typography>
-          <p>Sign in with: <Button variant="fab" mini color="secondary" className={this.props.classes.oAuth} onClick={this.googleOAuth}> <GooglePlus /> </Button>     <Button variant="fab" mini color="secondary" className={this.props.classes.linkedIn} onClick={this.linkedInOAuth}> <Linkedin /> </Button></p>
+          <p>Sign in with:
+            <Button variant="fab" mini color="secondary" className={this.props.classes.facebook} onClick={this.facebookOAuth}>
+              <Facebook />
+            </Button>
+            <Button variant="fab" mini color="secondary" className={this.props.classes.oAuth} onClick={this.googleOAuth}>
+              <GooglePlus />
+            </Button>
+            <Button variant="fab" mini color="secondary" className={this.props.classes.linkedIn} onClick={this.linkedInOAuth}>
+              <Linkedin />
+            </Button>
+          </p>
           <LogInForm />
           <p>Don't have an account? <Link to='/signup'>Create Account</Link></p>
         </Fragment>
