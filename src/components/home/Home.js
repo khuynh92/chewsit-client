@@ -20,24 +20,28 @@ const styles = {
     'color': 'black',
 
   },
-  oAuth: {
+  google: {
     marginLeft: 10,
     marginRight: 10,
+    backgroundColor: 'rgb(211, 72, 54)',
+    '&:hover': {
+      backgroundColor: 'rgb(241, 102, 84 )',
+    },
   },
   facebook: {
     marginLeft: 10,
     marginRight: 10,
-    backgroundColor: 'rgb(20, 100, 255)',
+    backgroundColor: 'rgb(59, 89, 152)',
     '&:hover': {
-      backgroundColor: 'rgb(30, 120, 189)',
+      backgroundColor: 'rgb(89, 119, 180)',
     },
   },
   linkedIn: {
     marginLeft: 10,
     marginRight: 10,
-    backgroundColor: 'rgb(33, 138, 218)',
+    backgroundColor: 'rgb(0, 119, 181)',
     '&:hover': {
-      backgroundColor: 'rgb(30, 120, 189)',
+      backgroundColor: 'rgb(30, 149, 211)',
     },
   },
 };
@@ -105,7 +109,7 @@ class Home extends Component {
             <Button variant="fab" mini color="secondary" className={this.props.classes.facebook} onClick={this.facebookOAuth}>
               <Facebook />
             </Button>
-            <Button variant="fab" mini color="secondary" className={this.props.classes.oAuth} onClick={this.googleOAuth}>
+            <Button variant="fab" mini color="secondary" className={this.props.classes.google} onClick={this.googleOAuth}>
               <GooglePlus />
             </Button>
             <Button variant="fab" mini color="secondary" className={this.props.classes.linkedIn} onClick={this.linkedInOAuth}>
