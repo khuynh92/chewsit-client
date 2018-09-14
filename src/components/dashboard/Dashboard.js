@@ -1,3 +1,4 @@
+import superagent from 'superagent';
 import React, { Component, Fragment } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -8,6 +9,8 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
 import Typography from '@material-ui/core/Typography';
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 
 import { getPrefThunk } from '../../action/preferences-action.js';
 import { logOutThunk, logIn } from '../../action/login-action.js';
@@ -15,6 +18,11 @@ import { logOutThunk, logIn } from '../../action/login-action.js';
 const styles = {
   button: {
     marginRight: 20,
+  },
+  locationFetch: {
+    position: 'absolute',
+    marginTop: 5,
+    marginLeft: -100,
   },
 };
 
@@ -25,7 +33,8 @@ class Dashboard extends Component {
     mealType: '',
     distance: '',
     location: '',
-    locationFetch: '',
+    locationFetchText: '',
+    locationFetch: false,
   }
 
   changePrice = (e) => {
@@ -43,28 +52,35 @@ class Dashboard extends Component {
   }
 
   getLocation = async () => {
-    await this.setState({locationFetch: 'Getting location...'});
+    await this.setState({locationFetchText: 'Getting location...', locationFetch: true});
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) =>   {
         location.pos = {
           lat: position.coords.latitude,
           lng: position.coords.longitude,
         };
-        console.log(location.pos.lat + ', ' + location.pos.lng);
-        this.setState({ location: location.pos, locationFetch: 'Location received!' });
+        this.setState({ location: location.pos, locationFetchText: 'Location received!', locationFetch: false});
       });
     }
   };
 
-  submit = () => {
-    let completeForm = {
-      price: this.state.price.length,
-      mealType: this.state.mealType,
-      distance: this.state.distance,
-      location: this.state.location,
-    };
+  submit = async () => {
+    let location = this.state.location.lat ? `latitude=${this.state.location.lat}&&longitude=${this.state.location.lng}` : location;
+    let randomIndex = Math.floor(Math.random()*this.props.user.preferences.length);
+    let randomPref = this.props.user.preferences.length ? this.props.user.preferences[randomIndex] : 'restaurant';
+    let food = this.state.mealType === 'dessert' || this.state.mealType === 'breakfast' ? this.state.mealType : randomPref;
 
-    console.log(completeForm);
+    let offsetTotal = await superagent.get(`${process.env.API_URL}/api/v3/yelp/${food}/${location}/${this.state.price.length}/${this.state.distance}/0`)
+      .then(response => {
+        return response.body.total;
+      });
+
+    let offset =  offsetTotal < 51 ? 0 : Math.floor(Math.random() * offsetTotal - 4);
+
+    superagent.get(`${process.env.API_URL}/api/v3/yelp/${food}/${location}/${this.state.price.length}/${this.state.distance}/${offset}`)
+      .then(response => {
+        console.log(response.body);
+      });
   }
 
   render() {
@@ -72,8 +88,9 @@ class Dashboard extends Component {
       return (
         <Fragment>
           <h1>Dashboard</h1>
-          <Button onClick={this.getLocation} id='location' className={this.props.classes.button} variant='contained' color='primary'>use location</Button>
-          <Typography variant='body1'>{this.state.locationFetch}</Typography>
+          <Button disabled={this.state.locationFetch} onClick={this.getLocation} id='location' className={this.props.classes.button} variant='contained' color='primary'>use location</Button>
+          {this.state.locationFetch && <CircularProgress size={24} thickness={5} className={this.props.classes.locationFetch}/>}
+          <Typography variant='body1'>{this.state.locationFetchText}</Typography>
           
           <br />
           <br />

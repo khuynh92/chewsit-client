@@ -69,7 +69,7 @@ class Home extends Component {
       scope: 'email openid profile',
       prompt: 'consent',
       response_type: 'code',
-    }
+    };
     let queryString = Object.keys(options).map(key => {
       return `${key}=` + encodeURIComponent(options[key]);
     }).join('&');
