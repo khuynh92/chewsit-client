@@ -1,4 +1,3 @@
-import superagent from 'superagent';
 import React, { Component, Fragment } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -14,6 +13,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { getPrefThunk } from '../../action/preferences-action.js';
 import { logOutThunk, logIn } from '../../action/login-action.js';
+import { fetchAllResultsThunk } from '../../action/results-action.js';
 
 const styles = {
   button: {
@@ -78,34 +78,25 @@ class Dashboard extends Component {
     if (this.state.location && this.state.distance && this.state.mealType && this.state.price) {
       await this.setState({ submitLoading: true });
       let location = this.state.location.lat ? `latitude=${this.state.location.lat}&&longitude=${this.state.location.lng}` : location;
-      let randomIndex = Math.floor(Math.random() * this.props.user.preferences.length);
-      let randomPref = this.props.user.preferences.length ? this.props.user.preferences[randomIndex] : 'restaurant';
-      let food = this.state.mealType === 'dessert' || this.state.mealType === 'breakfast' ? this.state.mealType : randomPref;
+      let prefStr = this.props.user.preferences.length ? this.props.user.preferences.join(',') : 'restaurant';
+      let food = this.state.mealType === 'desserts' || this.state.mealType === 'breakfast' ? this.state.mealType : prefStr;
 
-      let offsetTotal = await superagent.get(`${process.env.API_URL}/api/v3/yelp/${food}/${location}/${this.state.price.length}/${this.state.distance}/0`)
-        .then(response => {
-          return response.body.total;
-        });
+      await this.props.fetchAllResultsThunk(food, location, this.state.price.length, this.state.distance);
 
-      let offset = offsetTotal < 51 ? 0 : Math.floor(Math.random() * offsetTotal - 4);
+      this.setState({ submitLoading: false });
 
-      superagent.get(`${process.env.API_URL}/api/v3/yelp/${food}/${location}/${this.state.price.length}/${this.state.distance}/${offset}`)
-        .then(response => {
-          console.log(response.body);
-          this.setState({ submitLoading: false });
-        });
     } else {
-      if(!this.state.location) {
-        this.setState({locationError: 'secondary'});
+      if (!this.state.location) {
+        this.setState({ locationError: 'secondary' });
       }
-      if(!this.state.mealType) {
-        this.setState({mealTypeError: 'secondary'});
+      if (!this.state.mealType) {
+        this.setState({ mealTypeError: 'secondary' });
       }
-      if(!this.state.distance) {
-        this.setState({distanceError: true});
+      if (!this.state.distance) {
+        this.setState({ distanceError: true });
       }
-      if(!this.state.price) {
-        this.setState({priceError: 'secondary'});
+      if (!this.state.price) {
+        this.setState({ priceError: 'secondary' });
       }
     }
 
@@ -116,12 +107,14 @@ class Dashboard extends Component {
       return (
         <Fragment>
           <h1>Dashboard</h1>
-          <Button disabled={this.state.locationFetch}  onClick={this.getLocation} id='location' className={this.props.classes.button} variant='contained' color={this.state.locationError ? this.state.locationError : 'primary'}>use location</Button>
+
+          <Button disabled={this.state.locationFetch} onClick={this.getLocation} id='location' className={this.props.classes.button} variant='contained' color={this.state.locationError ? this.state.locationError : 'primary'}>use location</Button>
           {this.state.locationFetch && <CircularProgress size={24} thickness={5} className={this.props.classes.locationFetch} />}
           <Typography variant='body1'>{this.state.locationFetchText}</Typography>
 
           <br />
           <br />
+
           <FormControl>
             <InputLabel error={this.state.distanceError} htmlFor="distance-native-helper">Distance</InputLabel>
             <NativeSelect error={this.state.distanceError} onChange={this.changeDistance} value={this.state.distance} input={<Input name="distance" id="distance-native-helper" />}>
@@ -147,13 +140,15 @@ class Dashboard extends Component {
 
           <br />
           <br />
+
           <Button onClick={this.changeMealType} id='breakfast' className={this.props.classes.button} variant={this.state.mealType === 'breakfast' ? 'contained' : 'outlined'} color={this.state.mealTypeError ? this.state.mealTypeError : 'primary'}>Breakfast</Button>
 
           <Button onClick={this.changeMealType} id='lunch' className={this.props.classes.button} variant={this.state.mealType === 'lunch' ? 'contained' : 'outlined'} color={this.state.mealTypeError ? this.state.mealTypeError : 'primary'}>Lunch</Button>
 
           <Button onClick={this.changeMealType} id='dinner' className={this.props.classes.button} variant={this.state.mealType === 'dinner' ? 'contained' : 'outlined'} color={this.state.mealTypeError ? this.state.mealTypeError : 'primary'}>Dinner</Button>
 
-          <Button onClick={this.changeMealType} id='dessert' className={this.props.classes.button} variant={this.state.mealType === 'dessert' ? 'contained' : 'outlined'} color={this.state.mealTypeError ? this.state.mealTypeError : 'primary'}>Dessert</Button>
+          <Button onClick={this.changeMealType} id='desserts' className={this.props.classes.button} variant={this.state.mealType === 'desserts' ? 'contained' : 'outlined'} color={this.state.mealTypeError ? this.state.mealTypeError : 'primary'}>Desserts</Button>
+
           <br />
           <br />
 
@@ -162,6 +157,7 @@ class Dashboard extends Component {
 
           <br />
           <br />
+
           <Button onClick={this.props.logOutThunk} size="small" variant="contained" color="secondary">Log Out</Button>
         </Fragment>
       );
@@ -174,6 +170,6 @@ class Dashboard extends Component {
 
 const mapStateToProps = (state) => ({ state, user: state.user });
 
-const mapDispatchToProps = { logOutThunk, logIn, getPrefThunk };
+const mapDispatchToProps = { logOutThunk, logIn, getPrefThunk, fetchAllResultsThunk };
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Dashboard));
