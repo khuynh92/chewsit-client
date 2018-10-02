@@ -46,7 +46,7 @@ webpackConfig.module.rules = [
       loader: 'babel-loader',
       options: {
         presets: [  'env','stage-0','react'],
-        plugins: ['transform-react-jsx-source'],
+        plugins: ['transform-react-jsx-source', 'babel-plugin-lodash'],
         cacheDirectory: true,
       },
     },
