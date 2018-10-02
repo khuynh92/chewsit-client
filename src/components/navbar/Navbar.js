@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -6,6 +7,9 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import NavMenu from './NavMenu';
+
+import { logOutThunk } from '../../action/login-action.js';
+
 
 const styles = {
   root: {
@@ -34,11 +38,14 @@ function Navbar(props) {
           <Typography variant="title" color="inherit" className={classes.grow}>
             Chewsit
           </Typography>
-          <Button color="inherit">Logout</Button>
+          <Button onClick={props.logOutThunk}color="inherit">Logout</Button>
         </Toolbar>
       </AppBar>
     </div>
   );
 }
 
-export default withStyles(styles)(Navbar);
+const mapDispatchToProps = { logOutThunk };
+
+
+export default connect(null, mapDispatchToProps)(withStyles(styles)(Navbar));

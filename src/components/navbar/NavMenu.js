@@ -12,7 +12,6 @@ const styles = {
   list: {
     width: 250,
     marginTop: 10,
-    marginLeft: 5,
   },
   li: {
     marginTop: 20,

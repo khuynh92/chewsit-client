@@ -15,7 +15,7 @@ import Navbar from '../navbar/Navbar.js';
 
 
 import { getPrefThunk } from '../../action/preferences-action.js';
-import { logOutThunk, logIn, saveLocation } from '../../action/login-action.js';
+import { logIn, saveLocation } from '../../action/login-action.js';
 import { fetchAllResultsThunk } from '../../action/results-action.js';
 
 const styles = {
@@ -172,7 +172,6 @@ class Dashboard extends Component {
             <br />
             <br />
 
-            <Button onClick={this.props.logOutThunk} size="small" variant="contained" color="secondary">Log Out</Button>
           </Grid>
         </Fragment>
       );
@@ -185,6 +184,6 @@ class Dashboard extends Component {
 
 const mapStateToProps = (state) => ({ state, user: state.user });
 
-const mapDispatchToProps = { logOutThunk, logIn, getPrefThunk, fetchAllResultsThunk, saveLocation };
+const mapDispatchToProps = { logIn, getPrefThunk, fetchAllResultsThunk, saveLocation };
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Dashboard));
