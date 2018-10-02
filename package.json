@@ -96,12 +96,13 @@
     "webpack-merge": "^4.1.3"
   },
   "dependencies": {
-    "mdi-material-ui": "^5.4.0",
+    "babel-plugin-direct-import": "^0.5.0",
     "babel-plugin-lodash": "^3.3.4",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "file-loader": "^2.0.0",
     "imeanireallycantbelieveitsnotrandom": "^1.2.0",
+    "mdi-material-ui": "^5.4.0",
     "react-cookies": "^0.1.0",
     "redux-cookie": "^0.5.9",
     "redux-mock-store": "^1.5.3",
