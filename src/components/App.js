@@ -7,7 +7,7 @@ import store from '../lib/store.js';
 import Dashboard from './dashboard/Dashboard.js';
 import Home from './home/Home.js';
 import SignUpForm from './signup/SignUpForm.js';
-import LogInForm from './login/LogInForm.js';
+import Results from './results/Results.js';
 import Preferences from './preferences/Preferences.js';
 
 export default class App extends Component {
@@ -20,6 +20,7 @@ export default class App extends Component {
             <Route exact path='/dashboard' component={Dashboard} />
             <Route path='/signup' component={SignUpForm} />
             <Route path = '/preferences' component={Preferences} />
+            <Route path = '/results' component={Results} />
           </React.Fragment>
         </BrowserRouter>
       </Provider>

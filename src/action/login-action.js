@@ -5,6 +5,7 @@ import {getPrefThunk} from './preferences-action.js';
 export const LOG_IN = 'LOG_IN';
 export const LOG_IN_ERROR = 'LOG_IN_ERROR';
 export const LOG_OUT = 'LOG_OUT';
+export const SAVE_LOCATION = 'SAVE_LOCATION';
 
 export const logIn = (id)  => ({
   type: LOG_IN,
@@ -24,6 +25,11 @@ export const handleError = (err) => ({
 export const logInError = () => ({
   type: LOG_IN_ERROR,
   payload: {isLoggedIn: false, logInError: true},
+});
+
+export const saveLocation = (location) => ({
+  type: SAVE_LOCATION,
+  payload: {location},
 });
 
 export const logInThunk = (user) => {

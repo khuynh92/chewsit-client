@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component, Fragment} from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
@@ -8,8 +8,11 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import GooglePlus from 'mdi-material-ui/GooglePlus';
 import Linkedin from 'mdi-material-ui/linkedin';
-
+import Facebook from 'mdi-material-ui/facebook';
 import LogInForm from '../login/LogInForm';
+import Grid from '@material-ui/core/Grid';
+
+import Navbar from '../navbar/Navbar.js';
 
 import { logIn } from '../../action/login-action.js';
 import { getPrefThunk } from '../../action/preferences-action.js';
@@ -18,16 +21,33 @@ import { getPrefThunk } from '../../action/preferences-action.js';
 const styles = {
   home: {
     'color': 'black',
-
   },
-  oAuth: {
+  google: {
     marginLeft: 10,
+    marginRight: 10,
+    backgroundColor: 'rgb(211, 72, 54)',
+    '&:hover': {
+      backgroundColor: 'rgb(241, 102, 84 )',
+    },
+  },
+  facebook: {
+    marginLeft: 10,
+    marginRight: 10,
+    backgroundColor: 'rgb(59, 89, 152)',
+    '&:hover': {
+      backgroundColor: 'rgb(89, 119, 180)',
+    },
   },
   linkedIn: {
-    backgroundColor: 'rgb(33, 138, 218)',
+    marginLeft: 10,
+    marginRight: 10,
+    backgroundColor: 'rgb(0, 119, 181)',
     '&:hover': {
-      backgroundColor: 'rgb(30, 120, 189)',
+      backgroundColor: 'rgb(30, 149, 211)',
     },
+  },
+  container: {
+    marginTop: 100,
   },
 };
 
@@ -42,6 +62,10 @@ class Home extends Component {
     }
   }
 
+  facebookOAuth = () => {
+    window.location = 'https://www.facebook.com/v3.1/dialog/oauth?client_id=510060352775198&scope=email&redirect_uri=http://localhost:3000/oauth/facebook/code&state=123kl21jdo9u01je2l1ij2dlkaj0112';
+  }
+
   googleOAuth = () => {
     let googleURL = 'https://accounts.google.com/o/oauth2/v2/auth';
     let options = {
@@ -50,7 +74,7 @@ class Home extends Component {
       scope: 'email openid profile',
       prompt: 'consent',
       response_type: 'code',
-    }
+    };
     let queryString = Object.keys(options).map(key => {
       return `${key}=` + encodeURIComponent(options[key]);
     }).join('&');
@@ -85,10 +109,30 @@ class Home extends Component {
     } else {
       return (
         <Fragment>
-          <Typography variant="display1" className={this.props.classes.home}>Home</Typography>
-          <p>Sign in with: <Button variant="fab" mini color="secondary" className={this.props.classes.oAuth} onClick={this.googleOAuth}> <GooglePlus /> </Button>     <Button variant="fab" mini color="secondary" className={this.props.classes.linkedIn} onClick={this.linkedInOAuth}> <Linkedin /> </Button></p>
-          <LogInForm />
-          <p>Don't have an account? <Link to='/signup'>Create Account</Link></p>
+          <Navbar />
+          <Grid
+            className={this.props.classes.container}
+            container
+            spacing={0}
+            direction="column"
+            alignItems="center"
+            justify="center"
+          >
+            <Typography variant="display1" className={this.props.classes.home}>Home</Typography>
+            <p>Sign in with:
+              <Button variant="fab" mini color="secondary" className={this.props.classes.facebook} onClick={this.facebookOAuth}>
+                <Facebook />
+              </Button>
+              <Button variant="fab" mini color="secondary" className={this.props.classes.google} onClick={this.googleOAuth}>
+                <GooglePlus />
+              </Button>
+              <Button variant="fab" mini color="secondary" className={this.props.classes.linkedIn} onClick={this.linkedInOAuth}>
+                <Linkedin />
+              </Button>
+            </p>
+            <LogInForm />
+            <p>Don't have an account? <Link to='/signup'>Create Account</Link></p>
+          </Grid>
         </Fragment>
       );
     }
