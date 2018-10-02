@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component, Fragment} from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
@@ -10,6 +10,9 @@ import GooglePlus from 'mdi-material-ui/GooglePlus';
 import Linkedin from 'mdi-material-ui/linkedin';
 import Facebook from 'mdi-material-ui/facebook';
 import LogInForm from '../login/LogInForm';
+import Grid from '@material-ui/core/Grid';
+
+import Navbar from '../navbar/Navbar.js';
 
 import { logIn } from '../../action/login-action.js';
 import { getPrefThunk } from '../../action/preferences-action.js';
@@ -18,7 +21,6 @@ import { getPrefThunk } from '../../action/preferences-action.js';
 const styles = {
   home: {
     'color': 'black',
-
   },
   google: {
     marginLeft: 10,
@@ -43,6 +45,9 @@ const styles = {
     '&:hover': {
       backgroundColor: 'rgb(30, 149, 211)',
     },
+  },
+  container: {
+    marginTop: 100,
   },
 };
 
@@ -104,20 +109,30 @@ class Home extends Component {
     } else {
       return (
         <Fragment>
-          <Typography variant="display1" className={this.props.classes.home}>Home</Typography>
-          <p>Sign in with:
-            <Button variant="fab" mini color="secondary" className={this.props.classes.facebook} onClick={this.facebookOAuth}>
-              <Facebook />
-            </Button>
-            <Button variant="fab" mini color="secondary" className={this.props.classes.google} onClick={this.googleOAuth}>
-              <GooglePlus />
-            </Button>
-            <Button variant="fab" mini color="secondary" className={this.props.classes.linkedIn} onClick={this.linkedInOAuth}>
-              <Linkedin />
-            </Button>
-          </p>
-          <LogInForm />
-          <p>Don't have an account? <Link to='/signup'>Create Account</Link></p>
+          <Navbar />
+          <Grid
+            className={this.props.classes.container}
+            container
+            spacing={0}
+            direction="column"
+            alignItems="center"
+            justify="center"
+          >
+            <Typography variant="display1" className={this.props.classes.home}>Home</Typography>
+            <p>Sign in with:
+              <Button variant="fab" mini color="secondary" className={this.props.classes.facebook} onClick={this.facebookOAuth}>
+                <Facebook />
+              </Button>
+              <Button variant="fab" mini color="secondary" className={this.props.classes.google} onClick={this.googleOAuth}>
+                <GooglePlus />
+              </Button>
+              <Button variant="fab" mini color="secondary" className={this.props.classes.linkedIn} onClick={this.linkedInOAuth}>
+                <Linkedin />
+              </Button>
+            </p>
+            <LogInForm />
+            <p>Don't have an account? <Link to='/signup'>Create Account</Link></p>
+          </Grid>
         </Fragment>
       );
     }

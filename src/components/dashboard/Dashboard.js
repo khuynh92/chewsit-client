@@ -9,25 +9,29 @@ import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
 import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Grid from '@material-ui/core/Grid';
+
+import Navbar from '../navbar/Navbar.js';
 
 
 import { getPrefThunk } from '../../action/preferences-action.js';
-import { logOutThunk, logIn } from '../../action/login-action.js';
+import { logOutThunk, logIn, saveLocation } from '../../action/login-action.js';
 import { fetchAllResultsThunk } from '../../action/results-action.js';
 
 const styles = {
   button: {
-    marginRight: 20,
+    marginRight: 0,
   },
   locationFetch: {
-    position: 'absolute',
-    marginTop: 5,
-    marginLeft: -100,
+    marginTop: -30,
+    marginLeft: -5,
   },
   submitLoading: {
-    position: 'absolute',
-    marginTop: 5,
-    marginLeft: -50,
+    marginTop: -30,
+    marginLeft: -5,
+  },
+  buttonLeftMargin: {
+    marginLeft: 10,
   },
 };
 
@@ -69,6 +73,7 @@ class Dashboard extends Component {
           lat: position.coords.latitude,
           lng: position.coords.longitude,
         };
+        this.props.saveLocation(location.pos);
         this.setState({ location: location.pos, locationFetchText: 'Location received!', locationFetch: false, locationError: false });
       });
     }
@@ -83,7 +88,7 @@ class Dashboard extends Component {
 
       await this.props.fetchAllResultsThunk(food, location, this.state.price.length, this.state.distance);
 
-      this.setState({ submitLoading: false });
+      this.props.history.push('/results');
 
     } else {
       if (!this.state.location) {
@@ -106,63 +111,73 @@ class Dashboard extends Component {
     if (this.props.user.isLoggedIn) {
       return (
         <Fragment>
-          <h1>Dashboard</h1>
+          <Navbar />
+          <Grid
+            container
+            spacing={0}
+            direction="column"
+            alignItems="center"
+            justify="center"
+          >
+            <h1>Dashboard</h1>
 
-          <Button disabled={this.state.locationFetch} onClick={this.getLocation} id='location' className={this.props.classes.button} variant='contained' color={this.state.locationError ? this.state.locationError : 'primary'}>use location</Button>
-          {this.state.locationFetch && <CircularProgress size={24} thickness={5} className={this.props.classes.locationFetch} />}
-          <Typography variant='body1'>{this.state.locationFetchText}</Typography>
+            <Button disabled={this.state.locationFetch} onClick={this.getLocation} id='location' className={this.props.classes.button} variant='contained' color={this.state.locationError ? this.state.locationError : 'primary'}>use location</Button>
+            {this.state.locationFetch && <CircularProgress size={24} thickness={5} className={this.props.classes.locationFetch} />}
+            <Typography variant='body1'>{this.state.locationFetchText}</Typography>
 
-          <br />
-          <br />
+            <br />
+            <br />
 
-          <FormControl>
-            <InputLabel error={this.state.distanceError} htmlFor="distance-native-helper">Distance</InputLabel>
-            <NativeSelect error={this.state.distanceError} onChange={this.changeDistance} value={this.state.distance} input={<Input name="distance" id="distance-native-helper" />}>
-              <option value="" />
-              <option value={805}>½ mile</option>
-              <option value={1610}>1 mile</option>
-              <option value={8045}>5 miles</option>
-              <option value={16094}>10 miles</option>
-              <option value={32186}>20 miles</option>
-            </NativeSelect>
-          </FormControl>
+            <FormControl>
+              <InputLabel error={this.state.distanceError} htmlFor="distance-native-helper">Distance</InputLabel>
+              <NativeSelect error={this.state.distanceError} onChange={this.changeDistance} value={this.state.distance} input={<Input name="distance" id="distance-native-helper" />}>
+                <option value="" />
+                <option value={805}>½ mile</option>
+                <option value={1610}>1 mile</option>
+                <option value={8045}>5 miles</option>
+                <option value={16094}>10 miles</option>
+                <option value={32186}>20 miles</option>
+              </NativeSelect>
+            </FormControl>
 
-          <br />
-          <br />
+            <br />
+            <br />
+            <Grid>
+              <Button onClick={this.changePrice} id='$' className={this.props.classes.button} variant={this.state.price === '$' ? 'contained' : 'outlined'} color={this.state.priceError ? this.state.priceError : 'primary'}>$</Button>
 
-          <Button onClick={this.changePrice} id='$' className={this.props.classes.button} variant={this.state.price === '$' ? 'contained' : 'outlined'} color={this.state.priceError ? this.state.priceError : 'primary'}>$</Button>
+              <Button onClick={this.changePrice} id='$$' className={[this.props.classes.button, this.props.classes.buttonLeftMargin].join(' ')} variant={this.state.price === '$$' ? 'contained' : 'outlined'} color={this.state.priceError ? this.state.priceError : 'primary'}>$$</Button>
 
-          <Button onClick={this.changePrice} id='$$' className={this.props.classes.button} variant={this.state.price === '$$' ? 'contained' : 'outlined'} color={this.state.priceError ? this.state.priceError : 'primary'}>$$</Button>
+              <Button onClick={this.changePrice} id='$$$' className={[this.props.classes.button, this.props.classes.buttonLeftMargin].join(' ')} variant={this.state.price === '$$$' ? 'contained' : 'outlined'} color={this.state.priceError ? this.state.priceError : 'primary'}>$$$</Button>
 
-          <Button onClick={this.changePrice} id='$$$' className={this.props.classes.button} variant={this.state.price === '$$$' ? 'contained' : 'outlined'} color={this.state.priceError ? this.state.priceError : 'primary'}>$$$</Button>
+              <Button onClick={this.changePrice} id='$$$$' className={[this.props.classes.button, this.props.classes.buttonLeftMargin].join(' ')} variant={this.state.price === '$$$$' ? 'contained' : 'outlined'} color={this.state.priceError ? this.state.priceError : 'primary'}>$$$$</Button>
+            </Grid>
+            <br />
+            <br />
 
-          <Button onClick={this.changePrice} id='$$$$' className={this.props.classes.button} variant={this.state.price === '$$$$' ? 'contained' : 'outlined'} color={this.state.priceError ? this.state.priceError : 'primary'}>$$$$</Button>
+            <Grid>
+              <Button onClick={this.changeMealType} id='breakfast' className={this.props.classes.button} variant={this.state.mealType === 'breakfast' ? 'contained' : 'outlined'} color={this.state.mealTypeError ? this.state.mealTypeError : 'primary'}>Breakfast</Button>
 
-          <br />
-          <br />
+              <Button onClick={this.changeMealType} id='lunch' className={[this.props.classes.button, this.props.classes.buttonLeftMargin].join(' ')} variant={this.state.mealType === 'lunch' ? 'contained' : 'outlined'} color={this.state.mealTypeError ? this.state.mealTypeError : 'primary'}>Lunch</Button>
 
-          <Button onClick={this.changeMealType} id='breakfast' className={this.props.classes.button} variant={this.state.mealType === 'breakfast' ? 'contained' : 'outlined'} color={this.state.mealTypeError ? this.state.mealTypeError : 'primary'}>Breakfast</Button>
+              <Button onClick={this.changeMealType} id='dinner' className={[this.props.classes.button, this.props.classes.buttonLeftMargin].join(' ')} variant={this.state.mealType === 'dinner' ? 'contained' : 'outlined'} color={this.state.mealTypeError ? this.state.mealTypeError : 'primary'}>Dinner</Button>
 
-          <Button onClick={this.changeMealType} id='lunch' className={this.props.classes.button} variant={this.state.mealType === 'lunch' ? 'contained' : 'outlined'} color={this.state.mealTypeError ? this.state.mealTypeError : 'primary'}>Lunch</Button>
+              <Button onClick={this.changeMealType} id='desserts' className={[this.props.classes.button, this.props.classes.buttonLeftMargin].join(' ')} variant={this.state.mealType === 'desserts' ? 'contained' : 'outlined'} color={this.state.mealTypeError ? this.state.mealTypeError : 'primary'}>Desserts</Button>
+            </Grid>
+            <br />
+            <br />
 
-          <Button onClick={this.changeMealType} id='dinner' className={this.props.classes.button} variant={this.state.mealType === 'dinner' ? 'contained' : 'outlined'} color={this.state.mealTypeError ? this.state.mealTypeError : 'primary'}>Dinner</Button>
+            <Button onClick={this.submit} size="small" variant="contained" color="primary" disabled={this.state.submitLoading}>chewsit</Button>
+            {this.state.submitLoading && <CircularProgress size={24} thickness={5} className={this.props.classes.submitLoading} />}
 
-          <Button onClick={this.changeMealType} id='desserts' className={this.props.classes.button} variant={this.state.mealType === 'desserts' ? 'contained' : 'outlined'} color={this.state.mealTypeError ? this.state.mealTypeError : 'primary'}>Desserts</Button>
+            <br />
+            <br />
 
-          <br />
-          <br />
-
-          <Button onClick={this.submit} size="small" variant="contained" color="primary" disabled={this.state.submitLoading}>chewsit</Button>
-          {this.state.submitLoading && <CircularProgress size={24} thickness={5} className={this.props.classes.submitLoading} />}
-
-          <br />
-          <br />
-
-          <Button onClick={this.props.logOutThunk} size="small" variant="contained" color="secondary">Log Out</Button>
+            <Button onClick={this.props.logOutThunk} size="small" variant="contained" color="secondary">Log Out</Button>
+          </Grid>
         </Fragment>
       );
     } else {
-      return <Redirect to='/' />;
+      return <Redirect push to='/' />;
     }
   }
 }
@@ -170,6 +185,6 @@ class Dashboard extends Component {
 
 const mapStateToProps = (state) => ({ state, user: state.user });
 
-const mapDispatchToProps = { logOutThunk, logIn, getPrefThunk, fetchAllResultsThunk };
+const mapDispatchToProps = { logOutThunk, logIn, getPrefThunk, fetchAllResultsThunk, saveLocation };
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Dashboard));
