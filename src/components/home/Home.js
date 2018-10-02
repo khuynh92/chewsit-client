@@ -6,9 +6,9 @@ import cookie from 'react-cookies';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import GooglePlus from 'mdi-material-ui/GooglePlus';
-import Linkedin from 'mdi-material-ui/linkedin';
-import Facebook from 'mdi-material-ui/facebook';
+import {GooglePlus} from 'mdi-material-ui';
+import {Linkedin} from 'mdi-material-ui';
+import {Facebook} from 'mdi-material-ui';
 import LogInForm from '../login/LogInForm';
 import Grid from '@material-ui/core/Grid';
 
