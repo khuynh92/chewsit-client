@@ -14,29 +14,36 @@ import Grid from '@material-ui/core/Grid';
 import Navbar from '../navbar/Navbar.js';
 
 
-const styles = {
-  container: {
-    marginTop: 40,
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    display: 'flex',
-    flexDirection: 'column',
-    width: '75%',
-    height: '75vh',
-    justifyContent: 'center',
-  },
-  results: {
-    width: '100%',
-  },
-  map: {
-    width: '100%',
-  },
+const styles = theme => {
+  theme.breakpoints.values.sm = 480;
+  theme.breakpoints.values.md = 768;
+  theme.breakpoints.values.lg = 1024;
+
+  return ({
+    container: {
+      marginTop: 40,
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      display: 'flex',
+      flexDirection: 'column',
+      width: '75%',
+      height: '75vh',
+      justifyContent: 'center',
+    },
+    results: {
+      width: '100%',
+    },
+    map: {
+      width: '100%',
+    },
+  });
 };
+
 
 class Results extends Component {
   render() {
     if (!this.props.resultsState.allResults || !this.props.resultsState.allResults.length) {
-      return <Redirect push to='/dashboard' />;
+      return <Redirect to='/dashboard' />;
     } else {
       return (
         <Fragment>

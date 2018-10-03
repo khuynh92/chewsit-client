@@ -1,4 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+
 import { withStyles } from '@material-ui/core/styles';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import Typography from '@material-ui/core/Typography';
@@ -6,7 +9,10 @@ import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import MenuIcon from '@material-ui/icons/Menu';
 import Button from '@material-ui/core/Button';
-import ThumbUp from '@material-ui/icons/ThumbUp';
+import { ThumbUpOutline, InformationOutline, HomeOutline } from 'mdi-material-ui';
+
+import { logOutThunk } from '../../action/login-action.js';
+
 
 const styles = {
   list: {
@@ -19,12 +25,29 @@ const styles = {
   },
   button: {
     width: '100%',
+    justifyContent: 'left',
+    paddingLeft: 40,
   },
   listText: {
     marginLeft: 20,
   },
   menu: {
     textAlign: 'center',
+  },
+  liLogout: {
+    position: 'fixed',
+    top: '90vh',
+    width: '100%',
+  },
+  logoutButton: {
+    paddingLeft: 0,
+    width: '100%',
+  },
+  link: {
+    textDecoration: 'none',
+  },
+  menuIcon: {
+    color: '#ECEBE3',
   },
 };
 
@@ -39,26 +62,58 @@ class NavMenu extends React.Component {
     });
   };
 
+
+
   render() {
     const { classes } = this.props;
 
     const sideList = (
       <div className={classes.list}>
-        <Typography className={classes.menu}variant='headline'>Menu</Typography>
+        <Typography className={classes.menu} variant='headline'>Menu</Typography>
+
+        <Link to='/dashboard' className={classes.link}>
+          <List className={classes.li}>
+            <Button className={classes.button}>
+              <HomeOutline />
+              <Typography className={classes.listText} variant='body1'>Home</Typography>
+            </ Button>
+          </List>
+        </Link>
+        <Divider />
+
+        <Link to='/preferences' className={classes.link}>
+          <List className={classes.li}>
+            <Button className={classes.button} onClick={this.preferenceRedirect}>
+              <ThumbUpOutline />
+              <Typography className={classes.listText} variant='body1'>Preferences</Typography>
+            </ Button>
+          </List>
+        </Link>
+        <Divider />
+
         <List className={classes.li}>
           <Button className={classes.button}>
-            <ThumbUp />
-            <Typography className={classes.listText} variant='body1'>Preferences</Typography>
+            <InformationOutline />
+            <Typography className={classes.listText} variant='body1'>About</Typography>
           </ Button>
         </List>
         <Divider />
-        <List className={classes.li}>hello</List>
-      </div>
+
+        {
+          this.props.user.isLoggedIn &&
+          <List className={classes.liLogout}>
+            <Button className={classes.logoutButton} onClick={this.props.logOutThunk}>
+              <Typography className={classes.listText} variant='body1'>Logout</Typography>
+            </ Button>
+          </List>
+        }
+
+      </div >
     );
 
     return (
       <div>
-        <MenuIcon onClick={this.toggleDrawer('left', true)} />
+        <MenuIcon className={classes.menuIcon} onClick={this.toggleDrawer('left', true)} />
 
         <SwipeableDrawer
           open={this.state.left}
@@ -79,4 +134,9 @@ class NavMenu extends React.Component {
   }
 }
 
-export default withStyles(styles)(NavMenu);
+const mapStateToProps = (state) => ({ state, user: state.user });
+
+
+const mapDispatchToProps = { logOutThunk };
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(NavMenu));

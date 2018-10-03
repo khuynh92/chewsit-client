@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -89,66 +90,70 @@ class Preferences extends Component {
   }
 
   render() {
-    return (
-      <Fragment>
-        <Navbar />
-        <Grid
-          container
-          spacing={0}
-          direction="column"
-          alignItems="center"
-          justify="center"
-        >
-          <h1>preferences</h1>
-          <Grid className={this.props.classes.rest}>
-            <FormControlLabel
-              className={this.props.classes.checkBoxContainer}
-              control={
-                <Checkbox
-                  disableRipple
-                  className={this.props.classes.checkBox}
-                  icon={<Vietnamese />}
-                  checkedIcon={<Vietnamese checked='checked' />}
-                  value="vietnamese"
-                  onChange={this.handleChange}
-                  checked={this.state.vietnamese}
-                />
-              }
-            />
-            <FormControlLabel
-              className={this.props.classes.checkBoxContainer}
-              control={
-                <Checkbox
-                  disableRipple
-                  className={this.props.classes.checkBox}
-                  icon={<Pizza />}
-                  checkedIcon={<Pizza checked='checked' />}
-                  value="pizza"
-                  onChange={this.handleChange}
-                  checked={this.state.pizza}
-                />
-              }
-            />
-            <FormControlLabel
-              className={this.props.classes.checkBoxContainer}
-              control={
-                <Checkbox
-                  disableRipple
-                  className={this.props.classes.checkBox}
-                  icon={<Chinese />}
-                  checkedIcon={<Chinese checked='checked' />}
-                  value="chinese"
-                  onChange={this.handleChange}
-                  checked={this.state.chinese}
-                />
-              }
-            />
+    if (cookie.load('token')) {
+      return (
+        <Fragment>
+          <Navbar />
+          <Grid
+            container
+            spacing={0}
+            direction="column"
+            alignItems="center"
+            justify="center"
+          >
+            <h1>preferences</h1>
+            <Grid className={this.props.classes.rest}>
+              <FormControlLabel
+                className={this.props.classes.checkBoxContainer}
+                control={
+                  <Checkbox
+                    disableRipple
+                    className={this.props.classes.checkBox}
+                    icon={<Vietnamese />}
+                    checkedIcon={<Vietnamese checked='checked' />}
+                    value="vietnamese"
+                    onChange={this.handleChange}
+                    checked={this.state.vietnamese}
+                  />
+                }
+              />
+              <FormControlLabel
+                className={this.props.classes.checkBoxContainer}
+                control={
+                  <Checkbox
+                    disableRipple
+                    className={this.props.classes.checkBox}
+                    icon={<Pizza />}
+                    checkedIcon={<Pizza checked='checked' />}
+                    value="pizza"
+                    onChange={this.handleChange}
+                    checked={this.state.pizza}
+                  />
+                }
+              />
+              <FormControlLabel
+                className={this.props.classes.checkBoxContainer}
+                control={
+                  <Checkbox
+                    disableRipple
+                    className={this.props.classes.checkBox}
+                    icon={<Chinese />}
+                    checkedIcon={<Chinese checked='checked' />}
+                    value="chinese"
+                    onChange={this.handleChange}
+                    checked={this.state.chinese}
+                  />
+                }
+              />
+            </Grid>
+            <Button className={this.props.classes.button} variant='contained' onClick={this.handleSubmit}>save preferences</Button>
           </Grid>
-          <Button className={this.props.classes.button} variant='contained' onClick={this.handleSubmit}>save preferences</Button>
-        </Grid>
-      </Fragment>
+        </Fragment>
 
-    );
+      );
+    } else {
+      return <Redirect to='/' />;
+    }
   }
 }
 
