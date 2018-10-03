@@ -30,7 +30,7 @@ const styles = theme => {
     },
     button: {
       position: 'fixed',
-      top: '90vh',
+      top: '80vh',
     },
     rest: {
       marginBottom: '10vh',
