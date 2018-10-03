@@ -73,14 +73,14 @@ class Home extends Component {
   }
 
   facebookOAuth = () => {
-    window.location = 'https://www.facebook.com/v3.1/dialog/oauth?client_id=510060352775198&scope=email&redirect_uri=http://localhost:3000/oauth/facebook/code&state=123kl21jdo9u01je2l1ij2dlkaj0112';
+    window.location = `https://www.facebook.com/v3.1/dialog/oauth?client_id=510060352775198&scope=email&redirect_uri=${process.env.API_URL}/oauth/facebook/code&state=123kl21jdo9u01je2l1ij2dlkaj0112`;
   }
 
   googleOAuth = () => {
     let googleURL = 'https://accounts.google.com/o/oauth2/v2/auth';
     let options = {
       client_id: '123538572340-or8e9drlqqnlmkfupkcfh519d889dqo6.apps.googleusercontent.com',
-      redirect_uri: 'http://localhost:3000/oauth/google/code',
+      redirect_uri: `${process.env.API_URL}/oauth/google/code`,
       scope: 'email openid profile',
       prompt: 'consent',
       response_type: 'code',
@@ -98,8 +98,7 @@ class Home extends Component {
     let linkedInURL = 'https://www.linkedin.com/oauth/v2/authorization';
     let options = {
       client_id: '86v36mks0tlhmk',
-      redirect_uri: 'http://localhost:3000/oauth/linkedIn/code',
-      // redirect_uri: 'https://khoa-18-oauth.herokuapp.com/oauth/linkedIn/code',
+      redirect_uri: `${process.env.API_URL}/oauth/linkedIn/code`,
       scope: 'r_basicprofile r_emailaddress',
       response_type: 'code',
       state: 'LKKdlahjk123jhka23hk1dh12',
