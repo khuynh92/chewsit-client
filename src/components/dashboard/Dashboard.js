@@ -41,7 +41,7 @@ const styles = {
     color: '#C44632',
   },
   mealButton: {
-    width: 200,
+    width: 290,
     height: 50,
     marginTop: 0,
     marginBottom: 10,
@@ -50,7 +50,7 @@ const styles = {
     color: '#497890',
   },
   mealButtonSelected: {
-    width: 200,
+    width: 290,
     height: 50,
     marginTop: 0,
     marginBottom: 10,
@@ -63,7 +63,7 @@ const styles = {
     },
   },
   mealButtonErr: {
-    width: 200,
+    width: 290,
     height: 50,
     marginTop: 0,
     marginBottom: 10,
