@@ -1,7 +1,7 @@
 
 /*global google*/
 
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
@@ -11,49 +11,62 @@ import Restaurant from './Restaurant.js';
 import RestInfo from './RestInfo.js';
 import Grid from '@material-ui/core/Grid';
 
-const styles = {
-  container: {
-    marginTop: 100,
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    display: 'flex',
-    flexDirection: 'column',
-    width: '75%',
-    height: '75vh',
-    justifyContent: 'center',
-  },
-  results: {
-    width: '100%',
-  },
-  map: {
-    width: '100%',
-  },
+import Navbar from '../navbar/Navbar.js';
+
+
+const styles = theme => {
+  theme.breakpoints.values.sm = 480;
+  theme.breakpoints.values.md = 768;
+  theme.breakpoints.values.lg = 1024;
+
+  return ({
+    container: {
+      marginTop: 40,
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      display: 'flex',
+      flexDirection: 'column',
+      width: '75%',
+      height: '75vh',
+      justifyContent: 'center',
+    },
+    results: {
+      width: '100%',
+    },
+    map: {
+      width: '100%',
+    },
+  });
 };
+
 
 class Results extends Component {
   render() {
     if (!this.props.resultsState.allResults || !this.props.resultsState.allResults.length) {
-      return <Redirect push to='/dashboard' />;
+      return <Redirect to='/dashboard' />;
     } else {
       return (
-        <Grid
-          className={this.props.classes.container}
+        <Fragment>
+          <Navbar />
+          <Grid
+            className={this.props.classes.container}
           // container
           // spacing={0}
           // direction="column"
           // alignItems="center"
           // justify="center"
           >
-          <div className={this.props.classes.results}>
-            {/* <div style={{ width: '75%' }}> */}
-            <Restaurant rating={this.props.resultsState.allResults[0].rating} image={this.props.resultsState.allResults[0].image_url} restaurantName={this.props.resultsState.allResults[0].name} />
-            <RestInfo rating={this.props.resultsState.allResults[0].rating} restaurantName={this.props.resultsState.allResults[0].name} />
-          </div>
-          <div className={this.props.classes.map}>
-            <MapWithADirectionsRenderer />
-          </div>
-          {/* </div> */}
-        </Grid>
+            <div className={this.props.classes.results}>
+              {/* <div style={{ width: '75%' }}> */}
+              <Restaurant rating={this.props.resultsState.allResults[0].rating} image={this.props.resultsState.allResults[0].image_url} restaurantName={this.props.resultsState.allResults[0].name} />
+              <RestInfo rating={this.props.resultsState.allResults[0].rating} restaurantName={this.props.resultsState.allResults[0].name} />
+            </div>
+            <div className={this.props.classes.map}>
+              <MapWithADirectionsRenderer />
+            </div>
+            {/* </div> */}
+          </Grid>
+        </Fragment>
       );
     }
   }

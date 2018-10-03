@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -13,16 +14,43 @@ import { savePrefThunk, getPrefThunk } from '../../action/preferences-action.js'
 import Vietnamese from './food/Vietnamese.js';
 import Pizza from './food/Pizza.js';
 import Chinese from './food/Chinese.js';
+import Navbar from '../navbar/Navbar.js';
 
-const styles = {
-  checkBox: {
-    padding: 60,
-    marginRight: -50,
-    marginLeft: 50,
-  },
-  button: {
-    marginTop: 30,
-  },
+const styles = theme => {
+  theme.breakpoints.values.sm = 480;
+  theme.breakpoints.values.md = 768;
+  theme.breakpoints.values.lg = 1024;
+
+  return ({
+    checkBoxContainer: {
+      margin: 'auto',
+    },
+    checkBox: {
+      margin: 20,
+    },
+    button: {
+      position: 'fixed',
+      top: '90vh',
+    },
+    rest: {
+      marginBottom: '10vh',
+      [theme.breakpoints.between('xs', 'sm')]: {
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+      [theme.breakpoints.between('sm', 'md')]: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+      },
+      [theme.breakpoints.between('md', 'lg')]: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+      },
+    },
+  });
 };
 
 class Preferences extends Component {
@@ -42,7 +70,7 @@ class Preferences extends Component {
 
       let newState = {};
       this.props.user.preferences.forEach(preference => newState[preference] = true);
-      this.setState({...this.state, ...newState});
+      this.setState({ ...this.state, ...newState });
     }
   }
 
@@ -62,52 +90,70 @@ class Preferences extends Component {
   }
 
   render() {
-    return (
-      <Grid>
-        <h1>preferences</h1>
-        <FormControlLabel
-          control={
-            <Checkbox
-              color='primary'
-              className={this.props.classes.checkBox}
-              icon={<Vietnamese />}
-              checkedIcon={<Vietnamese checked='checked' />}
-              value="vietnamese"
-              onChange={this.handleChange}
-              checked={this.state.vietnamese}
-            />
-          }
-        />
-        <FormControlLabel
-          control={
-            <Checkbox
-              color='primary'
-              className={this.props.classes.checkBox}
-              icon={<Pizza />}
-              checkedIcon={<Pizza checked='checked' />}
-              value="pizza"
-              onChange={this.handleChange}
-              checked={this.state.pizza}
-            />
-          }
-        />
-        <FormControlLabel
-          control={
-            <Checkbox
-              color='primary'
-              className={this.props.classes.checkBox}
-              icon={<Chinese />}
-              checkedIcon={<Chinese checked='checked' />}
-              value="chinese"
-              onChange={this.handleChange}
-              checked={this.state.chinese}
-            />
-          }
-        />
-        <br />
-        <Button className={this.props.classes.button} variant='contained' onClick={this.handleSubmit}>save preferences</Button>
-      </Grid>
-    );
+    if (cookie.load('token')) {
+      return (
+        <Fragment>
+          <Navbar />
+          <Grid
+            container
+            spacing={0}
+            direction="column"
+            alignItems="center"
+            justify="center"
+          >
+            <h1>preferences</h1>
+            <Grid className={this.props.classes.rest}>
+              <FormControlLabel
+                className={this.props.classes.checkBoxContainer}
+                control={
+                  <Checkbox
+                    disableRipple
+                    className={this.props.classes.checkBox}
+                    icon={<Vietnamese />}
+                    checkedIcon={<Vietnamese checked='checked' />}
+                    value="vietnamese"
+                    onChange={this.handleChange}
+                    checked={this.state.vietnamese}
+                  />
+                }
+              />
+              <FormControlLabel
+                className={this.props.classes.checkBoxContainer}
+                control={
+                  <Checkbox
+                    disableRipple
+                    className={this.props.classes.checkBox}
+                    icon={<Pizza />}
+                    checkedIcon={<Pizza checked='checked' />}
+                    value="pizza"
+                    onChange={this.handleChange}
+                    checked={this.state.pizza}
+                  />
+                }
+              />
+              <FormControlLabel
+                className={this.props.classes.checkBoxContainer}
+                control={
+                  <Checkbox
+                    disableRipple
+                    className={this.props.classes.checkBox}
+                    icon={<Chinese />}
+                    checkedIcon={<Chinese checked='checked' />}
+                    value="chinese"
+                    onChange={this.handleChange}
+                    checked={this.state.chinese}
+                  />
+                }
+              />
+            </Grid>
+            <Button className={this.props.classes.button} variant='contained' onClick={this.handleSubmit}>save preferences</Button>
+          </Grid>
+        </Fragment>
+
+      );
+    } else {
+      return <Redirect to='/' />;
+    }
   }
 }
 

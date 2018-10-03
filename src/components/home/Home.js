@@ -6,13 +6,9 @@ import cookie from 'react-cookies';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import {GooglePlus} from 'mdi-material-ui';
-import {Linkedin} from 'mdi-material-ui';
-import {Facebook} from 'mdi-material-ui';
+import {Linkedin, GooglePlus, Facebook} from 'mdi-material-ui';
 import LogInForm from '../login/LogInForm';
 import Grid from '@material-ui/core/Grid';
-
-import Navbar from '../navbar/Navbar.js';
 
 import { logIn } from '../../action/login-action.js';
 import { getPrefThunk } from '../../action/preferences-action.js';
@@ -20,11 +16,15 @@ import { getPrefThunk } from '../../action/preferences-action.js';
 
 const styles = {
   home: {
-    'color': 'black',
+    fontFamily: 'Oleo Script Swash Caps',
+    fontSize: 52,
+    fontWeight: 700,
+    color: '#D36F75',
   },
   google: {
     marginLeft: 10,
     marginRight: 10,
+    color: '#ECEBE3',
     backgroundColor: 'rgb(211, 72, 54)',
     '&:hover': {
       backgroundColor: 'rgb(241, 102, 84 )',
@@ -33,6 +33,7 @@ const styles = {
   facebook: {
     marginLeft: 10,
     marginRight: 10,
+    color: '#ECEBE3',
     backgroundColor: 'rgb(59, 89, 152)',
     '&:hover': {
       backgroundColor: 'rgb(89, 119, 180)',
@@ -41,6 +42,7 @@ const styles = {
   linkedIn: {
     marginLeft: 10,
     marginRight: 10,
+    color: '#ECEBE3',
     backgroundColor: 'rgb(0, 119, 181)',
     '&:hover': {
       backgroundColor: 'rgb(30, 149, 211)',
@@ -48,6 +50,14 @@ const styles = {
   },
   container: {
     marginTop: 100,
+  },
+  link: {
+    textDecoration: 'none',
+    color: '#497890',
+    transition: '300ms',
+    '&:hover': {
+      color: '#7baec6',
+    },
   },
 };
 
@@ -105,11 +115,10 @@ class Home extends Component {
 
   render() {
     if (this.props.user.isLoggedIn) {
-      return <Redirect push to='/dashboard' />;
+      return <Redirect to='/dashboard' />;
     } else {
       return (
         <Fragment>
-          <Navbar />
           <Grid
             className={this.props.classes.container}
             container
@@ -118,8 +127,8 @@ class Home extends Component {
             alignItems="center"
             justify="center"
           >
-            <Typography variant="display1" className={this.props.classes.home}>Home</Typography>
-            <p>Sign in with:
+            <Typography variant="display1" className={this.props.classes.home}>chewsit</Typography>
+            <p>
               <Button variant="fab" mini color="secondary" className={this.props.classes.facebook} onClick={this.facebookOAuth}>
                 <Facebook />
               </Button>
@@ -130,8 +139,9 @@ class Home extends Component {
                 <Linkedin />
               </Button>
             </p>
-            <LogInForm />
-            <p>Don't have an account? <Link to='/signup'>Create Account</Link></p>
+            <LogInForm className={this.props.classes.login}/>
+            <p>Don't have an account?</p> 
+            <Link to='/signup' className={this.props.classes.link}>Create Account</Link>
           </Grid>
         </Fragment>
       );

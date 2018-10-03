@@ -15,12 +15,75 @@ import Navbar from '../navbar/Navbar.js';
 
 
 import { getPrefThunk } from '../../action/preferences-action.js';
-import { logOutThunk, logIn, saveLocation } from '../../action/login-action.js';
+import { logIn, saveLocation } from '../../action/login-action.js';
 import { fetchAllResultsThunk } from '../../action/results-action.js';
 
 const styles = {
   button: {
+    marginTop: 0,
     marginRight: 0,
+    borderColor: '#497890',
+    color: '#497890',
+  },
+  buttonSelected: {
+    marginTop: 0,
+    marginRight: 0,
+    backgroundColor: '#497890',
+    color: '#ECEBE3',
+    transition: '300ms',
+    '&:hover': {
+      backgroundColor: '#7baec6',
+    },
+  },
+  buttonErr: {
+    marginRight: 0,
+    borderColor: '#C44632',
+    color: '#C44632',
+  },
+  mealButton: {
+    width: 290,
+    height: 50,
+    marginTop: 0,
+    marginBottom: 10,
+    marginRight: 0,
+    borderColor: '#497890',
+    color: '#497890',
+  },
+  mealButtonSelected: {
+    width: 290,
+    height: 50,
+    marginTop: 0,
+    marginBottom: 10,
+    marginRight: 0,
+    backgroundColor: '#497890',
+    color: '#ECEBE3',
+    transition: '300ms',
+    '&:hover': {
+      backgroundColor: '#7baec6',
+    },
+  },
+  mealButtonErr: {
+    width: 290,
+    height: 50,
+    marginTop: 0,
+    marginBottom: 10,
+    marginRight: 0,
+    borderColor: '#C44632',
+    color: '#C44632',
+  },
+  locationButton: {
+    marginBottom: 0,
+    color: '#ECEBE3',
+    backgroundColor: '#497890',
+    transition: '300ms',
+    '&:hover': {
+      backgroundColor: '#7baec6',
+    },
+  },
+  locationButtonErr: {
+    marginBottom: 0,
+    color: '#ECEBE3',
+    backgroundColor: '#C44632',
   },
   locationFetch: {
     marginTop: -30,
@@ -32,6 +95,24 @@ const styles = {
   },
   buttonLeftMargin: {
     marginLeft: 10,
+  },
+  submitButton: {
+    color: '#ECEBE3',
+    backgroundColor: '#D36F75',
+    transition: '300ms',
+    '&:hover': {
+      backgroundColor: '#ea989d',
+    },
+  },
+  mealContainer: {
+    marginTop: 10,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column',
+  },
+  multiFormControl: {
+    marginTop: -30,
   },
 };
 
@@ -108,6 +189,8 @@ class Dashboard extends Component {
   }
 
   render() {
+    const { classes } = this.props;
+
     if (this.props.user.isLoggedIn) {
       return (
         <Fragment>
@@ -119,16 +202,16 @@ class Dashboard extends Component {
             alignItems="center"
             justify="center"
           >
-            <h1>Dashboard</h1>
+            <h1 style={{ 'color': '#9DA6AF' }}>Dashboard</h1>
 
-            <Button disabled={this.state.locationFetch} onClick={this.getLocation} id='location' className={this.props.classes.button} variant='contained' color={this.state.locationError ? this.state.locationError : 'primary'}>use location</Button>
-            {this.state.locationFetch && <CircularProgress size={24} thickness={5} className={this.props.classes.locationFetch} />}
+            <Button disabled={this.state.locationFetch} onClick={this.getLocation} id='location' className={this.state.locationError ? classes.locationButtonErr : classes.locationButton} variant='contained'>use location</Button>
+            {this.state.locationFetch && <CircularProgress size={24} thickness={5} className={classes.locationFetch} />}
             <Typography variant='body1'>{this.state.locationFetchText}</Typography>
 
             <br />
             <br />
 
-            <FormControl>
+            <FormControl className={classes.multiFormControl}>
               <InputLabel error={this.state.distanceError} htmlFor="distance-native-helper">Distance</InputLabel>
               <NativeSelect error={this.state.distanceError} onChange={this.changeDistance} value={this.state.distance} input={<Input name="distance" id="distance-native-helper" />}>
                 <option value="" />
@@ -143,41 +226,39 @@ class Dashboard extends Component {
             <br />
             <br />
             <Grid>
-              <Button onClick={this.changePrice} id='$' className={this.props.classes.button} variant={this.state.price === '$' ? 'contained' : 'outlined'} color={this.state.priceError ? this.state.priceError : 'primary'}>$</Button>
+              <Button onClick={this.changePrice} id='$' className={this.state.priceError ? classes.buttonErr : (this.state.price === '$' ? classes.buttonSelected : classes.button)} variant={this.state.price === '$' ? 'contained' : 'outlined'} >$</Button>
 
-              <Button onClick={this.changePrice} id='$$' className={[this.props.classes.button, this.props.classes.buttonLeftMargin].join(' ')} variant={this.state.price === '$$' ? 'contained' : 'outlined'} color={this.state.priceError ? this.state.priceError : 'primary'}>$$</Button>
+              <Button onClick={this.changePrice} id='$$' className={[this.state.priceError ? classes.buttonErr : (this.state.price === '$$' ? classes.buttonSelected : classes.button), classes.buttonLeftMargin].join(' ')} variant={this.state.price === '$$' ? 'contained' : 'outlined'} >$$</Button>
 
-              <Button onClick={this.changePrice} id='$$$' className={[this.props.classes.button, this.props.classes.buttonLeftMargin].join(' ')} variant={this.state.price === '$$$' ? 'contained' : 'outlined'} color={this.state.priceError ? this.state.priceError : 'primary'}>$$$</Button>
+              <Button onClick={this.changePrice} id='$$$' className={[this.state.priceError ? classes.buttonErr : (this.state.price === '$$$' ? classes.buttonSelected : classes.button), classes.buttonLeftMargin].join(' ')} variant={this.state.price === '$$$' ? 'contained' : 'outlined'} >$$$</Button>
 
-              <Button onClick={this.changePrice} id='$$$$' className={[this.props.classes.button, this.props.classes.buttonLeftMargin].join(' ')} variant={this.state.price === '$$$$' ? 'contained' : 'outlined'} color={this.state.priceError ? this.state.priceError : 'primary'}>$$$$</Button>
+              <Button onClick={this.changePrice} id='$$$$' className={[this.state.priceError ? classes.buttonErr : (this.state.price === '$$$$' ? classes.buttonSelected : classes.button), classes.buttonLeftMargin].join(' ')} variant={this.state.price === '$$$$' ? 'contained' : 'outlined'} >$$$$</Button>
+            </Grid>
+
+
+            <Grid className={classes.mealContainer}>
+              <Button onClick={this.changeMealType} id='breakfast' className={this.state.mealTypeError ? classes.mealButtonErr : (this.state.mealType === 'breakfast' ? classes.mealButtonSelected : classes.mealButton)} variant={this.state.mealType === 'breakfast' ? 'contained' : 'outlined'}>Breakfast</Button>
+
+              <Button onClick={this.changeMealType} id='lunch' className={this.state.mealTypeError ? classes.mealButtonErr : (this.state.mealType === 'lunch' ? classes.mealButtonSelected : classes.mealButton)} variant={this.state.mealType === 'lunch' ? 'contained' : 'outlined'}>Lunch</Button>
+
+              <Button onClick={this.changeMealType} id='dinner' className={this.state.mealTypeError ? classes.mealButtonErr : (this.state.mealType === 'dinner' ? classes.mealButtonSelected : classes.mealButton)} variant={this.state.mealType === 'dinner' ? 'contained' : 'outlined'}>Dinner</Button>
+
+              <Button onClick={this.changeMealType} id='desserts' className={this.state.mealTypeError ? classes.mealButtonErr : (this.state.mealType === 'desserts' ? classes.mealButtonSelected : classes.mealButton)} variant={this.state.mealType === 'desserts' ? 'contained' : 'outlined'}>Desserts</Button>
             </Grid>
             <br />
             <br />
 
-            <Grid>
-              <Button onClick={this.changeMealType} id='breakfast' className={this.props.classes.button} variant={this.state.mealType === 'breakfast' ? 'contained' : 'outlined'} color={this.state.mealTypeError ? this.state.mealTypeError : 'primary'}>Breakfast</Button>
-
-              <Button onClick={this.changeMealType} id='lunch' className={[this.props.classes.button, this.props.classes.buttonLeftMargin].join(' ')} variant={this.state.mealType === 'lunch' ? 'contained' : 'outlined'} color={this.state.mealTypeError ? this.state.mealTypeError : 'primary'}>Lunch</Button>
-
-              <Button onClick={this.changeMealType} id='dinner' className={[this.props.classes.button, this.props.classes.buttonLeftMargin].join(' ')} variant={this.state.mealType === 'dinner' ? 'contained' : 'outlined'} color={this.state.mealTypeError ? this.state.mealTypeError : 'primary'}>Dinner</Button>
-
-              <Button onClick={this.changeMealType} id='desserts' className={[this.props.classes.button, this.props.classes.buttonLeftMargin].join(' ')} variant={this.state.mealType === 'desserts' ? 'contained' : 'outlined'} color={this.state.mealTypeError ? this.state.mealTypeError : 'primary'}>Desserts</Button>
-            </Grid>
-            <br />
-            <br />
-
-            <Button onClick={this.submit} size="small" variant="contained" color="primary" disabled={this.state.submitLoading}>chewsit</Button>
-            {this.state.submitLoading && <CircularProgress size={24} thickness={5} className={this.props.classes.submitLoading} />}
+            <Button className={classes.submitButton} onClick={this.submit} size="small" variant="contained" color="primary" disabled={this.state.submitLoading}>chewsit</Button>
+            {this.state.submitLoading && <CircularProgress size={24} thickness={5} className={classes.submitLoading} />}
 
             <br />
             <br />
 
-            <Button onClick={this.props.logOutThunk} size="small" variant="contained" color="secondary">Log Out</Button>
           </Grid>
         </Fragment>
       );
     } else {
-      return <Redirect push to='/' />;
+      return <Redirect to='/' />;
     }
   }
 }
@@ -185,6 +266,6 @@ class Dashboard extends Component {
 
 const mapStateToProps = (state) => ({ state, user: state.user });
 
-const mapDispatchToProps = { logOutThunk, logIn, getPrefThunk, fetchAllResultsThunk, saveLocation };
+const mapDispatchToProps = { logIn, getPrefThunk, fetchAllResultsThunk, saveLocation };
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Dashboard));
