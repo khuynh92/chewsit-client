@@ -265,7 +265,6 @@ class Dashboard extends Component {
   }
 }
 
-
 const mapStateToProps = (state) => ({ state, user: state.user });
 
 const mapDispatchToProps = { logIn, getPrefThunk, fetchAllResultsThunk, saveLocation };
