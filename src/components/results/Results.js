@@ -13,7 +13,6 @@ import Grid from '@material-ui/core/Grid';
 
 import Navbar from '../navbar/Navbar.js';
 
-
 const styles = theme => {
   theme.breakpoints.values.sm = 480;
   theme.breakpoints.values.md = 768;
