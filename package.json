@@ -103,6 +103,7 @@
     "file-loader": "^2.0.0",
     "imeanireallycantbelieveitsnotrandom": "^1.2.0",
     "mdi-material-ui": "^5.4.0",
+    "query-string": "^6.2.0",
     "react-cookies": "^0.1.0",
     "redux-cookie": "^0.5.9",
     "redux-mock-store": "^1.5.3",

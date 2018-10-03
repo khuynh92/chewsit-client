@@ -10,6 +10,9 @@ import SignUpForm from './signup/SignUpForm.js';
 import Results from './results/Results.js';
 import Preferences from './preferences/Preferences.js';
 
+import ToDashboard from './redirect/ToDashboard.js';
+import ToPreferences from './redirect/ToPreferences.js';
+
 export default class App extends Component {
   render() {
     return (
@@ -21,6 +24,9 @@ export default class App extends Component {
             <Route path='/signup' component={SignUpForm} />
             <Route path = '/preferences' component={Preferences} />
             <Route path = '/results' component={Results} />
+            <Route path = '/noredirect' component={ToDashboard} />
+            <Route path = '/redirect' component={ToPreferences} />
+
           </React.Fragment>
         </BrowserRouter>
       </Provider>

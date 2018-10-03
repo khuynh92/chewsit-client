@@ -89,7 +89,7 @@ class Home extends Component {
       return `${key}=` + encodeURIComponent(options[key]);
     }).join('&');
     let authURL = `${googleURL}?${queryString}`;
-
+    
     window.location = authURL;
 
   }
