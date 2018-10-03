@@ -87,13 +87,13 @@ const MapWithADirectionsRenderer = compose(
     marker1isOpen: false,
     marker2isOpen: false,
   }), {
-      marker1onToggle: ({ marker1isOpen }) => () => ({
-        marker1isOpen: !marker1isOpen,
-      }),
-      marker2onToggle: ({ marker2isOpen }) => () => ({
-        marker2isOpen: !marker2isOpen,
-      }),
+    marker1onToggle: ({ marker1isOpen }) => () => ({
+      marker1isOpen: !marker1isOpen,
     }),
+    marker2onToggle: ({ marker2isOpen }) => () => ({
+      marker2isOpen: !marker2isOpen,
+    }),
+  }),
   withScriptjs,
   withGoogleMap,
   connect(mapStateToProps, null),
