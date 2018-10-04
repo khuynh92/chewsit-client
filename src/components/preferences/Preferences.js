@@ -33,7 +33,7 @@ const styles = theme => {
       top: '80vh',
     },
     rest: {
-      marginBottom: '10vh',
+      marginBottom: '35vh',
       [theme.breakpoints.between('xs', 'sm')]: {
         width: '100%',
         display: 'flex',
