@@ -11,7 +11,7 @@ export const savePreferences = (preferences) => ({
 //Thunkers
 export const savePrefThunk = (user) => {
   return dispatch => {
-    return superagent.put(`${process.env.API_URL}/api/v1/profiles/userID/${user.id}/preferences`)
+    return superagent.put(`${process.env.FETCH_URL}/api/v1/profiles/userID/${user.id}/preferences`)
       .send(user.preferences)
       .then(response => {
         dispatch(savePreferences(response.body));
@@ -21,7 +21,7 @@ export const savePrefThunk = (user) => {
 
 export const getPrefThunk = (id) => {
   return dispatch => {
-    return superagent.get(`${process.env.API_URL}/api/v1/profiles/userID/${id}`)
+    return superagent.get(`${process.env.FETCH_URL}/api/v1/profiles/userID/${id}`)
       .then(response => {
         dispatch(savePreferences(response.body.preferences));
       });

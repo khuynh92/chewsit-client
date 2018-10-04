@@ -17,7 +17,7 @@ export const newUserLogin = (id) => ({
 
 export const signUpThunk = (newUser) => {
   return dispatch => {
-    return superagent.post(`${process.env.API_URL}/signup`)
+    return superagent.post(`${process.env.FETCH_URL}/signup`)
       .send({username: newUser.username, password: newUser.password, email: newUser.email})
       .then(response => {
         cookie.save('token', response.text);

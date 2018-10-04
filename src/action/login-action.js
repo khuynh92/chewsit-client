@@ -34,7 +34,7 @@ export const saveLocation = (location) => ({
 
 export const logInThunk = (user) => {
   return dispatch => {
-    return superagent.get(`${process.env.API_URL}/signin`)
+    return superagent.get(`${process.env.FETCH_URL}/signin`)
       .auth(user.username, user.password)
       .then(response => {
         cookie.save('token', response.text);
