@@ -26,7 +26,7 @@ import Italian from './food/Italian.js';
 import Japanese from './food/Japanese.js';
 import Korean from './food/Korean.js';
 import Mexican from './food/Mexican.js';
-import Sandwich from './food/sandwich.js';
+import Sandwich from './food/Sandwich.js';
 import Seafood from './food/Seafood.js';
 import Soulfood from './food/Soulfood.js';
 import Steakhouse from './food/Steakhouse.js';
