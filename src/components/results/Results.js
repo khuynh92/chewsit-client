@@ -2,37 +2,60 @@
 /*global google*/
 
 import React, { Component, Fragment } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import { InfoWindow, withScriptjs, withGoogleMap, GoogleMap, Marker, DirectionsRenderer } from 'react-google-maps';
 import { compose, withProps, lifecycle, withStateHandlers } from 'recompose';
 
-import {ChevronRight, ChevronLeft} from 'mdi-material-ui'
+import { ChevronRight, ChevronLeft } from 'mdi-material-ui';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button'
+import Button from '@material-ui/core/Button';
 import Restaurant from './Restaurant.js';
 import RestInfo from './RestInfo.js';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 
+import cookie from 'react-cookies';
+
 import Navbar from '../navbar/Navbar.js';
 
 const styles = theme => {
   theme.breakpoints.values.sm = 480;
-  theme.breakpoints.values.md = 768;
+  theme.breakpoints.values.md = 850;
   theme.breakpoints.values.lg = 1024;
 
   return ({
     container: {
-      marginTop: 40,
-      marginLeft: 'auto',
-      marginRight: 'auto',
-      display: 'flex',
-      flexDirection: 'column',
-      width: '75%',
-      height: '75vh',
-      justifyContent: 'center',
+      [theme.breakpoints.between('xs', 'sm')]: {
+        width: '83%',
+        display: 'flex',
+        marginTop: '40px',
+        flexDirection: 'column',
+        marginBottom: '40vh',
+        marginLeft: 'auto',
+        marginRight: 'auto',
+      },
+      [theme.breakpoints.between('sm', 'md')]: {
+        width: '83%',
+        display: 'flex',
+        marginTop: '40px',
+        flexDirection: 'column',
+        marginBottom: '40vh',
+        marginLeft: 'auto',
+        marginRight: 'auto',
+      },
+
+      [theme.breakpoints.between('md', 'lg')]: {
+        marginTop: 40,
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        display: 'flex',
+        flexDirection: 'column',
+        width: '75%',
+        height: '75vh',
+        justifyContent: 'center',
+      },
     },
     results: {
       width: '100%',
@@ -41,14 +64,46 @@ const styles = theme => {
       width: '100%',
     },
     back: {
-      marginLeft: '-9vw',
-      position: 'fixed',
-      cursor: 'pointer',
+      [theme.breakpoints.between('xs', 'sm')]: {
+        zIndex: 99,
+        position: 'fixed',
+        cursor: 'pointer',
+        marginTop: '50vw',
+        marginLeft: '-16vw',
+      },
+      [theme.breakpoints.between('sm', 'md')]: {
+        zIndex: 99,
+        position: 'fixed',
+        cursor: 'pointer',
+        marginLeft: '-9vw',
+      },
+      [theme.breakpoints.between('md', 'lg')]: {
+        zIndex: 99,
+        position: 'fixed',
+        cursor: 'pointer',
+        marginLeft: '-9vw',
+      },
     },
     forward: {
-      marginLeft: '78vw',
-      position: 'fixed',
-      cursor: 'pointer',
+      [theme.breakpoints.between('xs', 'sm')]: {
+        zIndex: 99,
+        position: 'fixed',
+        cursor: 'pointer',
+        marginTop: '50vw',
+        marginLeft: '66vw',
+      },
+      [theme.breakpoints.between('sm', 'md')]: {
+        zIndex: 99,
+        position: 'fixed',
+        cursor: 'pointer',
+        marginLeft: '78vw',
+      },
+      [theme.breakpoints.between('md', 'lg')]: {
+        zIndex: 99,
+        position: 'fixed',
+        cursor: 'pointer',
+        marginLeft: '78vw',
+      },
     },
     redArrow: {
       fontSize: 53,
@@ -57,7 +112,22 @@ const styles = theme => {
     blackArrow: {
       fontSize: 53,
       color: '#9DA6AF',
+
     },
+    noResults: {
+      marginTop: '35vh',
+    },
+    tryAgain: {
+      marginTop: 30,
+      width: 200,
+      height: 75,
+      color: '#ECEBE3',
+      backgroundColor: '#497890',
+      transition: '300ms',
+      '&:hover': {
+        backgroundColor: '#7baec6',
+      },
+    }
   });
 };
 
@@ -98,28 +168,12 @@ class Results extends Component {
         restLng: this.props.resultsState.allResults[0].coordinates.longitude,
         restWebsite: this.props.resultsState.allResults[0].url,
       });
-
-      // const DirectionsService = new google.maps.DirectionsService();
-      // DirectionsService.route({
-      //   origin: new google.maps.LatLng(this.props.user.location.lat, this.props.user.location.lng),
-      //   destination: new google.maps.LatLng(this.state.restLat, this.state.restLng),
-      //   travelMode: google.maps.TravelMode.DRIVING,
-      // }, (result, status) => {
-      //   if (status === google.maps.DirectionsStatus.OK) {
-      //     console.log(result);
-      //     this.setState({
-      //       directions: result,
-      //     });
-      //   } else {
-      //     console.error(`error fetching directions ${result}`);
-      //   }
-      // });
     }
   }
 
   nextRestaurant = async () => {
     if (this.state.index < this.props.resultsState.allResults.length) {
-      await this.setState({index: this.state.index+1});
+      await this.setState({ index: this.state.index + 1 });
 
       await this.setState({
         restImg: this.props.resultsState.allResults[this.state.index].image_url,
@@ -144,7 +198,6 @@ class Results extends Component {
         travelMode: google.maps.TravelMode.DRIVING,
       }, (result, status) => {
         if (status === google.maps.DirectionsStatus.OK) {
-          console.log(result);
           this.setState({
             newDirections: result,
           });
@@ -159,7 +212,7 @@ class Results extends Component {
 
   prevRestaurant = async () => {
     if (this.state.index > 0) {
-      await this.setState({index: this.state.index-1});
+      await this.setState({ index: this.state.index - 1 });
 
       this.setState({
         index: this.state.index - 1,
@@ -184,7 +237,6 @@ class Results extends Component {
         travelMode: google.maps.TravelMode.DRIVING,
       }, (result, status) => {
         if (status === google.maps.DirectionsStatus.OK) {
-          console.log(result);
           this.setState({
             newDirections: result,
           });
@@ -198,50 +250,53 @@ class Results extends Component {
   }
 
   render() {
-    if (!this.props.resultsState.allResults || !this.props.resultsState.allResults.length) {
-      return (
-        <Fragment>
-          <Navbar />
+    if (cookie.load('token')) {
+      if (!this.props.resultsState.allResults || !this.props.resultsState.allResults.length) {
+        return (
+          <Fragment>
+            <Navbar />
+            <Grid
+              container
+              spacing={0}
+              direction="column"
+              alignItems="center"
+              justify="center"
+              className={this.props.classes.noResults}
+            >
 
-          <Grid
-            container
-            spacing={0}
-            direction="column"
-            alignItems="center"
-            justify="center"
-          >
-            <Typography variant='display1'>No Results found</Typography>
-          </Grid>
-        </Fragment>
+              <Typography variant='display1'>No Results found</Typography>
+              <Link to='/dashboard' style={{ textDecoration: 'none' }}>
+                <Button className={this.props.classes.tryAgain} variant='contained'>Let's chewsit</Button>
+              </Link>
+            </Grid>
+          </Fragment>
 
-      );
+        );
+      } else {
+        return (
+          <Fragment>
+            <Navbar />
+            <Grid
+              className={this.props.classes.container}
+            >
+              <Button className={this.props.classes.back} onClick={this.prevRestaurant}><ChevronLeft className={this.state.beginningOfResults ? this.props.classes.blackArrow : this.props.classes.redArrow} /></Button>
+
+              <Button className={this.props.classes.forward} onClick={(this.nextRestaurant)}><ChevronRight className={this.state.endOfResults ? this.props.classes.blackArrow : this.props.classes.redArrow} /></Button>
+
+
+              <div className={this.props.classes.results}>
+                <RestInfo restaurant={this.state} />
+                <Restaurant image={this.state.restImg} />
+              </div>
+              <div className={this.props.classes.map}>
+                <MapWithADirectionsRenderer name={this.state.restName} newDirections={this.state.newDirections} lat={this.state.restLat} lng={this.state.restLng} />
+              </div>
+            </Grid>
+          </Fragment>
+        );
+      }
     } else {
-      return (
-        <Fragment>
-          <Navbar />
-          <Grid
-            className={this.props.classes.container}
-          // container
-          // spacing={0}
-          // direction="column"
-          // alignItems="center"
-          // justify="center"
-          > 
-            <Button className={this.props.classes.back} onClick={this.prevRestaurant}><ChevronLeft className={this.state.beginningOfResults ? this.props.classes.blackArrow: this.props.classes.redArrow}/></Button>
-            
-            <Button className={this.props.classes.forward} onClick={(this.nextRestaurant)}><ChevronRight className={this.state.endOfResults ? this.props.classes.blackArrow: this.props.classes.redArrow}/></Button>
-            
-
-            <div className={this.props.classes.results}>
-              <RestInfo restaurant={this.state}/>
-              <Restaurant image={this.state.restImg} />
-            </div>
-            <div className={this.props.classes.map}>
-              <MapWithADirectionsRenderer name={this.state.restName} newDirections={this.state.newDirections} lat={this.state.restLat} lng={this.state.restLng}/>
-            </div>
-          </Grid>
-        </Fragment>
-      );
+      return <Redirect to='/' />;
     }
   }
 }
@@ -255,7 +310,7 @@ const MapWithADirectionsRenderer = compose(
   withProps({
     googleMapURL: `https://maps.googleapis.com/maps/api/js?key=${process.env.GOOGLE_API_KEY}&v=3.exp&libraries=geometry,drawing,places`,
     loadingElement: <div style={{ height: `100%` }} />,
-    containerElement: <Card style={{ height: `40vh`, width: '100%',  marginRight: '2%' }} />,
+    containerElement: <Card style={{ height: `40vh`, width: '100%', marginRight: '2%' }} />,
     mapElement: <div style={{ height: `100%`, width: '100%', marginRight: 0 }} />,
   }),
   withStateHandlers(() => ({
@@ -281,7 +336,6 @@ const MapWithADirectionsRenderer = compose(
         travelMode: google.maps.TravelMode.DRIVING,
       }, (result, status) => {
         if (status === google.maps.DirectionsStatus.OK) {
-          console.log(result);
           this.setState({
             directions: result,
           });

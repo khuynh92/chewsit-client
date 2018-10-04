@@ -74,6 +74,7 @@ const styles = {
     color: '#C44632',
   },
   locationButton: {
+    marginTop: '5vh',
     marginBottom: 0,
     color: '#ECEBE3',
     backgroundColor: '#497890',
@@ -83,6 +84,7 @@ const styles = {
     },
   },
   locationButtonErr: {
+    marginTop: '5vh',
     marginBottom: 0,
     color: '#ECEBE3',
     backgroundColor: '#C44632',
@@ -90,15 +92,18 @@ const styles = {
   locationFetch: {
     marginTop: -30,
     marginLeft: -5,
+    marginBottom: 5,
   },
   submitLoading: {
-    marginTop: -30,
+    marginTop: -36,
     marginLeft: -5,
   },
   buttonLeftMargin: {
     marginLeft: 10,
   },
   submitButton: {
+    width: 200,
+    height: 50,
     color: '#ECEBE3',
     backgroundColor: '#D36F75',
     transition: '300ms',
@@ -204,8 +209,6 @@ class Dashboard extends Component {
             alignItems="center"
             justify="center"
           >
-            <h1 style={{ 'color': '#9DA6AF' }}>Dashboard</h1>
-
             <Button disabled={this.state.locationFetch} onClick={this.getLocation} id='location' className={this.state.locationError ? classes.locationButtonErr : classes.locationButton} variant='contained'>use location</Button>
             {this.state.locationFetch && <CircularProgress size={24} thickness={5} className={classes.locationFetch} />}
             <Typography variant='body1'>{this.state.locationFetchText}</Typography>
