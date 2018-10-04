@@ -93,10 +93,12 @@ const styles = {
     marginTop: -30,
     marginLeft: -5,
     marginBottom: 5,
+    color: '#ff411d',
   },
   submitLoading: {
     marginTop: -36,
     marginLeft: -5,
+    color: '#ff411d',
   },
   buttonLeftMargin: {
     marginLeft: 10,
@@ -120,6 +122,9 @@ const styles = {
   },
   multiFormControl: {
     marginTop: -30,
+  },
+  navbar: {
+    position: 'fixed',
   },
 };
 
@@ -201,7 +206,7 @@ class Dashboard extends Component {
     if (this.props.user.isLoggedIn) {
       return (
         <Fragment>
-          <Navbar />
+          <Navbar className={classes.navbar}/>
           <Grid
             container
             spacing={0}

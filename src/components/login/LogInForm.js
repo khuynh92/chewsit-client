@@ -9,17 +9,36 @@ import { connect } from 'react-redux';
 
 import { logInThunk } from '../../action/login-action.js';
 
-const styles = {
-  button: {
-    marginTop: 20,
-    marginBottom: 10,
-    backgroundColor: '#497890',
-    color: '#ECEBE3',
-    transition: '300ms',
-    '&:hover': {
-      backgroundColor: '#7baec6',
+const styles = theme => {
+
+  theme.breakpoints.values.xs = 0;
+  theme.breakpoints.values.sm = 300;
+  theme.breakpoints.values.md = 768;
+  theme.breakpoints.values.lg = 1024;
+
+  return ({
+    button: {
+      marginTop: 20,
+      marginBottom: 20,
+      backgroundColor: '#497890',
+      color: '#ECEBE3',
+      transition: '300ms',
+      '&:hover': {
+        backgroundColor: '#7baec6',
+      },
     },
-  },
+    logInForm: {
+      [theme.breakpoints.between('xs', 'sm')]: {
+        width: '100%',
+      },
+      [theme.breakpoints.between('sm', 'md')]: {
+        width: 300,
+      },
+      [theme.breakpoints.between('md', 'lg')]: {
+        width: 300,
+      },
+    },
+  });
 };
 
 class LogInForm extends Component {
@@ -55,8 +74,9 @@ class LogInForm extends Component {
     const { classes } = this.props;
     return (
       <Fragment>
-        <form >
+        <form className={classes.logInForm}>
           <TextField
+            fullWidth
             id="username"
             label="username"
             error={this.props.user.logInError ? true : false}
@@ -67,6 +87,7 @@ class LogInForm extends Component {
           />
           <br />
           <TextField
+            fullWidth
             id="password"
             label="password"
             type="password"
@@ -78,7 +99,7 @@ class LogInForm extends Component {
           />
           <br />
           {this.props.user.logInError ? <Typography variant='body2' color='error'>Invalid Username/Password</Typography> : null}
-          <Button className={classes.button} size="small" variant="contained"  onClick={this.handleSubmit}>Log In</Button>
+          <Button className={classes.button} size="small" variant="contained" onClick={this.handleSubmit}>Log In</Button>
         </form>
       </Fragment>
     );

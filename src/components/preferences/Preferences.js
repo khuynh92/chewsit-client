@@ -28,9 +28,27 @@ const styles = theme => {
     checkBox: {
       margin: 20,
     },
-    button: {
+    buttonPreSave: {
+      width: 180,
       position: 'fixed',
-      top: '80vh',
+      top: '78vh',
+      backgroundColor: '#497890',
+      color: '#ECEBE3',
+      transition: '300ms',
+      '&:hover': {
+        backgroundColor: '#7baec6',
+      },
+    },
+    buttonPostSave: {
+      width: 180,
+      position: 'fixed',
+      top: '78vh',
+      backgroundColor: '#ff411d',
+      color: '#ECEBE3',
+      transition: '300ms',
+      '&:hover': {
+        backgroundColor: '#ff411d',
+      },
     },
     rest: {
       marginBottom: '35vh',
@@ -58,6 +76,7 @@ class Preferences extends Component {
     vietnamese: false,
     pizza: false,
     chinese: false,
+    prefSaved: false,
   }
 
   async componentDidMount() {
@@ -78,15 +97,22 @@ class Preferences extends Component {
     this.setState({ [event.target.value]: event.target.checked });
   };
 
-  handleSubmit = () => {
-    let preferences = Object.keys(this.state).filter(food => this.state[food]);
+  handleSubmit = async () => {
+    let preferences = Object.keys(this.state).filter(food => food !== 'prefSaved' && this.state[food]);
 
     let newPref = {
       id: this.props.user.id,
       preferences,
     };
 
-    this.props.savePrefThunk(newPref);
+    await this.props.savePrefThunk(newPref);
+
+    this.setState({prefSaved: true},
+      ()=>setTimeout(() => this.setState({prefSaved: false}), 3000)
+    );
+
+    
+
   }
 
   render() {
@@ -146,7 +172,7 @@ class Preferences extends Component {
                 }
               />
             </Grid>
-            <Button className={this.props.classes.button} variant='contained' onClick={this.handleSubmit}>save preferences</Button>
+            <Button className={!this.state.prefSaved ? this.props.classes.buttonPreSave : this.props.classes.buttonPostSave} variant='contained' onClick={this.handleSubmit}>{this.state.prefSaved ? 'saved' : 'save preferences'}</Button>
           </Grid>
         </Fragment>
 

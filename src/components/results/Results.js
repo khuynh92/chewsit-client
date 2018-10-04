@@ -20,6 +20,8 @@ import cookie from 'react-cookies';
 
 import Navbar from '../navbar/Navbar.js';
 
+import superagent from 'superagent';
+
 const styles = theme => {
   theme.breakpoints.values.sm = 480;
   theme.breakpoints.values.md = 850;
@@ -76,12 +78,14 @@ const styles = theme => {
         position: 'fixed',
         cursor: 'pointer',
         marginLeft: '-9vw',
+        marginTop: '36vh',
       },
       [theme.breakpoints.between('md', 'lg')]: {
         zIndex: 99,
         position: 'fixed',
         cursor: 'pointer',
         marginLeft: '-9vw',
+        marginTop: 0,
       },
     },
     forward: {
@@ -90,19 +94,22 @@ const styles = theme => {
         position: 'fixed',
         cursor: 'pointer',
         marginTop: '50vw',
-        marginLeft: '66vw',
+        marginLeft: '74vw',
       },
       [theme.breakpoints.between('sm', 'md')]: {
         zIndex: 99,
         position: 'fixed',
         cursor: 'pointer',
         marginLeft: '78vw',
+        marginTop: '36vh',
+
       },
       [theme.breakpoints.between('md', 'lg')]: {
         zIndex: 99,
         position: 'fixed',
         cursor: 'pointer',
         marginLeft: '78vw',
+        marginTop: 0,
       },
     },
     redArrow: {
@@ -136,7 +143,9 @@ class Results extends Component {
 
   state = {
     index: 0,
+    restID: '',
     restImg: '',
+    moreImages: [],
     restName: '',
     restDisplayPhone: '',
     restDistance: '',
@@ -155,6 +164,7 @@ class Results extends Component {
   async componentDidMount() {
     if (this.props.resultsState.allResults && this.props.resultsState.allResults.length) {
       await this.setState({
+        restID: this.props.resultsState.allResults[0].id,
         restImg: this.props.resultsState.allResults[0].image_url,
         restName: this.props.resultsState.allResults[0].name,
         restDistance: (this.props.resultsState.allResults[0].distance / 1609.344).toFixed(2) + ' miles away',
@@ -168,6 +178,10 @@ class Results extends Component {
         restLng: this.props.resultsState.allResults[0].coordinates.longitude,
         restWebsite: this.props.resultsState.allResults[0].url,
       });
+
+      // let results = await superagent.get(`${process.env.API_URL}/api/v1/yelp/photos/${this.state.restID}`);
+
+      // this.setState({ moreImages: results.body });
     }
   }
 
@@ -176,6 +190,7 @@ class Results extends Component {
       await this.setState({ index: this.state.index + 1 });
 
       await this.setState({
+        restID: this.props.resultsState.allResults[this.state.index].id,
         restImg: this.props.resultsState.allResults[this.state.index].image_url,
         restName: this.props.resultsState.allResults[this.state.index].name,
         restDistance: (this.props.resultsState.allResults[this.state.index].distance / 1609.344).toFixed(2) + ' miles away',
@@ -190,6 +205,9 @@ class Results extends Component {
         restLng: this.props.resultsState.allResults[this.state.index].coordinates.longitude,
         beginningOfResults: false,
       });
+      // let results = await superagent.get(`${process.env.API_URL}/api/v1/yelp/photos/${this.state.restID}`);
+
+      // this.setState({ moreImages: results.body });
 
       const DirectionsService = new google.maps.DirectionsService();
       DirectionsService.route({
@@ -215,7 +233,7 @@ class Results extends Component {
       await this.setState({ index: this.state.index - 1 });
 
       this.setState({
-        index: this.state.index - 1,
+        restID: this.props.resultsState.allResults[this.state.index].id,
         restImg: this.props.resultsState.allResults[this.state.index].image_url,
         restName: this.props.resultsState.allResults[this.state.index].name,
         restDistance: (this.props.resultsState.allResults[this.state.index].distance / 1609.344).toFixed(2) + ' miles away',
@@ -230,6 +248,11 @@ class Results extends Component {
         restLng: this.props.resultsState.allResults[this.state.index].coordinates.longitude,
         endOfResults: false,
       });
+
+      // let results = await superagent.get(`${process.env.API_URL}/api/v1/yelp/photos/${this.state.restID}`);
+
+      // this.setState({ moreImages: results.body });
+      
       const DirectionsService = new google.maps.DirectionsService();
       DirectionsService.route({
         origin: new google.maps.LatLng(this.props.user.location.lat, this.props.user.location.lng),
@@ -286,7 +309,7 @@ class Results extends Component {
 
               <div className={this.props.classes.results}>
                 <RestInfo restaurant={this.state} />
-                <Restaurant image={this.state.restImg} />
+                <Restaurant onClick={()=> console.log('clicked!')}imageArray={this.state.moreImages} image={this.state.restImg} restID={this.state.restID} />
               </div>
               <div className={this.props.classes.map}>
                 <MapWithADirectionsRenderer name={this.state.restName} newDirections={this.state.newDirections} lat={this.state.restLat} lng={this.state.restLng} />

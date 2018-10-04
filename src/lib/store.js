@@ -12,5 +12,5 @@ const appReducer = combineReducers({
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-export default createStore(appReducer, composeEnhancers(applyMiddleware(thunk, errorHandler, logger)));
+export default createStore(appReducer, composeEnhancers(applyMiddleware(thunk, errorHandler)));
 
