@@ -1,4 +1,4 @@
-import React, { Component, Fragment} from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
@@ -6,7 +6,7 @@ import cookie from 'react-cookies';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import {Linkedin, GooglePlus, Facebook} from 'mdi-material-ui';
+import { Linkedin, GooglePlus, Facebook } from 'mdi-material-ui';
 import LogInForm from '../login/LogInForm';
 import Grid from '@material-ui/core/Grid';
 
@@ -14,51 +14,59 @@ import { logIn } from '../../action/login-action.js';
 import { getPrefThunk } from '../../action/preferences-action.js';
 
 
-const styles = {
-  home: {
-    fontFamily: 'Oleo Script Swash Caps',
-    fontSize: 52,
-    fontWeight: 700,
-    color: '#D36F75',
-  },
-  google: {
-    marginLeft: 10,
-    marginRight: 10,
-    color: '#ECEBE3',
-    backgroundColor: 'rgb(211, 72, 54)',
-    '&:hover': {
-      backgroundColor: 'rgb(241, 102, 84 )',
+const styles = theme => {
+  theme.breakpoints.values.xs = 0;
+  theme.breakpoints.values.sm = 480;
+  theme.breakpoints.values.md = 768;
+  theme.breakpoints.values.lg = 1024;
+
+  return ({
+    home: {
+      fontFamily: 'Oleo Script Swash Caps',
+      fontSize: 82,
+      fontWeight: 700,
+      color: '#D36F75',
+
     },
-  },
-  facebook: {
-    marginLeft: 10,
-    marginRight: 10,
-    color: '#ECEBE3',
-    backgroundColor: 'rgb(59, 89, 152)',
-    '&:hover': {
-      backgroundColor: 'rgb(89, 119, 180)',
+    google: {
+      marginLeft: 10,
+      marginRight: 10,
+      color: '#ECEBE3',
+      backgroundColor: 'rgb(211, 72, 54)',
+      '&:hover': {
+        backgroundColor: 'rgb(241, 102, 84 )',
+      },
     },
-  },
-  linkedIn: {
-    marginLeft: 10,
-    marginRight: 10,
-    color: '#ECEBE3',
-    backgroundColor: 'rgb(0, 119, 181)',
-    '&:hover': {
-      backgroundColor: 'rgb(30, 149, 211)',
+    facebook: {
+      marginLeft: 10,
+      marginRight: 10,
+      color: '#ECEBE3',
+      backgroundColor: 'rgb(59, 89, 152)',
+      '&:hover': {
+        backgroundColor: 'rgb(89, 119, 180)',
+      },
     },
-  },
-  container: {
-    marginTop: 100,
-  },
-  link: {
-    textDecoration: 'none',
-    color: '#497890',
-    transition: '300ms',
-    '&:hover': {
-      color: '#7baec6',
+    linkedIn: {
+      marginLeft: 10,
+      marginRight: 10,
+      color: '#ECEBE3',
+      backgroundColor: 'rgb(0, 119, 181)',
+      '&:hover': {
+        backgroundColor: 'rgb(30, 149, 211)',
+      },
     },
-  },
+    container: {
+      marginTop: 100,
+    },
+    link: {
+      textDecoration: 'none',
+      color: '#497890',
+      transition: '300ms',
+      '&:hover': {
+        color: '#7baec6',
+      },
+    },
+  });
 };
 
 class Home extends Component {
@@ -89,7 +97,7 @@ class Home extends Component {
       return `${key}=` + encodeURIComponent(options[key]);
     }).join('&');
     let authURL = `${googleURL}?${queryString}`;
-    
+
     window.location = authURL;
 
   }
@@ -138,8 +146,8 @@ class Home extends Component {
                 <Linkedin />
               </Button>
             </p>
-            <LogInForm className={this.props.classes.login}/>
-            <p>Don't have an account?</p> 
+            <LogInForm className={this.props.classes.login} />
+            <p>Don't have an account?</p>
             <Link to='/signup' className={this.props.classes.link}>Create Account</Link>
           </Grid>
         </Fragment>

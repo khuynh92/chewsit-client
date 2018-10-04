@@ -19,6 +19,9 @@ const styles = {
     backgroundColor: '#52525B',
     color: '#ECEBE3',
   },
+  grid: {
+    marginTop: '15vh',
+  },
 };
 
 class SignUpForm extends Component {
@@ -89,6 +92,7 @@ class SignUpForm extends Component {
         <Fragment>
           <Navbar />
           <Grid
+            className={classes.grid}
             container
             spacing={0}
             direction="column"
