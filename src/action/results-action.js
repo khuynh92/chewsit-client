@@ -12,14 +12,14 @@ export const fetchAllResults = (businesses) => ({
 export const fetchAllResultsThunk = (food, location, price, distance) => {
   return async dispatch => {
 
-    let offsetTotal = await superagent.get(`${process.env.FETCH_URL}/api/v3/yelp/${food}/${location}/${price}/${distance}/0`)
+    let offsetTotal = await superagent.get(`${process.env.API_URL}/api/v3/yelp/${food}/${location}/${price}/${distance}/0`)
       .then(response => {
         return response.body.total;
       });
 
     let offset = offsetTotal < 51 ? 0 : Math.floor(Math.random() * offsetTotal - 4);
 
-    return superagent.get(`${process.env.FETCH_URL}/api/v3/yelp/${food}/${location}/${price}/${distance}/${offset}`)
+    return superagent.get(`${process.env.API_URL}/api/v3/yelp/${food}/${location}/${price}/${distance}/${offset}`)
       .then(response => {     
         randomize(response.body.businesses);
         return dispatch(fetchAllResults(response.body.businesses));
