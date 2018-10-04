@@ -19,21 +19,46 @@ import large_4 from '../../assets/yelp/stars/large/large_4.png';
 import large_4_half from '../../assets/yelp/stars/large/large_4_half.png';
 import large_5 from '../../assets/yelp/stars/large/large_5.png';
 
+import yelp_logo from '../../assets/yelp/yelp_logo.png';
+
 const styles = {
   card: {
+    position: 'relative',
+    minWidth: 300,
+    marginRight: '2%',
+    marginBottom: '2%',
     display: 'inline-block',
-    width: '50%',
+    width: '48%',
     height: '40vh',
   },
   media: {
     height: 204,
   },
+  yelpLogo: {
+    marginTop: -20,
+    marginBottom: -20,
+    width: '100%',
+  },
+  yelpLogoCont: {
+    width: 120,
+  },
+  typeSpacing: {
+    marginTop: 30,
+  },
+  cardAction: {
+    width: '100%',
+    position: 'absolute',
+    bottom: 0,
+  },
 };
 
 function MediaCard(props) {
+  let { restaurant } = props;
+
   let image;
   const { classes } = props;
-  switch (props.rating) {
+
+  switch (restaurant.restRating) {
     case 0: image = large_0;
       break;
     case 1: image = large_1;
@@ -56,25 +81,27 @@ function MediaCard(props) {
   }
   return (
     <Card className={classes.card}>
-      <CardActionArea>
-        <img src={image} />
-        <CardContent>
-          <Typography gutterBottom variant="headline" component="h2">
-            Lizard
-          </Typography>
-          <Typography component="p">
-            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-            across all continents except Antarctica
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
-          Share
-        </Button>
-        <Button size="small" color="primary">
-          Learn More
-        </Button>
+      <CardContent>
+        <Typography gutterBottom variant="headline" component="h2">
+          {restaurant.restName}
+          <Typography variant="caption">{restaurant.restDistance}</Typography>
+        </Typography>
+        <img className={classes.stars} src={image} /> {restaurant.restReviewCount} reviews
+        <Typography className={classes.typeSpacing} component="p">
+          <strong>Type:</strong> {restaurant.restType}
+        </Typography>
+      </CardContent>
+      <CardActions className={classes.cardAction}>
+        <a href={restaurant.restWebsite} rel="noopener noreferrer" target="_blank">
+          <Button className={classes.yelpLogoCont} size="small" color="primary">
+            <img className={classes.yelpLogo} src={yelp_logo} />
+          </Button>
+        </a>
+        <a href={`https://www.google.com/maps/dir/?api=1&destination=${restaurant.restName.replace(/\s/g, '+')}+${restaurant.restAddress.join(' ').replace(/\s/g, '+').replace(/,/g, '%2C')}`} rel="noopener noreferrer" target="_blank">
+          <Button size="small" color="primary">
+            Google Maps
+          </Button>
+        </a>
       </CardActions>
     </Card>
   );
