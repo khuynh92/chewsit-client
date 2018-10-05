@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import cookie from 'react-cookies';
 
 import { withStyles } from '@material-ui/core/styles';
@@ -8,6 +8,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import Checkbox from '@material-ui/core/Checkbox';
 
 import Navbar from '../navbar/Navbar.js';
 
@@ -22,6 +23,23 @@ const styles = {
   grid: {
     marginTop: '15vh',
   },
+  consent: {
+    width: 200,
+    display: 'inline-block',
+    paddingTop: 30,
+    marginTop: 10,
+  },
+  noConsent: {
+    color: '#ff411d',
+    width: 200,
+    display: 'inline-block',
+    paddingTop: 30,
+    marginTop: 10,
+  },
+  checkbox: {
+    paddingLeft: 0,
+    marginBottom: 50,
+  },
 };
 
 class SignUpForm extends Component {
@@ -33,6 +51,7 @@ class SignUpForm extends Component {
     passwordError: false,
     noUsername: false,
     noEmail: false,
+    notChecked: false,
   }
 
   handleChange = name => async event => {
@@ -48,6 +67,9 @@ class SignUpForm extends Component {
 
   handleSubmit = async (e) => {
     e.preventDefault();
+    if (!this.state.checked) {
+      await this.setState({ notChecked: true });
+    }
     if (!this.state.username) {
       await this.setState({ noUsername: true });
     }
@@ -77,8 +99,14 @@ class SignUpForm extends Component {
       password: '',
       passwordConfirm: '',
       email: '',
+      checked: '',
     });
   }
+
+  handleChecked = name => event => {
+    this.setState({ [name]: event.target.checked, notChecked: false }, () => {console.log(this.state)});
+  };
+
 
   render() {
     const { classes } = this.props;
@@ -104,6 +132,7 @@ class SignUpForm extends Component {
 
             <form>
               <TextField
+                fullWidth
                 required
                 id="username"
                 label="username"
@@ -115,6 +144,7 @@ class SignUpForm extends Component {
               />
               <br />
               <TextField
+                fullWidth
                 required
                 id="email"
                 label="email"
@@ -126,6 +156,7 @@ class SignUpForm extends Component {
               />
               <br />
               <TextField
+                fullWidth
                 required
                 id="password"
                 label='password'
@@ -138,6 +169,7 @@ class SignUpForm extends Component {
               />
               <br />
               <TextField
+                fullWidth
                 required
                 id="passwordConfirm"
                 label='confirm password'
@@ -149,6 +181,16 @@ class SignUpForm extends Component {
                 placeholder="confirm password"
               />
               <br />
+              <div>
+                <Checkbox
+                  checked={this.state.checked}
+                  onChange={this.handleChecked('checked')}
+                  value="checked"
+                  color="primary"
+                  className={classes.checkbox}
+                />
+                <Typography className={!this.state.notChecked ? classes.consent : classes.noConsent} variant="body1">I acknowledge that I have read the <Link to='/privacypolicy' target="_blank"> privacy policy</Link> and consent the use of cookies.</Typography>
+              </div>
               <Typography variant="body2" color="error">{this.props.user.signUpError ? 'Username/Email already taken' : ''}</Typography>
               <Typography variant="body2" color="error">{this.state.noUsername || this.state.noEmail || this.state.noPassword ? 'Please complete the form' : ''}</Typography>
               <br />
