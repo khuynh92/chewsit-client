@@ -17,6 +17,5 @@ class Main extends Component {
       </Fragment>
     );
   }
-
 }
 ReactDOM.render(<Main />, document.getElementById('root'));
