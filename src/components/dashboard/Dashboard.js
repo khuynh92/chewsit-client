@@ -126,6 +126,10 @@ const styles = {
   navbar: {
     position: 'fixed',
   },
+  errorMessage: {
+    color: '#ff411d',
+    marginBottom: 2,
+  },
 };
 
 class Dashboard extends Component {
@@ -256,13 +260,11 @@ class Dashboard extends Component {
               <Button onClick={this.changeMealType} id='desserts' className={this.state.mealTypeError ? classes.mealButtonErr : (this.state.mealType === 'desserts' ? classes.mealButtonSelected : classes.mealButton)} variant={this.state.mealType === 'desserts' ? 'contained' : 'outlined'}>Desserts</Button>
             </Grid>
             <br />
-            <br />
+            {(this.state.mealTypeError || this.state.distanceError || this.state.priceError || this.state.locationError) && <Typography variant='body1' className={classes.errorMessage}>Please complete all fields</Typography> }
 
             <Button className={classes.submitButton} onClick={this.submit} size="small" variant="contained" color="primary" disabled={this.state.submitLoading}>chewsit</Button>
+            
             {this.state.submitLoading && <CircularProgress size={24} thickness={5} className={classes.submitLoading} />}
-
-            <br />
-            <br />
 
           </Grid>
         </Fragment>

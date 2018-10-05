@@ -32,7 +32,7 @@ class Cafe extends Component {
     return (
       <div className={!this.props.checked ? this.props.classes.container : this.props.checked}>
         <img className={!this.props.checked ? this.props.classes.photo : this.props.classes.checkedPhoto} src={cafeIcon} />
-        <Typography className={this.props.classes.text} variant='body1'>Cafe</Typography>
+        <Typography className={this.props.classes.text} variant='body1'>Café</Typography>
       </div>
 
     );

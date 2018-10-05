@@ -105,6 +105,7 @@
     "mdi-material-ui": "^5.4.0",
     "query-string": "^6.2.0",
     "react-cookies": "^0.1.0",
+    "react-favicon": "0.0.14",
     "redux-cookie": "^0.5.9",
     "redux-mock-store": "^1.5.3",
     "typeface-roboto": "0.0.54",

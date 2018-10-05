@@ -9,6 +9,7 @@ import Home from './home/Home.js';
 import SignUpForm from './signup/SignUpForm.js';
 import Results from './results/Results.js';
 import Preferences from './preferences/Preferences.js';
+import Privacy from './privacy/Privacy.js';
 
 import ToDashboard from './redirect/ToDashboard.js';
 import ToPreferences from './redirect/ToPreferences.js';
@@ -26,7 +27,7 @@ export default class App extends Component {
             <Route path = '/results' component={Results} />
             <Route path = '/noredirect' component={ToDashboard} />
             <Route path = '/redirect' component={ToPreferences} />
-
+            <Route path = '/privacypolicy' component={Privacy} />
           </React.Fragment>
         </BrowserRouter>
       </Provider>
