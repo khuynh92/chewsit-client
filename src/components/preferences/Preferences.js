@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import cookie from 'react-cookies';
+import Dialog from '@material-ui/core/Dialog';
 
 import { logIn } from '../../action/login-action.js';
 import { savePrefThunk, getPrefThunk } from '../../action/preferences-action.js';
@@ -94,6 +95,17 @@ const styles = theme => {
     title: {
       marginTop: 10,
     },
+    redirectButton: {
+      width: 200,
+      height: 75,
+      borderRadius: 0,
+      color: '#ECEBE3',
+      backgroundColor: '#D36F75',
+      transition: '300ms',
+      '&:hover': {
+        backgroundColor: '#7baec6',
+      },
+    },
   });
 };
 
@@ -121,7 +133,9 @@ class Preferences extends Component {
     thai: false,
     vegetarian: false,
     glute_free: false,
+
     prefSaved: false,
+    openDialog: false,
   }
 
   async componentDidMount() {
@@ -143,7 +157,7 @@ class Preferences extends Component {
   };
 
   handleSubmit = async () => {
-    let preferences = Object.keys(this.state).filter(food => food !== 'prefSaved' && this.state[food]);
+    let preferences = Object.keys(this.state).filter(food => food !== 'prefSaved' && food !== 'openDialog' && this.state[food]);
 
     let newPref = {
       id: this.props.user.id,
@@ -153,12 +167,13 @@ class Preferences extends Component {
     await this.props.savePrefThunk(newPref);
 
     this.setState({ prefSaved: true },
-      () => setTimeout(() => this.setState({ prefSaved: false }), 3000)
+      () => setTimeout(() => this.setState({ prefSaved: false, openDialog: true }), 1000)
     );
-
-
-
   }
+
+  handleClose = () => {
+    this.setState({ openDialog: false });
+  };
 
   render() {
     if (cookie.load('token')) {
@@ -250,6 +265,34 @@ class Preferences extends Component {
                   <Checkbox
                     disableRipple
                     className={this.props.classes.checkBox}
+                    icon={<Chinese />}
+                    checkedIcon={<Chinese checked='checked' />}
+                    value="chinese"
+                    onChange={this.handleChange}
+                    checked={this.state.chinese}
+                  />
+                }
+              />
+              <FormControlLabel
+                className={this.props.classes.checkBoxContainer}
+                control={
+                  <Checkbox
+                    disableRipple
+                    className={this.props.classes.checkBox}
+                    icon={<Glutenfree />}
+                    checkedIcon={<Glutenfree checked='checked' />}
+                    value="gluten_free"
+                    onChange={this.handleChange}
+                    checked={this.state.gluten_free}
+                  />
+                }
+              />
+              <FormControlLabel
+                className={this.props.classes.checkBoxContainer}
+                control={
+                  <Checkbox
+                    disableRipple
+                    className={this.props.classes.checkBox}
                     icon={<Indian />}
                     checkedIcon={<Indian checked='checked' />}
                     value="indpak"
@@ -311,6 +354,20 @@ class Preferences extends Component {
                     value="mexican"
                     onChange={this.handleChange}
                     checked={this.state.mexican}
+                  />
+                }
+              />
+              <FormControlLabel
+                className={this.props.classes.checkBoxContainer}
+                control={
+                  <Checkbox
+                    disableRipple
+                    className={this.props.classes.checkBox}
+                    icon={<Pizza />}
+                    checkedIcon={<Pizza checked='checked' />}
+                    value="pizza"
+                    onChange={this.handleChange}
+                    checked={this.state.pizza}
                   />
                 }
               />
@@ -404,20 +461,6 @@ class Preferences extends Component {
                   <Checkbox
                     disableRipple
                     className={this.props.classes.checkBox}
-                    icon={<Wings />}
-                    checkedIcon={<Wings checked='checked' />}
-                    value="chicken_wings"
-                    onChange={this.handleChange}
-                    checked={this.state.chicken_wings}
-                  />
-                }
-              />
-              <FormControlLabel
-                className={this.props.classes.checkBoxContainer}
-                control={
-                  <Checkbox
-                    disableRipple
-                    className={this.props.classes.checkBox}
                     icon={<Vietnamese />}
                     checkedIcon={<Vietnamese checked='checked' />}
                     value="vietnamese"
@@ -432,44 +475,20 @@ class Preferences extends Component {
                   <Checkbox
                     disableRipple
                     className={this.props.classes.checkBox}
-                    icon={<Pizza />}
-                    checkedIcon={<Pizza checked='checked' />}
-                    value="pizza"
+                    icon={<Wings />}
+                    checkedIcon={<Wings checked='checked' />}
+                    value="chicken_wings"
                     onChange={this.handleChange}
-                    checked={this.state.pizza}
-                  />
-                }
-              />
-              <FormControlLabel
-                className={this.props.classes.checkBoxContainer}
-                control={
-                  <Checkbox
-                    disableRipple
-                    className={this.props.classes.checkBox}
-                    icon={<Chinese />}
-                    checkedIcon={<Chinese checked='checked' />}
-                    value="chinese"
-                    onChange={this.handleChange}
-                    checked={this.state.chinese}
-                  />
-                }
-              />
-              <FormControlLabel
-                className={this.props.classes.checkBoxContainer}
-                control={
-                  <Checkbox
-                    disableRipple
-                    className={this.props.classes.checkBox}
-                    icon={<Glutenfree />}
-                    checkedIcon={<Glutenfree checked='checked' />}
-                    value="gluten_free"
-                    onChange={this.handleChange}
-                    checked={this.state.gluten_free}
+                    checked={this.state.chicken_wings}
                   />
                 }
               />
             </Grid>
             <Button className={!this.state.prefSaved ? this.props.classes.buttonPreSave : this.props.classes.buttonPostSave} variant='contained' onClick={this.handleSubmit}>{this.state.prefSaved ? 'saved' : 'save preferences'}</Button>
+            <SimpleDialogWrapped
+              open={this.state.openDialog}
+              onClose={this.handleClose}
+            />
           </Grid>
         </Fragment>
 
@@ -479,6 +498,31 @@ class Preferences extends Component {
     }
   }
 }
+
+class SimpleDialog extends React.Component {
+  handleClose = () => {
+    this.props.onClose(this.props.selectedValue);
+  };
+
+  handleListItemClick = value => {
+    this.props.onClose(value);
+  };
+
+  render() {
+    const { classes, ...other } = this.props;
+
+    return (
+      <Dialog onClose={this.handleClose} aria-labelledby="simple-dialog-title" {...other}>
+        <Link to='/dashboard' style={{ textDecoration: 'none'}}>
+          <Button className={classes.redirectButton} variant='contained'>chewsit</Button>
+        </Link>
+      </Dialog>
+    );
+  }
+}
+
+const SimpleDialogWrapped = withStyles(styles)(SimpleDialog);
+
 
 const mapStateToProps = ({ user }) => ({ user });
 const mapDispatchToProps = { savePrefThunk, logIn, getPrefThunk };

@@ -20,7 +20,7 @@ import cookie from 'react-cookies';
 
 import Navbar from '../navbar/Navbar.js';
 
-import superagent from 'superagent';
+// import superagent from 'superagent';
 
 const styles = theme => {
   theme.breakpoints.values.sm = 480;
