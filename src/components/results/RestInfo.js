@@ -101,7 +101,7 @@ function MediaCard(props) {
         </a>
         <a href={`https://www.google.com/maps/dir/?api=1&destination=${restaurant.restName.replace(/\s/g, '+')}+${restaurant.restAddress.join(' ').replace(/\s/g, '+').replace(/,/g, '%2C')}`} rel="noopener noreferrer" target="_blank">
           <Button size="small" color="primary">
-            Google Maps
+            Get Directions
           </Button>
         </a>
       </CardActions>
