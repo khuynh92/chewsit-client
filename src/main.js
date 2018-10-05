@@ -12,7 +12,7 @@ class Main extends Component {
   render() {
     return (
       <Fragment>
-        <Favicon url="./assets/logos/favicon-16x16.png" />
+        <Favicon url="https://raw.githubusercontent.com/khuynh92/chewsit-client/master/src/assets/logos/favicon-96x96.png" />
         <App />
       </Fragment>
     );
