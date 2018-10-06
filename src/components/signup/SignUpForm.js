@@ -83,7 +83,7 @@ class SignUpForm extends Component {
       this.setState({ passwordError: true });
     }
 
-    if (this.state.password === this.state.passwordConfirm && this.state.username && this.state.password && this.state.email) {
+    if (this.state.password === this.state.passwordConfirm && this.state.username && this.state.password && this.state.email && !this.state.notChecked) {
       this.props.signUpThunk(this.state);
     }
 
