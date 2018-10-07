@@ -53,14 +53,27 @@ const styles = theme => {
       margin: 20,
     },
     buttonPreSave: {
-      width: 180,
-      position: 'fixed',
-      top: '78vh',
-      backgroundColor: '#497890',
-      color: '#ECEBE3',
-      transition: '300ms',
-      '&:hover': {
-        backgroundColor: '#7baec6',
+      [theme.breakpoints.between('xs', 'sm')]: {
+        width: 180,
+        position: 'fixed',
+        top: '78vh',
+        backgroundColor: '#497890',
+        color: '#ECEBE3',
+        transition: '300ms',
+        '&:hover': {
+          backgroundColor: '#7baec6',
+        },
+      },
+      [theme.breakpoints.between('sm', 'lg')]: {
+        width: 180,
+        position: 'fixed',
+        top: '90vh',
+        backgroundColor: '#497890',
+        color: '#ECEBE3',
+        transition: '300ms',
+        '&:hover': {
+          backgroundColor: '#7baec6',
+        },
       },
     },
     buttonPostSave: {
@@ -84,10 +97,12 @@ const styles = theme => {
         alignItems: 'center',
       },
       [theme.breakpoints.between('sm', 'md')]: {
+        paddingLeft: '6vw',
         flexDirection: 'row',
         flexWrap: 'wrap',
       },
       [theme.breakpoints.between('md', 'lg')]: {
+        paddingLeft: '6vw',
         flexDirection: 'row',
         flexWrap: 'wrap',
       },
@@ -132,7 +147,7 @@ class Preferences extends Component {
     sushi: false,
     thai: false,
     vegetarian: false,
-    glute_free: false,
+    gluten_free: false,
 
     prefSaved: false,
     openDialog: false,
@@ -513,7 +528,7 @@ class SimpleDialog extends React.Component {
 
     return (
       <Dialog onClose={this.handleClose} aria-labelledby="simple-dialog-title" {...other}>
-        <Link to='/dashboard' style={{ textDecoration: 'none'}}>
+        <Link to='/dashboard' style={{ textDecoration: 'none' }}>
           <Button className={classes.redirectButton} variant='contained'>chewsit</Button>
         </Link>
       </Dialog>

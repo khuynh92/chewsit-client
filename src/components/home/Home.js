@@ -69,13 +69,13 @@ const styles = theme => {
     about: {
       [theme.breakpoints.between('xs', 'sm')]: {
         textDecoration: 'none',
-        position: 'absolute',
-        bottom: '12vh',
+        position: 'fixed',
+        top: '78vh',
       },
       [theme.breakpoints.between('sm', 'lg')]: {
         textDecoration: 'none',
-        position: 'absolute',
-        bottom: '2vh',
+        position: 'fixed',
+        top: '90vh',
       },
     },
   });

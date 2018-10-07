@@ -180,7 +180,7 @@ class Dashboard extends Component {
     if (this.state.location && this.state.distance && this.state.mealType && this.state.price) {
       await this.setState({ submitLoading: true });
       let location = this.state.location.lat ? `latitude=${this.state.location.lat}&&longitude=${this.state.location.lng}` : location;
-      let prefStr = this.props.user.preferences.length ? this.props.user.preferences.join(',') : 'restaurant';
+      let prefStr = this.props.user.preferences.length ? this.props.user.preferences.join(',') : 'restaurants';
       let food = this.state.mealType === 'desserts' || this.state.mealType === 'breakfast' ? this.state.mealType : prefStr;
 
       await this.props.fetchAllResultsThunk(food, location, this.state.price.length, this.state.distance);
