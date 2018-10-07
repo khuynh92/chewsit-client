@@ -6,7 +6,7 @@ import seafoodIcon from '../../../assets/food/seafood.jpg';
 const styles = {
   container: {
     paddingTop: 30,
-    width: 100,
+    width: 120,
     opacity: .5,
   },
   photo: {

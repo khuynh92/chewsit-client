@@ -6,7 +6,7 @@ import backeryIcon from '../../../assets/food/bakery.jpg';
 const styles = {
   container: {
     paddingTop: 30,
-    width: 100,
+    width: 120,
     opacity: .5,
   },
   photo: {
@@ -22,7 +22,7 @@ const styles = {
   },
   checked: {
     paddingTop: 100,
-    width: 110,
+    width: 100,
     opacity: 1,
   },
 };
