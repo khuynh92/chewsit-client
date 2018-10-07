@@ -74,7 +74,7 @@ const styles = theme => {
       },
       [theme.breakpoints.between('sm', 'lg')]: {
         textDecoration: 'none',
-        position: 'absolute',
+        position: 'fixed',
         bottom: '2vh',
       },
     },
