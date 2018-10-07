@@ -6,7 +6,7 @@ import cookie from 'react-cookies';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import { Linkedin, GooglePlus, Facebook } from 'mdi-material-ui';
+import { Linkedin, GooglePlus, Facebook, InformationOutline } from 'mdi-material-ui';
 import LogInForm from '../login/LogInForm';
 import Grid from '@material-ui/core/Grid';
 
@@ -56,7 +56,7 @@ const styles = theme => {
       },
     },
     container: {
-      marginTop: 100,
+      marginTop: '10vh',
     },
     link: {
       textDecoration: 'none',
@@ -64,6 +64,18 @@ const styles = theme => {
       transition: '300ms',
       '&:hover': {
         color: '#7baec6',
+      },
+    },
+    about: {
+      [theme.breakpoints.between('xs', 'sm')]: {
+        textDecoration: 'none',
+        position: 'absolute',
+        bottom: '12vh',
+      },
+      [theme.breakpoints.between('sm', 'lg')]: {
+        textDecoration: 'none',
+        position: 'absolute',
+        bottom: '2vh',
       },
     },
   });
@@ -149,6 +161,14 @@ class Home extends Component {
             <LogInForm className={this.props.classes.login} />
             <p>Don't have an account?</p>
             <Link to='/signup' className={this.props.classes.link}>Create Account</Link>
+
+            <Link to='/about' className={this.props.classes.about}>
+              <Button >
+                <InformationOutline />
+                <Typography className={this.props.classes.listText} variant='body1'>About</Typography>
+              </ Button>
+            </Link>
+
           </Grid>
         </Fragment>
       );

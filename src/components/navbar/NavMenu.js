@@ -91,12 +91,14 @@ class NavMenu extends React.Component {
         </Link>
         <Divider />
 
-        <List className={classes.li}>
-          <Button className={classes.button}>
-            <InformationOutline />
-            <Typography className={classes.listText} variant='body1'>About</Typography>
-          </ Button>
-        </List>
+        <Link to='/about' className={classes.link}>
+          <List className={classes.li}>
+            <Button className={classes.button}>
+              <InformationOutline />
+              <Typography className={classes.listText} variant='body1'>About</Typography>
+            </ Button>
+          </List>
+        </Link>
         <Divider />
 
         {

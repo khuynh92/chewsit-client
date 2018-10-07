@@ -13,6 +13,7 @@ import Privacy from './privacy/Privacy.js';
 
 import ToDashboard from './redirect/ToDashboard.js';
 import ToPreferences from './redirect/ToPreferences.js';
+import About from './about/About.js';
 
 export default class App extends Component {
   render() {
@@ -28,6 +29,8 @@ export default class App extends Component {
             <Route path = '/noredirect' component={ToDashboard} />
             <Route path = '/redirect' component={ToPreferences} />
             <Route path = '/privacypolicy' component={Privacy} />
+            <Route path = '/About' component={About} />
+
           </React.Fragment>
         </BrowserRouter>
       </Provider>

@@ -18,6 +18,7 @@ const styles = theme => {
 
   return ({
     button: {
+      width: 300,
       marginTop: 20,
       marginBottom: 20,
       backgroundColor: '#497890',
