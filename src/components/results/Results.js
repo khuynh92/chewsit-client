@@ -9,6 +9,9 @@ import { InfoWindow, withScriptjs, withGoogleMap, GoogleMap, Marker, DirectionsR
 import { compose, withProps, lifecycle, withStateHandlers } from 'recompose';
 
 import { ChevronRight, ChevronLeft } from 'mdi-material-ui';
+
+import food from '../../assets/food.png';
+import human from '../../assets/human-handsup.png';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Restaurant from './Restaurant.js';
@@ -252,7 +255,7 @@ class Results extends Component {
       // let results = await superagent.get(`${process.env.API_URL}/api/v1/yelp/photos/${this.state.restID}`);
 
       // this.setState({ moreImages: results.body });
-      
+
       const DirectionsService = new google.maps.DirectionsService();
       DirectionsService.route({
         origin: new google.maps.LatLng(this.props.user.location.lat, this.props.user.location.lng),
@@ -309,7 +312,7 @@ class Results extends Component {
 
               <div className={this.props.classes.results}>
                 <RestInfo restaurant={this.state} />
-                <Restaurant onClick={()=> console.log('clicked!')}imageArray={this.state.moreImages} image={this.state.restImg} restID={this.state.restID} />
+                <Restaurant onClick={() => console.log('clicked!')} imageArray={this.state.moreImages} image={this.state.restImg} restID={this.state.restID} />
               </div>
               <div className={this.props.classes.map}>
                 <MapWithADirectionsRenderer name={this.state.restName} newDirections={this.state.newDirections} lat={this.state.restLat} lng={this.state.restLng} />
@@ -340,13 +343,13 @@ const MapWithADirectionsRenderer = compose(
     marker1isOpen: false,
     marker2isOpen: false,
   }), {
-      marker1onToggle: ({ marker1isOpen }) => () => ({
-        marker1isOpen: !marker1isOpen,
-      }),
-      marker2onToggle: ({ marker2isOpen }) => () => ({
-        marker2isOpen: !marker2isOpen,
-      }),
+    marker1onToggle: ({ marker1isOpen }) => () => ({
+      marker1isOpen: !marker1isOpen,
     }),
+    marker2onToggle: ({ marker2isOpen }) => () => ({
+      marker2isOpen: !marker2isOpen,
+    }),
+  }),
   withScriptjs,
   withGoogleMap,
   connect(mapStateToProps, null),
@@ -374,15 +377,18 @@ const MapWithADirectionsRenderer = compose(
   >
     {props.directions && <DirectionsRenderer options={{ suppressMarkers: true }} directions={!props.newDirections ? props.directions : props.newDirections} />}
     <Marker
-      label='you'
+      // label='you'
       position={{ lat: props.user.location.lat, lng: props.user.location.lng }}
       onClick={(props.marker1onToggle)}
+      icon={human}
     >
       {props.marker1isOpen && <InfoWindow onCloseClick={props.marker1onToggle} ><p>current location</p></InfoWindow>}
     </Marker>
     <Marker
+      symbol={food}
       position={new google.maps.LatLng(props.lat, props.lng)}
       onClick={props.marker2onToggle}
+      // icon={food}
     >
       {props.marker2isOpen && <InfoWindow onCloseClick={props.marker2onToggle}><p>{props.name}</p></InfoWindow>}
     </Marker>
