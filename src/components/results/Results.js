@@ -11,7 +11,7 @@ import { compose, withProps, lifecycle, withStateHandlers } from 'recompose';
 import { ChevronRight, ChevronLeft } from 'mdi-material-ui';
 
 import food from '../../assets/food.png';
-import human from '../../assets/human-handsup.png';
+import human from '../../assets/human-handsup1.png';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Restaurant from './Restaurant.js';

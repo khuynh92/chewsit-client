@@ -49,10 +49,16 @@ const styles = {
   },
   directions: {
     textDecoration: 'none',
-    color: '#9DA6AF',
   },
   directionsChild: {
-    color: '#9DA6AF',
+    color: '#497890',
+    transition: '300ms',
+    '&:hover': {
+      color: '#9DA6AF',
+    },
+  },
+  mapsIcon: {
+    marginRight: 10,
   },
 };
 
@@ -104,8 +110,8 @@ function MediaCard(props) {
         </a>
 
         <a className={classes.directions} href={`https://www.google.com/maps/dir/?api=1&destination=${restaurant.restName.replace(/\s/g, '+')}+${restaurant.restAddress.join(' ').replace(/\s/g, '+').replace(/,/g, '%2C')}`} rel="noopener noreferrer" target="_blank">
-          <Button className={classes.directionChild} size="small">
-            <GoogleMaps className={classes.directionChild} />
+          <Button className={classes.directionsChild} size="small">
+            <GoogleMaps className={classes.mapsIcon}/>
             Get Directions
           </Button>
         </a>

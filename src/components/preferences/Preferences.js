@@ -182,7 +182,7 @@ class Preferences extends Component {
     await this.props.savePrefThunk(newPref);
 
     this.setState({ prefSaved: true },
-      () => setTimeout(() => this.setState({ prefSaved: false, openDialog: true }), 1000)
+      () => setTimeout(() => this.setState({ prefSaved: false, openDialog: true }), 500)
     );
   }
 
