@@ -1,11 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
+import {Card, CardActions, CardContent, Button, Typography, withStyles} from '@material-ui/core';
+import { GoogleMaps } from 'mdi-material-ui';
 
 import large_0 from '../../assets/yelp/stars/large/large_0.png';
 import large_1 from '../../assets/yelp/stars/large/large_1.png';
@@ -52,6 +47,13 @@ const styles = {
   stars: {
     marginTop: 10,
   },
+  directions: {
+    textDecoration: 'none',
+    color: '#9DA6AF',
+  },
+  directionsChild: {
+    color: '#9DA6AF',
+  },
 };
 
 function MediaCard(props) {
@@ -94,23 +96,23 @@ function MediaCard(props) {
         </Typography>
       </CardContent>
       <CardActions className={classes.cardAction}>
+
         <a href={restaurant.restWebsite} rel="noopener noreferrer" target="_blank">
           <Button className={classes.yelpLogoCont} size="small" color="primary">
             <img className={classes.yelpLogo} src={yelp_logo} />
           </Button>
         </a>
-        <a href={`https://www.google.com/maps/dir/?api=1&destination=${restaurant.restName.replace(/\s/g, '+')}+${restaurant.restAddress.join(' ').replace(/\s/g, '+').replace(/,/g, '%2C')}`} rel="noopener noreferrer" target="_blank">
-          <Button size="small" color="primary">
+
+        <a className={classes.directions} href={`https://www.google.com/maps/dir/?api=1&destination=${restaurant.restName.replace(/\s/g, '+')}+${restaurant.restAddress.join(' ').replace(/\s/g, '+').replace(/,/g, '%2C')}`} rel="noopener noreferrer" target="_blank">
+          <Button className={classes.directionChild} size="small">
+            <GoogleMaps className={classes.directionChild} />
             Get Directions
           </Button>
         </a>
+
       </CardActions>
     </Card>
   );
 }
-
-MediaCard.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
 
 export default withStyles(styles)(MediaCard);
