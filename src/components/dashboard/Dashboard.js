@@ -1,37 +1,32 @@
-//#ff411d red
+/*global google*/
 
 import React, { Component, Fragment } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import NativeSelect from '@material-ui/core/NativeSelect';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormControl from '@material-ui/core/FormControl';
-import Input from '@material-ui/core/Input';
-import Typography from '@material-ui/core/Typography';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import Grid from '@material-ui/core/Grid';
-import Snackbar from '@material-ui/core/Snackbar';
-import IconButton from '@material-ui/core/IconButton';
+import { TextField, withStyles, Button, NativeSelect, InputLabel, FormControl, Input, Typography, CircularProgress, Grid, Snackbar, IconButton } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
-
+import googleMaps from '@google/maps';
 
 import Navbar from '../navbar/Navbar.js';
-
 
 import { getPrefThunk } from '../../action/preferences-action.js';
 import { logIn, saveLocation } from '../../action/login-action.js';
 import { fetchAllResultsThunk } from '../../action/results-action.js';
 
+const googleMapsClient = googleMaps.createClient({
+  key: process.env.GOOGLE_API_KEY,
+});
+
 const styles = {
   button: {
+    minWidth: 70.5,
     marginTop: 0,
     marginRight: 0,
     borderColor: '#497890',
     color: '#497890',
   },
   buttonSelected: {
+    minWidth: 70.5,
     marginTop: 0,
     marginRight: 0,
     backgroundColor: '#497890',
@@ -42,12 +37,13 @@ const styles = {
     },
   },
   buttonErr: {
+    minWidth: 70.5,
     marginRight: 0,
     borderColor: '#C44632',
     color: '#C44632',
   },
   mealButton: {
-    width: 290,
+    width: 313,
     height: 50,
     marginTop: 0,
     marginBottom: 10,
@@ -56,7 +52,7 @@ const styles = {
     color: '#497890',
   },
   mealButtonSelected: {
-    width: 290,
+    width: 313,
     height: 50,
     marginTop: 0,
     marginBottom: 10,
@@ -69,7 +65,7 @@ const styles = {
     },
   },
   mealButtonErr: {
-    width: 290,
+    width: 313,
     height: 50,
     marginTop: 0,
     marginBottom: 10,
@@ -87,16 +83,39 @@ const styles = {
       backgroundColor: '#7baec6',
     },
   },
+  enterLocationButton: {
+    marginTop: '5vh',
+    marginBottom: 0,
+    color: '#ECEBE3',
+    backgroundColor: '#497890',
+    transition: '300ms',
+    '&:hover': {
+      backgroundColor: '#7baec6',
+    },
+  },
+  getLocationButtonErr: {
+    marginTop: '5vh',
+    marginBottom: 0,
+    color: '#ECEBE3',
+    backgroundColor: '#C44632',
+    transition: '300ms',
+    '&:hover': {
+      backgroundColor: '#7baec6',
+    },
+  },
   locationButtonErr: {
     marginTop: '5vh',
     marginBottom: 0,
     color: '#ECEBE3',
     backgroundColor: '#C44632',
+    '&:hover': {
+      backgroundColor: '#7baec6',
+    },
   },
   locationFetch: {
-    marginTop: -30,
+    marginTop: -50,
     marginLeft: -5,
-    marginBottom: 5,
+    marginBottom: 25,
     color: '#ff411d',
   },
   submitLoading: {
@@ -137,6 +156,18 @@ const styles = {
   snackbar: {
     background: '#9DA6AF',
   },
+  or: {
+    marginLeft: 5,
+    marginRight: 5,
+    paddingTop: '6vh',
+  },
+  locationDiv: {
+    display: 'flex',
+  },
+  formDiv: {
+    marginTop: 5,
+    width: 313,
+  },
 };
 
 class Dashboard extends Component {
@@ -153,8 +184,20 @@ class Dashboard extends Component {
     mealTypeError: false,
     distanceError: false,
     locationError: false,
+    getLocationError: false,
     openSnackbar: false,
-  }
+    useLocation: true,
+    enterLocation: true,
+    showLocationForm: false,
+    locationForm: '',
+    emptyLocationForm: false,
+  };
+
+  handleChange = name => async event => {
+    await this.setState({
+      [name]: event.target.value,
+    });
+  };
 
   changePrice = (e) => {
     this.setState({ price: e.target.textContent, priceError: false });
@@ -162,17 +205,15 @@ class Dashboard extends Component {
 
   changeMealType = (e) => {
     this.setState({ mealType: e.target.textContent.toLowerCase(), mealTypeError: false });
-
   }
 
   changeDistance = (e) => {
     this.setState({ distance: e.target.value, distanceError: false });
-
   }
 
   getLocation = async () => {
 
-    await this.setState({ locationFetchText: 'Getting location...', locationFetch: true });
+    await this.setState({ locationFetchText: 'Getting location...', locationFetch: true, enterLocation: false });
 
     setTimeout(() => {
       this.setState({ openSnackbar: true });
@@ -190,32 +231,80 @@ class Dashboard extends Component {
     }
   };
 
+  showLocationForm = async () => {
+    await this.setState({ useLocation: false, showLocationForm: true, enterLocation: false });
+  }
+
   submit = async () => {
-    if (this.state.location && this.state.distance && this.state.mealType && this.state.price) {
-      await this.setState({ submitLoading: true });
-      let location = this.state.location.lat ? `latitude=${this.state.location.lat}&&longitude=${this.state.location.lng}` : location;
-      let prefStr = this.props.user.preferences.length ? this.props.user.preferences.join(',') : 'restaurants';
-      let food = this.state.mealType === 'desserts' || this.state.mealType === 'breakfast' ? this.state.mealType : prefStr;
 
-      await this.props.fetchAllResultsThunk(food, location, this.state.price.length, this.state.distance);
+    if (this.state.locationForm) {
+      googleMapsClient.geocode({ 'address': this.state.locationForm }, async (results, status) => {
 
-      this.props.history.push('/results');
+        if (status.json.status === 'OK') {
+          var lat = status.json.results[0].geometry.location.lat;
+          var lng = status.json.results[0].geometry.location.lng;
 
+          await this.props.saveLocation({ lat, lng });
+          await this.setState({ location: { lat, lng } });
+
+          if ((this.state.location || this.state.locationForm) && this.state.distance && this.state.mealType && this.state.price) {
+            await this.setState({ submitLoading: true });
+            let location = this.state.location.lat ? `latitude=${this.state.location.lat}&&longitude=${this.state.location.lng}` : location;
+            let prefStr = this.props.user.preferences.length ? this.props.user.preferences.join(',') : 'restaurants';
+            let food = this.state.mealType === 'desserts' || this.state.mealType === 'breakfast' ? this.state.mealType : prefStr;
+    
+            await this.props.fetchAllResultsThunk(food, location, this.state.price.length, this.state.distance);
+    
+            this.props.history.push('/results');
+    
+          } else {
+            if (!this.state.locationForm) {
+              this.setState({ locationError: 'secondary', emptyLocationForm: true });
+            }
+            if (!this.state.mealType) {
+              this.setState({ mealTypeError: 'secondary' });
+            }
+            if (!this.state.distance) {
+              this.setState({ distanceError: true });
+            }
+            if (!this.state.price) {
+              this.setState({ priceError: 'secondary' });
+            }
+          }
+
+        }
+
+        if (status.json.status === 'ZERO_RESULTS') {
+          console.error('Could not fetch location');
+        }
+      });
     } else {
-      if (!this.state.location) {
-        this.setState({ locationError: 'secondary' });
-      }
-      if (!this.state.mealType) {
-        this.setState({ mealTypeError: 'secondary' });
-      }
-      if (!this.state.distance) {
-        this.setState({ distanceError: true });
-      }
-      if (!this.state.price) {
-        this.setState({ priceError: 'secondary' });
+
+      if ((this.state.location || this.state.locationForm) && this.state.distance && this.state.mealType && this.state.price) {
+        await this.setState({ submitLoading: true });
+        let location = this.state.location.lat ? `latitude=${this.state.location.lat}&&longitude=${this.state.location.lng}` : location;
+        let prefStr = this.props.user.preferences.length ? this.props.user.preferences.join(',') : 'restaurants';
+        let food = this.state.mealType === 'desserts' || this.state.mealType === 'breakfast' ? this.state.mealType : prefStr;
+
+        await this.props.fetchAllResultsThunk(food, location, this.state.price.length, this.state.distance);
+
+        this.props.history.push('/results');
+
+      } else {
+        if (!this.state.location) {
+          this.setState({ locationError: 'secondary', getLocationError: 'secondary', emptyLocationForm: true });
+        }
+        if (!this.state.mealType) {
+          this.setState({ mealTypeError: 'secondary' });
+        }
+        if (!this.state.distance) {
+          this.setState({ distanceError: true });
+        }
+        if (!this.state.price) {
+          this.setState({ priceError: 'secondary' });
+        }
       }
     }
-
   }
 
   snackbarClose = () => {
@@ -237,10 +326,28 @@ class Dashboard extends Component {
             alignItems="center"
             justify="center"
           >
-            <Button disabled={this.state.locationFetch} onClick={this.getLocation} id='location' className={this.state.locationError ? classes.locationButtonErr : classes.locationButton} variant='contained'>use location</Button>
-            {this.state.locationFetch && <CircularProgress size={24} thickness={5} className={classes.locationFetch} />}
-            <Typography variant='body1'>{this.state.locationFetchText}</Typography>
+            <div className={this.state.showLocationForm ? classes.formDiv : classes.locationDiv}>
+              {this.state.useLocation && <Button disabled={this.state.locationFetch} onClick={this.getLocation} id='location' className={this.state.locationError ? classes.locationButtonErr : classes.locationButton} variant='contained'>use location</Button>}
 
+              {(this.state.enterLocation && this.state.useLocation) && <span className={classes.or}>or</span>}
+
+              {this.state.enterLocation && <Button onClick={this.showLocationForm} className={this.state.getLocationError ? classes.getLocationButtonErr : classes.enterLocationButton}>Enter Location</Button>}
+
+              {this.state.showLocationForm && <TextField
+                error={this.state.emptyLocationForm}
+                fullWidth
+                required
+                id="locationForm"
+                label="Enter Location"
+                value={this.state.locationForm}
+                onChange={this.handleChange('locationForm')}
+                margin="normal"
+                placeholder="username"
+              />}
+
+            </div>
+            <Typography variant='body1'>{this.state.locationFetchText}</Typography>
+            {this.state.locationFetch && <CircularProgress size={24} thickness={5} className={classes.locationFetch} />}
             <br />
             <br />
 
