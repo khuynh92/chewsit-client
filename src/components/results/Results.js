@@ -29,6 +29,9 @@ const styles = theme => {
   theme.breakpoints.values.sm = 480;
   theme.breakpoints.values.md = 850;
   theme.breakpoints.values.lg = 1024;
+  theme.breakpoints.values.xl = 3000;
+  theme.breakpoints.values.tablet = 769;
+  theme.breakpoints.values.lgForward = 1480;
 
   return ({
     container: {
@@ -61,14 +64,43 @@ const styles = theme => {
         height: '75vh',
         justifyContent: 'center',
       },
+      [theme.breakpoints.between('lg', 'xl')]: {
+        maxWidth: 1024,
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        marginTop: '5vh',
+        display: 'flex',
+        flexDirection: 'column',
+        marginBottom: '40vh',
+      },
     },
     results: {
+      margin: 'auto',
       width: '100%',
     },
     map: {
-      width: '100%',
+      [theme.breakpoints.between('xs', 'sm')]: {
+        width: 300,
+        margin: 'auto',
+      },
+      [theme.breakpoints.between('xs', 'tablet')]: {
+        width: 300,
+        margin: 'auto',
+      },
+      [theme.breakpoints.between('tablet', 'md')]: {
+        width: '100%',
+      },
+      [theme.breakpoints.between('md', 'lg')]: {
+        width: '100%',
+
+      },
     },
     back: {
+      zIndex: 99,
+      position: 'fixed',
+      cursor: 'pointer',
+      marginLeft: '-9vw',
+      marginTop: '36vh',
       [theme.breakpoints.between('xs', 'sm')]: {
         zIndex: 99,
         position: 'fixed',
@@ -89,6 +121,13 @@ const styles = theme => {
         cursor: 'pointer',
         marginLeft: '-9vw',
         marginTop: 0,
+      },
+      [theme.breakpoints.between('lg', 'xl')]: {
+        zIndex: 99,
+        position: 'fixed',
+        cursor: 'pointer',
+        marginLeft: '-9vw',
+        marginTop: '0vh',
       },
     },
     forward: {
@@ -113,6 +152,20 @@ const styles = theme => {
         cursor: 'pointer',
         marginLeft: '78vw',
         marginTop: 0,
+      },
+      [theme.breakpoints.between('lg', 'lgForward')]: {
+        zIndex: 99,
+        position: 'fixed',
+        cursor: 'pointer',
+        marginLeft: '78vw ',
+        marginTop: '0vh',
+      },
+      [theme.breakpoints.between('lgForward', 'xl')]: {
+        zIndex: 99,
+        position: 'fixed',
+        cursor: 'pointer',
+        marginLeft: '1160px ',
+        marginTop: '0vh',
       },
     },
     redArrow: {
@@ -343,13 +396,13 @@ const MapWithADirectionsRenderer = compose(
     marker1isOpen: false,
     marker2isOpen: false,
   }), {
-    marker1onToggle: ({ marker1isOpen }) => () => ({
-      marker1isOpen: !marker1isOpen,
+      marker1onToggle: ({ marker1isOpen }) => () => ({
+        marker1isOpen: !marker1isOpen,
+      }),
+      marker2onToggle: ({ marker2isOpen }) => () => ({
+        marker2isOpen: !marker2isOpen,
+      }),
     }),
-    marker2onToggle: ({ marker2isOpen }) => () => ({
-      marker2isOpen: !marker2isOpen,
-    }),
-  }),
   withScriptjs,
   withGoogleMap,
   connect(mapStateToProps, null),
@@ -388,7 +441,7 @@ const MapWithADirectionsRenderer = compose(
       symbol={food}
       position={new google.maps.LatLng(props.lat, props.lng)}
       onClick={props.marker2onToggle}
-      // icon={food}
+    // icon={food}
     >
       {props.marker2isOpen && <InfoWindow onCloseClick={props.marker2onToggle}><p>{props.name}</p></InfoWindow>}
     </Marker>

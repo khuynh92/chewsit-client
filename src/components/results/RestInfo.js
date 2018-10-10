@@ -17,18 +17,32 @@ import yelp_logo from '../../assets/yelp/yelp_logo.png';
 
 const styles = theme => {
   theme.breakpoints.values.sm = 480;
+  theme.breakpoints.values.mid = 769;
   theme.breakpoints.values.md = 910;
   theme.breakpoints.values.lg = 1024;
+  theme.breakpoints.values.xl = 3000;
+
 
   return ({
     card: {
-      position: 'relative',
-      minWidth: 300,
-      marginRight: '2%',
-      marginBottom: '2%',
-      display: 'inline-block',
-      width: '48%',
-      height: '40vh',
+      [theme.breakpoints.between('xs', 'md')]: {
+        position: 'relative',
+        minWidth: 300,
+        marginRight: 'auto',
+        marginLeft: 'auto',
+        marginBottom: '2%',
+        width: '50%',
+        height: '40vh',
+      },
+      [theme.breakpoints.between('mid', 'xl')]: {
+        position: 'relative',
+        minWidth: 300,
+        marginRight: '2%',
+        marginBottom: '2%',
+        display: 'inline-block',
+        width: '48%',
+        height: '40vh',
+      },
     },
     media: {
       height: 204,
