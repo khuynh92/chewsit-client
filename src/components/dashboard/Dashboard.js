@@ -3,6 +3,7 @@
 import React, { Component, Fragment } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import superagent from 'superagent';
 import { TextField, withStyles, Button, NativeSelect, InputLabel, FormControl, Input, Typography, CircularProgress, Grid, Snackbar, IconButton } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import googleMaps from '@google/maps';
@@ -238,46 +239,46 @@ class Dashboard extends Component {
   submit = async () => {
 
     if (this.state.locationForm) {
-      googleMapsClient.geocode({ 'address': this.state.locationForm }, async (results, status) => {
+      if ((this.state.location || this.state.locationForm) && this.state.distance && this.state.mealType && this.state.price) {
+        superagent.get(`${process.env.API_URL}/api/v1/google/${this.state.locationForm}`)
+          .then(response => {
+            if (response.text === 'Could not fetch location') {
+              throw response.text;
+            }
+            return response.body;
+          })
+          .then(async latlng => {
+            let { lat } = latlng;
+            let { lng } = latlng;
+            this.props.saveLocation({ lat, lng });
+            await this.setState({ location: { lat, lng } });
 
-        if (status.json.status === 'OK') {
-          var lat = status.json.results[0].geometry.location.lat;
-          var lng = status.json.results[0].geometry.location.lng;
-
-          this.props.saveLocation({ lat, lng });
-          await this.setState({ location: { lat, lng } });
-
-          if ((this.state.location || this.state.locationForm) && this.state.distance && this.state.mealType && this.state.price) {
             await this.setState({ submitLoading: true });
             let location = this.state.location.lat ? `latitude=${this.state.location.lat}&&longitude=${this.state.location.lng}` : location;
             let prefStr = this.props.user.preferences.length ? this.props.user.preferences.join(',') : 'restaurants';
             let food = this.state.mealType === 'desserts' || this.state.mealType === 'breakfast' ? this.state.mealType : prefStr;
-    
+
             await this.props.fetchAllResultsThunk(food, location, this.state.price.length, this.state.distance);
-    
+
             this.props.history.push('/results');
-    
-          } else {
-            if (!this.state.locationForm) {
-              this.setState({ locationError: 'secondary', emptyLocationForm: true });
-            }
-            if (!this.state.mealType) {
-              this.setState({ mealTypeError: 'secondary' });
-            }
-            if (!this.state.distance) {
-              this.setState({ distanceError: true });
-            }
-            if (!this.state.price) {
-              this.setState({ priceError: 'secondary' });
-            }
-          }
-
+          })
+          .catch(err => {
+            alert(err);
+          });
+      } else {
+        if (!this.state.locationForm) {
+          this.setState({ locationError: 'secondary', emptyLocationForm: true });
         }
-
-        if (status.json.status === 'ZERO_RESULTS') {
-          console.error('Could not fetch location');
+        if (!this.state.mealType) {
+          this.setState({ mealTypeError: 'secondary' });
         }
-      });
+        if (!this.state.distance) {
+          this.setState({ distanceError: true });
+        }
+        if (!this.state.price) {
+          this.setState({ priceError: 'secondary' });
+        }
+      }
     } else {
 
       if ((this.state.location || this.state.locationForm) && this.state.distance && this.state.mealType && this.state.price) {
