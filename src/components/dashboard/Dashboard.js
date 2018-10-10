@@ -244,7 +244,7 @@ class Dashboard extends Component {
           var lat = status.json.results[0].geometry.location.lat;
           var lng = status.json.results[0].geometry.location.lng;
 
-          await this.props.saveLocation({ lat, lng });
+          this.props.saveLocation({ lat, lng });
           await this.setState({ location: { lat, lng } });
 
           if ((this.state.location || this.state.locationForm) && this.state.distance && this.state.mealType && this.state.price) {
