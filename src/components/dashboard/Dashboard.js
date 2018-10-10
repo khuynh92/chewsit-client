@@ -248,6 +248,7 @@ class Dashboard extends Component {
               <InputLabel error={this.state.distanceError} htmlFor="distance-native-helper">Distance</InputLabel>
               <NativeSelect error={this.state.distanceError} onChange={this.changeDistance} value={this.state.distance} input={<Input name="distance" id="distance-native-helper" />}>
                 <option value="" />
+                <option value={400}>¼	mile</option>
                 <option value={805}>½ mile</option>
                 <option value={1610}>1 mile</option>
                 <option value={8045}>5 miles</option>
