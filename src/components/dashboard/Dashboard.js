@@ -12,6 +12,10 @@ import Input from '@material-ui/core/Input';
 import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Grid from '@material-ui/core/Grid';
+import Snackbar from '@material-ui/core/Snackbar';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
+
 
 import Navbar from '../navbar/Navbar.js';
 
@@ -130,6 +134,9 @@ const styles = {
     color: '#ff411d',
     marginBottom: 2,
   },
+  snackbar: {
+    background: '#9DA6AF',
+  },
 };
 
 class Dashboard extends Component {
@@ -146,6 +153,7 @@ class Dashboard extends Component {
     mealTypeError: false,
     distanceError: false,
     locationError: false,
+    openSnackbar: false,
   }
 
   changePrice = (e) => {
@@ -163,7 +171,13 @@ class Dashboard extends Component {
   }
 
   getLocation = async () => {
+
     await this.setState({ locationFetchText: 'Getting location...', locationFetch: true });
+
+    setTimeout(() => {
+      this.setState({ openSnackbar: true });
+    }, 5000);
+
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         location.pos = {
@@ -204,13 +218,18 @@ class Dashboard extends Component {
 
   }
 
+  snackbarClose = () => {
+    this.setState({ openSnackbar: false });
+  }
+
+
   render() {
     const { classes } = this.props;
 
     if (this.props.user.isLoggedIn) {
       return (
         <Fragment>
-          <Navbar className={classes.navbar}/>
+          <Navbar className={classes.navbar} />
           <Grid
             container
             spacing={0}
@@ -260,13 +279,40 @@ class Dashboard extends Component {
               <Button onClick={this.changeMealType} id='desserts' className={this.state.mealTypeError ? classes.mealButtonErr : (this.state.mealType === 'desserts' ? classes.mealButtonSelected : classes.mealButton)} variant={this.state.mealType === 'desserts' ? 'contained' : 'outlined'}>Desserts</Button>
             </Grid>
             <br />
-            {(this.state.mealTypeError || this.state.distanceError || this.state.priceError || this.state.locationError) && <Typography variant='body1' className={classes.errorMessage}>Please complete all fields</Typography> }
+            {(this.state.mealTypeError || this.state.distanceError || this.state.priceError || this.state.locationError) && <Typography variant='body1' className={classes.errorMessage}>Please complete all fields</Typography>}
 
             <Button className={classes.submitButton} onClick={this.submit} size="small" variant="contained" color="primary" disabled={this.state.submitLoading}>chewsit</Button>
-            
+
             {this.state.submitLoading && <CircularProgress size={24} thickness={5} className={classes.submitLoading} />}
 
           </Grid>
+
+          <Snackbar
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'center',
+            }}
+            open={this.state.locationFetch && this.state.openSnackbar}
+            onClose={this.snackbarClose}
+            ContentProps={{
+              'aria-describedby': 'message-id',
+              classes: {
+                root: classes.snackbar,
+              },
+            }}
+            message={<span id="message-id">if 'USE LOCATION' is still spinning, reload the page over 'https'</span>}
+            action={[
+              <IconButton
+                key="close"
+                aria-label="Close"
+                color="inherit"
+                className={classes.close}
+                onClick={this.snackbarClose}
+              >
+                <CloseIcon />
+              </IconButton>,
+            ]}
+          />
         </Fragment>
       );
     } else {
