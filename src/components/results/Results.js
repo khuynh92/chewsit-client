@@ -137,7 +137,7 @@ const styles = theme => {
       '&:hover': {
         backgroundColor: '#7baec6',
       },
-    }
+    },
   });
 };
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Card, CardActions, CardContent, Button, Typography, withStyles} from '@material-ui/core';
+import { Card, CardActions, CardContent, Button, Typography, withStyles } from '@material-ui/core';
 import { GoogleMaps } from 'mdi-material-ui';
 
 import large_0 from '../../assets/yelp/stars/large/large_0.png';
@@ -15,51 +15,65 @@ import large_5 from '../../assets/yelp/stars/large/large_5.png';
 
 import yelp_logo from '../../assets/yelp/yelp_logo.png';
 
-const styles = {
-  card: {
-    position: 'relative',
-    minWidth: 300,
-    marginRight: '2%',
-    marginBottom: '2%',
-    display: 'inline-block',
-    width: '48%',
-    height: '40vh',
-  },
-  media: {
-    height: 204,
-  },
-  yelpLogo: {
-    marginTop: -20,
-    marginBottom: -20,
-    width: '100%',
-  },
-  yelpLogoCont: {
-    width: 120,
-  },
-  typeSpacing: {
-    marginTop: 30,
-  },
-  cardAction: {
-    width: '100%',
-    position: 'absolute',
-    bottom: 0,
-  },
-  stars: {
-    marginTop: 10,
-  },
-  directions: {
-    textDecoration: 'none',
-  },
-  directionsChild: {
-    color: '#497890',
-    transition: '300ms',
-    '&:hover': {
-      color: '#9DA6AF',
+const styles = theme => {
+  theme.breakpoints.values.sm = 480;
+  theme.breakpoints.values.md = 910;
+  theme.breakpoints.values.lg = 1024;
+
+  return ({
+    card: {
+      position: 'relative',
+      minWidth: 300,
+      marginRight: '2%',
+      marginBottom: '2%',
+      display: 'inline-block',
+      width: '48%',
+      height: '40vh',
     },
-  },
-  mapsIcon: {
-    marginRight: 10,
-  },
+    media: {
+      height: 204,
+    },
+    yelpLogo: {
+      marginTop: -20,
+      marginBottom: -20,
+      width: '100%',
+    },
+    yelpLogoCont: {
+      width: 120,
+    },
+    typeSpacing: {
+      marginTop: 30,
+    },
+    cardAction: {
+      width: '100%',
+      position: 'absolute',
+      bottom: 0,
+    },
+    stars: {
+      marginTop: 10,
+    },
+    directions: {
+      textDecoration: 'none',
+    },
+    directionsChild: {
+      color: '#497890',
+      transition: '300ms',
+      '&:hover': {
+        color: '#9DA6AF',
+      },
+    },
+    mapsIcon: {
+      [theme.breakpoints.between('xs', 'sm')]: {
+        marginRight: 0,
+      },
+      [theme.breakpoints.between('sm', 'md')]: {
+        marginRight: 0,
+      },
+      [theme.breakpoints.between('md', 'lg')]: {
+        marginRight: 10,
+      },
+    },
+  });
 };
 
 function MediaCard(props) {
@@ -111,7 +125,7 @@ function MediaCard(props) {
 
         <a className={classes.directions} href={`https://www.google.com/maps/dir/?api=1&destination=${restaurant.restName.replace(/\s/g, '+')}+${restaurant.restAddress.join(' ').replace(/\s/g, '+').replace(/,/g, '%2C')}`} rel="noopener noreferrer" target="_blank">
           <Button className={classes.directionsChild} size="small">
-            <GoogleMaps className={classes.mapsIcon}/>
+            <GoogleMaps className={classes.mapsIcon} />
             Get Directions
           </Button>
         </a>
