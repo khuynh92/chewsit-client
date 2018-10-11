@@ -176,6 +176,7 @@ class Preferences extends Component {
 
     let newPref = {
       id: this.props.user.id,
+      favorites: this.props.user.favorites,
       preferences,
     };
 

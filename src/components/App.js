@@ -10,7 +10,7 @@ import SignUpForm from './signup/SignUpForm.js';
 import Results from './results/Results.js';
 import Preferences from './preferences/Preferences.js';
 import Privacy from './privacy/Privacy.js';
-
+import Favorites from './favorites/Favorites.js';
 import ToDashboard from './redirect/ToDashboard.js';
 import ToPreferences from './redirect/ToPreferences.js';
 import About from './about/About.js';
@@ -28,6 +28,7 @@ export default class App extends Component {
             <Route path = '/results' component={Results} />
             <Route path = '/noredirect' component={ToDashboard} />
             <Route path = '/redirect' component={ToPreferences} />
+            <Route path = '/favorites' component={Favorites} />
             <Route path = '/privacypolicy' component={Privacy} />
             <Route path = '/About' component={About} />
 

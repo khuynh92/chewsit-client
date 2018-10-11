@@ -3,8 +3,8 @@ import { Card, CardActions, CardContent, Button, Typography, withStyles, IconBut
 import { GoogleMaps, StarOutline, Star } from 'mdi-material-ui';
 import { connect } from 'react-redux';
 
-import { newFavoriteThunk, removeFavoriteThunk} from '../../action/preferences-action.js';
-
+import { newFavoriteThunk, removeFavoriteThunk } from '../../action/preferences-action.js';
+import Image from '../results/Restaurant.js';
 import large_0 from '../../assets/yelp/stars/large/large_0.png';
 import large_1 from '../../assets/yelp/stars/large/large_1.png';
 import large_1_half from '../../assets/yelp/stars/large/large_1_half.png';
@@ -20,7 +20,7 @@ import yelp_logo from '../../assets/yelp/yelp_logo.png';
 
 const styles = theme => {
   theme.breakpoints.values.sm = 480;
-  theme.breakpoints.values.mid = 769;
+  theme.breakpoints.values.mid = 710;
   theme.breakpoints.values.md = 910;
   theme.breakpoints.values.lg = 1024;
   theme.breakpoints.values.xl = 3000;
@@ -34,16 +34,16 @@ const styles = theme => {
         marginRight: 'auto',
         marginLeft: 'auto',
         marginBottom: '2%',
-        width: '50%',
-        height: '40vh',
+        width: '100%',
+        height: '60vh',
       },
       [theme.breakpoints.between('mid', 'xl')]: {
         position: 'relative',
-        minWidth: 300,
+        minWidth: 700,
         marginRight: '2%',
         marginBottom: '2%',
         display: 'inline-block',
-        width: '48%',
+        width: '100%',
         height: '40vh',
       },
     },
@@ -51,6 +51,7 @@ const styles = theme => {
       height: 204,
     },
     yelpLogo: {
+      zIndex: 99,
       marginTop: -20,
       marginBottom: -20,
       width: '100%',
@@ -70,6 +71,7 @@ const styles = theme => {
       marginTop: 10,
     },
     directions: {
+      zIndex: 99,
       textDecoration: 'none',
     },
     directionsChild: {
@@ -98,13 +100,46 @@ const styles = theme => {
       fontSize: 36,
     },
     starIcon: {
-      float: 'right',
-    },
+      [theme.breakpoints.between('xs', 'md')]: {
+        float: 'right',
+      },
+      [theme.breakpoints.between('mid', 'xl')]: {
+        marginRight: '50%',
+        float: 'right',
+      },
 
+    },
+    image: {
+      [theme.breakpoints.between('xs', 'md')]: {
+        position: 'relative',
+        objectFit: 'cover',
+        marginLeft: '5%',
+        width: '91%',
+        height: '43%',
+        display: 'block',
+        borderRadius: 5,
+      },
+      [theme.breakpoints.between('mid', 'xl')]: {
+        position: 'relative',
+        top: -142,
+        objectFit: 'cover',
+        float: 'right',
+        width: '42%',
+        height: '87%',
+        marginRight: 15,
+        borderRadius: 5,
+      },
+      restaurantName: {
+        fontSize: '1.2em',
+      },
+    },
+    restaurantName: {
+      fontSize: '1.2rem',
+    },
   });
 };
 
-function MediaCard(props) {
+function FavInfo(props) {
   let { restaurant } = props;
 
   let image;
@@ -134,42 +169,44 @@ function MediaCard(props) {
 
   return (
     <Card className={classes.card}>
+      <div>
+        {!props.favorites.includes(restaurant.restID) ?
+          <IconButton onClick={() => props.newFavoriteThunk(props.user, restaurant.restID)} className={classes.starIcon}>
+            <StarOutline className={classes.starOutlined} />
+          </IconButton>
+          : <IconButton onClick={() => props.removeFavoriteThunk(props.user, restaurant.restID)} className={classes.starIcon}>
+            <Star className={classes.starFilled} />
+          </IconButton>
+        }
 
-      {!props.favorites.includes(restaurant.restID) ?
-        <IconButton onClick={() => props.newFavoriteThunk(props.user, restaurant.restID)} className={classes.starIcon}>
-          <StarOutline className={classes.starOutlined} />
-        </IconButton>
-        : <IconButton onClick={() => props.removeFavoriteThunk(props.user, restaurant.restID)} className={classes.starIcon}>
-          <Star className={classes.starFilled} />
-        </IconButton>
-      }
+        <CardContent>
+          <Typography className={classes.restaurantName} gutterBottom variant="headline">
+            {restaurant.restName}
+            <Typography variant="caption">{restaurant.restDistance}</Typography>
+          </Typography>
+          <img className={classes.stars} src={image} /> {restaurant.restReviewCount} reviews
+          <Typography className={classes.typeSpacing} component="p">
+            <strong>Type:</strong> {restaurant.restType}
+          </Typography>
+        </CardContent>
+        <CardActions className={classes.cardAction}>
 
-      <CardContent>
-        <Typography gutterBottom variant="headline" component="h2">
-          {restaurant.restName}
-          <Typography variant="caption">{restaurant.restDistance}</Typography>
-        </Typography>
-        <img className={classes.stars} src={image} /> {restaurant.restReviewCount} reviews
-        <Typography className={classes.typeSpacing} component="p">
-          <strong>Type:</strong> {restaurant.restType}
-        </Typography>
-      </CardContent>
-      <CardActions className={classes.cardAction}>
+          <a href={restaurant.restWebsite} rel="noopener noreferrer" target="_blank">
+            <Button className={classes.yelpLogoCont} size="small" color="primary">
+              <img className={classes.yelpLogo} src={yelp_logo} />
+            </Button>
+          </a>
 
-        <a href={restaurant.restWebsite} rel="noopener noreferrer" target="_blank">
-          <Button className={classes.yelpLogoCont} size="small" color="primary">
-            <img className={classes.yelpLogo} src={yelp_logo} />
-          </Button>
-        </a>
+          <a className={classes.directions} href={`https://www.google.com/maps/dir/?api=1&destination=${restaurant.restName.replace(/\s/g, '+')}+${restaurant.restAddress.join(' ').replace(/\s/g, '+').replace(/,/g, '%2C')}`} rel="noopener noreferrer" target="_blank">
+            <Button className={classes.directionsChild} size="small">
+              <GoogleMaps className={classes.mapsIcon} />
+              Get Directions
+            </Button>
+          </a>
 
-        <a className={classes.directions} href={`https://www.google.com/maps/dir/?api=1&destination=${restaurant.restName.replace(/\s/g, '+')}+${restaurant.restAddress.join(' ').replace(/\s/g, '+').replace(/,/g, '%2C')}`} rel="noopener noreferrer" target="_blank">
-          <Button className={classes.directionsChild} size="small">
-            <GoogleMaps className={classes.mapsIcon} />
-            Get Directions
-          </Button>
-        </a>
-
-      </CardActions>
+        </CardActions>
+      </div>
+      <img className={classes.image} src={restaurant.restImg} />
     </Card>
   );
 }
@@ -179,4 +216,4 @@ const mapStateToProps = (state) => ({ state, user: state.user, favorites: state.
 const mapDispatchToProps = { newFavoriteThunk, removeFavoriteThunk };
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(MediaCard));
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(FavInfo));
