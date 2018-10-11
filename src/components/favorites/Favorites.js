@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import cookie from 'react-cookies';
-import { withStyles, Grid, List, ListItem } from '@material-ui/core';
+import { withStyles, Grid, List, ListItem, Button, Typography } from '@material-ui/core';
 import superagent from 'superagent';
 
 import Navbar from '../navbar/Navbar.js';
@@ -14,6 +14,9 @@ import { savePrefThunk, getPrefThunk } from '../../action/preferences-action.js'
 const styles = {
   grid: {
     display: 'flex',
+  },
+  bottomElement: {
+    marginBottom: '10vh',
   },
 };
 
@@ -34,10 +37,18 @@ class Favorites extends Component {
 
       await this.setState({ ...this.state, favoritesID: this.props.favorites });
 
-      let fetched = await fetchFavorites(this.state.favoritesID);
+      let fetched = await fetchFavorites(this.state.favoritesID.slice(0, 5));
 
       this.setState({ favorites: fetched });
     }
+  }
+
+  fetchMore = async () => {
+    let startIndex = this.state.favorites.length;
+
+    let fetched = await fetchFavorites(this.state.favoritesID.slice(startIndex, startIndex + 5));
+
+    this.setState({ favorites: [...this.state.favorites, ...fetched]});
   }
 
   render() {
@@ -63,6 +74,9 @@ class Favorites extends Component {
                 );
               })}
             </List>
+
+            {this.state.favorites.length < this.state.favoritesID.length ? <Button className={classes.bottomElement} onClick={this.fetchMore}>Load More</Button> : <Typography className={classes.bottomElement}variant='body2'>End of Results</Typography>}
+
           </Grid>
         </Fragment>
       );
@@ -102,11 +116,11 @@ async function fetchFavorites(favorites) {
     });
   });
 
-  return results.sort(function(a, b) {
+  return results.sort(function (a, b) {
     if (a.restName.toUpperCase() < a.restName.toUpperCase()) {
       return -1;
     }
-    if (a.restName.toUpperCase()  > b.restName.toUpperCase()) {
+    if (a.restName.toUpperCase() > b.restName.toUpperCase()) {
       return 1;
     }
     return 0;
