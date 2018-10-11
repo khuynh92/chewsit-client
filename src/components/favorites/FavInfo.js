@@ -4,7 +4,6 @@ import { GoogleMaps, StarOutline, Star } from 'mdi-material-ui';
 import { connect } from 'react-redux';
 
 import { newFavoriteThunk, removeFavoriteThunk } from '../../action/preferences-action.js';
-import Image from '../results/Restaurant.js';
 import large_0 from '../../assets/yelp/stars/large/large_0.png';
 import large_1 from '../../assets/yelp/stars/large/large_1.png';
 import large_1_half from '../../assets/yelp/stars/large/large_1_half.png';
@@ -40,10 +39,9 @@ const styles = theme => {
       [theme.breakpoints.between('mid', 'xl')]: {
         position: 'relative',
         minWidth: 700,
-        marginRight: '2%',
-        marginBottom: '2%',
+        margin: 'auto',
         display: 'inline-block',
-        width: '100%',
+        width: '75%',
         height: '40vh',
       },
     },
