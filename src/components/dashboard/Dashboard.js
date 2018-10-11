@@ -6,17 +6,12 @@ import { connect } from 'react-redux';
 import superagent from 'superagent';
 import { TextField, withStyles, Button, NativeSelect, InputLabel, FormControl, Input, Typography, CircularProgress, Grid, Snackbar, IconButton } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
-import googleMaps from '@google/maps';
 
 import Navbar from '../navbar/Navbar.js';
 
-import { getPrefThunk } from '../../action/preferences-action.js';
 import { logIn, saveLocation } from '../../action/login-action.js';
 import { fetchAllResultsThunk } from '../../action/results-action.js';
 
-const googleMapsClient = googleMaps.createClient({
-  key: process.env.GOOGLE_API_KEY,
-});
 
 const styles = {
   button: {
@@ -432,6 +427,6 @@ class Dashboard extends Component {
 
 const mapStateToProps = (state) => ({ state, user: state.user });
 
-const mapDispatchToProps = { logIn, getPrefThunk, fetchAllResultsThunk, saveLocation };
+const mapDispatchToProps = { logIn, fetchAllResultsThunk, saveLocation };
 
 export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Dashboard));

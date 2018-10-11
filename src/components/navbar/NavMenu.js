@@ -9,7 +9,7 @@ import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import MenuIcon from '@material-ui/icons/Menu';
 import Button from '@material-ui/core/Button';
-import { ThumbUpOutline, InformationOutline, HomeOutline } from 'mdi-material-ui';
+import { ThumbUpOutline, InformationOutline, HomeOutline, StarOutline } from 'mdi-material-ui';
 
 import { logOutThunk } from '../../action/login-action.js';
 
@@ -90,6 +90,17 @@ class NavMenu extends React.Component {
           </List>
         </Link>
         <Divider />
+
+        <Link to='/favorites' className={classes.link}>
+          <List className={classes.li}>
+            <Button className={classes.button}>
+              <StarOutline />
+              <Typography className={classes.listText} variant='body1'>Favorites</Typography>
+            </ Button>
+          </List>
+        </Link>
+        <Divider />
+
 
         <Link to='/about' className={classes.link}>
           <List className={classes.li}>
