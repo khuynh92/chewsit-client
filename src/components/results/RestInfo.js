@@ -3,7 +3,7 @@ import { Card, CardActions, CardContent, Button, Typography, withStyles, IconBut
 import { GoogleMaps, StarOutline, Star } from 'mdi-material-ui';
 import { connect } from 'react-redux';
 
-import { newFavoriteThunk, removeFavoriteThunk} from '../../action/preferences-action.js';
+import { newFavoriteThunk, removeFavoriteThunk } from '../../action/preferences-action.js';
 
 import large_0 from '../../assets/yelp/stars/large/large_0.png';
 import large_1 from '../../assets/yelp/stars/large/large_1.png';
@@ -135,12 +135,12 @@ function MediaCard(props) {
   return (
     <Card className={classes.card}>
 
-      {!props.favorites.includes(restaurant.restID) ?
+      {props.favorites && props.favorites.includes(restaurant.restID) ?
+        <IconButton onClick={() => props.removeFavoriteThunk(props.user, restaurant.restID)} className={classes.starIcon}>
+          <Star className={classes.starFilled} />
+        </IconButton> :
         <IconButton onClick={() => props.newFavoriteThunk(props.user, restaurant.restID)} className={classes.starIcon}>
           <StarOutline className={classes.starOutlined} />
-        </IconButton>
-        : <IconButton onClick={() => props.removeFavoriteThunk(props.user, restaurant.restID)} className={classes.starIcon}>
-          <Star className={classes.starFilled} />
         </IconButton>
       }
 

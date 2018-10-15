@@ -10,7 +10,7 @@ const appReducer = combineReducers({
   user, resultsState,
 });
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+// export default createStore(appReducer, composeEnhancers(applyMiddleware(logger, thunk, errorHandler)));
 
-export default createStore(appReducer, composeEnhancers(applyMiddleware(thunk, errorHandler)));
-
+export default createStore(appReducer, applyMiddleware(thunk, errorHandler));

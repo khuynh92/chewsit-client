@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import {Link} from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
@@ -17,8 +18,9 @@ const styles = theme => {
   theme.breakpoints.values.lg = 1024;
 
   return ({
-    button: {
-      width: 300,
+    LogInButton: {
+      marginRight: 20,
+      width: 140,
       marginTop: 20,
       marginBottom: 20,
       backgroundColor: '#497890',
@@ -26,6 +28,18 @@ const styles = theme => {
       transition: '300ms',
       '&:hover': {
         backgroundColor: '#7baec6',
+      },
+    },
+    button: {
+      textDecoration: 'none',
+      width: 140,
+      marginTop: 20,
+      marginBottom: 20,
+      backgroundColor: '#497890',
+      color: '#ECEBE3',
+      transition: '300ms',
+      '&:hover': {
+        backgroundColor: '#D36F75',
       },
     },
     logInForm: {
@@ -100,7 +114,9 @@ class LogInForm extends Component {
           />
           <br />
           {this.props.user.logInError ? <Typography variant='body2' color='error'>Invalid Username/Password</Typography> : null}
-          <Button className={classes.button} size="small" variant="contained" onClick={this.handleSubmit}>Log In</Button>
+          <Button className={classes.LogInButton} size="small" variant="contained" onClick={this.handleSubmit}>Log In</Button>
+          <Link to='/guest/dashboard' style={{textDecoration: 'none'}}><Button className={classes.button} size="small" variant="contained">Guest</Button></Link>
+
         </form>
       </Fragment>
     );
