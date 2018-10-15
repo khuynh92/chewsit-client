@@ -260,7 +260,7 @@ class Dashboard extends Component {
 
             await this.props.fetchAllResultsThunk(food, location, this.state.price.length, this.state.distance);
 
-            this.props.history.push('/results');
+            this.props.history.push('guest/results');
           })
           .catch(err => {
             alert(err);
