@@ -18,3 +18,4 @@ visit the server side repo at: https://github.com/khuynh92/chewsit-server
 - 10/06/2018: added about me
 - 10/04/2018: added a dialog after user finishes preferences
 ...
+- 09/09/2018: Began complete rework of chewsit
