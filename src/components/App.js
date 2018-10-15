@@ -14,6 +14,8 @@ import Favorites from './favorites/Favorites.js';
 import ToDashboard from './redirect/ToDashboard.js';
 import ToPreferences from './redirect/ToPreferences.js';
 import About from './about/About.js';
+import GuestDashboard from './guest/GuestDashboard.js';
+import GuestResults from './guest/GuestResults.js';
 
 export default class App extends Component {
   render() {
@@ -31,7 +33,8 @@ export default class App extends Component {
             <Route path = '/favorites' component={Favorites} />
             <Route path = '/privacypolicy' component={Privacy} />
             <Route path = '/About' component={About} />
-
+            <Route path = '/guest/dashboard' component={GuestDashboard} />
+            <Route path = '/guest/results' component={GuestResults} />
           </React.Fragment>
         </BrowserRouter>
       </Provider>

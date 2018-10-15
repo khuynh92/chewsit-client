@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 import cookie from 'react-cookies';
+import { Linkedin, GooglePlus, Facebook } from 'mdi-material-ui';
 
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -21,7 +22,7 @@ const styles = {
     color: '#ECEBE3',
   },
   grid: {
-    marginTop: '15vh',
+    marginTop: '5vh',
   },
   consent: {
     width: 200,
@@ -39,6 +40,33 @@ const styles = {
   checkbox: {
     paddingLeft: 0,
     marginBottom: 50,
+  },
+  google: {
+    marginLeft: 10,
+    marginRight: 10,
+    color: '#ECEBE3',
+    backgroundColor: 'rgb(211, 72, 54)',
+    '&:hover': {
+      backgroundColor: 'rgb(241, 102, 84 )',
+    },
+  },
+  facebook: {
+    marginLeft: 10,
+    marginRight: 10,
+    color: '#ECEBE3',
+    backgroundColor: 'rgb(59, 89, 152)',
+    '&:hover': {
+      backgroundColor: 'rgb(89, 119, 180)',
+    },
+  },
+  linkedIn: {
+    marginLeft: 10,
+    marginRight: 10,
+    color: '#ECEBE3',
+    backgroundColor: 'rgb(0, 119, 181)',
+    '&:hover': {
+      backgroundColor: 'rgb(30, 149, 211)',
+    },
   },
 };
 
@@ -107,6 +135,46 @@ class SignUpForm extends Component {
     this.setState({ [name]: event.target.checked, notChecked: false }, () => {console.log(this.state)});
   };
 
+  facebookOAuth = () => {
+    window.location = `https://www.facebook.com/v3.1/dialog/oauth?client_id=510060352775198&scope=email&redirect_uri=${process.env.API_URL}/oauth/facebook/code&state=123kl21jdo9u01je2l1ij2dlkaj0112`;
+  }
+
+  googleOAuth = () => {
+    let googleURL = 'https://accounts.google.com/o/oauth2/v2/auth';
+    let options = {
+      client_id: '123538572340-or8e9drlqqnlmkfupkcfh519d889dqo6.apps.googleusercontent.com',
+      redirect_uri: `${process.env.API_URL}/oauth/google/code`,
+      scope: 'email openid profile',
+      prompt: 'consent',
+      response_type: 'code',
+    };
+    let queryString = Object.keys(options).map(key => {
+      return `${key}=` + encodeURIComponent(options[key]);
+    }).join('&');
+    let authURL = `${googleURL}?${queryString}`;
+
+    window.location = authURL;
+
+  }
+
+  linkedInOAuth = () => {
+    let linkedInURL = 'https://www.linkedin.com/oauth/v2/authorization';
+    let options = {
+      client_id: '86v36mks0tlhmk',
+      redirect_uri: `${process.env.API_URL}/oauth/linkedIn/code`,
+      scope: 'r_basicprofile r_emailaddress',
+      response_type: 'code',
+      state: 'LKKdlahjk123jhka23hk1dh12',
+    };
+    let queryString = Object.keys(options).map(key => {
+      return `${key}=` + encodeURIComponent(options[key]);
+    }).join('&');
+    let authURL = `${linkedInURL}?${queryString}`;
+
+    window.location = authURL;
+
+  }
+
 
   render() {
     const { classes } = this.props;
@@ -128,7 +196,20 @@ class SignUpForm extends Component {
             justify="center"
           >
 
-            <h3>Create an account</h3>
+            <h3>Create an account with: </h3>
+            <p>
+              <Button variant="fab" mini color="secondary" className={this.props.classes.facebook} onClick={this.facebookOAuth}>
+                <Facebook />
+              </Button>
+              <Button variant="fab" mini color="secondary" className={this.props.classes.google} onClick={this.googleOAuth}>
+                <GooglePlus />
+              </Button>
+              <Button variant="fab" mini color="secondary" className={this.props.classes.linkedIn} onClick={this.linkedInOAuth}>
+                <Linkedin />
+              </Button>
+            </p>
+
+            <h3>or </h3>
 
             <form>
               <TextField
