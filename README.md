@@ -16,6 +16,6 @@ visit the server side repo at: https://github.com/khuynh92/chewsit-server
 - 10/09/2018: added a 1/4 mile button for range. Added an error message if user is not using the website over https
 - 10/08/2018: changed the user's marker to a person
 - 10/06/2018: added about me
-- 10/04/2018: added a dialog after user finishes preferences
-...
+- 10/04/2018: added a dialog after user finishes preferences  
+...  
 - 09/09/2018: Began complete rework of chewsit
