@@ -389,7 +389,7 @@ const MapWithADirectionsRenderer = compose(
   withProps({
     googleMapURL: `https://maps.googleapis.com/maps/api/js?key=${process.env.GOOGLE_API_KEY}&v=3.exp&libraries=geometry,drawing,places`,
     loadingElement: <div style={{ height: `100%` }} />,
-    containerElement: <Card style={{ height: `40vh`, width: '100%', marginRight: '2%' }} />,
+    containerElement: <Card style={{  minHeight: 250, height: `40vh`, width: '100%', marginRight: '2%' }} />,
     mapElement: <div style={{ height: `100%`, width: '100%', marginRight: 0 }} />,
   }),
   withStateHandlers(() => ({

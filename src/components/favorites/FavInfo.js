@@ -27,6 +27,7 @@ const styles = theme => {
 
   return ({
     card: {
+      minHeight: 250,
       [theme.breakpoints.between('xs', 'md')]: {
         position: 'relative',
         minWidth: 300,
