@@ -22,12 +22,6 @@ const styles = {
   grow: {
     flexGrow: 1,
   },
-  menuButton: {
-    paddingTop: 10,
-    paddingBottom: 8,
-    marginLeft: -12,
-    marginRight: 20,
-  },
   link: {
     fontSize: 32,
     fontFamily: 'Oleo Script Swash Caps',
@@ -45,11 +39,9 @@ class Navbar extends Component {
     const { classes } = this.props;
     return (
       <div className={classes.root}>
-        <AppBar className={classes.appBar}position="static">
+        <AppBar className={classes.appBar} position="static">
           <Toolbar>
-            <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-              <NavMenu />
-            </IconButton>
+            <NavMenu/>
             <Typography variant="title" color="inherit" className={classes.grow}>
               <Link className={classes.link} to='/dashboard'>chewsit</Link>
             </Typography>
