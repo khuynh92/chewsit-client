@@ -9,6 +9,7 @@ import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import MenuIcon from '@material-ui/icons/Menu';
 import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
 import { ThumbUpOutline, InformationOutline, HomeOutline, StarOutline } from 'mdi-material-ui';
 
 import { logOutThunk } from '../../action/login-action.js';
@@ -50,6 +51,9 @@ const styles = {
   },
   menuIcon: {
     color: '#ECEBE3',
+  },
+  hamburger: {
+    marginRight: 20,
   },
 };
 
@@ -187,7 +191,9 @@ class NavMenu extends React.Component {
 
     return (
       <div>
-        <MenuIcon className={classes.menuIcon} onClick={this.toggleDrawer('left', true)} />
+        <IconButton  className={classes.hamburger} onClick={this.toggleDrawer('left', true)}>
+          <MenuIcon className={classes.menuIcon}/>
+        </IconButton>
 
         <SwipeableDrawer
           open={this.state.left}
