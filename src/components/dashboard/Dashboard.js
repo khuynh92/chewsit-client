@@ -140,6 +140,7 @@ const styles = {
     flexDirection: 'column',
   },
   multiFormControl: {
+    width: 200,
     marginTop: -30,
   },
   navbar: {
