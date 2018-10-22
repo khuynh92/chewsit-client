@@ -139,6 +139,7 @@ const styles = {
     flexDirection: 'column',
   },
   multiFormControl: {
+    width: 200,
     marginTop: -30,
   },
   navbar: {
@@ -349,9 +350,9 @@ class Dashboard extends Component {
           <br />
           <br />
 
-          <FormControl className={classes.multiFormControl}>
+          <FormControl className={classes.multiFormControl} >
             <InputLabel error={this.state.distanceError} htmlFor="distance-native-helper">Distance</InputLabel>
-            <NativeSelect error={this.state.distanceError} onChange={this.changeDistance} value={this.state.distance} input={<Input name="distance" id="distance-native-helper" />}>
+            <NativeSelect error={this.state.distanceError} onChange={this.changeDistance} value={this.state.distance} input={<Input name="distance" id="distance-native-helper" /> }>
               <option value="" />
               <option value={400}>¼	mile</option>
               <option value={805}>½ mile</option>
