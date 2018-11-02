@@ -21,6 +21,7 @@ const styles = theme => {
     khoa: {
       marginTop: 10,
       marginBottom: 30,
+      maxWidth: 300,
       [theme.breakpoints.between('xs', 'sm')]: {
         width: 100,
       },

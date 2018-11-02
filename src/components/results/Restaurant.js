@@ -46,12 +46,10 @@ const styles = theme => {
       paddingBottom: 0,
       marginBottom: 0,
     },
-  })
+  });
 };
 
 class MediaCard extends Component {
-
-
   render() {
     const { classes } = this.props;
     return (
