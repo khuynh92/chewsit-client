@@ -11,14 +11,7 @@ import FavInfo from './FavInfo.js';
 import { logIn } from '../../action/login-action.js';
 import { savePrefThunk, getPrefThunk } from '../../action/preferences-action.js';
 
-const styles = {
-  grid: {
-    display: 'flex',
-  },
-  bottomElement: {
-    marginBottom: '10vh',
-  },
-};
+import {styles} from '../../style/favoritesStyles.js';
 
 class Favorites extends Component {
 

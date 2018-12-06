@@ -11,28 +11,7 @@ import { Link } from 'react-router-dom';
 
 import { logOutThunk } from '../../action/login-action.js';
 
-
-const styles = {
-  appBar: {
-    backgroundColor: '#D36F75',
-  },
-  root: {
-    flexGrow: 1,
-  },
-  grow: {
-    flexGrow: 1,
-  },
-  link: {
-    fontSize: 32,
-    fontFamily: 'Oleo Script Swash Caps',
-    fontWeight: 700,
-    textDecoration: 'none',
-    color: '#ECEBE3',
-  },
-  logoutButton: {
-    color: '#ECEBE3',
-  },
-};
+import {styles} from  '../../style/navbarStyles.js';
 
 class Navbar extends Component {
   render() {
