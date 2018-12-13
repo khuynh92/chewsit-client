@@ -1,10 +1,10 @@
-# chewsit
+# Chewsit
 
 Try it out: https://chewsit.site
 
 This is front end repository for the third iteration of chewsit.
 
-## server
+## Server
 
 visit the server side repo at: https://github.com/khuynh92/chewsit-server
 
