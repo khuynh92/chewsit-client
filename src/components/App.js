@@ -26,15 +26,15 @@ export default class App extends Component {
             <Route exact path='/' component={Home} />
             <Route exact path='/dashboard' component={Dashboard} />
             <Route path='/signup' component={SignUpForm} />
-            <Route path = '/preferences' component={Preferences} />
-            <Route path = '/results' component={Results} />
-            <Route path = '/noredirect' component={ToDashboard} />
-            <Route path = '/redirect' component={ToPreferences} />
-            <Route path = '/favorites' component={Favorites} />
-            <Route path = '/privacypolicy' component={Privacy} />
-            <Route path = '/About' component={About} />
-            <Route path = '/guest/dashboard' component={GuestDashboard} />
-            <Route path = '/guest/results' component={GuestResults} />
+            <Route path ='/preferences' component={Preferences} />
+            <Route path ='/results' component={Results} />
+            <Route path ='/noredirect' component={ToDashboard} />
+            <Route path ='/redirect' component={ToPreferences} />
+            <Route path ='/favorites' component={Favorites} />
+            <Route path ='/privacypolicy' component={Privacy} />
+            <Route path ='/About' component={About} />
+            <Route path ='/guest/dashboard' component={GuestDashboard} />
+            <Route path ='/guest/results' component={GuestResults} />
           </React.Fragment>
         </BrowserRouter>
       </Provider>

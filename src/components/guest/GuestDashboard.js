@@ -109,7 +109,7 @@ class Dashboard extends Component {
 
             await this.props.fetchAllResultsThunk(food, location, this.state.price.length, this.state.distance);
 
-            this.props.history.push('guest/results');
+            this.props.history.push('/guest/results/');
           })
           .catch(err => {
             alert(err);
@@ -137,7 +137,7 @@ class Dashboard extends Component {
 
         await this.props.fetchAllResultsThunk(food, location, this.state.price.length, this.state.distance);
 
-        this.props.history.push('/guest/results');
+        this.props.history.push('/guest/results/');
 
       } else {
         if (!this.state.location) {
