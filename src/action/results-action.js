@@ -24,12 +24,9 @@ export const fetchAllResultsThunk = (food, location, price, distance) => {
         return response.body.total;
       });
     
-    let offset = offsetTotal < 51 ? 0 : Math.floor(Math.random() * offsetTotal - 4);
-    //temp fix
-    let offsetFinal = offset <= 0 ? 0 : offset;
-    //
+    let offset = offsetTotal < 51 ? 0 : Math.abs(Math.floor(Math.random() * offsetTotal - 4));
 
-    return superagent.get(`${process.env.API_URL}/api/v3/yelp/${food}/${location}/${price}/${distance}/${offsetFinal}`)
+    return superagent.get(`${process.env.API_URL}/api/v3/yelp/${food}/${location}/${price}/${distance}/${offset}`)
       .then(response => {
         randomize(response.body.businesses);
         return dispatch(fetchAllResults(response.body.businesses));

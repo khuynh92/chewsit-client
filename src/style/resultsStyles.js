@@ -11,7 +11,7 @@ export const styles = theme => {
       [theme.breakpoints.between('xs', 'sm')]: {
         width: '83%',
         display: 'flex',
-        marginTop: '40px',
+        paddingTop: 40,
         flexDirection: 'column',
         marginBottom: '40vh',
         marginLeft: 'auto',
@@ -20,7 +20,7 @@ export const styles = theme => {
       [theme.breakpoints.between('sm', 'md')]: {
         width: '83%',
         display: 'flex',
-        marginTop: '40px',
+        paddingTop: 40,
         flexDirection: 'column',
         marginBottom: '40vh',
         marginLeft: 'auto',
@@ -28,7 +28,7 @@ export const styles = theme => {
       },
 
       [theme.breakpoints.between('md', 'lg')]: {
-        marginTop: 40,
+        paddingTop: 40,
         marginLeft: 'auto',
         marginRight: 'auto',
         display: 'flex',
@@ -41,7 +41,7 @@ export const styles = theme => {
         maxWidth: 1024,
         marginLeft: 'auto',
         marginRight: 'auto',
-        marginTop: '5vh',
+        paddingTop: 40,
         display: 'flex',
         flexDirection: 'column',
         marginBottom: '40vh',

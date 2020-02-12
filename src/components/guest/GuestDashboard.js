@@ -174,13 +174,15 @@ class Dashboard extends Component {
           justify="center"
         >
           <div className={this.state.showLocationForm ? classes.formDiv : classes.locationDiv}>
-            {this.state.useLocation && <Button disabled={this.state.locationFetch} onClick={this.getLocation} id='location' className={this.state.locationError ? classes.locationButtonErr : classes.locationButton} variant='contained'>use location</Button>}
+            {/* since no http ssl available, remove use location */}
+            {/* {this.state.useLocation && <Button disabled={this.state.locationFetch} onClick={this.getLocation} id='location' className={this.state.locationError ? classes.locationButtonErr : classes.locationButton} variant='contained'>use location</Button>} */}
 
-            {(this.state.enterLocation && this.state.useLocation) && <span className={classes.or}>or</span>}
+            {/* {(this.state.enterLocation && this.state.useLocation) && <span className={classes.or}>or</span>} */}
 
-            {this.state.enterLocation && <Button onClick={this.showLocationForm} className={this.state.getLocationError ? classes.getLocationButtonErr : classes.enterLocationButton}>Enter Location</Button>}
+            {/* {this.state.enterLocation && <Button onClick={this.showLocationForm} className={this.state.getLocationError ? classes.getLocationButtonErr : classes.enterLocationButton}>Enter Location</Button>} */}
 
-            {this.state.showLocationForm && <TextField
+            {/* {this.state.showLocationForm &&  */}
+            <TextField
               error={this.state.emptyLocationForm}
               fullWidth
               required
@@ -190,7 +192,8 @@ class Dashboard extends Component {
               onChange={this.handleChange('locationForm')}
               margin="normal"
               placeholder="username"
-            />}
+            />
+            {/* } */}
 
           </div>
           <Typography variant='body1'>{this.state.locationFetchText}</Typography>
