@@ -43,13 +43,16 @@ webpackConfig.module.rules = [
     exclude: '/node_modules/**',
   },
   {
-    exclude: '/node_modules/**',
+    exclude: /node_modules/,
     test: /\.js$/,
     use: {
       loader: 'babel-loader',
       options: {
         presets: [  'env','stage-0','react'],
-        plugins: ['transform-react-jsx-source', 'babel-plugin-lodash', ['direct-import', ['mdi-material-ui']]],
+        plugins: [       ['transform-runtime', {
+          helpers: false,
+          polyfill: false,
+          regenerator: true }],'transform-react-jsx-source', 'babel-plugin-lodash', ['direct-import', ['mdi-material-ui']]],
         cacheDirectory: true,
       },
     },

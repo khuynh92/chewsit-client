@@ -1,4 +1,4 @@
 {
     "presets": ["react", "env"],
-    "plugins": ["transform-object-rest-spread", "transform-class-properties", ["direct-import", ["mdi-material-ui"]]]
+    "plugins": ["transform-runtime", "transform-object-rest-spread", "transform-class-properties", ["direct-import", ["mdi-material-ui"]]]
 }
