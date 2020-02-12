@@ -6,7 +6,7 @@ import cookie from 'react-cookies';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import { Linkedin, GooglePlus, Facebook, InformationOutline } from 'mdi-material-ui';
+import { Linkedin, Facebook, InformationOutline } from 'mdi-material-ui';
 import LogInForm from '../login/LogInForm';
 import Grid from '@material-ui/core/Grid';
 
@@ -29,24 +29,6 @@ class Home extends Component {
 
   facebookOAuth = () => {
     window.location = `https://www.facebook.com/v3.1/dialog/oauth?client_id=510060352775198&scope=email&redirect_uri=${process.env.API_URL}/oauth/facebook/code&state=123kl21jdo9u01je2l1ij2dlkaj0112`;
-  }
-
-  googleOAuth = () => {
-    let googleURL = 'https://accounts.google.com/o/oauth2/v2/auth';
-    let options = {
-      client_id: '123538572340-or8e9drlqqnlmkfupkcfh519d889dqo6.apps.googleusercontent.com',
-      redirect_uri: `${process.env.API_URL}/oauth/google/code`,
-      scope: 'email openid profile',
-      prompt: 'consent',
-      response_type: 'code',
-    };
-    let queryString = Object.keys(options).map(key => {
-      return `${key}=` + encodeURIComponent(options[key]);
-    }).join('&');
-    let authURL = `${googleURL}?${queryString}`;
-
-    window.location = authURL;
-
   }
 
   linkedInOAuth = () => {
@@ -83,13 +65,10 @@ class Home extends Component {
           >
             <Typography variant="display1" className={this.props.classes.home}>chewsit</Typography>
             <p>
-              <Button variant="fab" mini color="secondary" className={this.props.classes.facebook} onClick={this.facebookOAuth}>
+              <Button disabled variant="fab" mini color="secondary" className={this.props.classes.facebook} onClick={this.facebookOAuth}>
                 <Facebook />
               </Button>
-              <Button variant="fab" mini color="secondary" className={this.props.classes.google} onClick={this.googleOAuth}>
-                <GooglePlus />
-              </Button>
-              <Button variant="fab" mini color="secondary" className={this.props.classes.linkedIn} onClick={this.linkedInOAuth}>
+              <Button disabled variant="fab" mini color="secondary" className={this.props.classes.linkedIn} onClick={this.linkedInOAuth}>
                 <Linkedin />
               </Button>
             </p>
