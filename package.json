@@ -1,6 +1,9 @@
 {
   "name": "chewsit-client",
   "version": "1.0.0",
+  "engines": {
+    "node": "11.2.0"
+  },
   "description": "This project is a basic introduction into react.",
   "main": "index.js",
   "scripts": {
