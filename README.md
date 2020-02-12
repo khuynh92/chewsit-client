@@ -1,15 +1,14 @@
-# chewsit
+# Chewsit
 
 Try it out: https://chewsit.site
 
 This is front end repository for the third iteration of chewsit.
 
-This Application was built using React, Redux, and Material UI.
-
+## Server
 
 visit the server side repo at: https://github.com/khuynh92/chewsit-server
 
-### Update Logs
+## Update Logs
 
  - 10/14/2018: added guest feature, added dialogs to prevent access to preferences and created dialogs for navmenu if user is not logged in
 - 10/10/2018: Implemented favorites. User can now save favorites by clicking the outlined star when viewing restaurant cards. Added enter location button.
@@ -19,3 +18,10 @@ visit the server side repo at: https://github.com/khuynh92/chewsit-server
 - 10/04/2018: added a dialog after user finishes preferences  
 ...  
 - 09/09/2018: Began complete rework of chewsit
+
+## Technologies Used
+
+  * [React](https://reactjs.org/)
+  * [Redux](https://redux.js.org/)
+  * [Material UI](https://material-ui.com/)
+ 
