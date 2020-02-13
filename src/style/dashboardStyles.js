@@ -124,6 +124,9 @@ export const styles = {
     alignItems: 'center',
     flexDirection: 'column',
   },
+  location: {
+    width: 200,
+  },
   multiFormControl: {
     width: 200,
     marginTop: -30,
