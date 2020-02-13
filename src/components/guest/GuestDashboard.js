@@ -191,8 +191,7 @@ class Dashboard extends Component {
               value={this.state.locationForm}
               onChange={this.handleChange('locationForm')}
               margin="normal"
-              placeholder="seattle | 98125 | Microsoft"
-              className={classes.location}
+              placeholder="Seattle | 98125 | Microsoft"
             />
             {/* } */}
 

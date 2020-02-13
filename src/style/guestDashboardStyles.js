@@ -144,6 +144,7 @@ export const styles = {
     paddingTop: '6vh',
   },
   locationDiv: {
+    width: 200,
     display: 'flex',
   },
   formDiv: {

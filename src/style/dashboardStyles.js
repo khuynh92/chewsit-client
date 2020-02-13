@@ -124,7 +124,7 @@ export const styles = {
     alignItems: 'center',
     flexDirection: 'column',
   },
-  location: {
+  locationInput: {
     width: 200,
   },
   multiFormControl: {
@@ -147,6 +147,7 @@ export const styles = {
     paddingTop: '6vh',
   },
   locationDiv: {
+    width: 200,
     display: 'flex',
   },
   formDiv: {
